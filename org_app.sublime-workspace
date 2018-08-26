@@ -3,6 +3,10 @@
 	{
 		"selected_items":
 		[
+			[
+				"local",
+				"localhost"
+			]
 		]
 	},
 	"buffers":
@@ -54,12 +58,23 @@
 		"/C/xampp/htdocs/org_app/app/Exceptions",
 		"/C/xampp/htdocs/org_app/app/Http",
 		"/C/xampp/htdocs/org_app/app/Http/Controllers",
-		"/C/xampp/htdocs/org_app/app/Http/Controllers/Auth",
-		"/C/xampp/htdocs/org_app/routes"
+		"/C/xampp/htdocs/org_app/config",
+		"/C/xampp/htdocs/org_app/database",
+		"/C/xampp/htdocs/org_app/database/factories",
+		"/C/xampp/htdocs/org_app/database/migrations"
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/org_app/config/database.php",
+		"/C/xampp/htdocs/org_app/vendor/laravel/framework/src/Illuminate/Support/Facades/Artisan.php",
+		"/C/xampp/htdocs/org_app/vendor/phpunit/php-file-iterator/src/Facade.php",
+		"/C/xampp/htdocs/org_app/storage/logs/laravel.log",
+		"/C/xampp/htdocs/org_app/.env",
 		"/C/xampp/htdocs/org_app/routes/web.php",
+		"/C/xampp/htdocs/org_app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+		"/C/xampp/htdocs/org_app/vendor/laravel/framework/src/Illuminate/Support/helpers.php",
+		"/C/xampp/htdocs/org_app/app/Console/Kernel.php",
+		"/C/xampp/htdocs/org_app/vendor/laravel/framework/src/Illuminate/Console/Scheduling/Schedule.php",
 		"/C/xampp/htdocs/organization_app/resources/views/auth/register.blade.php",
 		"/C/xampp/htdocs/organization_app/app/User.php",
 		"/C/xampp/htdocs/organization_app/vendor/nesbot/carbon/src/Carbon/Carbon.php",
@@ -90,13 +105,14 @@
 	],
 	"find":
 	{
-		"height": 29.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
 		"height": 107.0,
 		"where_history":
 		[
+			"C:\\xampp\\htdocs\\org_app"
 		]
 	},
 	"find_state":
@@ -104,6 +120,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"endor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector",
+			"Connector",
 			" Illuminate/Routing/Router.php",
 			"router",
 			"get"
@@ -210,7 +228,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 271.0,
+	"side_bar_width": 391.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
