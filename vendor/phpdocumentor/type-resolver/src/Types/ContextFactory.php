@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -21,8 +22,8 @@ namespace phpDocumentor\Reflection\Types;
  *
  * @see Context for more information.
  */
-final class ContextFactory
-{
+final class ContextFactory {
+
     /** The literal used at the end of a use statement. */
     const T_LITERAL_END_OF_USE = ';';
 
@@ -38,8 +39,7 @@ final class ContextFactory
      *
      * @return Context
      */
-    public function createFromReflector(\Reflector $reflector)
-    {
+    public function createFromReflector(\Reflector $reflector) {
         if (method_exists($reflector, 'getDeclaringClass')) {
             $reflector = $reflector->getDeclaringClass();
         }
@@ -64,8 +64,7 @@ final class ContextFactory
      *
      * @return Context
      */
-    public function createForNamespace($namespace, $fileContents)
-    {
+    public function createForNamespace($namespace, $fileContents) {
         $namespace = trim($namespace, '\\');
         $useStatements = [];
         $currentNamespace = '';
@@ -83,9 +82,7 @@ final class ContextFactory
                     $braceLevel = 0;
                     $firstBraceFound = false;
                     while ($tokens->valid() && ($braceLevel > 0 || !$firstBraceFound)) {
-                        if ($tokens->current() === '{'
-                            || $tokens->current()[0] === T_CURLY_OPEN
-                            || $tokens->current()[0] === T_DOLLAR_OPEN_CURLY_BRACES) {
+                        if ($tokens->current() === '{' || $tokens->current()[0] === T_CURLY_OPEN || $tokens->current()[0] === T_DOLLAR_OPEN_CURLY_BRACES) {
                             if (!$firstBraceFound) {
                                 $firstBraceFound = true;
                             }
@@ -117,8 +114,7 @@ final class ContextFactory
      *
      * @return string
      */
-    private function parseNamespace(\ArrayIterator $tokens)
-    {
+    private function parseNamespace(\ArrayIterator $tokens) {
         // skip to the first string or namespace separator
         $this->skipToNextStringOrNamespaceSeparator($tokens);
 
@@ -139,8 +135,7 @@ final class ContextFactory
      *
      * @return string[]
      */
-    private function parseUseStatement(\ArrayIterator $tokens)
-    {
+    private function parseUseStatement(\ArrayIterator $tokens) {
         $uses = [];
         $continue = true;
 
@@ -164,8 +159,7 @@ final class ContextFactory
      *
      * @return void
      */
-    private function skipToNextStringOrNamespaceSeparator(\ArrayIterator $tokens)
-    {
+    private function skipToNextStringOrNamespaceSeparator(\ArrayIterator $tokens) {
         while ($tokens->valid() && ($tokens->current()[0] !== T_STRING) && ($tokens->current()[0] !== T_NS_SEPARATOR)) {
             $tokens->next();
         }
@@ -179,12 +173,9 @@ final class ContextFactory
      *
      * @return string
      */
-    private function extractUseStatement(\ArrayIterator $tokens)
-    {
+    private function extractUseStatement(\ArrayIterator $tokens) {
         $result = [''];
-        while ($tokens->valid()
-            && ($tokens->current()[0] !== self::T_LITERAL_USE_SEPARATOR)
-            && ($tokens->current()[0] !== self::T_LITERAL_END_OF_USE)
+        while ($tokens->valid() && ($tokens->current()[0] !== self::T_LITERAL_USE_SEPARATOR) && ($tokens->current()[0] !== self::T_LITERAL_END_OF_USE)
         ) {
             if ($tokens->current()[0] === T_AS) {
                 $result[] = '';
@@ -207,4 +198,5 @@ final class ContextFactory
 
         return array_reverse($result);
     }
+
 }

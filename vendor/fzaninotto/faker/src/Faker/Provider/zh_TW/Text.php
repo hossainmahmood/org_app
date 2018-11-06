@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\zh_TW;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     protected static $separator = '';
     protected static $separatorLen = 0;
 
@@ -797,15 +797,13 @@ N兩眼望著屋樑，似乎想些事，仍然說：
 至於當時的影響，最大的倒反在舉人老爺，因為終於沒有追贓，他全家都號啕了。其次是趙府，非特秀才因為上城去報官，被不好的革命黨剪了辮子，而且又破費了二十千的賞錢，所以全家也號啕了。從這一天以來，他們便漸漸的都發生了遺老的氣味。
 至於輿論，在未莊是無異議，自然都說阿Q壞，被槍斃便是他的壞的證據：不壞又何至於被槍斃呢？而城裏的輿論卻不佳，他們多半不滿足，以為槍斃並無殺頭這般好看；而且那是怎樣的一個可笑的死囚呵，游了那麼久的街，竟沒有唱一句戲：他們白跟一趟了。
 EOT;
-
     protected static $encoding = 'UTF-8';
 
-    protected static function explode($text)
-    {
+    protected static function explode($text) {
         $chars = array();
 
         foreach (preg_split('//u', str_replace(PHP_EOL, '', $text)) as $char) {
-            if (! empty($char)) {
+            if (!empty($char)) {
                 $chars[] = $char;
             }
         }
@@ -813,20 +811,15 @@ EOT;
         return $chars;
     }
 
-    protected static function strlen($text)
-    {
-        return function_exists('mb_strlen')
-            ? mb_strlen($text, static::$encoding)
-            : count(static::explode($text));
+    protected static function strlen($text) {
+        return function_exists('mb_strlen') ? mb_strlen($text, static::$encoding) : count(static::explode($text));
     }
 
-    protected static function validStart($word)
-    {
-        return ! in_array($word, static::$notBeginPunct);
+    protected static function validStart($word) {
+        return !in_array($word, static::$notBeginPunct);
     }
 
-    protected static function appendEnd($text)
-    {
+    protected static function appendEnd($text) {
         $mbAvailable = extension_loaded('mbstring');
 
         // extract the last char of $text
@@ -859,8 +852,7 @@ EOT;
      * @param string $text
      * @return array
      */
-    protected static function utf8Encoding($text)
-    {
+    protected static function utf8Encoding($text) {
         $encoding = array();
 
         $chars = str_split($text);
@@ -875,19 +867,19 @@ EOT;
             switch (true) {
                 case $ord > 251:
                     $temp .= $chars[++$i];
-                    // no break
+                // no break
                 case $ord > 247:
                     $temp .= $chars[++$i];
-                    // no break
+                // no break
                 case $ord > 239:
                     $temp .= $chars[++$i];
-                    // no break
+                // no break
                 case $ord > 223:
                     $temp .= $chars[++$i];
-                    // no break
+                // no break
                 case $ord > 191:
                     $temp .= $chars[++$i];
-                    // no break
+                // no break
             }
 
             $encoding[] = $temp;
@@ -895,4 +887,5 @@ EOT;
 
         return $encoding;
     }
+
 }

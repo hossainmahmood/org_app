@@ -1,33 +1,31 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\Internal\SelfDescribingValue;
 
 /**
  * A {@link Hamcrest\Description} that is stored as a string.
  */
-abstract class BaseDescription implements Description
-{
+abstract class BaseDescription implements Description {
 
-    public function appendText($text)
-    {
+    public function appendText($text) {
         $this->append($text);
 
         return $this;
     }
 
-    public function appendDescriptionOf(SelfDescribing $value)
-    {
+    public function appendDescriptionOf(SelfDescribing $value) {
         $value->describeTo($this);
 
         return $this;
     }
 
-    public function appendValue($value)
-    {
+    public function appendValue($value) {
         if (is_null($value)) {
             $this->append('null');
         } elseif (is_string($value)) {
@@ -55,8 +53,7 @@ abstract class BaseDescription implements Description
         return $this;
     }
 
-    public function appendValueList($start, $separator, $end, $values)
-    {
+    public function appendValueList($start, $separator, $end, $values) {
         $list = array();
         foreach ($values as $v) {
             $list[] = new SelfDescribingValue($v);
@@ -67,16 +64,15 @@ abstract class BaseDescription implements Description
         return $this;
     }
 
-    public function appendList($start, $separator, $end, $values)
-    {
+    public function appendList($start, $separator, $end, $values) {
         $this->append($start);
 
         $separate = false;
 
         foreach ($values as $value) {
-            /*if (!($value instanceof Hamcrest\SelfDescribing)) {
-                $value = new Hamcrest\Internal\SelfDescribingValue($value);
-            }*/
+            /* if (!($value instanceof Hamcrest\SelfDescribing)) {
+              $value = new Hamcrest\Internal\SelfDescribingValue($value);
+              } */
 
             if ($separate) {
                 $this->append($separator);
@@ -101,8 +97,7 @@ abstract class BaseDescription implements Description
 
     // -- Private Methods
 
-    private function _toPhpSyntax($value)
-    {
+    private function _toPhpSyntax($value) {
         $str = '"';
         for ($i = 0, $len = strlen($value); $i < $len; ++$i) {
             switch ($value[$i]) {
@@ -129,4 +124,5 @@ abstract class BaseDescription implements Description
         $str .= '"';
         $this->append($str);
     }
+
 }

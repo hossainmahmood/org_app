@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class ExactVersionConstraint extends AbstractVersionConstraint {
+
     /**
      * @param Version $version
      *
@@ -19,4 +21,5 @@ class ExactVersionConstraint extends AbstractVersionConstraint {
     public function complies(Version $version) {
         return $this->asString() == $version->getVersionString();
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -22,13 +23,12 @@ use Ramsey\Uuid\Exception\UnsupportedOperationException;
  *
  * @see Uuid
  */
-class DegradedUuid extends Uuid
-{
+class DegradedUuid extends Uuid {
+
     /**
      * @inheritdoc
      */
-    public function getDateTime()
-    {
+    public function getDateTime() {
         if ($this->getVersion() != 1) {
             throw new UnsupportedOperationException('Not a time-based UUID');
         }
@@ -50,12 +50,11 @@ class DegradedUuid extends Uuid
      *
      * @throws UnsatisfiedDependencyException if called on a 32-bit system
      */
-    public function getFields()
-    {
+    public function getFields() {
         throw new UnsatisfiedDependencyException(
-            'Cannot call ' . __METHOD__ . ' on a 32-bit system, since some '
-            . 'values overflow the system max integer value'
-            . '; consider calling getFieldsHex instead'
+        'Cannot call ' . __METHOD__ . ' on a 32-bit system, since some '
+        . 'values overflow the system max integer value'
+        . '; consider calling getFieldsHex instead'
         );
     }
 
@@ -65,13 +64,12 @@ class DegradedUuid extends Uuid
      *
      * @throws UnsatisfiedDependencyException if called on a 32-bit system
      */
-    public function getNode()
-    {
+    public function getNode() {
         throw new UnsatisfiedDependencyException(
-            'Cannot call ' . __METHOD__ . ' on a 32-bit system, since node '
-            . 'is an unsigned 48-bit integer and can overflow the system '
-            . 'max integer value'
-            . '; consider calling getNodeHex instead'
+        'Cannot call ' . __METHOD__ . ' on a 32-bit system, since node '
+        . 'is an unsigned 48-bit integer and can overflow the system '
+        . 'max integer value'
+        . '; consider calling getNodeHex instead'
         );
     }
 
@@ -81,13 +79,12 @@ class DegradedUuid extends Uuid
      *
      * @throws UnsatisfiedDependencyException if called on a 32-bit system
      */
-    public function getTimeLow()
-    {
+    public function getTimeLow() {
         throw new UnsatisfiedDependencyException(
-            'Cannot call ' . __METHOD__ . ' on a 32-bit system, since time_low '
-            . 'is an unsigned 32-bit integer and can overflow the system '
-            . 'max integer value'
-            . '; consider calling getTimeLowHex instead'
+        'Cannot call ' . __METHOD__ . ' on a 32-bit system, since time_low '
+        . 'is an unsigned 32-bit integer and can overflow the system '
+        . 'max integer value'
+        . '; consider calling getTimeLowHex instead'
         );
     }
 
@@ -98,17 +95,17 @@ class DegradedUuid extends Uuid
      * @throws UnsatisfiedDependencyException if called on a 32-bit system
      * @throws UnsupportedOperationException If this UUID is not a version 1 UUID
      */
-    public function getTimestamp()
-    {
+    public function getTimestamp() {
         if ($this->getVersion() != 1) {
             throw new UnsupportedOperationException('Not a time-based UUID');
         }
 
         throw new UnsatisfiedDependencyException(
-            'Cannot call ' . __METHOD__ . ' on a 32-bit system, since timestamp '
-            . 'is an unsigned 60-bit integer and can overflow the system '
-            . 'max integer value'
-            . '; consider calling getTimestampHex instead'
+        'Cannot call ' . __METHOD__ . ' on a 32-bit system, since timestamp '
+        . 'is an unsigned 60-bit integer and can overflow the system '
+        . 'max integer value'
+        . '; consider calling getTimestampHex instead'
         );
     }
+
 }

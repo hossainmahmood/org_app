@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -22,8 +23,8 @@ use phpDocumentor\Reflection\Type;
  * pointing to an element in PHP. Object types that are untyped do not refer to a specific class but represent objects
  * in general.
  */
-final class Object_ implements Type
-{
+final class Object_ implements Type {
+
     /** @var Fqsen|null */
     private $fqsen;
 
@@ -33,12 +34,11 @@ final class Object_ implements Type
      * @param Fqsen $fqsen
      * @throws \InvalidArgumentException when provided $fqsen is not a valid type.
      */
-    public function __construct(Fqsen $fqsen = null)
-    {
-        if (strpos((string)$fqsen, '::') !== false || strpos((string)$fqsen, '()') !== false) {
+    public function __construct(Fqsen $fqsen = null) {
+        if (strpos((string) $fqsen, '::') !== false || strpos((string) $fqsen, '()') !== false) {
             throw new \InvalidArgumentException(
-                'Object types can only refer to a class, interface or trait but a method, function, constant or '
-                . 'property was received: ' . (string)$fqsen
+            'Object types can only refer to a class, interface or trait but a method, function, constant or '
+            . 'property was received: ' . (string) $fqsen
             );
         }
 
@@ -50,8 +50,7 @@ final class Object_ implements Type
      *
      * @return Fqsen|null
      */
-    public function getFqsen()
-    {
+    public function getFqsen() {
         return $this->fqsen;
     }
 
@@ -60,12 +59,12 @@ final class Object_ implements Type
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         if ($this->fqsen) {
-            return (string)$this->fqsen;
+            return (string) $this->fqsen;
         }
 
         return 'object';
     }
+
 }

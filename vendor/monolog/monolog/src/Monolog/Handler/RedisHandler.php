@@ -25,8 +25,8 @@ use Monolog\Logger;
  *
  * @author Thomas Tourlourat <thomas@tourlourat.com>
  */
-class RedisHandler extends AbstractProcessingHandler
-{
+class RedisHandler extends AbstractProcessingHandler {
+
     private $redisClient;
     private $redisKey;
     protected $capSize;
@@ -38,8 +38,7 @@ class RedisHandler extends AbstractProcessingHandler
      * @param bool                  $bubble  Whether the messages that are handled can bubble up the stack or not
      * @param int                   $capSize Number of entries to limit list size to
      */
-    public function __construct($redis, $key, $level = Logger::DEBUG, $bubble = true, $capSize = false)
-    {
+    public function __construct($redis, $key, $level = Logger::DEBUG, $bubble = true, $capSize = false) {
         if (!(($redis instanceof \Predis\Client) || ($redis instanceof \Redis))) {
             throw new \InvalidArgumentException('Predis\Client or Redis instance required');
         }
@@ -54,8 +53,7 @@ class RedisHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         if ($this->capSize) {
             $this->writeCapped($record);
         } else {
@@ -70,13 +68,12 @@ class RedisHandler extends AbstractProcessingHandler
      * @param  array $record associative record array
      * @return void
      */
-    protected function writeCapped(array $record)
-    {
+    protected function writeCapped(array $record) {
         if ($this->redisClient instanceof \Redis) {
             $this->redisClient->multi()
-                ->rpush($this->redisKey, $record["formatted"])
-                ->ltrim($this->redisKey, -$this->capSize, -1)
-                ->exec();
+                    ->rpush($this->redisKey, $record["formatted"])
+                    ->ltrim($this->redisKey, -$this->capSize, -1)
+                    ->exec();
         } else {
             $redisKey = $this->redisKey;
             $capSize = $this->capSize;
@@ -90,8 +87,8 @@ class RedisHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter()
-    {
+    protected function getDefaultFormatter() {
         return new LineFormatter();
     }
+
 }

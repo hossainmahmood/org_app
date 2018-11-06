@@ -2,15 +2,13 @@
 
 namespace Faker\Provider\tr_TR;
 
-class DateTime extends \Faker\Provider\DateTime
-{
-    public static function amPm($max = 'now')
-    {
+class DateTime extends \Faker\Provider\DateTime {
+
+    public static function amPm($max = 'now') {
         return static::dateTime($max)->format('a') === 'am' ? 'öö' : 'ös';
     }
 
-    public static function dayOfWeek($max = 'now')
-    {
+    public static function dayOfWeek($max = 'now') {
         $map = array(
             'Sunday' => 'Pazar',
             'Monday' => 'Pazartesi',
@@ -24,8 +22,7 @@ class DateTime extends \Faker\Provider\DateTime
         return isset($map[$week]) ? $map[$week] : $week;
     }
 
-    public static function monthName($max = 'now')
-    {
+    public static function monthName($max = 'now') {
         $map = array(
             'January' => 'Ocak',
             'February' => 'Şubat',
@@ -43,4 +40,5 @@ class DateTime extends \Faker\Provider\DateTime
         $month = static::dateTime($max)->format('F');
         return isset($map[$month]) ? $map[$month] : $month;
     }
+
 }

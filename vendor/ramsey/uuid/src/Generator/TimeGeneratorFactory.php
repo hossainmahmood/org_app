@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -21,8 +22,8 @@ use Ramsey\Uuid\Provider\TimeProviderInterface;
 /**
  * A factory for retrieving a time generator, based on the environment
  */
-class TimeGeneratorFactory
-{
+class TimeGeneratorFactory {
+
     /**
      * @var NodeProviderInterface
      */
@@ -47,9 +48,7 @@ class TimeGeneratorFactory
      * @param TimeProviderInterface $timeProvider
      */
     public function __construct(
-        NodeProviderInterface $nodeProvider,
-        TimeConverterInterface $timeConverter,
-        TimeProviderInterface $timeProvider
+    NodeProviderInterface $nodeProvider, TimeConverterInterface $timeConverter, TimeProviderInterface $timeProvider
     ) {
         $this->nodeProvider = $nodeProvider;
         $this->timeConverter = $timeConverter;
@@ -61,12 +60,10 @@ class TimeGeneratorFactory
      *
      * @return TimeGeneratorInterface
      */
-    public function getGenerator()
-    {
+    public function getGenerator() {
         return new DefaultTimeGenerator(
-            $this->nodeProvider,
-            $this->timeConverter,
-            $this->timeProvider
+                $this->nodeProvider, $this->timeConverter, $this->timeProvider
         );
     }
+
 }

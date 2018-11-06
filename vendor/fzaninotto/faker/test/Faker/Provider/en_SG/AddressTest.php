@@ -6,22 +6,20 @@ use Faker\Factory;
 use Faker\Provider\en_SG\Address;
 use PHPUnit\Framework\TestCase;
 
-class AddressTest extends TestCase
-{
-    public function setUp()
-    {
+class AddressTest extends TestCase {
+
+    public function setUp() {
         $faker = Factory::create('en_SG');
         $faker->addProvider(new Address($faker));
         $this->faker = $faker;
     }
 
-    public function testStreetNumber()
-    {
+    public function testStreetNumber() {
         $this->assertRegExp('/^\d{2,3}$/', $this->faker->streetNumber());
     }
 
-    public function testBlockNumber()
-    {
+    public function testBlockNumber() {
         $this->assertRegExp('/^Blk\s*\d{2,3}[A-H]*$/i', $this->faker->blockNumber());
     }
+
 }

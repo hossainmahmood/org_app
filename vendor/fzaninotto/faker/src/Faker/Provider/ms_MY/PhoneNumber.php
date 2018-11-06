@@ -2,18 +2,16 @@
 
 namespace Faker\Provider\ms_MY;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '{{mobileNumber}}',
         '{{fixedLineNumber}}',
         '{{voipNumber}}'
     );
-
     protected static $plusSymbol = array(
         '+'
     );
-
     protected static $countryCodePrefix = array(
         '6'
     );
@@ -21,9 +19,9 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * @link https://en.wikipedia.org/wiki/Telephone_numbers_in_Malaysia#Mobile_phone_codes_and_IP_telephony
      */
-    protected static $zeroOneOnePrefix = array('10','11','12','13','14','15','16','17','18','19','20','22','23','32');
-    protected static $zeroOneFourPrefix = array('2','3','4','5','6','7','8','9');
-    protected static $zeroOneFivePrefix = array('1','2','3','4','5','6','9');
+    protected static $zeroOneOnePrefix = array('10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '22', '23', '32');
+    protected static $zeroOneFourPrefix = array('2', '3', '4', '5', '6', '7', '8', '9');
+    protected static $zeroOneFivePrefix = array('1', '2', '3', '4', '5', '6', '9');
 
     /**
      * @link https://en.wikipedia.org/wiki/Telephone_numbers_in_Malaysia#Mobile_phone_codes_and_IP_telephony
@@ -39,7 +37,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '018-### ####',
         '019-### ####',
     );
-
     protected static $mobileNumberFormats = array(
         '010#######',
         '011{{zeroOneOnePrefix}}######',
@@ -64,7 +61,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '08#-## ####',
         '09-### ####',
     );
-
     protected static $fixedLineNumberFormats = array(
         '03########',
         '04#######',
@@ -81,7 +77,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     protected static $voipNumberWithFormatting = array(
         '015-{{zeroOneFivePrefix}}## ####'
     );
-
     protected static $voipNumber = array(
         '015{{zeroOneFivePrefix}}######'
     );
@@ -96,8 +91,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public function mobileNumber($countryCodePrefix = true, $formatting = true)
-    {
+    public function mobileNumber($countryCodePrefix = true, $formatting = true) {
         if ($formatting) {
             $format = static::randomElement(static::$mobileNumberFormatsWithFormatting);
         } else {
@@ -118,8 +112,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public static function zeroOneOnePrefix()
-    {
+    public static function zeroOneOnePrefix() {
         return static::numerify(static::randomElement(static::$zeroOneOnePrefix));
     }
 
@@ -130,8 +123,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public static function zeroOneFourPrefix()
-    {
+    public static function zeroOneFourPrefix() {
         return static::numerify(static::randomElement(static::$zeroOneFourPrefix));
     }
 
@@ -142,8 +134,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public static function zeroOneFivePrefix()
-    {
+    public static function zeroOneFivePrefix() {
         return static::numerify(static::randomElement(static::$zeroOneFivePrefix));
     }
 
@@ -157,8 +148,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public function fixedLineNumber($countryCodePrefix = true, $formatting = true)
-    {
+    public function fixedLineNumber($countryCodePrefix = true, $formatting = true) {
         if ($formatting) {
             $format = static::randomElement(static::$fixedLineNumberFormatsWithFormatting);
         } else {
@@ -182,8 +172,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public function voipNumber($countryCodePrefix = true, $formatting = true)
-    {
+    public function voipNumber($countryCodePrefix = true, $formatting = true) {
         if ($formatting) {
             $format = static::randomElement(static::$voipNumberWithFormatting);
         } else {
@@ -206,12 +195,12 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * 
      * @return string
      */
-    public static function countryCodePrefix($formatting = true)
-    {
+    public static function countryCodePrefix($formatting = true) {
         if ($formatting) {
             return static::randomElement(static::$plusSymbol) . static::randomElement(static::$countryCodePrefix);
         } else {
             return static::randomElement(static::$countryCodePrefix);
         }
     }
+
 }

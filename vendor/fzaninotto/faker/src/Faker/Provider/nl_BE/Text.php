@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\nl_BE;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * The Project Gutenberg EBook of De legende en de heldhaftige, vroolijke en
      * roemrijke daden van Uilenspiegel en Lamme Goedzak in Vlaanderenland en elders, by Charles de Coster
@@ -25344,4 +25344,5 @@ met het inzicht het werk van Charles De Coster te eerbiedigen, en
 het, in zijn geheel, den Vlaamschen lezer aan te bieden. (Noot van
 den Vertaler.)
 EOT;
+
 }

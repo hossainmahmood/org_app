@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by Domingo Oropeza for Faker
  * Date: 01/09/2017
@@ -11,16 +12,14 @@ use Faker\Generator;
 use Faker\Provider\es_VE\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
 
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->seed(1);
         $faker->addProvider(new Person($faker));
@@ -30,8 +29,7 @@ class PersonTest extends TestCase
     /**
      * national Id format validator
      */
-    public function testNationalId()
-    {
+    public function testNationalId() {
         $pattern = '/(?:^V-?\d{5,9}$)|(?:^E-?\d{8,9}$)/';
 
         $cedula = $this->faker->nationalId;
@@ -40,4 +38,5 @@ class PersonTest extends TestCase
         $cedula = $this->faker->nationalId('-');
         $this->assertRegExp($pattern, $cedula);
     }
+
 }

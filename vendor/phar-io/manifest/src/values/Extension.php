@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -14,6 +15,7 @@ use PharIo\Version\Version;
 use PharIo\Version\VersionConstraint;
 
 class Extension extends Type {
+
     /**
      * @var ApplicationName
      */
@@ -29,7 +31,7 @@ class Extension extends Type {
      * @param VersionConstraint $versionConstraint
      */
     public function __construct(ApplicationName $application, VersionConstraint $versionConstraint) {
-        $this->application       = $application;
+        $this->application = $application;
         $this->versionConstraint = $versionConstraint;
     }
 
@@ -72,4 +74,5 @@ class Extension extends Type {
     public function isCompatibleWith(ApplicationName $name, Version $version) {
         return $this->isExtensionFor($name) && $this->versionConstraint->complies($version);
     }
+
 }

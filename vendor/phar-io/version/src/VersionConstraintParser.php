@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class VersionConstraintParser {
+
     /**
      * @param string $value
      *
@@ -26,7 +28,7 @@ class VersionConstraintParser {
 
         if (!preg_match('/^[\^~\*]?[\d.\*]+(?:-.*)?$/', $value)) {
             throw new UnsupportedVersionConstraintException(
-                sprintf('Version constraint %s is not supported.', $value)
+            sprintf('Version constraint %s is not supported.', $value)
             );
         }
 
@@ -45,16 +47,13 @@ class VersionConstraintParser {
 
         if ($version->getMinor()->isAny()) {
             return new SpecificMajorVersionConstraint(
-                $version->getVersionString(),
-                $version->getMajor()->getValue()
+                    $version->getVersionString(), $version->getMajor()->getValue()
             );
         }
 
         if ($version->getPatch()->isAny()) {
             return new SpecificMajorAndMinorVersionConstraint(
-                $version->getVersionString(),
-                $version->getMajor()->getValue(),
-                $version->getMinor()->getValue()
+                    $version->getVersionString(), $version->getMajor()->getValue(), $version->getMinor()->getValue()
             );
         }
 
@@ -89,14 +88,11 @@ class VersionConstraintParser {
 
         if ($version->getPatch()->isAny()) {
             $constraints[] = new SpecificMajorVersionConstraint(
-                $value,
-                $version->getMajor()->getValue()
+                    $value, $version->getMajor()->getValue()
             );
         } else {
             $constraints[] = new SpecificMajorAndMinorVersionConstraint(
-                $value,
-                $version->getMajor()->getValue(),
-                $version->getMinor()->getValue()
+                    $value, $version->getMajor()->getValue(), $version->getMinor()->getValue()
             );
         }
 
@@ -112,11 +108,11 @@ class VersionConstraintParser {
         $version = new Version(substr($value, 1));
 
         return new AndVersionConstraintGroup(
-            $value,
-            [
-                new GreaterThanOrEqualToVersionConstraint($value, $version),
-                new SpecificMajorVersionConstraint($value, $version->getMajor()->getValue())
-            ]
+                $value, [
+            new GreaterThanOrEqualToVersionConstraint($value, $version),
+            new SpecificMajorVersionConstraint($value, $version->getMajor()->getValue())
+                ]
         );
     }
+
 }

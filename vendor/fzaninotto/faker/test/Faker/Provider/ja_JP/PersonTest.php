@@ -6,10 +6,9 @@ use Faker\Generator;
 use Faker\Provider\ja_JP\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
-    public function testKanaNameMaleReturns()
-    {
+class PersonTest extends TestCase {
+
+    public function testKanaNameMaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -17,8 +16,7 @@ class PersonTest extends TestCase
         $this->assertEquals('アオタ ミノル', $faker->kanaName('male'));
     }
 
-    public function testKanaNameFemaleReturns()
-    {
+    public function testKanaNameFemaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -26,8 +24,7 @@ class PersonTest extends TestCase
         $this->assertEquals('アオタ ミキ', $faker->kanaName('female'));
     }
 
-    public function testFirstKanaNameMaleReturns()
-    {
+    public function testFirstKanaNameMaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -35,8 +32,7 @@ class PersonTest extends TestCase
         $this->assertEquals('ヒデキ', $faker->firstKanaName('male'));
     }
 
-    public function testFirstKanaNameFemaleReturns()
-    {
+    public function testFirstKanaNameFemaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -44,12 +40,12 @@ class PersonTest extends TestCase
         $this->assertEquals('マアヤ', $faker->firstKanaName('female'));
     }
 
-    public function testLastKanaNameReturnsNakajima()
-    {
+    public function testLastKanaNameReturnsNakajima() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
 
         $this->assertEquals('ナカジマ', $faker->lastKanaName);
     }
+
 }

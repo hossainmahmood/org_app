@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -19,8 +20,8 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * CodecInterface represents a UUID coder-decoder
  */
-interface CodecInterface
-{
+interface CodecInterface {
+
     /**
      * Encodes a UuidInterface as a string representation of a UUID
      *

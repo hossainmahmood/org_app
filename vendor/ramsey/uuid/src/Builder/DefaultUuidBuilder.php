@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -22,8 +23,8 @@ use Ramsey\Uuid\Uuid;
  * DefaultUuidBuilder is the default UUID builder for ramsey/uuid; it builds
  * instances of Uuid objects
  */
-class DefaultUuidBuilder implements UuidBuilderInterface
-{
+class DefaultUuidBuilder implements UuidBuilderInterface {
+
     /**
      * @var NumberConverterInterface
      */
@@ -34,8 +35,7 @@ class DefaultUuidBuilder implements UuidBuilderInterface
      *
      * @param NumberConverterInterface $converter The number converter to use when constructing the Uuid
      */
-    public function __construct(NumberConverterInterface $converter)
-    {
+    public function __construct(NumberConverterInterface $converter) {
         $this->converter = $converter;
     }
 
@@ -47,8 +47,8 @@ class DefaultUuidBuilder implements UuidBuilderInterface
      *     see {@see \Ramsey\Uuid\UuidInterface::getFieldsHex()} for array structure.
      * @return Uuid
      */
-    public function build(CodecInterface $codec, array $fields)
-    {
+    public function build(CodecInterface $codec, array $fields) {
         return new Uuid($fields, $this->converter, $codec);
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\pl_PL;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * @var array list of Polish banks, source: https://ewib.nbp.pl/
      */
@@ -80,8 +80,7 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'Euro Bank SA'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
 
@@ -93,13 +92,11 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'PL', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'PL', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
 
-    protected static function addBankCodeChecksum($iban, $countryCode = 'PL')
-    {
+    protected static function addBankCodeChecksum($iban, $countryCode = 'PL') {
         if ($countryCode != 'PL' || strlen($iban) <= 8) {
             return $iban;
         }
@@ -112,4 +109,5 @@ class Payment extends \Faker\Provider\Payment
 
         return substr($iban, 0, 7) . $checksum . substr($iban, 8);
     }
+
 }

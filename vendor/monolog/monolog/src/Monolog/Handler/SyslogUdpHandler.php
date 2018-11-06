@@ -19,8 +19,8 @@ use Monolog\Handler\SyslogUdp\UdpSocket;
  *
  * @author Jesper Skovgaard Nielsen <nulpunkt@gmail.com>
  */
-class SyslogUdpHandler extends AbstractSyslogHandler
-{
+class SyslogUdpHandler extends AbstractSyslogHandler {
+
     protected $socket;
     protected $ident;
 
@@ -32,8 +32,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
      * @param Boolean $bubble   Whether the messages that are handled can bubble up the stack or not
      * @param string  $ident    Program name or tag for each log message.
      */
-    public function __construct($host, $port = 514, $facility = LOG_USER, $level = Logger::DEBUG, $bubble = true, $ident = 'php')
-    {
+    public function __construct($host, $port = 514, $facility = LOG_USER, $level = Logger::DEBUG, $bubble = true, $ident = 'php') {
         parent::__construct($facility, $level, $bubble);
 
         $this->ident = $ident;
@@ -41,8 +40,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         $this->socket = new UdpSocket($host, $port ?: 514);
     }
 
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         $lines = $this->splitMessageIntoLines($record['formatted']);
 
         $header = $this->makeCommonSyslogHeader($this->logLevels[$record['level']]);
@@ -52,13 +50,11 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         }
     }
 
-    public function close()
-    {
+    public function close() {
         $this->socket->close();
     }
 
-    private function splitMessageIntoLines($message)
-    {
+    private function splitMessageIntoLines($message) {
         if (is_array($message)) {
             $message = implode("\n", $message);
         }
@@ -69,8 +65,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
     /**
      * Make common syslog header (see rfc5424)
      */
-    protected function makeCommonSyslogHeader($severity)
-    {
+    protected function makeCommonSyslogHeader($severity) {
         $priority = $severity + $this->facility;
 
         if (!$pid = getmypid()) {
@@ -82,22 +77,21 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         }
 
         return "<$priority>1 " .
-            $this->getDateTime() . " " .
-            $hostname . " " .
-            $this->ident . " " .
-            $pid . " - - ";
+                $this->getDateTime() . " " .
+                $hostname . " " .
+                $this->ident . " " .
+                $pid . " - - ";
     }
 
-    protected function getDateTime()
-    {
+    protected function getDateTime() {
         return date(\DateTime::RFC3339);
     }
 
     /**
      * Inject your own socket, mainly used for testing
      */
-    public function setSocket($socket)
-    {
+    public function setSocket($socket) {
         $this->socket = $socket;
     }
+
 }

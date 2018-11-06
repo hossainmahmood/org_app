@@ -4,13 +4,12 @@
 
 namespace Faker\Provider\en_NG;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{firstNameMale}} {{lastName}}'
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{firstNameFemale}} {{lastName}}'
@@ -21,7 +20,7 @@ class Person extends \Faker\Provider\Person
      * @link https://andela-celisha-wigwe.github.io/names.html
      */
     protected static $firstNameMale = array(
-        'Abimbola','Abisola','Abisoye','Adeboye','Adedayo','Adegoke', 'Akande', 'Akanni', 'Alade', 'Ayinde', 'Azubuike',
+        'Abimbola', 'Abisola', 'Abisoye', 'Adeboye', 'Adedayo', 'Adegoke', 'Akande', 'Akanni', 'Alade', 'Ayinde', 'Azubuike',
         'Banji', 'Bankole', 'Buchi', 'Bukola',
         'Chinedu', 'Chisom', 'Chukwu',
         'Damilare', 'Damilola', 'Danjuma',
@@ -88,4 +87,5 @@ class Person extends \Faker\Provider\Person
         'Wasiu', 'Wilcox', 'Wuraola',
         'Yaqub', 'Yussuf'
     );
+
 }

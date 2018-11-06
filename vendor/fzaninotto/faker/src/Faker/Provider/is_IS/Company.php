@@ -5,8 +5,8 @@ namespace Faker\Provider\is_IS;
 /**
  * @author Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
  */
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     /**
      * @var array Danish company name formats.
      */
@@ -46,8 +46,8 @@ class Company extends \Faker\Provider\Company
      *
      * @return string
      */
-    public static function vsk()
-    {
+    public static function vsk() {
         return static::numerify(static::$vskFormat);
     }
+
 }

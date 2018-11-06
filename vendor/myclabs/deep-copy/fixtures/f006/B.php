@@ -2,25 +2,23 @@
 
 namespace DeepCopy\f006;
 
-class B
-{
+class B {
+
     public $cloned = false;
     private $bProp;
 
-    public function getBProp()
-    {
+    public function getBProp() {
         return $this->bProp;
     }
 
-    public function setBProp($prop)
-    {
+    public function setBProp($prop) {
         $this->bProp = $prop;
 
         return $this;
     }
 
-    public function __clone()
-    {
+    public function __clone() {
         $this->cloned = true;
     }
+
 }

@@ -23,8 +23,8 @@
     </div>
    </div>
   </header>
-  <div class="container-fluid">
-   <div class="table-responsive">
+  <div class="container">
+   <div class="table-responsive-md">
     <table class="table table-bordered">
      <thead>
       <tr>

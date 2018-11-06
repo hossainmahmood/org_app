@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\nl_NL;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * Project Gutenberg's Dichtertje - De Uitvreter - Titaantjes, by Nescio
      *
@@ -3929,4 +3929,5 @@ uit coquetterie of uit verlegenheid, ze had er niets van begrepen.
 
 5 Jan. 1918.
 EOT;
+
 }

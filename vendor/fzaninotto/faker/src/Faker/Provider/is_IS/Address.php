@@ -5,8 +5,8 @@ namespace Faker\Provider\is_IS;
 /**
  * @author Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
  */
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     /**
      * @var array Countries in icelandic
      */
@@ -86,7 +86,7 @@ class Address extends \Faker\Provider\Address
 
     /**
      * @var Icelandic zip code.
-    **/
+     * */
     protected static $postcode = array(
         '%##'
     );
@@ -141,8 +141,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
@@ -151,8 +150,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
@@ -161,8 +159,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::toUpper(static::bothify(static::randomElement(static::$buildingNumber)));
     }
 
@@ -171,8 +168,8 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$regionNames);
     }
+
 }

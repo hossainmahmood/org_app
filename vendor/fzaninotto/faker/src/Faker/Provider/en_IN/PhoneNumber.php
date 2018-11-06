@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_IN;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+91 ## ########',
         '+91 ### #######',
@@ -28,8 +28,8 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Return a en_IN mobile phone number
      * @return string
      */
-    public static function mobileNumber()
-    {
+    public static function mobileNumber() {
         return static::numerify(static::randomElement(static::$mobileFormats));
     }
+
 }

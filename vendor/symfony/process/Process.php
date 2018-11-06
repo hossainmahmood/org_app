@@ -1532,7 +1532,14 @@ class Process implements \IteratorAggregate
      */
     private function escapeArgument(?string $argument): string
     {
+<<<<<<< HEAD
         if ('' === $argument || null === $argument) {
+=======
+        if ('\\' !== \DIRECTORY_SEPARATOR) {
+            return "'".str_replace("'", "'\\''", $argument)."'";
+        }
+        if ('' === $argument = (string) $argument) {
+>>>>>>> origin/master
             return '""';
         }
         if ('\\' !== \DIRECTORY_SEPARATOR) {

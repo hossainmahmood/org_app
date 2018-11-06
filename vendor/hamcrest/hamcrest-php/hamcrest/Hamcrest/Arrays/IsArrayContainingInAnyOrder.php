@@ -1,9 +1,11 @@
 <?php
+
 namespace Hamcrest\Arrays;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\Description;
 use Hamcrest\TypeSafeDiagnosingMatcher;
 use Hamcrest\Util;
@@ -11,13 +13,11 @@ use Hamcrest\Util;
 /**
  * Matches if an array contains a set of items satisfying nested matchers.
  */
-class IsArrayContainingInAnyOrder extends TypeSafeDiagnosingMatcher
-{
+class IsArrayContainingInAnyOrder extends TypeSafeDiagnosingMatcher {
 
     private $_elementMatchers;
 
-    public function __construct(array $elementMatchers)
-    {
+    public function __construct(array $elementMatchers) {
         parent::__construct(self::TYPE_ARRAY);
 
         Util::checkAllAreMatchers($elementMatchers);
@@ -25,8 +25,7 @@ class IsArrayContainingInAnyOrder extends TypeSafeDiagnosingMatcher
         $this->_elementMatchers = $elementMatchers;
     }
 
-    protected function matchesSafelyWithDiagnosticDescription($array, Description $mismatchDescription)
-    {
+    protected function matchesSafelyWithDiagnosticDescription($array, Description $mismatchDescription) {
         $matching = new MatchingOnce($this->_elementMatchers, $mismatchDescription);
 
         foreach ($array as $element) {
@@ -38,11 +37,10 @@ class IsArrayContainingInAnyOrder extends TypeSafeDiagnosingMatcher
         return $matching->isFinished($array);
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendList('[', ', ', ']', $this->_elementMatchers)
-                                ->appendText(' in any order')
-                                ;
+                ->appendText(' in any order')
+        ;
     }
 
     /**
@@ -50,10 +48,10 @@ class IsArrayContainingInAnyOrder extends TypeSafeDiagnosingMatcher
      *
      * @factory containsInAnyOrder ...
      */
-    public static function arrayContainingInAnyOrder(/* args... */)
-    {
+    public static function arrayContainingInAnyOrder(/* args... */) {
         $args = func_get_args();
 
         return new self(Util::createMatcherArray($args));
     }
+
 }

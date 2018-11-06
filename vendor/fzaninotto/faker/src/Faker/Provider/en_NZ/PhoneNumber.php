@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_NZ;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     /**
      * An array of en_NZ landline phone number formats
      * @var array
@@ -59,8 +59,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Return a en_NZ mobile phone number
      * @return string
      */
-    public static function mobileNumber()
-    {
+    public static function mobileNumber() {
         return static::numerify(static::randomElement(static::$mobileFormats));
     }
 
@@ -68,8 +67,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Return a en_NZ toll free phone number
      * @return string
      */
-    public static function tollFreeNumber()
-    {
+    public static function tollFreeNumber() {
         return static::numerify(static::randomElement(static::$tollFreeFormats));
     }
 
@@ -77,8 +75,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Return a en_NZ landline area code
      * @return string
      */
-    public static function areaCode()
-    {
+    public static function areaCode() {
         return static::numerify(static::randomElement(static::$areaCodes));
     }
 
@@ -86,8 +83,8 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Return a en_NZ landline beginning number
      * @return string
      */
-    public static function beginningNumber()
-    {
+    public static function beginningNumber() {
         return static::numerify(static::randomElement(static::$beginningNumbers));
     }
+
 }

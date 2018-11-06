@@ -4,8 +4,8 @@ namespace Faker\Provider\sv_SE;
 
 use Faker\Calculator\Luhn;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $formats = array(
         '{{firstName}} {{lastName}}',
         '{{firstName}} {{lastName}}',
@@ -25,7 +25,6 @@ class Person extends \Faker\Provider\Person
      * @link http://spraakbanken.gu.se/statistik/lbfnamnalf.phtml
      */
     protected static $firstNameFemale = array(
-
         'Ada', 'Adela', 'Adele', 'Adéle', 'Adelia', 'Adina', 'Adolfina', 'Agda', 'Agnes', 'Agneta', 'Aina', 'Aino', 'Albertina', 'Alexandra', 'Alfhild', 'Alfrida', 'Alice', 'Alida', 'Ally', 'Alma', 'Alva', 'Amalia', 'Amanda', 'Andrea', 'Anette', 'Angela', 'Anita', 'Anja', 'Ann', 'Anna', 'Anna-Carin', 'Anna-Greta', 'Anna-Karin', 'Anna-Lena', 'Anna-Lisa', 'Anna-Maria', 'Anna-Stina', 'Anne', 'Anneli', 'Annelie', 'Annette', 'Anne-Charlotte', 'Anne-Marie', 'Anni', 'Annica', 'Annie', 'Annika', 'Annikki', 'Anny', 'Ann-Britt', 'Ann-Charlott', 'Ann-Charlotte', 'Ann-Christin', 'Ann-Christine', 'Ann-Katrin', 'Ann-Kristin', 'Ann-Louise', 'Ann-Margret', 'Ann-Mari', 'Ann-Marie', 'Ann-Sofi', 'Ann-Sofie', 'Antonia', 'Arvida', 'Asta', 'Astrid', 'Augusta', 'Aurora', 'Axelia', 'Axelina',
         'Barbro', 'Beata', 'Beatrice', 'Beda', 'Berit', 'Bernhardina', 'Berta', 'Betty', 'Birgit', 'Birgitta', 'Blenda', 'Bodil', 'Boel', 'Borghild', 'Brita', 'Britt', 'Britta', 'Britt-Inger', 'Britt-Louise', 'Britt-Mari', 'Britt-Marie',
         'Camilla', 'Carin', 'Carina', 'Carita', 'Carola', 'Carolina', 'Caroline', 'Catarina', 'Catharina', 'Cathrine', 'Catrin', 'Cecilia', 'Charlott', 'Charlotta', 'Charlotte', 'Christel', 'Christin', 'Christina', 'Christine', 'Clara', 'Clary', 'Constance', 'Cristina',
@@ -89,7 +88,6 @@ class Person extends \Faker\Provider\Person
      * @link http://www.scb.se/sv_/Hitta-statistik/Statistik-efter-amne/Befolkning/Amnesovergripande-statistik/Namnstatistik/30898/2012A01x/Samtliga-folkbokforda--Efternamn-topplistor/Efternamn-topp-100/
      */
     protected static $lastName = array(
-
         'Abrahamsson', 'Andersson', 'Andreasson', 'Arvidsson', 'Axelsson',
         'Bengtsson', 'Berg', 'Berggren', 'Berglund', 'Bergman', 'Bergqvist', 'Bergström', 'Björk', 'Björklund', 'Blom', 'Blomqvist',
         'Claesson',
@@ -120,19 +118,18 @@ class Person extends \Faker\Provider\Person
      * @param string $gender Person::GENDER_MALE || Person::GENDER_FEMALE
      * @return string on format XXXXXX-XXXX
      */
-    public function personalIdentityNumber(\DateTime $birthdate = null, $gender = null)
-    {
+    public function personalIdentityNumber(\DateTime $birthdate = null, $gender = null) {
         if (!$birthdate) {
             $birthdate = \Faker\Provider\DateTime::dateTimeThisCentury();
         }
         $datePart = $birthdate->format('ymd');
 
         if ($gender && $gender == static::GENDER_MALE) {
-            $randomDigits = (string)static::numerify('##') . static::randomElement(array(1,3,5,7,9));
+            $randomDigits = (string) static::numerify('##') . static::randomElement(array(1, 3, 5, 7, 9));
         } elseif ($gender && $gender == static::GENDER_FEMALE) {
-            $randomDigits = (string)static::numerify('##') . static::randomElement(array(0,2,4,6,8));
+            $randomDigits = (string) static::numerify('##') . static::randomElement(array(0, 2, 4, 6, 8));
         } else {
-            $randomDigits = (string)static::numerify('###');
+            $randomDigits = (string) static::numerify('###');
         }
 
 
@@ -140,4 +137,5 @@ class Person extends \Faker\Provider\Person
 
         return $datePart . '-' . $randomDigits . $checksum;
     }
+
 }

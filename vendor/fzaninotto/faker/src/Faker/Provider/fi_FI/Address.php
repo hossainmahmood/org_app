@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fi_FI;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityPrefix = array('Pohjois', 'Etelä', 'Itä', 'Länsi', 'Uusi', 'Uus');
     protected static $citySuffix = array('kylä', 'niemi', 'järvi', 'joki', 'lampi', 'mäki', 'vesi', 'niemi', 'harju', 'lahti', 'harju', 'salmi', 'koski', 'pudas', 'saari');
     protected static $buildingNumber = array('####', '###', '##', '#', '#');
@@ -62,24 +62,22 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Pohjois'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example '123'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'Pohjois-Pohjanmaa'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
+
 }

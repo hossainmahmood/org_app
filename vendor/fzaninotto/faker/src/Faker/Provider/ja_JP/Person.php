@@ -2,14 +2,13 @@
 
 namespace Faker\Provider\ja_JP;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{lastName}} {{firstNameMale}}',
     );
-
     protected static $femaleNameFormats = array(
-         '{{lastName}} {{firstNameFemale}}',
+        '{{lastName}} {{firstNameFemale}}',
     );
 
     /**
@@ -44,31 +43,25 @@ class Person extends \Faker\Provider\Person
         '山岸', '山口', '山田', '山本', '吉田', '吉本',
         '若松', '渡辺',
     );
-
     protected static $firstKanaNameFormat = array(
         '{{firstKanaNameMale}}',
         '{{firstKanaNameFemale}}',
     );
-
     protected static $maleKanaNameFormats = array(
         '{{lastKanaName}} {{firstKanaNameMale}}',
     );
-
     protected static $femaleKanaNameFormats = array(
         '{{lastKanaName}} {{firstKanaNameFemale}}',
     );
-
     protected static $firstKanaNameMale = array(
         'アキラ', 'アツシ', 'オサム', 'カズヤ', 'キョウスケ', 'ケンイチ', 'シュウヘイ', 'ショウタ', 'ジュン', 'ソウタロウ',
         'タイチ', 'タロウ', 'タクマ', 'ツバサ', 'トモヤ', 'ナオキ', 'ナオト', 'ヒデキ', 'ヒロシ', 'マナブ', 'ミツル', 'ミノル',
         'ユウキ', 'ユウタ', 'ヤスヒロ', 'ヨウイチ', 'ヨウスケ', 'リョウスケ', 'リョウヘイ', 'レイ',
     );
-
     protected static $firstKanaNameFemale = array(
         'アケミ', 'アスカ', 'カオリ', 'カナ', 'クミコ', 'サユリ', 'サトミ', 'チヨ',
         'ナオコ', 'ナナミ', 'ハナコ', 'ハルカ', 'マアヤ', 'マイ', 'ミカコ', 'ミキ', 'モモコ', 'ユイ', 'ユミコ', 'ヨウコ', 'リカ',
     );
-
     protected static $lastKanaName = array(
         'アオタ', 'アオヤマ', 'イシダ', 'イダカ', 'イトウ', 'ウノ', 'エコダ', 'オオガキ',
         'カノウ', 'カノウ', 'キジマ', 'キムラ', 'キリヤマ', 'クドウ', 'コイズミ', 'コバヤシ', 'コンドウ',
@@ -86,8 +79,7 @@ class Person extends \Faker\Provider\Person
      * @return string
      * @example 'アオタ アキラ'
      */
-    public function kanaName($gender = null)
-    {
+    public function kanaName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             $format = static::randomElement(static::$maleKanaNameFormats);
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -104,8 +96,7 @@ class Person extends \Faker\Provider\Person
      * @return string
      * @example 'アキラ'
      */
-    public function firstKanaName($gender = null)
-    {
+    public function firstKanaName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return static::firstKanaNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -118,24 +109,22 @@ class Person extends \Faker\Provider\Person
     /**
      * @example 'アキラ'
      */
-    public static function firstKanaNameMale()
-    {
+    public static function firstKanaNameMale() {
         return static::randomElement(static::$firstKanaNameMale);
     }
 
     /**
      * @example 'アケミ'
      */
-    public static function firstKanaNameFemale()
-    {
+    public static function firstKanaNameFemale() {
         return static::randomElement(static::$firstKanaNameFemale);
     }
 
     /**
      * @example 'アオタ'
      */
-    public static function lastKanaName()
-    {
+    public static function lastKanaName() {
         return static::randomElement(static::$lastKanaName);
     }
+
 }

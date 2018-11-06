@@ -4,8 +4,8 @@ namespace TijsVerkoyen\CssToInlineStyles\Css\Rule;
 
 use Symfony\Component\CssSelector\Node\Specificity;
 
-final class Rule
-{
+final class Rule {
+
     /**
      * @var string
      */
@@ -34,8 +34,7 @@ final class Rule
      * @param Specificity $specificity
      * @param int         $order
      */
-    public function __construct($selector, array $properties, Specificity $specificity, $order)
-    {
+    public function __construct($selector, array $properties, Specificity $specificity, $order) {
         $this->selector = $selector;
         $this->properties = $properties;
         $this->specificity = $specificity;
@@ -47,8 +46,7 @@ final class Rule
      *
      * @return string
      */
-    public function getSelector()
-    {
+    public function getSelector() {
         return $this->selector;
     }
 
@@ -57,8 +55,7 @@ final class Rule
      *
      * @return array
      */
-    public function getProperties()
-    {
+    public function getProperties() {
         return $this->properties;
     }
 
@@ -67,8 +64,7 @@ final class Rule
      *
      * @return Specificity
      */
-    public function getSpecificity()
-    {
+    public function getSpecificity() {
         return $this->specificity;
     }
 
@@ -77,8 +73,8 @@ final class Rule
      *
      * @return int
      */
-    public function getOrder()
-    {
+    public function getOrder() {
         return $this->order;
     }
+
 }

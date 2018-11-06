@@ -1,14 +1,17 @@
 <?php
-namespace Foo\Bar
-{
-    class TestClassInBar
-    {
+
+namespace Foo\Bar {
+
+    class TestClassInBar {
+        
     }
+
 }
 
-namespace Foo\Baz
-{
-    class TestClassInBaz
-    {
+namespace Foo\Baz {
+
+    class TestClassInBaz {
+        
     }
+
 }

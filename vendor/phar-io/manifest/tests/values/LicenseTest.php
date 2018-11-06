@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -18,6 +19,7 @@ use PHPUnit\Framework\TestCase;
  * @uses PharIo\Manifest\Url
  */
 class LicenseTest extends TestCase {
+
     /**
      * @var License
      */
@@ -38,4 +40,5 @@ class LicenseTest extends TestCase {
     public function testUrlCanBeRetrieved() {
         $this->assertEquals('https://github.com/sebastianbergmann/phpunit/blob/master/LICENSE', $this->license->getUrl());
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ja_JP;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $country = array(
         'アフガニスタン', 'アルバニア', 'アルジェリア', 'アメリカ領サモア', 'アンドラ', 'アンゴラ', 'アンギラ', '南極大陸', 'アンティグアバーブーダ', 'アルゼンチン', 'アルメニア', 'アルバ', 'オーストラリア', 'オーストリア', 'アゼルバイジャン',
         'バハマ', 'バーレーン', 'バングラデシュ', 'バルバドス', 'ベラルーシ', 'ベルギー', 'ベリーズ', 'ベナン', 'バミューダ島', 'ブータン', 'ボリビア', 'ボスニア・ヘルツェゴビナ', 'ボツワナ', 'ブーベ島', 'ブラジル', 'イギリス領インド洋地域', 'イギリス領ヴァージン諸島', 'ブルネイ', 'ブルガリア', 'ブルキナファソ', 'ブルンジ',
@@ -43,11 +43,9 @@ class Address extends \Faker\Provider\Address
         '沖縄県'
     );
     protected static $ward = array('中央', '北', '東', '南', '西');
-
     protected static $citySuffix = array('市');
     protected static $wardSuffix = array('区');
     protected static $streetSuffix = array('町');
-
     protected static $postcodeFormats = array('{{postcode1}}{{postcode2}}');
     protected static $cityFormats = array(
         '{{lastName}}{{citySuffix}}',
@@ -70,24 +68,21 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 111
      */
-    public static function postcode1()
-    {
+    public static function postcode1() {
         return static::numberBetween(100, 999);
     }
 
     /**
      * @example 2222
      */
-    public static function postcode2()
-    {
+    public static function postcode2() {
         return static::numberBetween(1000, 9999);
     }
 
     /**
      * @example 1112222
      */
-    public static function postcode()
-    {
+    public static function postcode() {
         $postcode1 = static::postcode1();
         $postcode2 = static::postcode2();
 
@@ -97,16 +92,14 @@ class Address extends \Faker\Provider\Address
     /**
      * @example '東京都'
      */
-    public static function prefecture()
-    {
+    public static function prefecture() {
         return static::randomElement(static::$prefecture);
     }
 
     /**
      * @example '北区'
      */
-    public static function ward()
-    {
+    public static function ward() {
         $ward = static::randomElement(static::$ward);
         $suffix = static::randomElement(static::$wardSuffix);
 
@@ -118,20 +111,18 @@ class Address extends \Faker\Provider\Address
      *
      * @return int
      */
-    public static function areaNumber()
-    {
+    public static function areaNumber() {
         return static::numberBetween(1, 10);
     }
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::numberBetween(101, 110);
     }
 
-    public function secondaryAddress()
-    {
+    public function secondaryAddress() {
         $format = static::randomElement(static::$secondaryAddressFormats);
 
         return $this->generator->parse($format);
     }
+
 }

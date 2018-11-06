@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\id_ID;
 
-class Internet extends \Faker\Provider\Internet
-{
+class Internet extends \Faker\Provider\Internet {
+
     /**
      * @var array some email domains
      */
@@ -22,4 +22,5 @@ class Internet extends \Faker\Provider\Internet
         'ac.id', 'sch.id', 'go.id', 'mil.id', 'co.id', 'or.id', 'web.id',
         'my.id', 'biz.id', 'desa.id',
     );
+
 }

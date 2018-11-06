@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -31,8 +32,8 @@ use phpDocumentor\Reflection\Types\Context as TypeContext;
  * of each line while maintaining any indentation that is used. This will prevent formatting parsers from tripping
  * over unexpected spaces as can be observed with tag descriptions.
  */
-class DescriptionFactory
-{
+class DescriptionFactory {
+
     /** @var TagFactory */
     private $tagFactory;
 
@@ -41,8 +42,7 @@ class DescriptionFactory
      *
      * @param TagFactory $tagFactory
      */
-    public function __construct(TagFactory $tagFactory)
-    {
+    public function __construct(TagFactory $tagFactory) {
         $this->tagFactory = $tagFactory;
     }
 
@@ -54,8 +54,7 @@ class DescriptionFactory
      *
      * @return Description
      */
-    public function create($contents, TypeContext $context = null)
-    {
+    public function create($contents, TypeContext $context = null) {
         list($text, $tags) = $this->parse($this->lex($contents), $context);
 
         return new Description($text, $tags);
@@ -68,8 +67,7 @@ class DescriptionFactory
      *
      * @return string[] A series of tokens of which the description text is composed.
      */
-    private function lex($contents)
-    {
+    private function lex($contents) {
         $contents = $this->removeSuperfluousStartingWhitespace($contents);
 
         // performance optimalization; if there is no inline tag, don't bother splitting it up.
@@ -78,7 +76,7 @@ class DescriptionFactory
         }
 
         return preg_split(
-            '/\{
+                '/\{
                 # "{@}" is not a valid inline tag. This ensures that we do not treat it as one, but treat it literally.
                 (?!@\})
                 # We want to capture the whole tag line, but without the inline tag delimiters.
@@ -101,10 +99,7 @@ class DescriptionFactory
                     )* # If there are more inline tags, match them as well. We use "*" since there may not be any
                        # nested inline tags.
                 )
-            \}/Sux',
-            $contents,
-            null,
-            PREG_SPLIT_DELIM_CAPTURE
+            \}/Sux', $contents, null, PREG_SPLIT_DELIM_CAPTURE
         );
     }
 
@@ -116,11 +111,10 @@ class DescriptionFactory
      *
      * @return string[]|Tag[]
      */
-    private function parse($tokens, TypeContext $context)
-    {
+    private function parse($tokens, TypeContext $context) {
         $count = count($tokens);
         $tagCount = 0;
-        $tags  = [];
+        $tags = [];
 
         for ($i = 1; $i < $count; $i += 2) {
             $tags[] = $this->tagFactory->create($tokens[$i], $context);
@@ -156,8 +150,7 @@ class DescriptionFactory
      *
      * @return string
      */
-    private function removeSuperfluousStartingWhitespace($contents)
-    {
+    private function removeSuperfluousStartingWhitespace($contents) {
         $lines = explode("\n", $contents);
 
         // if there is only one line then we don't have lines with superfluous whitespace and
@@ -188,4 +181,5 @@ class DescriptionFactory
 
         return implode("\n", $lines);
     }
+
 }

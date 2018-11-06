@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -18,8 +19,8 @@ use phpDocumentor\Reflection\DocBlock\Description;
 /**
  * Parses a tag definition for a DocBlock.
  */
-abstract class BaseTag implements DocBlock\Tag
-{
+abstract class BaseTag implements DocBlock\Tag {
+
     /** @var string Name of the tag */
     protected $name = '';
 
@@ -31,22 +32,20 @@ abstract class BaseTag implements DocBlock\Tag
      *
      * @return string The name of this tag.
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
-    public function render(Formatter $formatter = null)
-    {
+    public function render(Formatter $formatter = null) {
         if ($formatter === null) {
             $formatter = new Formatter\PassthroughFormatter();
         }
 
         return $formatter->format($this);
     }
+
 }

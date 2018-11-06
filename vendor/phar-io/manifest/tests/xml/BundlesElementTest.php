@@ -5,6 +5,7 @@ namespace PharIo\Manifest;
 use DOMDocument;
 
 class BundlesElementTest extends \PHPUnit\Framework\TestCase {
+
     /**
      * @var DOMDocument
      */
@@ -29,13 +30,14 @@ class BundlesElementTest extends \PHPUnit\Framework\TestCase {
     public function testGetComponentElementsReturnsComponentElementCollection() {
         $this->addComponent();
         $this->assertInstanceOf(
-            ComponentElementCollection::class, $this->bundles->getComponentElements()
+                ComponentElementCollection::class, $this->bundles->getComponentElements()
         );
     }
 
     private function addComponent() {
         $this->dom->documentElement->appendChild(
-            $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'component')
+                $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'component')
         );
     }
+
 }

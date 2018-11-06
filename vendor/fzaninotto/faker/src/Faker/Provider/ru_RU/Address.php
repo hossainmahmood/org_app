@@ -2,19 +2,17 @@
 
 namespace Faker\Provider\ru_RU;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $cityPrefix = array('город');
+class Address extends \Faker\Provider\Address {
 
+    protected static $cityPrefix = array('город');
     protected static $regionSuffix = array('область');
     protected static $streetPrefix = array(
         'пер.', 'ул.', 'пр.', 'шоссе', 'пл.', 'бульвар',
         'въезд', 'спуск', 'проезд', 'наб.',
     );
-
     protected static $buildingNumber = array('##');
     protected static $postcode = array('######');
-    
+
     /**
      * @link https://ru.wikipedia.org/wiki/Общероссийский_классификатор_стран_мира#Список_стран_согласно_Классификатору
      */
@@ -47,7 +45,6 @@ class Address extends \Faker\Provider\Address
         'Южная Африка', 'Южная Джорджия и Южные Сандвичевы Острова', 'Южная Осетия', 'Южный Судан',
         'Ямайка', 'Япония',
     );
-
     protected static $region = array(
         'Амурская', 'Архангельская', 'Астраханская', 'Белгородская', 'Брянская',
         'Владимирская', 'Волгоградская', 'Вологодская', 'Воронежская', 'Ивановская',
@@ -60,7 +57,6 @@ class Address extends \Faker\Provider\Address
         'Томская', 'Тульская', 'Тюменская', 'Ульяновская', 'Челябинская',
         'Читинская', 'Ярославская',
     );
-
     protected static $city = array(
         'Балашиха', 'Видное', 'Волоколамск', 'Воскресенск', 'Дмитров',
         'Домодедово', 'Дорохово', 'Егорьевск', 'Зарайск', 'Истра',
@@ -71,69 +67,57 @@ class Address extends \Faker\Provider\Address
         'Серебряные Пруды', 'Серпухов', 'Солнечногорск', 'Ступино', 'Талдом',
         'Чехов', 'Шатура', 'Шаховская', 'Щёлково',
     );
-
     protected static $street = array(
         'Косиора', 'Ладыгина', 'Ленина', 'Ломоносова', 'Домодедовская', 'Гоголя', '1905 года', 'Чехова', 'Сталина',
         'Космонавтов', 'Гагарина', 'Славы', 'Бухарестская', 'Будапештсткая', 'Балканская'
     );
-
     protected static $addressFormats = array(
         "{{postcode}}, {{region}} {{regionSuffix}}, {{cityPrefix}} {{city}}, {{streetPrefix}} {{street}}, {{buildingNumber}}",
     );
-
     protected static $streetAddressFormats = array(
         "{{streetPrefix}} {{street}}, {{buildingNumber}}"
     );
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::numerify(static::randomElement(static::$buildingNumber));
     }
 
-    public function address()
-    {
+    public function address() {
         $format = static::randomElement(static::$addressFormats);
 
         return $this->generator->parse($format);
     }
 
-    public static function country()
-    {
+    public static function country() {
         return static::randomElement(static::$country);
     }
 
-    public static function postcode()
-    {
+    public static function postcode() {
         return static::toUpper(static::bothify(static::randomElement(static::$postcode)));
     }
 
-    public static function regionSuffix()
-    {
+    public static function regionSuffix() {
         return static::randomElement(static::$regionSuffix);
     }
 
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
 
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
+
 }

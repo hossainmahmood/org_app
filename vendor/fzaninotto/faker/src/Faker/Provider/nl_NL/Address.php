@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\nl_NL;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $buildingNumber = array('%', '%#', '%##', '%###', '%-?', '%#-?', '%?', '%#?', '%-#', '%#-##');
+class Address extends \Faker\Provider\Address {
 
+    protected static $buildingNumber = array('%', '%#', '%##', '%###', '%-?', '%#-?', '%?', '%#?', '%-#', '%#-##');
     protected static $postcodes = array(
         '1013PT', '1015GZ', '1053GS', '1058EG', '1060PM', '1068NE', '1072NL', '1073SK', '1074JA', '1078NH', '1111LW',
         '1121JC', '1141RP', '1141VM', '1161TC', '1183CH', '1187RK', '1188LP', '1271KZ', '1312SG', '1323CW', '1325EZ',
@@ -43,27 +42,22 @@ class Address extends \Faker\Provider\Address
         '9269SZ', '9289ZH', '9354VD', '9401MA', '9406BM', '9431GV', '9501AM', '9502CX', '9642EA', '9651AR', '9675LR',
         '9712LJ', '9742GT', '9745EH', '9751TA', '9751TS', '9752BK', '9752GE', '9801TA', '9901EH', '9991EG', '9999XK',
     );
-
     protected static $streetNameFormats = array('{{lastName}}{{streetSuffix}}');
-
     protected static $streetAddressFormats = array('{{streetName}} {{buildingNumber}}');
-
     protected static $cityFormats = array('{{cityName}}');
-
     protected static $addressFormats = array(
         "{{streetAddress}}\n{{postcode}} {{city}}",
     );
-
     protected static $streetSuffix = array(
         'baan', 'boulevard', 'dreef', 'hof', 'laan', 'pad', 'ring', 'singel', 'steeg', 'straat', 'weg',
     );
 
     /**
-    * Export of BAG (http://bag.vrom.nl/)
-    * last updated 2012/11/09
-    *
-    * @var array
-    */
+     * Export of BAG (http://bag.vrom.nl/)
+     * last updated 2012/11/09
+     *
+     * @var array
+     */
     protected static $cityNames = array(
         "'s Gravenmoer", "'s-Graveland", "'s-Gravendeel", "'s-Gravenhage", "'s-Gravenpolder", "'s-Gravenzande", "'s-Heer Abtskerke", "'s-Heer Arendskerke", "'s-Heer Hendrikskinderen", "'s-Heerenberg", "'s-Heerenbroek", "'s-Heerenhoek", "'s-Hertogenbosch", "'t Goy", "'t Haantje", "'t Harde", "'t Loo Oldebroek", "'t Veld", "'t Waar", "'t Zand", "'t Zandt", '2e Valthermond',
         'Aadorp', 'Aagtekerke', 'Aalden', 'Aalsmeer', 'Aalsmeerderbrug', 'Aalst', 'Aalsum', 'Aalten', 'Aardenburg', 'Aarlanderveen', 'Aarle-Rixtel', 'Aartswoud', 'Abbega', 'Abbekerk', 'Abbenbroek', 'Abbenes', 'Abcoude', 'Achlum', 'Achterveld', 'Achterveld', 'Achthuizen', 'Achtmaal', 'Acquoy', 'Adorp', 'Aduard', 'Aerdenhout', 'Aerdt', 'Afferden L', 'Afferden', 'Agelo', 'Akersloot', 'Akkrum', 'Akmarijp', 'Albergen', 'Alblasserdam', 'Alde Leie', 'Aldeboarn', 'Aldtsjerk', 'Alem', 'Alkmaar', 'Allingawier', 'Almelo', 'Almen', 'Almere', 'Almkerk', 'Alphen aan den Rijn', 'Alphen', 'Alphen', 'Alteveer gem Hoogeveen', 'Alteveer', 'Alteveer', 'Alteveer', 'Altforst', 'Ambt Delden', 'Ameide', 'Amen', 'America', 'Amerongen', 'Amersfoort', 'Ammerstol', 'Ammerzoden', 'Amstelhoek', 'Amstelveen', 'Amstenrade', 'Amsterdam Zuidoost', 'Amsterdam', 'Andel', 'Andelst', 'Anderen', 'Andijk', 'Ane', 'Anerveen', 'Anevelde', 'Angeren', 'Angerlo', 'Anjum', 'Ankeveen', 'Anloo', 'Anna Paulowna', 'Annen', 'Annerveenschekanaal', 'Ansen', 'Ansen', 'Apeldoorn', 'Apeldoorn', 'Appelscha', 'Appeltern', 'Appingedam', 'Arcen', 'Arkel', 'Arnemuiden', 'Arnhem', 'Arum', 'Asch', 'Asperen', 'Assen', 'Assendelft', 'Asten', 'Augsbuurt', 'Augustinusga', 'Austerlitz', 'Avenhorn', 'Axel', 'Azewijn',
@@ -90,11 +84,9 @@ class Address extends \Faker\Provider\Address
         'Yde', 'Yerseke', 'Ypecolsga', 'Ysbrechtum', 'Ysselsteyn',
         'Zaamslag', 'Zaandam', 'Zaandijk', 'Zalk', 'Zaltbommel', 'Zandberg', 'Zandeweer', 'Zandhuizen', 'Zandpol', 'Zandvoort', 'Zeddam', 'Zeegse', 'Zeeland', 'Zeerijp', 'Zeewolde', 'Zegge', 'Zegveld', 'Zeijen', 'Zeijerveen', 'Zeijerveld', 'Zeist', 'Zelhem', 'Zenderen', 'Zennewijnen', 'Zennewijnen', 'Zetten', 'Zevenaar', 'Zevenbergen', 'Zevenbergschen Hoek', 'Zevenbergschen Hoek', 'Zevenhoven', 'Zevenhuizen', 'Zevenhuizen', 'Zierikzee', 'Zieuwent', 'Zijderveld', 'Zijdewind', 'Zijldijk', 'Zoelen', 'Zoelmond', 'Zoetermeer', 'Zoeterwoude', 'Zonnemaire', 'Zorgvlied', 'Zoutelande', 'Zoutkamp', 'Zuid-Beijerland', 'Zuid-Scharwoude', 'Zuidbroek', 'Zuiddorpe', 'Zuidermeer', 'Zuiderwoude', 'Zuidhorn', 'Zuidlaarderveen', 'Zuidland', 'Zuidlaren', 'Zuidoostbeemster', 'Zuidschermer', 'Zuidveen', 'Zuidveld', 'Zuidvelde', 'Zuidwolde', 'Zuidwolde', 'Zuidzande', 'Zuilichem', 'Zuna', 'Zundert', 'Zurich', 'Zutphen', 'Zuurdijk', 'Zwaag', 'Zwaagdijk-Oost', 'Zwaagdijk-West', 'Zwaanshoek', 'Zwagerbosch', 'Zwammerdam', 'Zwanenburg', 'Zwartebroek', 'Zwartemeer', 'Zwartewaal', 'Zwartsluis', 'Zweeloo', 'Zweins', 'Zwiggelte', 'Zwijndrecht', 'Zwinderen', 'Zwolle', 'de Hoef', 'de Lutte', 'de Wijk', 'de Woude',
     );
-
     protected static $state = array(
         'Drenthe', 'Gelderland', 'Groningen', 'Flevoland', 'Friesland', 'Noord-Brabant', 'Noord-Holland', 'Overijssel', 'Limburg', 'Utrecht', 'Zeeland', 'Zuid-Holland'
     );
-
     protected static $country = array(
         'Afghanistan', 'Albanië', 'Algerije', 'Amerikaans-Samoa', 'Andorra', 'Angola', 'Amerikaanse Virgineilanden', 'Anguilla', 'Antartica', 'Antigua en Barbuda', 'Argentinië', 'Armenië', 'Aruba', 'Australië', 'Azerbeidzjan',
         'Bahamas', 'Bahrein', 'Bangladesh', 'Barbados', 'België', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnië-Herzegovina', 'Botswana', 'Bouvet Eiland (Bouvetøya)', 'Brazilië', 'Britse Maagdeneilanden', 'Brunei Darussalam', 'Bulgarije', 'Burkina Faso', 'Burundi',
@@ -123,31 +115,28 @@ class Address extends \Faker\Provider\Address
     );
 
     /**
-    * @see parent
-    */
-    public static function buildingNumber()
-    {
+     * @see parent
+     */
+    public static function buildingNumber() {
         return static::bothify(static::randomElement(static::$buildingNumber));
     }
 
     /**
      * @example 'Gelderland'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
-    * @see parent
-    */
-    public function cityName()
-    {
+     * @see parent
+     */
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
-    
-    public static function postcode()
-    {
+
+    public static function postcode() {
         return static::randomElement(static::$postcodes);
     }
+
 }

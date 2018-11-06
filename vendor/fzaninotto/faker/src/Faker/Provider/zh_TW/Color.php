@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\zh_TW;
 
-class Color extends \Faker\Provider\Color
-{
+class Color extends \Faker\Provider\Color {
+
     /**
      * @link http://zh.wikipedia.org/zh-tw/%E9%A2%9C%E8%89%B2%E5%88%97%E8%A1%A8
      */
@@ -12,7 +12,6 @@ class Color extends \Faker\Provider\Color
         '紫', '鳧綠', '鮮綠色', '藍色', '銀色',
         '灰色', '黃色', '品紅', '水色', '白色'
     );
-
     protected static $allColorNames = array(
         '黑色', '昏灰', '灰色', '暗灰', '銀色', '亮灰色',
         '庚斯博羅灰', '白煙色', '白色', '雪色', '鐵灰色',
@@ -63,4 +62,5 @@ class Color extends \Faker\Provider\Color
         '櫻桃紅', '淺鮭紅', '緋紅', '粉紅', '亮粉紅', '殼黃紅',
         '茜紅',
     );
+
 }

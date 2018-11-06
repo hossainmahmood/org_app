@@ -5,50 +5,42 @@ namespace Faker\Test\Provider;
 use Faker\Provider\Color;
 use PHPUnit\Framework\TestCase;
 
-class ColorTest extends TestCase
-{
+class ColorTest extends TestCase {
 
-    public function testHexColor()
-    {
+    public function testHexColor() {
         $this->assertRegExp('/^#[a-f0-9]{6}$/i', Color::hexColor());
     }
 
-    public function testSafeHexColor()
-    {
+    public function testSafeHexColor() {
         $this->assertRegExp('/^#[a-f0-9]{6}$/i', Color::safeHexColor());
     }
 
-    public function testRgbColorAsArray()
-    {
+    public function testRgbColorAsArray() {
         $this->assertEquals(3, count(Color::rgbColorAsArray()));
     }
 
-    public function testRgbColor()
-    {
+    public function testRgbColor() {
         $regexp = '([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])';
         $this->assertRegExp('/^' . $regexp . ',' . $regexp . ',' . $regexp . '$/i', Color::rgbColor());
     }
 
-    public function testRgbCssColor()
-    {
+    public function testRgbCssColor() {
         $regexp = '([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])';
         $this->assertRegExp('/^rgb\(' . $regexp . ',' . $regexp . ',' . $regexp . '\)$/i', Color::rgbCssColor());
     }
 
-    public function testRgbaCssColor()
-    {
+    public function testRgbaCssColor() {
         $regexp = '([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])';
         $regexpAlpha = '([01]?(\.\d+)?)';
         $this->assertRegExp('/^rgba\(' . $regexp . ',' . $regexp . ',' . $regexp . ',' . $regexpAlpha . '\)$/i', Color::rgbaCssColor());
     }
 
-    public function testSafeColorName()
-    {
+    public function testSafeColorName() {
         $this->assertRegExp('/^[\w]+$/', Color::safeColorName());
     }
 
-    public function testColorName()
-    {
+    public function testColorName() {
         $this->assertRegExp('/^[\w]+$/', Color::colorName());
     }
+
 }

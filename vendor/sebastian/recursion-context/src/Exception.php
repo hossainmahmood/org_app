@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Recursion Context package.
  *
@@ -12,6 +13,6 @@ namespace SebastianBergmann\RecursionContext;
 
 /**
  */
-interface Exception
-{
+interface Exception {
+    
 }

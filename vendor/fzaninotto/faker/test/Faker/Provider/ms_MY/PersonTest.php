@@ -6,15 +6,14 @@ use Faker\Generator;
 use Faker\Provider\ms_MY\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
+
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
@@ -23,8 +22,7 @@ class PersonTest extends TestCase
     /**
      * @link https://en.wikipedia.org/wiki/Malaysian_identity_card#Structure_of_the_National_Registration_Identity_Card_Number_(NRIC)
      */
-    public function testPersonalIdentityCardNumber()
-    {
+    public function testPersonalIdentityCardNumber() {
         $myKadNumber = $this->faker->myKadNumber;
 
         $yy = substr($myKadNumber, 0, 2);
@@ -47,4 +45,5 @@ class PersonTest extends TestCase
         //match any number from 0000-9999
         $this->assertRegExp("/^[0-9]{4}$/", $nnnn);
     }
+
 }

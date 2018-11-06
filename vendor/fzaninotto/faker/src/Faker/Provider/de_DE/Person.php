@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\de_DE;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -14,7 +14,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}} {{suffix}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}} {{suffix}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -27,9 +26,9 @@ class Person extends \Faker\Provider\Person
     );
 
     /**
-         * Top 500 Names from a phone directory (6. January 2005)
-         * {@link} From http://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_m%C3%A4nnlichen_Vornamen_Deutschlands
-         **/
+     * Top 500 Names from a phone directory (6. January 2005)
+     * {@link} From http://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_m%C3%A4nnlichen_Vornamen_Deutschlands
+     * */
     protected static $firstNameMale = array(
         'Achim', 'Adalbert', 'Adam', 'Adolf', 'Adrian', 'Ahmed', 'Ahmet', 'Albert', 'Albin', 'Albrecht', 'Alex', 'Alexander', 'Alfons', 'Alfred', 'Ali', 'Alois', 'Aloys', 'Alwin', 'Anatoli', 'Andre', 'Andreas', 'Andree', 'Andrej', 'Andrzej', 'André', 'Andy', 'Angelo', 'Ansgar', 'Anton', 'Antonio', 'Antonius', 'Armin', 'Arnd', 'Arndt', 'Arne', 'Arno', 'Arnold', 'Arnulf', 'Arthur', 'Artur', 'August', 'Axel',
         'Bastian', 'Benedikt', 'Benjamin', 'Benno', 'Bernard', 'Bernd', 'Berndt', 'Bernhard', 'Bert', 'Berthold', 'Bertram', 'Björn', 'Bodo', 'Bogdan', 'Boris', 'Bruno', 'Burghard', 'Burkhard',
@@ -56,7 +55,6 @@ class Person extends \Faker\Provider\Person
         'Xaver',
         'Yusuf',
     );
-
     // From http://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_weiblichen_Vornamen_Deutschlands
     protected static $firstNameFemale = array(
         'Adele', 'Adelheid', 'Agathe', 'Agnes', 'Alexandra', 'Alice', 'Alma', 'Almut', 'Aloisia', 'Alwine', 'Amalie', 'Ana', 'Anastasia', 'Andrea', 'Anett', 'Anette', 'Angela', 'Angelika', 'Anika', 'Anita', 'Anja', 'Anke', 'Anna', 'Anna-Maria', 'Anne', 'Annegret', 'Annelie', 'Annelies', 'Anneliese', 'Annelore', 'Annemarie', 'Annerose', 'Annett', 'Annette', 'Anni', 'Annika', 'Anny', 'Antje', 'Antonia', 'Antonie', 'Ariane', 'Astrid', 'Auguste', 'Ayse',
@@ -86,9 +84,9 @@ class Person extends \Faker\Provider\Person
     );
 
     /**
-         * Top 500 Names from a phone directory (6. January 2005)
-         * {@link} https://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_Nachnamen_Deutschlands
-         **/
+     * Top 500 Names from a phone directory (6. January 2005)
+     * {@link} https://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_Nachnamen_Deutschlands
+     * */
     protected static $lastName = array(
         'Ackermann', 'Adam', 'Adler', 'Ahrens', 'Albers', 'Albert', 'Albrecht', 'Altmann', 'Anders', 'Appel', 'Arndt', 'Arnold', 'Auer',
         'Bach', 'Bachmann', 'Bader', 'Baier', 'Bartels', 'Barth', 'Barthel', 'Bartsch', 'Bauer', 'Baum', 'Baumann', 'Baumgartner', 'Baur', 'Bayer', 'Beck', 'Becker', 'Beckmann', 'Beer', 'Behrendt', 'Behrens', 'Beier', 'Bender', 'Benz', 'Berg', 'Berger', 'Bergmann', 'Berndt', 'Bernhardt', 'Bertram', 'Betz', 'Beyer', 'Binder', 'Bischoff', 'Bittner', 'Blank', 'Block', 'Blum', 'Bock', 'Bode', 'Born', 'Brand', 'Brandl', 'Brandt', 'Braun', 'Brenner', 'Breuer', 'Brinkmann', 'Brunner', 'Bruns', 'Brückner', 'Buchholz', 'Buck', 'Burger', 'Burkhardt', 'Busch', 'Busse', 'Bär', 'Böhm', 'Böhme', 'Böttcher', 'Bühler', 'Büttner',
@@ -113,17 +111,15 @@ class Person extends \Faker\Provider\Person
         'Wagner', 'Wahl', 'Walter', 'Walther', 'Weber', 'Wegener', 'Wegner', 'Weidner', 'Weigel', 'Weis', 'Weise', 'Weiss', 'Weiß', 'Wendt', 'Wenzel', 'Werner', 'Westphal', 'Wetzel', 'Wiedemann', 'Wiegand', 'Wieland', 'Wiese', 'Wiesner', 'Wild', 'Wilhelm', 'Wilke', 'Will', 'Wimmer', 'Winkler', 'Winter', 'Wirth', 'Witt', 'Witte', 'Wittmann', 'Wolf', 'Wolff', 'Wolter', 'Wulf', 'Wunderlich',
         'Zander', 'Zeller', 'Ziegler', 'Zimmer', 'Zimmermann',
     );
-
     protected static $titleMale = array('Herr', 'Herr Dr.', 'Herr Prof.', 'Herr Prof. Dr.');
     protected static $titleFemale = array('Frau', 'Frau Dr.', 'Frau Prof.', 'Frau Prof. Dr.');
-
     protected static $suffix = array('B.Sc.', 'B.A.', 'B.Eng.', 'MBA.');
 
     /**
      * @example 'PhD'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
+
 }

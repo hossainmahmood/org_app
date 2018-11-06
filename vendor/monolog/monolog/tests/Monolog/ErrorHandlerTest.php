@@ -13,10 +13,9 @@ namespace Monolog;
 
 use Monolog\Handler\TestHandler;
 
-class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
-{
-    public function testHandleError()
-    {
+class ErrorHandlerTest extends \PHPUnit_Framework_TestCase {
+
+    public function testHandleError() {
         $logger = new Logger('test', array($handler = new TestHandler));
         $errHandler = new ErrorHandler($logger);
 
@@ -28,4 +27,5 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $handler->getRecords());
         $this->assertTrue($handler->hasEmergencyRecords());
     }
+
 }

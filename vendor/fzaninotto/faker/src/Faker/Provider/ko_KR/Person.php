@@ -2,16 +2,14 @@
 
 namespace Faker\Provider\ko_KR;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * This provider uses wikipedia's top Korean last names. These cover more than 90% of Korean population.
      */
-
     protected static $maleNameFormats = array(
         '{{lastName}}{{firstNameMale}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{lastName}}{{firstNameFemale}}',
     );
@@ -29,7 +27,6 @@ class Person extends \Faker\Provider\Person
         '준범', '준서', '준영', '준혁', '준형', '준호', '중수', '지후', '지훈', '진수', '진우', '진호', '창용', '채현', '태현', '태호',
         '혁상', '현규', '현우', '현종', '현준', '형민', '형철', '호민', '호진', '홍선', '효일',
     );
-
     protected static $firstNameFemale = array(
         '가람', '강은', '강희', '경은', '경주', '근영', '기연', '나루', '나리', '나연', '나은', '나형', '누리', '다영', '도연', '동현',
         '미경', '미라', '미란', '미영', '미정', '민서', '민아', '민지', '민형', '민희', '반희', '보람', '보미', '보민', '봄', '상명',
@@ -52,4 +49,5 @@ class Person extends \Faker\Provider\Person
         '노', '염', '여', '추', '변', '도', '석', '신', '소', '선', '주', '설', '방', '마', '정', '길', '위', '연', '표', '명',
         '기', '금', '왕', '반', '옥', '육', '진', '인', '맹', '제', '탁', '모', '남궁', '여', '장', '어', '유', '국', '은', '편',
     );
+
 }

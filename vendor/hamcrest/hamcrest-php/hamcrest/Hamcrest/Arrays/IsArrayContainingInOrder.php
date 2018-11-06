@@ -1,9 +1,11 @@
 <?php
+
 namespace Hamcrest\Arrays;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\Description;
 use Hamcrest\TypeSafeDiagnosingMatcher;
 use Hamcrest\Util;
@@ -11,13 +13,11 @@ use Hamcrest\Util;
 /**
  * Matches if an array contains a set of items satisfying nested matchers.
  */
-class IsArrayContainingInOrder extends TypeSafeDiagnosingMatcher
-{
+class IsArrayContainingInOrder extends TypeSafeDiagnosingMatcher {
 
     private $_elementMatchers;
 
-    public function __construct(array $elementMatchers)
-    {
+    public function __construct(array $elementMatchers) {
         parent::__construct(self::TYPE_ARRAY);
 
         Util::checkAllAreMatchers($elementMatchers);
@@ -25,8 +25,7 @@ class IsArrayContainingInOrder extends TypeSafeDiagnosingMatcher
         $this->_elementMatchers = $elementMatchers;
     }
 
-    protected function matchesSafelyWithDiagnosticDescription($array, Description $mismatchDescription)
-    {
+    protected function matchesSafelyWithDiagnosticDescription($array, Description $mismatchDescription) {
         $series = new SeriesMatchingOnce($this->_elementMatchers, $mismatchDescription);
 
         foreach ($array as $element) {
@@ -38,8 +37,7 @@ class IsArrayContainingInOrder extends TypeSafeDiagnosingMatcher
         return $series->isFinished();
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendList('[', ', ', ']', $this->_elementMatchers);
     }
 
@@ -48,10 +46,10 @@ class IsArrayContainingInOrder extends TypeSafeDiagnosingMatcher
      *
      * @factory contains ...
      */
-    public static function arrayContaining(/* args... */)
-    {
+    public static function arrayContaining(/* args... */) {
         $args = func_get_args();
 
         return new self(Util::createMatcherArray($args));
     }
+
 }

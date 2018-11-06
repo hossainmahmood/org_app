@@ -1,7 +1,7 @@
 {
-    "name":    "phpdocumentor/reflection-docblock",
+    "name": "phpdocumentor/reflection-docblock",
     "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-    "type":    "library",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -16,10 +16,14 @@
         "webmozart/assert": "^1.0"
     },
     "autoload": {
-        "psr-4": {"phpDocumentor\\Reflection\\": ["src/"]}
+        "psr-4": {
+            "phpDocumentor\\Reflection\\": ["src/"]
+        }
     },
     "autoload-dev": {
-        "psr-4": {"phpDocumentor\\Reflection\\": ["tests/unit"]}
+        "psr-4": {
+            "phpDocumentor\\Reflection\\": ["tests/unit"]
+        }
     },
     "require-dev": {
         "mockery/mockery": "^1.0",

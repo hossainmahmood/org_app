@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -15,7 +16,7 @@ namespace phpDocumentor\Reflection\DocBlock\Tags\Reference;
 /**
  * Interface for references in {@see phpDocumentor\Reflection\DocBlock\Tags\See}
  */
-interface Reference
-{
+interface Reference {
+
     public function __toString();
 }

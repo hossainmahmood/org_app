@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ko_KR;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $postcode = array('#####');
     protected static $buildingNumber = array('####', '###');
     protected static $metropolitanCity = array(
@@ -57,40 +57,36 @@ class Address extends \Faker\Provider\Address
     /**
      * @example '서울특별시'
      */
-    public function metropolitanCity()
-    {
+    public function metropolitanCity() {
         return static::randomElement(static::$metropolitanCity);
     }
 
     /**
      * @example '경기도'
      */
-    public static function province()
-    {
+    public static function province() {
         return static::randomElement(static::$province);
     }
 
     /**
      * @example '고양시'
      */
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
     /**
      * @example '강남구'
      */
-    public function borough()
-    {
+    public function borough() {
         return static::randomElement(static::$borough);
     }
 
     /**
      * @example '강남대로'
      */
-    public function streetName()
-    {
+    public function streetName() {
         return static::randomElement(static::$streetName);
     }
+
 }

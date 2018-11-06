@@ -28,7 +28,6 @@ return array(
     'from_now' => 'in :time',
     'after' => ':time später',
     'before' => ':time zuvor',
-
     'year_from_now' => '1 Jahr|:count Jahren',
     'month_from_now' => '1 Monat|:count Monaten',
     'week_from_now' => '1 Woche|:count Wochen',

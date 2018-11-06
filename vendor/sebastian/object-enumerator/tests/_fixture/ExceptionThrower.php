@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of Object Enumerator.
  *
@@ -12,17 +13,16 @@ namespace SebastianBergmann\ObjectEnumerator\Fixtures;
 
 use RuntimeException;
 
-class ExceptionThrower
-{
+class ExceptionThrower {
+
     private $property;
 
-    public function __construct()
-    {
+    public function __construct() {
         unset($this->property);
     }
 
-    public function __get($property)
-    {
+    public function __get($property) {
         throw new RuntimeException;
     }
+
 }

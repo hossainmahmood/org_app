@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -34,6 +35,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Version\VersionConstraint
  */
 class ManifestTest extends TestCase {
+
     /**
      * @var ApplicationName
      */
@@ -74,7 +76,7 @@ class ManifestTest extends TestCase {
 
         $this->type = Type::application();
 
-        $author  = new Author('Joe Developer', new Email('user@example.com'));
+        $author = new Author('Joe Developer', new Email('user@example.com'));
         $license = new License('BSD-3-Clause', new Url('https://github.com/sebastianbergmann/phpunit/blob/master/LICENSE'));
 
         $authors = new AuthorCollection;
@@ -91,12 +93,7 @@ class ManifestTest extends TestCase {
         $this->name = new ApplicationName('phpunit/phpunit');
 
         $this->manifest = new Manifest(
-            $this->name,
-            $this->version,
-            $this->type,
-            $this->copyrightInformation,
-            $this->requirements,
-            $this->bundledComponents
+                $this->name, $this->version, $this->type, $this->copyrightInformation, $this->requirements, $this->bundledComponents
         );
     }
 
@@ -137,16 +134,10 @@ class ManifestTest extends TestCase {
     /**
      * @uses \PharIo\Manifest\Extension
      */
-    public function testExtendedApplicationCanBeQueriedForExtension()
-    {
+    public function testExtendedApplicationCanBeQueriedForExtension() {
         $appName = new ApplicationName('foo/bar');
         $manifest = new Manifest(
-            new ApplicationName('foo/foo'),
-            new Version('1.0.0'),
-            Type::extension($appName, new AnyVersionConstraint),
-            $this->copyrightInformation,
-            new RequirementCollection,
-            new BundledComponentCollection
+                new ApplicationName('foo/foo'), new Version('1.0.0'), Type::extension($appName, new AnyVersionConstraint), $this->copyrightInformation, new RequirementCollection, new BundledComponentCollection
         );
 
         $this->assertTrue($manifest->isExtensionFor($appName));
@@ -155,12 +146,7 @@ class ManifestTest extends TestCase {
     public function testNonExtensionReturnsFalseWhenQueriesForExtension() {
         $appName = new ApplicationName('foo/bar');
         $manifest = new Manifest(
-            new ApplicationName('foo/foo'),
-            new Version('1.0.0'),
-            Type::library(),
-            $this->copyrightInformation,
-            new RequirementCollection,
-            new BundledComponentCollection
+                new ApplicationName('foo/foo'), new Version('1.0.0'), Type::library(), $this->copyrightInformation, new RequirementCollection, new BundledComponentCollection
         );
 
         $this->assertFalse($manifest->isExtensionFor($appName));
@@ -169,16 +155,10 @@ class ManifestTest extends TestCase {
     /**
      * @uses \PharIo\Manifest\Extension
      */
-    public function testExtendedApplicationCanBeQueriedForExtensionWithVersion()
-    {
+    public function testExtendedApplicationCanBeQueriedForExtensionWithVersion() {
         $appName = new ApplicationName('foo/bar');
         $manifest = new Manifest(
-            new ApplicationName('foo/foo'),
-            new Version('1.0.0'),
-            Type::extension($appName, new AnyVersionConstraint),
-            $this->copyrightInformation,
-            new RequirementCollection,
-            new BundledComponentCollection
+                new ApplicationName('foo/foo'), new Version('1.0.0'), Type::extension($appName, new AnyVersionConstraint), $this->copyrightInformation, new RequirementCollection, new BundledComponentCollection
         );
 
         $this->assertTrue($manifest->isExtensionFor($appName, new Version('1.2.3')));

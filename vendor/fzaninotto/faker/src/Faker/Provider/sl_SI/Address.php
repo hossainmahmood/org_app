@@ -2,12 +2,11 @@
 
 namespace Faker\Provider\sl_SI;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
 
     /**
      * @link http://www.rtvslo.si/strani/abecedni-seznam-obcin/3103
-     **/
+     * */
     protected static $city = array(
         'Ajdovščina', 'Apače', 'Beltinci', 'Benedikt', 'Bistrica ob Sotli', 'Bled', 'Bloke', 'Bohinj', 'Borovnica', 'Bovec',
         'Braslovče', 'Brda', 'Brezovica', 'Brežice', 'Cankova', 'Celje', 'Cerklje na Gorenjskem', 'Cerknica', 'Cerkno',
@@ -34,9 +33,7 @@ class Address extends \Faker\Provider\Address
         'Škofljica', 'Šmarje pri Jelšah', 'Šmarješke Toplice', 'Šmartno ob Paki', 'Šmartno pri Litiji', 'Šoštanj', 'Štore', 'Žalec',
         'Železniki', 'Žetale', 'Žiri', 'Žirovnica', 'Žužemberk'
     );
-
     protected static $buildingNumber = array('1##', '##', '##', '##', '##', '#');
-
     protected static $postcode = array('###0');
 
     /**
@@ -52,7 +49,6 @@ class Address extends \Faker\Provider\Address
         'Kidričeva ulica', 'Aškerčeva ulica', 'Kratka ulica', 'Nova ulica', 'Obrtniška ulica', 'Tomšičeva ulica', 'Cvetlična ulica',
         'Mariborska cesta', 'Ob potoku', 'Trg svobode', 'Ulica talcev', 'Kettejeva ulica', 'Kosovelova ulica', 'Finžgarjeva ulica', 'Ob gozdu',
         'Stara cesta', 'Vegova ulica', 'Prežihova ulica', 'Sončna ulica',
-
         'Gradišče', 'Pristava', 'Brezje', 'Dolenja vas', 'Potok', 'Ravne',
         'Brdo', 'Dobrava', 'Draga', 'Javorje', 'Kal', 'Laze', 'Log', 'Planina', 'Podkraj', 'Selce', 'Trnovec', 'Bistrica', 'Gorenja vas',
         'Gorica', 'Lipa', 'Nova vas', 'Podgora', 'Podgorje', 'Podgrad', 'Ponikve', 'Sela', 'Selo', 'Škocjan', 'Vrh'
@@ -82,26 +78,22 @@ class Address extends \Faker\Provider\Address
         'Venezuela', 'Vietnam', 'Vzhodni Timor', 'Zahodna Samoa', 'Zambija', 'Združene države Amerike', 'Združeni arabski emirati',
         'Zelenortski otoki', 'Zimbabve'
     );
-
     protected static $cityFormats = array(
         '{{cityName}}'
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}'
     );
-
     protected static $addressFormats = array(
         '{{streetAddress}}\n {{postcode}}\n {{cityName}}',
     );
 
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$city);
     }
 
-    public function streetName()
-    {
+    public function streetName() {
         return static::randomElement(static::$street);
     }
+
 }

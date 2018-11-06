@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -15,13 +17,12 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers SebastianBergmann\Diff\InvalidArgumentException
  */
-final class InvalidArgumentExceptionTest extends TestCase
-{
-    public function testInvalidArgumentException(): void
-    {
+final class InvalidArgumentExceptionTest extends TestCase {
+
+    public function testInvalidArgumentException(): void {
         $previousException = new \LogicException();
-        $message           = 'test';
-        $code              = 123;
+        $message = 'test';
+        $code = 123;
 
         $exception = new InvalidArgumentException($message, $code, $previousException);
 
@@ -30,4 +31,5 @@ final class InvalidArgumentExceptionTest extends TestCase
         $this->assertSame($code, $exception->getCode());
         $this->assertSame($previousException, $exception->getPrevious());
     }
+
 }

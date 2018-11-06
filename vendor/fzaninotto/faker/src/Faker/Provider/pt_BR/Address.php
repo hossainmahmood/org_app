@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\pt_BR;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityPrefix = array('São', 'Porto', 'Vila', 'Santa');
     protected static $citySuffix = array('do Norte', 'do Leste', 'do Sul', 'd\'Oeste');
     protected static $streetPrefix = array(
@@ -44,7 +44,7 @@ class Address extends \Faker\Provider\Address
         'Djibouti', 'Domênica', 'Equador', 'Egito', 'El Salvador',
         'Emirados Árabes Unidos', 'Eritrea', 'Eslováquia', 'Eslovênia',
         'Espanha', 'Estados Unidos da América', 'Estônia', 'Etiópia',
-        'Filipinas', 'Finlândia', 'Fiji','França', 'Gabão', 'Gâmbia',
+        'Filipinas', 'Finlândia', 'Fiji', 'França', 'Gabão', 'Gâmbia',
         'Georgia', 'Gana', 'Granada', 'Grécia', 'Guatemala',
         'Guiné Equatorial', 'Guiné Bissau', 'Guiana', 'Haiti', 'Honduras',
         'Hungria', 'Índia', 'Indonésia', 'Iraque', 'Irlanda', 'Irã',
@@ -56,7 +56,7 @@ class Address extends \Faker\Provider\Address
         'Marrocos', 'Mauritânia', 'Micronésia', 'Moldávia', 'Mongólia',
         'Montenegro', 'Moçambique', 'México', 'Mônaco', 'Namíbia', 'Nauru',
         'Nepal', 'Nicarágua', 'Nigéria', 'Noruega', 'Nova Guiné',
-        'Nova Zelândia', 'Níger', 'Omã', 'Qatar', 'Quênia','Quirguistão',
+        'Nova Zelândia', 'Níger', 'Omã', 'Qatar', 'Quênia', 'Quirguistão',
         'Paquistão', 'Palaos', 'Panamá', 'Papua Nova Guiné', 'Paraguai',
         'Países Baixos', 'Peru', 'Polônia', 'Portugal', 'Reino Unido',
         'Reino Unido da Grã Bretanha e Irlanda do Norte',
@@ -99,56 +99,50 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Avenida'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'São'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example '6º Andar'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'Brasília'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'DF'
      */
-    public static function stateAbbr()
-    {
+    public static function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
-    
+
     /**
      * @example 'Nordeste'
      */
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
-    
+
     /**
      * @example 'NE'
      */
-    public static function regionAbbr()
-    {
+    public static function regionAbbr() {
         return static::randomElement(static::$regionAbbr);
     }
+
 }

@@ -1,12 +1,12 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
-class MatcherAssert
-{
+class MatcherAssert {
 
     /**
      * Number of assertions performed.
@@ -35,8 +35,7 @@ class MatcherAssert
      * assertThat($a > $b);
      * </pre>
      */
-    public static function assertThat(/* $args ... */)
-    {
+    public static function assertThat(/* $args ... */) {
         $args = func_get_args();
         switch (count($args)) {
             case 1:
@@ -58,9 +57,7 @@ class MatcherAssert
             case 3:
                 self::$_count++;
                 self::doAssert(
-                    $args[0],
-                    $args[1],
-                    Util::wrapValueWithIsEqual($args[2])
+                        $args[0], $args[1], Util::wrapValueWithIsEqual($args[2])
                 );
                 break;
 
@@ -74,16 +71,14 @@ class MatcherAssert
      *
      * @return int
      */
-    public static function getCount()
-    {
+    public static function getCount() {
         return self::$_count;
     }
 
     /**
      * Resets the number of assertions performed to zero.
      */
-    public static function resetCount()
-    {
+    public static function resetCount() {
         self::$_count = 0;
     }
 
@@ -99,20 +94,20 @@ class MatcherAssert
      * @param \Hamcrest\Matcher $matcher applied to <code>$actual</code>
      * @throws AssertionError
      */
-    private static function doAssert($identifier, $actual, Matcher $matcher)
-    {
+    private static function doAssert($identifier, $actual, Matcher $matcher) {
         if (!$matcher->matches($actual)) {
             $description = new StringDescription();
             if (!empty($identifier)) {
                 $description->appendText($identifier . PHP_EOL);
             }
             $description->appendText('Expected: ')
-                                    ->appendDescriptionOf($matcher)
-                                    ->appendText(PHP_EOL . '     but: ');
+                    ->appendDescriptionOf($matcher)
+                    ->appendText(PHP_EOL . '     but: ');
 
             $matcher->describeMismatch($actual, $description);
 
             throw new AssertionError((string) $description);
         }
     }
+
 }

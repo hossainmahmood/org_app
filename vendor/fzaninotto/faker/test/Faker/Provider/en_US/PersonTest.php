@@ -6,23 +6,20 @@ use Faker\Provider\en_US\Person;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
 
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
     }
 
-    public function testSsn()
-    {
+    public function testSsn() {
         for ($i = 0; $i < 100; $i++) {
             $number = $this->faker->ssn;
 
@@ -45,4 +42,5 @@ class PersonTest extends TestCase
             $this->assertLessThan(10000, $parts[2]);
         }
     }
+
 }

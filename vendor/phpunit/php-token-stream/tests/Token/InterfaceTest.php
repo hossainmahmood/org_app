@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of php-token-stream.
  *
@@ -10,8 +11,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-class PHP_Token_InterfaceTest extends TestCase
-{
+class PHP_Token_InterfaceTest extends TestCase {
+
     /**
      * @var PHP_Token_CLASS
      */
@@ -22,10 +23,9 @@ class PHP_Token_InterfaceTest extends TestCase
      */
     private $interfaces;
 
-    protected function setUp()
-    {
+    protected function setUp() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'source4.php');
-        $i  = 0;
+        $i = 0;
 
         foreach ($ts as $token) {
             if ($token instanceof PHP_Token_CLASS) {
@@ -40,79 +40,70 @@ class PHP_Token_InterfaceTest extends TestCase
     /**
      * @covers PHP_Token_INTERFACE::getName
      */
-    public function testGetName()
-    {
+    public function testGetName() {
         $this->assertEquals(
-            'iTemplate', $this->interfaces[0]->getName()
+                'iTemplate', $this->interfaces[0]->getName()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::getParent
      */
-    public function testGetParentNotExists()
-    {
+    public function testGetParentNotExists() {
         $this->assertFalse(
-            $this->interfaces[0]->getParent()
+                $this->interfaces[0]->getParent()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::hasParent
      */
-    public function testHasParentNotExists()
-    {
+    public function testHasParentNotExists() {
         $this->assertFalse(
-            $this->interfaces[0]->hasParent()
+                $this->interfaces[0]->hasParent()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::getParent
      */
-    public function testGetParentExists()
-    {
+    public function testGetParentExists() {
         $this->assertEquals(
-            'a', $this->interfaces[2]->getParent()
+                'a', $this->interfaces[2]->getParent()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::hasParent
      */
-    public function testHasParentExists()
-    {
+    public function testHasParentExists() {
         $this->assertTrue(
-            $this->interfaces[2]->hasParent()
+                $this->interfaces[2]->hasParent()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::getInterfaces
      */
-    public function testGetInterfacesExists()
-    {
+    public function testGetInterfacesExists() {
         $this->assertEquals(
-            ['b'],
-            $this->class->getInterfaces()
+                ['b'], $this->class->getInterfaces()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::hasInterfaces
      */
-    public function testHasInterfacesExists()
-    {
+    public function testHasInterfacesExists() {
         $this->assertTrue(
-            $this->class->hasInterfaces()
+                $this->class->hasInterfaces()
         );
     }
 
     /**
      * @covers PHP_Token_INTERFACE::getPackage
      */
-    public function testGetPackageNamespace()
-    {
+    public function testGetPackageNamespace() {
         $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classInNamespace.php');
         foreach ($tokenStream as $token) {
             if ($token instanceof PHP_Token_INTERFACE) {
@@ -122,9 +113,7 @@ class PHP_Token_InterfaceTest extends TestCase
         }
     }
 
-
-    public function provideFilesWithClassesWithinMultipleNamespaces()
-    {
+    public function provideFilesWithClassesWithinMultipleNamespaces() {
         return [
             [TEST_FILES_PATH . 'multipleNamespacesWithOneClassUsingBraces.php'],
             [TEST_FILES_PATH . 'multipleNamespacesWithOneClassUsingNonBraceSyntax.php'],
@@ -135,9 +124,8 @@ class PHP_Token_InterfaceTest extends TestCase
      * @dataProvider provideFilesWithClassesWithinMultipleNamespaces
      * @covers PHP_Token_INTERFACE::getPackage
      */
-    public function testGetPackageNamespaceForFileWithMultipleNamespaces($filepath)
-    {
-        $tokenStream     = new PHP_Token_Stream($filepath);
+    public function testGetPackageNamespaceForFileWithMultipleNamespaces($filepath) {
+        $tokenStream = new PHP_Token_Stream($filepath);
         $firstClassFound = false;
         foreach ($tokenStream as $token) {
             if ($firstClassFound === false && $token instanceof PHP_Token_INTERFACE) {
@@ -159,8 +147,7 @@ class PHP_Token_InterfaceTest extends TestCase
         $this->fail('Searching for 2 classes failed');
     }
 
-    public function testGetPackageNamespaceIsEmptyForInterfacesThatAreNotWithinNamespaces()
-    {
+    public function testGetPackageNamespaceIsEmptyForInterfacesThatAreNotWithinNamespaces() {
         foreach ($this->interfaces as $token) {
             $package = $token->getPackage();
             $this->assertSame('', $package['namespace']);
@@ -170,9 +157,8 @@ class PHP_Token_InterfaceTest extends TestCase
     /**
      * @covers PHP_Token_INTERFACE::getPackage
      */
-    public function testGetPackageNamespaceWhenExtentingFromNamespaceClass()
-    {
-        $tokenStream     = new PHP_Token_Stream(TEST_FILES_PATH . 'classExtendsNamespacedClass.php');
+    public function testGetPackageNamespaceWhenExtentingFromNamespaceClass() {
+        $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classExtendsNamespacedClass.php');
         $firstClassFound = false;
         foreach ($tokenStream as $token) {
             if ($firstClassFound === false && $token instanceof PHP_Token_INTERFACE) {
@@ -192,4 +178,5 @@ class PHP_Token_InterfaceTest extends TestCase
         }
         $this->fail('Searching for 2 classes failed');
     }
+
 }

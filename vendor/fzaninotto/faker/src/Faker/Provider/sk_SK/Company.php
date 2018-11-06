@@ -2,14 +2,13 @@
 
 namespace Faker\Provider\sk_SK;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{lastName}} {{companySuffix}}',
         '{{lastName}}-{{lastName}}',
         '{{lastName}}, {{lastName}} and {{lastName}}'
     );
-
     protected static $catchPhraseWords = array(
         array(
             'Adaptívne', 'Automatické', 'Vyvážené', 'Obchodný-sústredený', 'centralizované', 'Cloned', 'kompatibilné', 'nastaviteľný', 'Cross-group', 'Cross-platform', 'zákazníka zamerané', 'Prispôsobiteľné', 'Decentralizované', 'De-inžinierstva', 'prenesenú', 'Digitálne', 'distribuované', 'Rôzne', 'Down veľkosti', 'Rozšírený', 'Celopodnikové ', ' Ergonomická', 'Expanded', 'Rozšírené', 'Plne konfigurovateľné', 'Funkcia na báze', 'Základný', 'Perspektívne', 'inovatívne', 'integrované', 'Intuitívne', 'Inverzný', 'Povinne monitorovaná', 'Multi-prešitia', 'multi-laterálne', 'Viacvrstvová', 'Viacvrstvová', 'Sieťová', 'Objektovo založená', 'Open-architektúru', 'Open-source', 'Operatívny', 'Optimalizované', 'Voliteľný', 'Organické', 'Organizovaná', 'Trvalé', 'Polarizované', 'Preventívne', 'Aktívne', 'Na zisk zameraná', 'Hlboká', 'programovateľný', 'progresívne', 'verejného kľúča', 'kvalita zamerané', 'reaktívne', 'Rekonštruované', 'Znížená', 'Právo veľké', 'robustné', 'Bezpečné', 'Jednoduchšie', 'Prepínanie', 'Synchronizované', 'synergický', 'spojil', 'tím-orientovaná', 'Univerzálne', 'Užívateľsky prívetivý', 'Univerzálne', 'Virtuálne', 'Vizionárske',
@@ -21,7 +20,6 @@ class Company extends \Faker\Provider\Company
             'schopnosť', 'prístup', 'algoritmus', 'aliancie', 'analyzátor', 'aplikácie', 'prístup', 'architektúra', 'archív', 'pole', 'postoj', 'referenčné', 'schopnosť', 'kapacita', 'výzva', 'okruh', 'spolupráca', 'zložitosť', 'koncept', 'konglomerát', 'pohotovostný', 'jadro', 'databáza', 'sklad dát', 'definície', 'emulácia', 'kódovanie', 'šifrovanie', 'extranet', 'firmware', 'flexibilita', 'počasia', 'rám', 'rámec', 'funkcie', 'funkcie', 'hardware', 'help-desk', 'hierarchie', 'húb', 'vykonávanie', 'infraštruktúra', 'iniciatíva', 'inštalácia', 'rozhranie', 'encyklopédia', 'pákový efekt', 'metodika', 'migrácia', 'model', 'moderátor', 'kontrola', 'moratórium', 'neurónové-siete', 'paradigma', 'paralelné', 'politika', 'portál', 'produkt', 'produktivita', 'projekt', 'projekcie', 'protokol', 'služba', 'softvér', 'riešenie', 'normalizácie', 'stratégia', 'štruktúra', 'úspech', 'nadstavba', 'pomoc', 'synergia', 'priepustnosť', 'časovom horizonte', 'sadu nástrojov', 'využitie', 'web', 'pracovná sila'
         )
     );
-
     protected static $bsWords = array(
         array(
             'implement', 'utilize', 'integrate', 'streamline', 'optimize', 'evolve', 'transform', 'embrace', 'enable', 'orchestrate', 'leverage', 'reinvent', 'aggregate', 'architect', 'enhance', 'incentivize', 'morph', 'empower', 'envisioneer', 'monetize', 'harness', 'facilitate', 'seize', 'disintermediate', 'synergize', 'strategize', 'deploy', 'brand', 'grow', 'target', 'syndicate', 'synthesize', 'deliver', 'mesh', 'incubate', 'engage', 'maximize', 'benchmark', 'expedite', 'reintermediate', 'whiteboard', 'visualize', 'repurpose', 'innovate', 'scale', 'unleash', 'drive', 'extend', 'engineer', 'revolutionize', 'generate', 'exploit', 'transition', 'e-enable', 'iterate', 'cultivate', 'matrix', 'productize', 'redefine', 'recontextualize'
@@ -33,14 +31,12 @@ class Company extends \Faker\Provider\Company
             'synergies', 'web-readiness', 'paradigms', 'markets', 'partnerships', 'infrastructures', 'platforms', 'initiatives', 'channels', 'eyeballs', 'communities', 'ROI', 'solutions', 'e-tailers', 'e-services', 'action-items', 'portals', 'niches', 'technologies', 'content', 'vortals', 'supply-chains', 'convergence', 'relationships', 'architectures', 'interfaces', 'e-markets', 'e-commerce', 'systems', 'bandwidth', 'infomediaries', 'models', 'mindshare', 'deliverables', 'users', 'schemas', 'networks', 'applications', 'metrics', 'e-business', 'functionalities', 'experiences', 'webservices', 'methodologies'
         )
     );
-
     protected static $companySuffix = array('s.r.o.', 'a.s.', 'v.o.s.');
 
     /**
      * @example 'Robust full-range hub'
      */
-    public function catchPhrase()
-    {
+    public function catchPhrase() {
         $result = array();
         foreach (static::$catchPhraseWords as &$word) {
             $result[] = static::randomElement($word);
@@ -52,8 +48,7 @@ class Company extends \Faker\Provider\Company
     /**
      * @example 'integrate extensible convergence'
      */
-    public function bs()
-    {
+    public function bs() {
         $result = array();
         foreach (static::$bsWords as &$word) {
             $result[] = static::randomElement($word);
@@ -61,4 +56,5 @@ class Company extends \Faker\Provider\Company
 
         return join($result, ' ');
     }
+
 }

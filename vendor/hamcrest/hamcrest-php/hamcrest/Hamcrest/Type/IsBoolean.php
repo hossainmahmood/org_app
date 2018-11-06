@@ -1,22 +1,22 @@
 <?php
+
 namespace Hamcrest\Type;
 
 /*
- Copyright (c) 2010 hamcrest.org
+  Copyright (c) 2010 hamcrest.org
  */
+
 use Hamcrest\Core\IsTypeOf;
 
 /**
  * Tests whether the value is a boolean.
  */
-class IsBoolean extends IsTypeOf
-{
+class IsBoolean extends IsTypeOf {
 
     /**
      * Creates a new instance of IsBoolean
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct('boolean');
     }
 
@@ -25,8 +25,8 @@ class IsBoolean extends IsTypeOf
      *
      * @factory boolValue
      */
-    public static function booleanValue()
-    {
+    public static function booleanValue() {
         return new self;
     }
+
 }

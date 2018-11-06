@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class ContainsElement extends ManifestElement {
+
     public function getName() {
         return $this->getAttributeValue('name');
     }
@@ -25,7 +27,8 @@ class ContainsElement extends ManifestElement {
 
     public function getExtensionElement() {
         return new ExtensionElement(
-            $this->getChildByName('extension')
+                $this->getChildByName('extension')
         );
     }
+
 }

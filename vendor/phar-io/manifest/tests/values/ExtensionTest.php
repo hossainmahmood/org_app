@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -24,6 +25,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Manifest\ApplicationName
  */
 class ExtensionTest extends TestCase {
+
     /**
      * @var Extension
      */
@@ -55,23 +57,20 @@ class ExtensionTest extends TestCase {
         $this->assertTrue($this->type->isExtension());
     }
 
-    public function testApplicationCanBeRetrieved()
-    {
+    public function testApplicationCanBeRetrieved() {
         $this->assertInstanceOf(ApplicationName::class, $this->type->getApplicationName());
     }
 
     public function testVersionConstraintCanBeRetrieved() {
         $this->assertInstanceOf(
-            VersionConstraint::class,
-            $this->type->getVersionConstraint()
+                VersionConstraint::class, $this->type->getVersionConstraint()
         );
     }
 
-    public function testApplicationCanBeQueried()
-    {
+    public function testApplicationCanBeQueried() {
         $this->name->method('isEqual')->willReturn(true);
         $this->assertTrue(
-            $this->type->isExtensionFor($this->createMock(ApplicationName::class))
+                $this->type->isExtensionFor($this->createMock(ApplicationName::class))
         );
     }
 
@@ -81,7 +80,7 @@ class ExtensionTest extends TestCase {
         $version = new Version('1.0.0');
 
         $this->assertTrue(
-            $extension->isCompatibleWith($app, $version)
+                $extension->isCompatibleWith($app, $version)
         );
     }
 
@@ -91,7 +90,7 @@ class ExtensionTest extends TestCase {
         $version = new Version('2.0.0');
 
         $this->assertFalse(
-            $extension->isCompatibleWith($app, $version)
+                $extension->isCompatibleWith($app, $version)
         );
     }
 
@@ -102,7 +101,7 @@ class ExtensionTest extends TestCase {
         $version = new Version('1.0.0');
 
         $this->assertFalse(
-            $extension->isCompatibleWith($app2, $version)
+                $extension->isCompatibleWith($app2, $version)
         );
     }
 

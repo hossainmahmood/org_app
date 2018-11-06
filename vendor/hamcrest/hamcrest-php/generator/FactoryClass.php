@@ -1,11 +1,11 @@
 <?php
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
-class FactoryClass
-{
+class FactoryClass {
+
     /**
      * @var string
      */
@@ -21,15 +21,13 @@ class FactoryClass
      */
     private $methods;
 
-    public function __construct($file, ReflectionClass $class)
-    {
+    public function __construct($file, ReflectionClass $class) {
         $this->file = $file;
         $this->reflector = $class;
         $this->extractFactoryMethods();
     }
 
-    public function extractFactoryMethods()
-    {
+    public function extractFactoryMethods() {
         $this->methods = array();
         foreach ($this->getPublicStaticMethods() as $method) {
             if ($method->isFactory()) {
@@ -39,8 +37,7 @@ class FactoryClass
         }
     }
 
-    public function getPublicStaticMethods()
-    {
+    public function getPublicStaticMethods() {
         $methods = array();
         foreach ($this->reflector->getMethods(ReflectionMethod::IS_STATIC) as $method) {
             if ($method->isPublic() && $method->getDeclaringClass() == $this->reflector) {
@@ -50,23 +47,20 @@ class FactoryClass
         return $methods;
     }
 
-    public function getFile()
-    {
+    public function getFile() {
         return $this->file;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->reflector->name;
     }
 
-    public function isFactory()
-    {
+    public function isFactory() {
         return !empty($this->methods);
     }
 
-    public function getMethods()
-    {
+    public function getMethods() {
         return $this->methods;
     }
+
 }

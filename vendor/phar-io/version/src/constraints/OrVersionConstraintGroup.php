@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class OrVersionConstraintGroup extends AbstractVersionConstraint {
+
     /**
      * @var VersionConstraint[]
      */
@@ -40,4 +42,5 @@ class OrVersionConstraintGroup extends AbstractVersionConstraint {
 
         return false;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -22,8 +23,8 @@ use Ramsey\Uuid\Converter\TimeConverterInterface;
  * provide facilities for converting parts of time into representations that may
  * be used in UUIDs
  */
-class BigNumberTimeConverter implements TimeConverterInterface
-{
+class BigNumberTimeConverter implements TimeConverterInterface {
+
     /**
      * Uses the provided seconds and micro-seconds to calculate the time_low,
      * time_mid, and time_high fields used by RFC 4122 version 1 UUIDs
@@ -33,8 +34,7 @@ class BigNumberTimeConverter implements TimeConverterInterface
      * @return string[] An array containing `low`, `mid`, and `high` keys
      * @link http://tools.ietf.org/html/rfc4122#section-4.2.2
      */
-    public function calculateTime($seconds, $microSeconds)
-    {
+    public function calculateTime($seconds, $microSeconds) {
         $uuidTime = new BigNumber('0');
 
         $sec = new BigNumber($seconds);
@@ -44,8 +44,8 @@ class BigNumberTimeConverter implements TimeConverterInterface
         $usec->multiply('10');
 
         $uuidTime->add($sec)
-            ->add($usec)
-            ->add('122192928000000000');
+                ->add($usec)
+                ->add('122192928000000000');
 
         $uuidTimeHex = sprintf('%016s', $uuidTime->convertToBase(16));
 
@@ -55,4 +55,5 @@ class BigNumberTimeConverter implements TimeConverterInterface
             'hi' => substr($uuidTimeHex, 0, 4),
         );
     }
+
 }

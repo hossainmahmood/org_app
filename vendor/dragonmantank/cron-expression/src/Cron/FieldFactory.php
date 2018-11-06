@@ -8,8 +8,8 @@ use InvalidArgumentException;
  * CRON field factory implementing a flyweight factory
  * @link http://en.wikipedia.org/wiki/Cron
  */
-class FieldFactory
-{
+class FieldFactory {
+
     /**
      * @var array Cache of instantiated fields
      */
@@ -23,8 +23,7 @@ class FieldFactory
      * @return FieldInterface
      * @throws InvalidArgumentException if a position is not valid
      */
-    public function getField($position)
-    {
+    public function getField($position) {
         if (!isset($this->fields[$position])) {
             switch ($position) {
                 case 0:
@@ -44,11 +43,12 @@ class FieldFactory
                     break;
                 default:
                     throw new InvalidArgumentException(
-                        $position . ' is not a valid position'
+                    $position . ' is not a valid position'
                     );
             }
         }
 
         return $this->fields[$position];
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,4 +12,5 @@
 namespace PharIo\Manifest;
 
 class InvalidEmailException extends \InvalidArgumentException implements Exception {
+    
 }

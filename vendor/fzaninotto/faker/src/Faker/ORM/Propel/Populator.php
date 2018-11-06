@@ -6,8 +6,8 @@ namespace Faker\ORM\Propel;
  * Service class for populating a database using the Propel ORM.
  * A Populator can populate several tables using ActiveRecord classes.
  */
-class Populator
-{
+class Populator {
+
     protected $generator;
     protected $entities = array();
     protected $quantities = array();
@@ -15,8 +15,7 @@ class Populator
     /**
      * @param \Faker\Generator $generator
      */
-    public function __construct(\Faker\Generator $generator)
-    {
+    public function __construct(\Faker\Generator $generator) {
         $this->generator = $generator;
     }
 
@@ -26,8 +25,7 @@ class Populator
      * @param mixed $entity A Propel ActiveRecord classname, or a \Faker\ORM\Propel\EntityPopulator instance
      * @param int   $number The number of entities to populate
      */
-    public function addEntity($entity, $number, $customColumnFormatters = array(), $customModifiers = array())
-    {
+    public function addEntity($entity, $number, $customColumnFormatters = array(), $customModifiers = array()) {
         if (!$entity instanceof \Faker\ORM\Propel\EntityPopulator) {
             $entity = new \Faker\ORM\Propel\EntityPopulator($entity);
         }
@@ -51,8 +49,7 @@ class Populator
      *
      * @return array A list of the inserted PKs
      */
-    public function execute($con = null)
-    {
+    public function execute($con = null) {
         if (null === $con) {
             $con = $this->getConnection();
         }
@@ -61,8 +58,8 @@ class Populator
         $insertedEntities = array();
         $con->beginTransaction();
         foreach ($this->quantities as $class => $number) {
-            for ($i=0; $i < $number; $i++) {
-                $insertedEntities[$class][]= $this->entities[$class]->execute($con, $insertedEntities);
+            for ($i = 0; $i < $number; $i++) {
+                $insertedEntities[$class][] = $this->entities[$class]->execute($con, $insertedEntities);
             }
         }
         $con->commit();
@@ -73,8 +70,7 @@ class Populator
         return $insertedEntities;
     }
 
-    protected function getConnection()
-    {
+    protected function getConnection() {
         // use the first connection available
         $class = key($this->entities);
 
@@ -86,4 +82,5 @@ class Populator
 
         return \Propel::getConnection($peer::DATABASE_NAME, \Propel::CONNECTION_WRITE);
     }
+
 }

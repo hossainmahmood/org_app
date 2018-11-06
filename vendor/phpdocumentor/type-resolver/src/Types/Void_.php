@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -20,15 +21,15 @@ use phpDocumentor\Reflection\Type;
  * Void is generally only used when working with return types as it signifies that the method intentionally does not
  * return any value.
  */
-final class Void_ implements Type
-{
+final class Void_ implements Type {
+
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return 'void';
     }
+
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -20,20 +22,18 @@ use SebastianBergmann\Diff\Utils\FileUtils;
  * @uses SebastianBergmann\Diff\Diff
  * @uses SebastianBergmann\Diff\Line
  */
-final class ParserTest extends TestCase
-{
+final class ParserTest extends TestCase {
+
     /**
      * @var Parser
      */
     private $parser;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->parser = new Parser;
     }
 
-    public function testParse(): void
-    {
+    public function testParse(): void {
         $content = FileUtils::getFileContent(__DIR__ . '/fixtures/patch.txt');
 
         $diffs = $this->parser->parse($content);
@@ -53,8 +53,7 @@ final class ParserTest extends TestCase
         $this->assertCount(4, $chunks[0]->getLines());
     }
 
-    public function testParseWithMultipleChunks(): void
-    {
+    public function testParseWithMultipleChunks(): void {
         $content = FileUtils::getFileContent(__DIR__ . '/fixtures/patch2.txt');
 
         $diffs = $this->parser->parse($content);
@@ -73,8 +72,7 @@ final class ParserTest extends TestCase
         $this->assertCount(4, $chunks[2]->getLines());
     }
 
-    public function testParseWithRemovedLines(): void
-    {
+    public function testParseWithRemovedLines(): void {
         $content = <<<END
 diff --git a/Test.txt b/Test.txt
 index abcdefg..abcdefh 100644
@@ -116,8 +114,7 @@ END;
         $this->assertSame(Line::REMOVED, $line->getType());
     }
 
-    public function testParseDiffForMulitpleFiles(): void
-    {
+    public function testParseDiffForMulitpleFiles(): void {
         $content = <<<END
 diff --git a/Test.txt b/Test.txt
 index abcdefg..abcdefh 100644
@@ -156,15 +153,13 @@ END;
      *
      * @dataProvider diffProvider
      */
-    public function testParser(string $diff, array $expected): void
-    {
+    public function testParser(string $diff, array $expected): void {
         $result = $this->parser->parse($diff);
 
         $this->assertEquals($expected, $result);
     }
 
-    public function diffProvider(): array
-    {
+    public function diffProvider(): array {
         return [
             [
                 "--- old.txt	2014-11-04 08:51:02.661868729 +0300\n+++ new.txt	2014-11-04 08:51:02.665868730 +0300\n@@ -1,3 +1,4 @@\n+2222111\n 1111111\n 1111111\n 1111111\n@@ -5,10 +6,8 @@\n 1111111\n 1111111\n 1111111\n +1121211\n 1111111\n -1111111\n -1111111\n -2222222\n 2222222\n 2222222\n 2222222\n@@ -17,5 +16,6 @@\n 2222222\n 2222222\n 2222222\n +2122212\n 2222222\n 2222222\n",
@@ -172,4 +167,5 @@ END;
             ],
         ];
     }
+
 }

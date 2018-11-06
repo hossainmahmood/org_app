@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fr_BE;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $firstNameMale = array(
         'Aaron', 'Adam', 'Adrien', 'Alessio', 'Alexander', 'Alexandre', 'Antoine', 'Arne', 'Arthur', 'Axel', 'Ayoub', 'Baptiste', 'Benjamin',
         'Bo', 'Clément', 'Daan', 'David', 'Diego', 'Dylan', 'Elias', 'Emiel', 'Emile', 'Enzo', 'Ethan', 'Finn',
@@ -14,7 +14,6 @@ class Person extends \Faker\Provider\Person
         'Sam', 'Samuel', 'Sander', 'Simon', 'Stan', 'Thomas', 'Théo', 'Tibo', 'Tom', 'Tristan', 'Vic', 'Victor',
         'Vince', 'Wout', 'Xander', 'Yanis', 'Jarne', 'Lowie', 'Mathys', 'Senne', 'Seppe', 'Siebe', 'Tuur', 'Warre'
     );
-
     protected static $firstNameFemale = array(
         'Alexia', 'Alexis', 'Alice', 'Alicia', 'Alyssa', 'Amber', 'Amy', 'Amélie', 'Anaïs', 'Anna', 'Anouk', 'Axelle', 'Aya',
         'Camille', 'Charlotte', 'Chiara', 'Chloé', 'Clara', 'Clémence', 'Célia', 'Elena', 'Eline', 'Elisa', 'Elise', 'Ella',
@@ -26,7 +25,6 @@ class Person extends \Faker\Provider\Person
         'Océane', 'Olivia', 'Pauline', 'Rania', 'Robin', 'Romane', 'Salma', 'Sara', 'Sarah', 'Sofia', 'Tess', 'Victoria',
         'Yana', 'Yasmine', 'Zoé', 'Zoë', 'Ferre', 'Roos'
     );
-
     protected static $lastName = array(
         'Adam', 'Aerts', 'Amrani', 'André', 'Antoine', 'Baert', 'Bah', 'Barry', 'Bastin', 'Bauwens', 'Benali', 'Bernard', 'Bertrand', 'Bodart', 'Bogaert', 'Bogaerts', 'Borremans', 'Bosmans',
         'Boulanger', 'Bourgeois', 'Brasseur', 'Carlier', 'Celik', 'Ceulemans', 'Charlier', 'Christiaens', 'Claes', 'Claessens', 'Claeys', 'Collard', 'Collignon', 'Collin', 'Cools', 'Coppens',
@@ -42,8 +40,7 @@ class Person extends \Faker\Provider\Person
         'Van den Broeck', 'Van Dyck', 'Van Hecke', 'Van Hoof', 'Vandamme', 'Vandenberghe', 'Verbeeck', 'Verbeke', 'Verbruggen', 'Vercammen', 'Verhaegen', 'Verhaeghe', 'Verhelst', 'Verheyen',
         'Verhoeven', 'Verlinden', 'Vermeersch', 'Vermeiren', 'Vermeulen', 'Verschueren', 'Verstraete', 'Verstraeten', 'Vervoort', 'Wauters', 'Willems', 'Wouters', 'Wuyts', 'Yildirim', 'Yilmaz'
     );
-
     protected static $titleMale = array('M.', 'Dr.', 'Pr.', 'Me.', 'Mgr');
-
     protected static $titleFemale = array('Mme.', 'Mlle', 'Dr.', 'Pr.', 'Me.');
+
 }

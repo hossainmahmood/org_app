@@ -2,15 +2,13 @@
 
 namespace Faker\Provider\lv_LV;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $cityPrefix = array('pilsēta');
+class Address extends \Faker\Provider\Address {
 
+    protected static $cityPrefix = array('pilsēta');
     protected static $regionSuffix = array('reģions');
     protected static $streetPrefix = array(
         'iela', 'bulvāris', 'skvērs', 'gāte',
     );
-
     protected static $buildingNumber = array('##');
     protected static $postcode = array('LV ####');
 
@@ -43,75 +41,62 @@ class Address extends \Faker\Provider\Address
         'Vācija', 'Vanuatu', 'Vatikāns', 'Venecuēla', 'Vjetnama', 'Zālamana Salas', 'Zambija', 'Ziemeļkoreja',
         'Zimbabve', 'Zviedrija',
     );
-
     protected static $region = array(
         'Kurzemes', 'Latgales', 'Rīgas', 'Vidzemes', 'Zemgales'
     );
-
-    protected static $city = array('Aizkraukle' ,'Aluksne','Balvi', 'Bauska','Cesis',
-        'Daugavpils', 'Dobele','Gulbene', 'Jekabpils', 'Jelgava', 'Kraslava', 'Kuldiga', 'Liepaja',
+    protected static $city = array('Aizkraukle', 'Aluksne', 'Balvi', 'Bauska', 'Cesis',
+        'Daugavpils', 'Dobele', 'Gulbene', 'Jekabpils', 'Jelgava', 'Kraslava', 'Kuldiga', 'Liepaja',
         'Limbazi', 'Ludza', 'Madona', 'Mobile Phones', 'Ogre', 'Preili', 'Rezekne', 'Rīga', 'Ventspils'
     );
-
     protected static $street = array(
         'Alfrēda Kalniņa', 'Alksnāja', 'Amatu', 'Anglikāņu', 'Arhitektu', 'Arsenāla', 'Artilērijas',
         'Aspazijas', 'Atgriežu', 'Audēju', 'Basteja', 'Baumaņa', 'Bīskapa', 'Blaumaņa', 'Brīvības', 'Brīvības',
         'Bruņinieku', 'Dainas', 'Daugavas'
     );
-
     protected static $addressFormats = array(
         "{{postcode}}, {{region}} {{regionSuffix}}, {{city}} {{cityPrefix}}, {{street}} {{streetPrefix}}, {{buildingNumber}}",
     );
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::numerify(static::randomElement(static::$buildingNumber));
     }
 
-    public function address()
-    {
+    public function address() {
         $format = static::randomElement(static::$addressFormats);
 
         return $this->generator->parse($format);
     }
 
-    public static function country()
-    {
+    public static function country() {
         return static::randomElement(static::$country);
     }
 
-    public static function postcode()
-    {
+    public static function postcode() {
         return static::toUpper(static::bothify(static::randomElement(static::$postcode)));
     }
 
-    public static function regionSuffix()
-    {
+    public static function regionSuffix() {
         return static::randomElement(static::$regionSuffix);
     }
 
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
 
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
+
 }

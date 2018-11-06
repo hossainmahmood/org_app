@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -14,6 +15,7 @@ use DOMDocument;
 use DOMElement;
 
 class ManifestDocument {
+
     const XMLNS = 'https://phar.io/xml/manifest/1.0';
 
     /**
@@ -35,12 +37,12 @@ class ManifestDocument {
     public static function fromFile($filename) {
         if (!file_exists($filename)) {
             throw new ManifestDocumentException(
-                sprintf('File "%s" not found', $filename)
+            sprintf('File "%s" not found', $filename)
             );
         }
 
         return self::fromString(
-            file_get_contents($filename)
+                        file_get_contents($filename)
         );
     }
 
@@ -63,19 +65,19 @@ class ManifestDocument {
 
     public function getContainsElement() {
         return new ContainsElement(
-            $this->fetchElementByName('contains')
+                $this->fetchElementByName('contains')
         );
     }
 
     public function getCopyrightElement() {
         return new CopyrightElement(
-            $this->fetchElementByName('copyright')
+                $this->fetchElementByName('copyright')
         );
     }
 
     public function getRequiresElement() {
         return new RequiresElement(
-            $this->fetchElementByName('requires')
+                $this->fetchElementByName('requires')
         );
     }
 
@@ -85,7 +87,7 @@ class ManifestDocument {
 
     public function getBundlesElement() {
         return new BundlesElement(
-            $this->fetchElementByName('bundles')
+                $this->fetchElementByName('bundles')
         );
     }
 
@@ -109,10 +111,11 @@ class ManifestDocument {
 
         if (!$element instanceof DOMElement) {
             throw new ManifestDocumentException(
-                sprintf('Element %s missing', $elementName)
+            sprintf('Element %s missing', $elementName)
             );
         }
 
         return $element;
     }
+
 }

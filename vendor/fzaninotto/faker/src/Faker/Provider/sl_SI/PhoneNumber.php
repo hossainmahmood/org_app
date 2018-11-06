@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\sl_SI;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+386 ## ### ###',
         '00386 ## ### ###',
@@ -15,4 +15,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '00386 # ### ####',
         '0# ### ####'
     );
+
 }

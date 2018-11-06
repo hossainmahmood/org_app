@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class ExtensionElement extends ManifestElement {
+
     public function getFor() {
         return $this->getAttributeValue('for');
     }
@@ -18,4 +20,5 @@ class ExtensionElement extends ManifestElement {
     public function getCompatible() {
         return $this->getAttributeValue('compatible');
     }
+
 }

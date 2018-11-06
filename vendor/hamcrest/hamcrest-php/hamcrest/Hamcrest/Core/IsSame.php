@@ -1,9 +1,11 @@
 <?php
+
 namespace Hamcrest\Core;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\BaseMatcher;
 use Hamcrest\Description;
 
@@ -11,27 +13,23 @@ use Hamcrest\Description;
  * Is the value the same object as another value?
  * In PHP terms, does $a === $b?
  */
-class IsSame extends BaseMatcher
-{
+class IsSame extends BaseMatcher {
 
     private $_object;
 
-    public function __construct($object)
-    {
+    public function __construct($object) {
         $this->_object = $object;
     }
 
-    public function matches($object)
-    {
+    public function matches($object) {
         return ($object === $this->_object) && ($this->_object === $object);
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendText('sameInstance(')
-                                ->appendValue($this->_object)
-                                ->appendText(')')
-                                ;
+                ->appendValue($this->_object)
+                ->appendText(')')
+        ;
     }
 
     /**
@@ -44,8 +42,8 @@ class IsSame extends BaseMatcher
      * @return \Hamcrest\Core\IsSame
      * @factory
      */
-    public static function sameInstance($object)
-    {
+    public static function sameInstance($object) {
         return new self($object);
     }
+
 }

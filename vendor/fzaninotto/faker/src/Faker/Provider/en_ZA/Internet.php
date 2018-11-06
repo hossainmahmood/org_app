@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_ZA;
 
-class Internet extends \Faker\Provider\Internet
-{
+class Internet extends \Faker\Provider\Internet {
+
     protected static $freeEmailDomain = array('gmail.com', 'yahoo.com', 'hotmail.com', 'webmail.co.za', 'vodamail.co.za');
 
     /**
@@ -15,4 +15,5 @@ class Internet extends \Faker\Provider\Internet
         'mpm.za', 'ncape.school.za', 'lp.school.za', 'nw.school.za', 'wcape.school.za', 'web.za', 'agric.za', 'nis.za',
         'grondar.za',
     );
+
 }

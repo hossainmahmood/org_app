@@ -1,61 +1,52 @@
 <?php
+
 namespace Hamcrest\Type;
 
-class IsCallableTest extends \Hamcrest\AbstractMatcherTest
-{
+class IsCallableTest extends \Hamcrest\AbstractMatcherTest {
 
-    public static function callableFunction()
-    {
+    public static function callableFunction() {
+        
     }
 
-    public function __invoke()
-    {
+    public function __invoke() {
+        
     }
 
-    protected function createMatcher()
-    {
+    protected function createMatcher() {
         return \Hamcrest\Type\IsCallable::callableValue();
     }
 
-    public function testEvaluatesToTrueIfArgumentIsFunctionName()
-    {
+    public function testEvaluatesToTrueIfArgumentIsFunctionName() {
         assertThat('preg_match', callableValue());
     }
 
-    public function testEvaluatesToTrueIfArgumentIsStaticMethodCallback()
-    {
+    public function testEvaluatesToTrueIfArgumentIsStaticMethodCallback() {
         assertThat(
-            array('Hamcrest\Type\IsCallableTest', 'callableFunction'),
-            callableValue()
+                array('Hamcrest\Type\IsCallableTest', 'callableFunction'), callableValue()
         );
     }
 
-    public function testEvaluatesToTrueIfArgumentIsInstanceMethodCallback()
-    {
+    public function testEvaluatesToTrueIfArgumentIsInstanceMethodCallback() {
         assertThat(
-            array($this, 'testEvaluatesToTrueIfArgumentIsInstanceMethodCallback'),
-            callableValue()
+                array($this, 'testEvaluatesToTrueIfArgumentIsInstanceMethodCallback'), callableValue()
         );
     }
 
-    public function testEvaluatesToTrueIfArgumentIsClosure()
-    {
+    public function testEvaluatesToTrueIfArgumentIsClosure() {
         if (!version_compare(PHP_VERSION, '5.3', '>=')) {
             $this->markTestSkipped('Closures require php 5.3');
         }
         eval('assertThat(function () {}, callableValue());');
     }
 
-    public function testEvaluatesToTrueIfArgumentImplementsInvoke()
-    {
+    public function testEvaluatesToTrueIfArgumentImplementsInvoke() {
         if (!version_compare(PHP_VERSION, '5.3', '>=')) {
             $this->markTestSkipped('Magic method __invoke() requires php 5.3');
         }
         assertThat($this, callableValue());
     }
 
-    public function testEvaluatesToFalseIfArgumentIsInvalidFunctionName()
-    {
+    public function testEvaluatesToFalseIfArgumentIsInvalidFunctionName() {
         if (function_exists('not_a_Hamcrest_function')) {
             $this->markTestSkipped('Function "not_a_Hamcrest_function" must not exist');
         }
@@ -63,41 +54,33 @@ class IsCallableTest extends \Hamcrest\AbstractMatcherTest
         assertThat('not_a_Hamcrest_function', not(callableValue()));
     }
 
-    public function testEvaluatesToFalseIfArgumentIsInvalidStaticMethodCallback()
-    {
+    public function testEvaluatesToFalseIfArgumentIsInvalidStaticMethodCallback() {
         assertThat(
-            array('Hamcrest\Type\IsCallableTest', 'noMethod'),
-            not(callableValue())
+                array('Hamcrest\Type\IsCallableTest', 'noMethod'), not(callableValue())
         );
     }
 
-    public function testEvaluatesToFalseIfArgumentIsInvalidInstanceMethodCallback()
-    {
+    public function testEvaluatesToFalseIfArgumentIsInvalidInstanceMethodCallback() {
         assertThat(array($this, 'noMethod'), not(callableValue()));
     }
 
-    public function testEvaluatesToFalseIfArgumentDoesntImplementInvoke()
-    {
+    public function testEvaluatesToFalseIfArgumentDoesntImplementInvoke() {
         assertThat(new \stdClass(), not(callableValue()));
     }
 
-    public function testEvaluatesToFalseIfArgumentDoesntMatchType()
-    {
+    public function testEvaluatesToFalseIfArgumentDoesntMatchType() {
         assertThat(false, not(callableValue()));
         assertThat(5.2, not(callableValue()));
     }
 
-    public function testHasAReadableDescription()
-    {
+    public function testHasAReadableDescription() {
         $this->assertDescription('a callable', callableValue());
     }
 
-    public function testDecribesActualTypeInMismatchMessage()
-    {
+    public function testDecribesActualTypeInMismatchMessage() {
         $this->assertMismatchDescription(
-            'was a string "invalid-function"',
-            callableValue(),
-            'invalid-function'
+                'was a string "invalid-function"', callableValue(), 'invalid-function'
         );
     }
+
 }

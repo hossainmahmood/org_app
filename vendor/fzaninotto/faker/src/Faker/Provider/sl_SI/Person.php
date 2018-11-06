@@ -2,8 +2,7 @@
 
 namespace Faker\Provider\sl_SI;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
 
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
@@ -12,7 +11,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}',
         '{{title}} {{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -115,7 +113,6 @@ class Person extends \Faker\Provider\Person
         'Zupanc', 'Zupančič', 'Zver', 'Čeh', 'Černe', 'Čuk', 'Šinkovec', 'Škof', 'Šmid',
         'Štrukelj', 'Šuštar', 'Žagar', 'Železnik', 'Žibert', 'Žižek', 'Žnidaršič'
     );
-
     protected static $title = array(
         'dr.', 'mag.', 'inž.', 'univ. dipl.', 'dipl.', 'univ. dipl. inž.', 'dipl. inž.', 'prof.', 'akad.', 'dr. med.', 'spec.'
     );
@@ -123,8 +120,7 @@ class Person extends \Faker\Provider\Person
     /**
      * replaced by specific unisex slovenian title
      */
-    public function title($gender = null)
-    {
+    public function title($gender = null) {
         return static::randomElement(static::$title);
     }
 
@@ -132,18 +128,16 @@ class Person extends \Faker\Provider\Person
      * @param string|null $gender 'male', 'female' or null for any
      * @example 'Novak'
      */
-    public function lastName($gender = null)
-    {
+    public function lastName($gender = null) {
         return static::randomElement(static::$lastName);
     }
 
-    public static function lastNameMale()
-    {
+    public static function lastNameMale() {
         return static::lastName();
     }
 
-    public static function lastNameFemale()
-    {
+    public static function lastNameFemale() {
         return static::lastName();
     }
+
 }

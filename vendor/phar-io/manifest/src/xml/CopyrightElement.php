@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,15 +12,17 @@
 namespace PharIo\Manifest;
 
 class CopyrightElement extends ManifestElement {
+
     public function getAuthorElements() {
         return new AuthorElementCollection(
-            $this->getChildrenByName('author')
+                $this->getChildrenByName('author')
         );
     }
 
     public function getLicenseElement() {
         return new LicenseElement(
-            $this->getChildByName('license')
+                $this->getChildByName('license')
         );
     }
+
 }

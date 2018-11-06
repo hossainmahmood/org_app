@@ -3,6 +3,7 @@
 namespace PharIo\Version;
 
 class VersionConstraintValue {
+
     /**
      * @var VersionNumber
      */
@@ -120,4 +121,5 @@ class VersionConstraintValue {
             $versionString = str_replace($matches[0], '', $versionString);
         }
     }
+
 }

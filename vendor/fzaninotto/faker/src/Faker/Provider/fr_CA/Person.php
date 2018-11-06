@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fr_CA;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -13,7 +13,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}-{{lastName}}',
         '{{firstNameMale}}-{{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -38,7 +37,6 @@ class Person extends \Faker\Provider\Person
         'Roland', 'Rémy', 'Simone', 'Stéphane', 'Sébastien', 'Thierry', 'Thomas', 'Théo', 'Théophile', 'Timothée', 'Tristan', 'Victor',
         'Vincent', 'William', 'Xavier', 'Yvan', 'Yves', 'Yvon', 'Zacharie', 'Édouard', 'Émanuelle', 'Émile', 'Éric', 'Étienne', 'Honoré',
     );
-
     protected static $firstNameFemale = array(
         'Adrienne', 'Adèle', 'Agathe', 'Aimée', 'Alexandra', 'Alice', 'Aline', 'Amélie', 'Anaïs', 'Andrée', 'Ann', 'Anne', 'Annette',
         'Annie', 'Anouk', 'Arianne', 'Audrey', 'Aurore', 'Aurélie', 'Bernadette', 'Brigitte', 'Camille', 'Caroline', 'Catherine', 'Chantal',
@@ -79,4 +77,5 @@ class Person extends \Faker\Provider\Person
         'Tardif', 'Tessier', 'Thériault', 'Therrien', 'Thibault', 'Tremblay', 'Trudel', 'Turcotte',
         'Vachon', 'Vaillancourt', 'Villeneuve'
     );
+
 }

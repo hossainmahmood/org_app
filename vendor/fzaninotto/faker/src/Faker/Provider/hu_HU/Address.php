@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\hu_HU;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityFormats = array(
         '{{capital}}',
         '{{capital}}',
@@ -28,40 +28,35 @@ class Address extends \Faker\Provider\Address
     /**
      * @example '10. emelet'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'Pest'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'Budapest'
      */
-    public static function capital()
-    {
+    public static function capital() {
         return static::randomElement(static::$capitals);
     }
 
     /**
      * @example 'Pécs'
      */
-    public static function bigCity()
-    {
+    public static function bigCity() {
         return static::randomElement(static::$bigCities);
     }
 
     /**
      * @example 'Várpalota'
      */
-    public static function smallerCity()
-    {
+    public static function smallerCity() {
         return static::randomElement(static::$smallerCities);
     }
 
@@ -73,8 +68,7 @@ class Address extends \Faker\Provider\Address
      * @example array('47.049242', '18.355119')
      * @return array | latitude, longitude
      */
-    public static function localCoordinates()
-    {
+    public static function localCoordinates() {
         return array(
             'latitude' => static::latitude(46.262740, 47.564721),
             'longitude' => static::longitude(17.077949, 20.604560)
@@ -112,8 +106,8 @@ class Address extends \Faker\Provider\Address
         'Tadzsikisztán', 'Tanzánia', 'Thaiföld', 'Togo', 'Tonga', 'Trinidad és Tobago', 'Tunézia', 'Tuvalu', 'Törökország', 'Türkmenisztán',
         'Uganda', 'Ukrajna', 'Uruguay',
         'Vanuatu', 'Venezuela', 'Vietnám',
-         'Zambia', 'Zimbabwe', 'Zöld-foki-szigetek',
-         'Észak-Korea', 'Észtország', 'Írország', 'Örményország', 'Új-Zéland', 'Üzbegisztán'
+        'Zambia', 'Zimbabwe', 'Zöld-foki-szigetek',
+        'Észak-Korea', 'Észtország', 'Írország', 'Örményország', 'Új-Zéland', 'Üzbegisztán'
     );
 
     /**
@@ -146,4 +140,5 @@ class Address extends \Faker\Provider\Address
         'Vác', 'Várpalota', 'Vásárosnamény', 'Vasvár', 'Vecsés',
         'Záhony', 'Zalaszentgrót', 'Zirc'
     );
+
 }

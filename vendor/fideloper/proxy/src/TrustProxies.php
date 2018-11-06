@@ -6,8 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Config\Repository;
 
-class TrustProxies
-{
+class TrustProxies {
+
     /**
      * The config repository instance.
      *
@@ -34,8 +34,7 @@ class TrustProxies
      *
      * @param \Illuminate\Contracts\Config\Repository $config
      */
-    public function __construct(Repository $config)
-    {
+    public function __construct(Repository $config) {
         $this->config = $config;
     }
 
@@ -49,8 +48,7 @@ class TrustProxies
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
-    {
+    public function handle(Request $request, Closure $next) {
         $request::setTrustedProxies([], $this->getTrustedHeaderNames()); // Reset trusted proxies between requests
         $this->setTrustedProxyIpAddresses($request);
 
@@ -62,8 +60,7 @@ class TrustProxies
      *
      * @param \Illuminate\Http\Request $request
      */
-    protected function setTrustedProxyIpAddresses(Request $request)
-    {
+    protected function setTrustedProxyIpAddresses(Request $request) {
         $trustedIps = $this->proxies ?: $this->config->get('trustedproxy.proxies');
 
         // Only trust specific IP addresses
@@ -84,8 +81,7 @@ class TrustProxies
      * @param \Illuminate\Http\Request $request
      * @param array                    $trustedIps
      */
-    private function setTrustedProxyIpAddressesToSpecificIps(Request $request, $trustedIps)
-    {
+    private function setTrustedProxyIpAddressesToSpecificIps(Request $request, $trustedIps) {
         $request->setTrustedProxies((array) $trustedIps, $this->getTrustedHeaderNames());
     }
 
@@ -94,8 +90,7 @@ class TrustProxies
      *
      * @param \Illuminate\Http\Request $request
      */
-    private function setTrustedProxyIpAddressesToTheCallingIp(Request $request)
-    {
+    private function setTrustedProxyIpAddressesToTheCallingIp(Request $request) {
         $request->setTrustedProxies([$request->server->get('REMOTE_ADDR')], $this->getTrustedHeaderNames());
     }
 
@@ -104,8 +99,8 @@ class TrustProxies
      *
      * @return array
      */
-    protected function getTrustedHeaderNames()
-    {
+    protected function getTrustedHeaderNames() {
         return $this->headers ?: $this->config->get('trustedproxy.headers');
     }
+
 }

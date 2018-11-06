@@ -21,7 +21,11 @@ final class Version
     public static function id(): string
     {
         if (self::$version === null) {
+<<<<<<< HEAD
             $version       = new VersionId('6.1.4', \dirname(__DIR__));
+=======
+            $version       = new VersionId('6.1.3', \dirname(__DIR__));
+>>>>>>> origin/master
             self::$version = $version->getVersion();
         }
 

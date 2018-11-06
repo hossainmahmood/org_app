@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class ManifestLoader {
+
     /**
      * @param string $filename
      *
@@ -21,13 +23,11 @@ class ManifestLoader {
     public static function fromFile($filename) {
         try {
             return (new ManifestDocumentMapper())->map(
-                ManifestDocument::fromFile($filename)
+                            ManifestDocument::fromFile($filename)
             );
         } catch (Exception $e) {
             throw new ManifestLoaderException(
-                sprintf('Loading %s failed.', $filename),
-                $e->getCode(),
-                $e
+            sprintf('Loading %s failed.', $filename), $e->getCode(), $e
             );
         }
     }
@@ -53,14 +53,13 @@ class ManifestLoader {
     public static function fromString($manifest) {
         try {
             return (new ManifestDocumentMapper())->map(
-                ManifestDocument::fromString($manifest)
+                            ManifestDocument::fromString($manifest)
             );
         } catch (Exception $e) {
             throw new ManifestLoaderException(
-                'Processing string failed',
-                $e->getCode(),
-                $e
+            'Processing string failed', $e->getCode(), $e
             );
         }
     }
+
 }

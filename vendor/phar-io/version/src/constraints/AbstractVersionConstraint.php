@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 abstract class AbstractVersionConstraint implements VersionConstraint {
+
     /**
      * @var string
      */
@@ -29,4 +31,5 @@ abstract class AbstractVersionConstraint implements VersionConstraint {
     public function asString() {
         return $this->originalValue;
     }
+
 }

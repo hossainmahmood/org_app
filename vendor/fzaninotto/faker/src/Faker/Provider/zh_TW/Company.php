@@ -2,18 +2,16 @@
 
 namespace Faker\Provider\zh_TW;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $companyEnSuffix = array(
         'Inc', 'and Sons', 'LLC', 'Group', 'PLC', 'Ltd'
     );
-
     protected static $companyEnFormats = array(
         '{{lastNameEn}} {{companyEnSuffix}}',
         '{{lastNameEn}}-{{lastNameEn}}',
         '{{lastNameEn}}, {{lastNameEn}} and {{lastNameEn}}'
     );
-
     protected static $formats = array(
         '{{companyPrefix}}{{companyModifier}}',
         '{{companyPrefix}}{{companySuffix}}',
@@ -46,6 +44,7 @@ class Company extends \Faker\Provider\Company
     protected static $companySuffix = array(
         '公司', '有限公司', '股份有限公司'
     );
+
     /**
      * @link https://zh-tw.facebook.com/notes/%E7%8E%A9%E5%BB%A3%E5%91%8Aplaying-with-advertising/%E5%9B%9E%E9%A1%A7%E8%87%BA%E7%81%A3%E6%AD%B7%E5%B1%86%E5%BB%A3%E5%91%8A%E9%87%91%E5%8F%A5%E7%8D%8E/294008963985215
      */
@@ -192,7 +191,6 @@ class Company extends \Faker\Provider\Company
         '靜得讓您耳根清靜',
         '馬上就會好',
     );
-
     protected static $bsWords = array(
         array(
             '實現', '實作', '整合', '最佳化',
@@ -216,34 +214,28 @@ class Company extends \Faker\Provider\Company
         )
     );
 
-    public static function companyEnSuffix()
-    {
+    public static function companyEnSuffix() {
         return static::randomElement(static::$companyEnSuffix);
     }
 
-    public function companyEn()
-    {
+    public function companyEn() {
         $format = static::randomElement(static::$companyEnFormats);
         return $this->generator->parse($format);
     }
 
-    public static function companyModifier()
-    {
+    public static function companyModifier() {
         return static::randomElement(static::$companyModifier);
     }
 
-    public static function companyPrefix()
-    {
+    public static function companyPrefix() {
         return static::randomElement(static::$companyPrefix);
     }
 
-    public function catchPhrase()
-    {
+    public function catchPhrase() {
         return static::randomElement(static::$catchPhrase);
     }
 
-    public function bs()
-    {
+    public function bs() {
         $result = '';
         foreach (static::$bsWords as &$word) {
             $result .= static::randomElement($word);
@@ -258,8 +250,8 @@ class Company extends \Faker\Provider\Company
      *
      * @return int
      */
-    public function VAT()
-    {
+    public function VAT() {
         return static::randomNumber(8, true);
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -16,8 +17,7 @@ class ApplicationNameTest extends TestCase {
 
     public function testCanBeCreatedWithValidName() {
         $this->assertInstanceOf(
-            ApplicationName::class,
-            new ApplicationName('foo/bar')
+                ApplicationName::class, new ApplicationName('foo/bar')
         );
     }
 
@@ -36,7 +36,7 @@ class ApplicationNameTest extends TestCase {
     public function testReturnsTrueForEqualNamesWhenCompared() {
         $app = new ApplicationName('foo/bar');
         $this->assertTrue(
-            $app->isEqual($app)
+                $app->isEqual($app)
         );
     }
 
@@ -44,14 +44,14 @@ class ApplicationNameTest extends TestCase {
         $app1 = new ApplicationName('foo/bar');
         $app2 = new ApplicationName('foo/foo');
         $this->assertFalse(
-            $app1->isEqual($app2)
+                $app1->isEqual($app2)
         );
     }
 
     public function testCanBeConvertedToString() {
         $this->assertEquals(
-            'foo/bar',
-            new ApplicationName('foo/bar')
+                'foo/bar', new ApplicationName('foo/bar')
         );
     }
+
 }

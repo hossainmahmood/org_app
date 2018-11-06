@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\th_TH;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $slogans = array(
         array(
             'เชื่อมต่อ', 'สรรสร้าง', 'เชื่อมโยง', 'ส่งเสริม', 'เปลี่ยน', 'ประสาน', 'พัฒนา',
@@ -19,8 +19,7 @@ class Company extends \Faker\Provider\Company
     /**
      * @example 'เชื่อมต่อตลาดที่แข็งแกร่ง'
      */
-    public function slogan()
-    {
+    public function slogan() {
         $result = array();
 
         foreach (static::$slogans as &$slogan) {
@@ -29,4 +28,5 @@ class Company extends \Faker\Provider\Company
 
         return implode($result);
     }
+
 }

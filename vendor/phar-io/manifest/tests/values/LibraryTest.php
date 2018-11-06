@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -17,6 +18,7 @@ use PHPUnit\Framework\TestCase;
  * @covers PharIo\Manifest\Type
  */
 class LibraryTest extends TestCase {
+
     /**
      * @var Library
      */
@@ -41,4 +43,5 @@ class LibraryTest extends TestCase {
     public function testIsNotExtension() {
         $this->assertFalse($this->type->isExtension());
     }
+
 }

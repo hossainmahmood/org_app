@@ -4,12 +4,11 @@ namespace Faker\Test\Provider\el_GR;
 
 use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
-{
+class TextTest extends TestCase {
+
     private $textClass;
 
-    public function setUp()
-    {
+    public function setUp() {
         $this->textClass = new \ReflectionClass('Faker\Provider\el_GR\Text');
     }
 
@@ -22,36 +21,30 @@ class TextTest extends TestCase
     }
 
     /** @test */
-    function testItShouldAppendEndPunctToTheEndOfString()
-    {
+    function testItShouldAppendEndPunctToTheEndOfString() {
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ '))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ '))
         );
 
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ—'))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ—'))
         );
 
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ,'))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ,'))
         );
 
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ!.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ! '))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ!.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ! '))
         );
 
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ; '))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ; '))
         );
 
         $this->assertSame(
-            'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ: '))
+                'Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ.', $this->getMethod('appendEnd')->invokeArgs(null, array('Και δεν άκουσες το κλοπακλόπ, κλοπακλόπ, κλοπακλόπ: '))
         );
     }
+
 }

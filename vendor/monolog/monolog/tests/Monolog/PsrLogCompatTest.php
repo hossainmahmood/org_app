@@ -16,12 +16,11 @@ use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\Test\LoggerInterfaceTest;
 
-class PsrLogCompatTest extends LoggerInterfaceTest
-{
+class PsrLogCompatTest extends LoggerInterfaceTest {
+
     private $handler;
 
-    public function getLogger()
-    {
+    public function getLogger() {
         $logger = new Logger('foo');
         $logger->pushHandler($handler = new TestHandler);
         $logger->pushProcessor(new PsrLogMessageProcessor);
@@ -32,8 +31,7 @@ class PsrLogCompatTest extends LoggerInterfaceTest
         return $logger;
     }
 
-    public function getLogs()
-    {
+    public function getLogs() {
         $convert = function ($record) {
             $lower = function ($match) {
                 return strtolower($match[0]);
@@ -44,4 +42,5 @@ class PsrLogCompatTest extends LoggerInterfaceTest
 
         return array_map($convert, $this->handler->getRecords());
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 /**
  * Compares objects for equality.
  */
-class ObjectComparator extends ArrayComparator
-{
+class ObjectComparator extends ArrayComparator {
+
     /**
      * Returns whether the comparator can compare two values.
      *
@@ -22,8 +24,7 @@ class ObjectComparator extends ArrayComparator
      *
      * @return bool
      */
-    public function accepts($expected, $actual)
-    {
+    public function accepts($expected, $actual) {
         return \is_object($expected) && \is_object($actual);
     }
 
@@ -39,26 +40,18 @@ class ObjectComparator extends ArrayComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
-    {
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []) {
         if (\get_class($actual) !== \get_class($expected)) {
             throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
-                false,
-                \sprintf(
-                    '%s is not instance of expected class "%s".',
-                    $this->exporter->export($actual),
-                    \get_class($expected)
-                )
+            $expected, $actual, $this->exporter->export($expected), $this->exporter->export($actual), false, \sprintf(
+                    '%s is not instance of expected class "%s".', $this->exporter->export($actual), \get_class($expected)
+            )
             );
         }
 
         // don't compare twice to allow for cyclic dependencies
         if (\in_array([$actual, $expected], $processed, true) ||
-            \in_array([$expected, $actual], $processed, true)) {
+                \in_array([$expected, $actual], $processed, true)) {
             return;
         }
 
@@ -70,22 +63,13 @@ class ObjectComparator extends ArrayComparator
         if ($actual !== $expected) {
             try {
                 parent::assertEquals(
-                    $this->toArray($expected),
-                    $this->toArray($actual),
-                    $delta,
-                    $canonicalize,
-                    $ignoreCase,
-                    $processed
+                        $this->toArray($expected), $this->toArray($actual), $delta, $canonicalize, $ignoreCase, $processed
                 );
             } catch (ComparisonFailure $e) {
                 throw new ComparisonFailure(
-                    $expected,
-                    $actual,
-                    // replace "Array" with "MyClass object"
-                    \substr_replace($e->getExpectedAsString(), \get_class($expected) . ' Object', 0, 5),
-                    \substr_replace($e->getActualAsString(), \get_class($actual) . ' Object', 0, 5),
-                    false,
-                    'Failed asserting that two objects are equal.'
+                $expected, $actual,
+                // replace "Array" with "MyClass object"
+                \substr_replace($e->getExpectedAsString(), \get_class($expected) . ' Object', 0, 5), \substr_replace($e->getActualAsString(), \get_class($actual) . ' Object', 0, 5), false, 'Failed asserting that two objects are equal.'
                 );
             }
         }
@@ -99,8 +83,8 @@ class ObjectComparator extends ArrayComparator
      *
      * @return array
      */
-    protected function toArray($object)
-    {
+    protected function toArray($object) {
         return $this->exporter->toArray($object);
     }
+
 }

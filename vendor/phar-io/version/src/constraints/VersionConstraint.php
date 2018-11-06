@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 interface VersionConstraint {
+
     /**
      * @param Version $version
      *
@@ -22,5 +24,4 @@ interface VersionConstraint {
      * @return string
      */
     public function asString();
-
 }

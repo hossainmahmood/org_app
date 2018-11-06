@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -20,6 +21,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Manifest\Email
  */
 class AuthorCollectionTest extends TestCase {
+
     /**
      * @var AuthorCollection
      */
@@ -32,7 +34,7 @@ class AuthorCollectionTest extends TestCase {
 
     protected function setUp() {
         $this->collection = new AuthorCollection;
-        $this->item       = new Author('Joe Developer', new Email('user@example.com'));
+        $this->item = new Author('Joe Developer', new Email('user@example.com'));
     }
 
     public function testCanBeCreated() {
@@ -47,7 +49,7 @@ class AuthorCollectionTest extends TestCase {
 
     public function testCanBeIterated() {
         $this->collection->add(
-            new Author('Dummy First', new Email('dummy@example.com'))
+                new Author('Dummy First', new Email('dummy@example.com'))
         );
         $this->collection->add($this->item);
         $this->assertContains($this->item, $this->collection);
@@ -55,8 +57,9 @@ class AuthorCollectionTest extends TestCase {
 
     public function testKeyPositionCanBeRetreived() {
         $this->collection->add($this->item);
-        foreach($this->collection as $key => $item) {
+        foreach ($this->collection as $key => $item) {
             $this->assertEquals(0, $key);
         }
     }
+
 }

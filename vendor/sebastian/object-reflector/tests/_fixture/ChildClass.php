@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of object-reflector.
  *
@@ -8,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\ObjectReflector\TestFixture;
 
-class ChildClass extends ParentClass
-{
+class ChildClass extends ParentClass {
+
     private $privateInChild = 'private';
     private $protectedInChild = 'protected';
     private $publicInChild = 'public';
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->undeclared = 'undeclared';
     }
+
 }

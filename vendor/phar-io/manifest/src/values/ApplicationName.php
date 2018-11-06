@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class ApplicationName {
+
     /**
      * @var string
      */
@@ -48,8 +50,7 @@ class ApplicationName {
     private function ensureValidFormat($name) {
         if (!preg_match('#\w/\w#', $name)) {
             throw new InvalidApplicationNameException(
-                sprintf('Format of name "%s" is not valid - expected: vendor/packagename', $name),
-                InvalidApplicationNameException::InvalidFormat
+            sprintf('Format of name "%s" is not valid - expected: vendor/packagename', $name), InvalidApplicationNameException::InvalidFormat
             );
         }
     }
@@ -57,9 +58,9 @@ class ApplicationName {
     private function ensureIsString($name) {
         if (!is_string($name)) {
             throw new InvalidApplicationNameException(
-                'Name must be a string',
-                InvalidApplicationNameException::NotAString
+            'Name must be a string', InvalidApplicationNameException::NotAString
             );
         }
     }
+
 }

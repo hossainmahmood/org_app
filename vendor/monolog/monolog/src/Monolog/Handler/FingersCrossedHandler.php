@@ -27,8 +27,8 @@ use Monolog\Logger;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-class FingersCrossedHandler extends AbstractHandler
-{
+class FingersCrossedHandler extends AbstractHandler {
+
     protected $handler;
     protected $activationStrategy;
     protected $buffering = true;
@@ -45,8 +45,7 @@ class FingersCrossedHandler extends AbstractHandler
      * @param Boolean                         $stopBuffering      Whether the handler should stop buffering after being triggered (default true)
      * @param int                             $passthruLevel      Minimum level to always flush to handler on close, even if strategy not triggered
      */
-    public function __construct($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true, $passthruLevel = null)
-    {
+    public function __construct($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true, $passthruLevel = null) {
         if (null === $activationStrategy) {
             $activationStrategy = new ErrorLevelActivationStrategy(Logger::WARNING);
         }
@@ -67,23 +66,21 @@ class FingersCrossedHandler extends AbstractHandler
         }
 
         if (!$this->handler instanceof HandlerInterface && !is_callable($this->handler)) {
-            throw new \RuntimeException("The given handler (".json_encode($this->handler).") is not a callable nor a Monolog\Handler\HandlerInterface object");
+            throw new \RuntimeException("The given handler (" . json_encode($this->handler) . ") is not a callable nor a Monolog\Handler\HandlerInterface object");
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isHandling(array $record)
-    {
+    public function isHandling(array $record) {
         return true;
     }
 
     /**
      * Manually activate this logger regardless of the activation strategy
      */
-    public function activate()
-    {
+    public function activate() {
         if ($this->stopBuffering) {
             $this->buffering = false;
         }
@@ -102,8 +99,7 @@ class FingersCrossedHandler extends AbstractHandler
     /**
      * {@inheritdoc}
      */
-    public function handle(array $record)
-    {
+    public function handle(array $record) {
         if ($this->processors) {
             foreach ($this->processors as $processor) {
                 $record = call_user_func($processor, $record);
@@ -128,8 +124,7 @@ class FingersCrossedHandler extends AbstractHandler
     /**
      * {@inheritdoc}
      */
-    public function close()
-    {
+    public function close() {
         if (null !== $this->passthruLevel) {
             $level = $this->passthruLevel;
             $this->buffer = array_filter($this->buffer, function ($record) use ($level) {
@@ -145,8 +140,7 @@ class FingersCrossedHandler extends AbstractHandler
     /**
      * Resets the state of the handler. Stops forwarding records to the wrapped handler.
      */
-    public function reset()
-    {
+    public function reset() {
         $this->buffering = true;
     }
 
@@ -155,9 +149,9 @@ class FingersCrossedHandler extends AbstractHandler
      *
      * It also resets the handler to its initial buffering state.
      */
-    public function clear()
-    {
+    public function clear() {
         $this->buffer = array();
         $this->reset();
     }
+
 }

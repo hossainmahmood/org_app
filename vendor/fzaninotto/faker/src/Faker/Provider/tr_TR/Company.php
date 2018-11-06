@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\tr_TR;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{lastName}} {{companySuffix}}',
         '{{lastName}}oğlu {{companySuffix}}',
@@ -13,9 +13,7 @@ class Company extends \Faker\Provider\Company
         '{{lastName}} {{companyField}} {{companySuffix}}',
         '{{lastName}} {{lastName}} {{companyField}} {{companySuffix}}',
     );
-
     protected static $companySuffix = array('A.Ş.', 'Ltd. Şti.');
-
     protected static $companyField = array(
         'Akaryakıt', 'Beyaz Eşya', 'Bilgi İşlem', 'Bilgisayar', 'Bilişim Hizmetleri',
         'Biracılık ve Malt Sanayii', 'Cam Sanayii', 'Çimento', 'Demir ve Çelik',
@@ -30,9 +28,9 @@ class Company extends \Faker\Provider\Company
     );
 
     /**
-    * @link https://tr.wikipedia.org/wiki/Meslekler_listesi
-    * @note Randomly took 300 from this list
-    */
+     * @link https://tr.wikipedia.org/wiki/Meslekler_listesi
+     * @note Randomly took 300 from this list
+     */
     protected static $jobTitleFormat = array(
         'Acil tıp teknisyeni', 'Agronomist', 'Aile hekimi', 'Aktar', 'Aktör', 'Aktüer',
         'Akustikçi', 'Albay', 'Ambarcı', 'Ambulans şoförü', 'Amiral', 'Analist',
@@ -92,8 +90,8 @@ class Company extends \Faker\Provider\Company
      *
      * @return string
      */
-    public static function companyField()
-    {
+    public static function companyField() {
         return static::randomElement(static::$companyField);
     }
+
 }

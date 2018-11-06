@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -20,8 +22,8 @@ use SebastianBergmann\Diff\Differ;
  * @uses SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder
  * @uses SebastianBergmann\Diff\TimeEfficientLongestCommonSubsequenceCalculator
  */
-final class AbstractChunkOutputBuilderTest extends TestCase
-{
+final class AbstractChunkOutputBuilderTest extends TestCase {
+
     /**
      * @param array  $expected
      * @param string $from
@@ -30,28 +32,24 @@ final class AbstractChunkOutputBuilderTest extends TestCase
      *
      * @dataProvider provideGetCommonChunks
      */
-    public function testGetCommonChunks(array $expected, string $from, string $to, int $lineThreshold = 5): void
-    {
+    public function testGetCommonChunks(array $expected, string $from, string $to, int $lineThreshold = 5): void {
         $output = new class extends AbstractChunkOutputBuilder {
-            public function getDiff(array $diff): string
-            {
+
+            public function getDiff(array $diff): string {
                 return '';
             }
 
-            public function getChunks(array $diff, $lineThreshold)
-            {
+            public function getChunks(array $diff, $lineThreshold) {
                 return $this->getCommonChunks($diff, $lineThreshold);
             }
         };
 
         $this->assertSame(
-            $expected,
-            $output->getChunks((new Differ)->diffToArray($from, $to), $lineThreshold)
+                $expected, $output->getChunks((new Differ)->diffToArray($from, $to), $lineThreshold)
         );
     }
 
-    public function provideGetCommonChunks(): array
-    {
+    public function provideGetCommonChunks(): array {
         return[
             'same (with default threshold)' => [
                 [],
@@ -149,4 +147,5 @@ final class AbstractChunkOutputBuilderTest extends TestCase
             ],
         ];
     }
+
 }

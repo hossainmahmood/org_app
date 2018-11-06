@@ -1,15 +1,17 @@
 <?php
-class class_with_multiple_anonymous_classes_and_functions
-{
-    public function m()
-    {
+
+class class_with_multiple_anonymous_classes_and_functions {
+
+    public function m() {
         $c = new class {
+
             public function n() {
                 return true;
             }
         };
 
         $d = new class {
+
             public function o() {
                 return false;
             }
@@ -23,4 +25,5 @@ class class_with_multiple_anonymous_classes_and_functions
             return $a - $b;
         };
     }
+
 }

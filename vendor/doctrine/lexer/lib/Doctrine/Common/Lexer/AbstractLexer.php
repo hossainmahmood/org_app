@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,8 +28,8 @@ namespace Doctrine\Common\Lexer;
  * @author Jonathan Wage <jonwage@gmail.com>
  * @author Roman Borschel <roman@code-factory.org>
  */
-abstract class AbstractLexer
-{
+abstract class AbstractLexer {
+
     /**
      * Lexer original input string.
      *
@@ -87,9 +88,8 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    public function setInput($input)
-    {
-        $this->input  = $input;
+    public function setInput($input) {
+        $this->input = $input;
         $this->tokens = array();
 
         $this->reset();
@@ -101,8 +101,7 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    public function reset()
-    {
+    public function reset() {
         $this->lookahead = null;
         $this->token = null;
         $this->peek = 0;
@@ -114,8 +113,7 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    public function resetPeek()
-    {
+    public function resetPeek() {
         $this->peek = 0;
     }
 
@@ -126,8 +124,7 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    public function resetPosition($position = 0)
-    {
+    public function resetPosition($position = 0) {
         $this->position = $position;
     }
 
@@ -138,8 +135,7 @@ abstract class AbstractLexer
      *
      * @return string
      */
-    public function getInputUntilPosition($position)
-    {
+    public function getInputUntilPosition($position) {
         return substr($this->input, 0, $position);
     }
 
@@ -150,8 +146,7 @@ abstract class AbstractLexer
      *
      * @return boolean
      */
-    public function isNextToken($token)
-    {
+    public function isNextToken($token) {
         return null !== $this->lookahead && $this->lookahead['type'] === $token;
     }
 
@@ -162,8 +157,7 @@ abstract class AbstractLexer
      *
      * @return boolean
      */
-    public function isNextTokenAny(array $tokens)
-    {
+    public function isNextTokenAny(array $tokens) {
         return null !== $this->lookahead && in_array($this->lookahead['type'], $tokens, true);
     }
 
@@ -172,12 +166,10 @@ abstract class AbstractLexer
      *
      * @return boolean
      */
-    public function moveNext()
-    {
+    public function moveNext() {
         $this->peek = 0;
         $this->token = $this->lookahead;
-        $this->lookahead = (isset($this->tokens[$this->position]))
-            ? $this->tokens[$this->position++] : null;
+        $this->lookahead = (isset($this->tokens[$this->position])) ? $this->tokens[$this->position++] : null;
 
         return $this->lookahead !== null;
     }
@@ -189,8 +181,7 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    public function skipUntil($type)
-    {
+    public function skipUntil($type) {
         while ($this->lookahead !== null && $this->lookahead['type'] !== $type) {
             $this->moveNext();
         }
@@ -204,8 +195,7 @@ abstract class AbstractLexer
      *
      * @return boolean
      */
-    public function isA($value, $token)
-    {
+    public function isA($value, $token) {
         return $this->getType($value) === $token;
     }
 
@@ -214,8 +204,7 @@ abstract class AbstractLexer
      *
      * @return array|null The next token or NULL if there are no more tokens ahead.
      */
-    public function peek()
-    {
+    public function peek() {
         if (isset($this->tokens[$this->position + $this->peek])) {
             return $this->tokens[$this->position + $this->peek++];
         } else {
@@ -228,8 +217,7 @@ abstract class AbstractLexer
      *
      * @return array|null The next token or NULL if there are no more tokens ahead.
      */
-    public function glimpse()
-    {
+    public function glimpse() {
         $peek = $this->peek();
         $this->peek = 0;
         return $peek;
@@ -242,16 +230,12 @@ abstract class AbstractLexer
      *
      * @return void
      */
-    protected function scan($input)
-    {
+    protected function scan($input) {
         static $regex;
 
-        if ( ! isset($regex)) {
+        if (!isset($regex)) {
             $regex = sprintf(
-                '/(%s)|%s/%s',
-                implode(')|(', $this->getCatchablePatterns()),
-                implode('|', $this->getNonCatchablePatterns()),
-                $this->getModifiers()
+                    '/(%s)|%s/%s', implode(')|(', $this->getCatchablePatterns()), implode('|', $this->getNonCatchablePatterns()), $this->getModifiers()
             );
         }
 
@@ -264,7 +248,7 @@ abstract class AbstractLexer
 
             $this->tokens[] = array(
                 'value' => $match[0],
-                'type'  => $type,
+                'type' => $type,
                 'position' => $match[1],
             );
         }
@@ -277,8 +261,7 @@ abstract class AbstractLexer
      *
      * @return string
      */
-    public function getLiteral($token)
-    {
+    public function getLiteral($token) {
         $className = get_class($this);
         $reflClass = new \ReflectionClass($className);
         $constants = $reflClass->getConstants();
@@ -297,8 +280,7 @@ abstract class AbstractLexer
      *
      * @return string
      */
-    protected function getModifiers()
-    {
+    protected function getModifiers() {
         return 'i';
     }
 

@@ -1,17 +1,18 @@
 <?php
+
 namespace Hamcrest\Core;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\Description;
 use Hamcrest\DiagnosingMatcher;
 
 /**
  * Tests whether the value is an instance of a class.
  */
-class IsInstanceOf extends DiagnosingMatcher
-{
+class IsInstanceOf extends DiagnosingMatcher {
 
     private $_theClass;
 
@@ -22,13 +23,11 @@ class IsInstanceOf extends DiagnosingMatcher
      *   The predicate evaluates to true for instances of this class
      *   or one of its subclasses.
      */
-    public function __construct($theClass)
-    {
+    public function __construct($theClass) {
         $this->_theClass = $theClass;
     }
 
-    protected function matchesWithDiagnosticDescription($item, Description $mismatchDescription)
-    {
+    protected function matchesWithDiagnosticDescription($item, Description $mismatchDescription) {
         if (!is_object($item)) {
             $mismatchDescription->appendText('was ')->appendValue($item);
 
@@ -37,7 +36,7 @@ class IsInstanceOf extends DiagnosingMatcher
 
         if (!($item instanceof $this->_theClass)) {
             $mismatchDescription->appendText('[' . get_class($item) . '] ')
-                                                    ->appendValue($item);
+                    ->appendValue($item);
 
             return false;
         }
@@ -45,11 +44,10 @@ class IsInstanceOf extends DiagnosingMatcher
         return true;
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendText('an instance of ')
-                                ->appendText($this->_theClass)
-                                ;
+                ->appendText($this->_theClass)
+        ;
     }
 
     /**
@@ -60,8 +58,8 @@ class IsInstanceOf extends DiagnosingMatcher
      *
      * @factory any
      */
-    public static function anInstanceOf($theClass)
-    {
+    public static function anInstanceOf($theClass) {
         return new self($theClass);
     }
+
 }

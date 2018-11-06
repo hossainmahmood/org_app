@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class VersionNumber {
+
     /**
      * @var int
      */
@@ -38,4 +40,5 @@ class VersionNumber {
     public function getValue() {
         return $this->value;
     }
+
 }

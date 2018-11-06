@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\cs_CZ;
 
-class Text extends \Faker\Provider\Text
-{
-    public function realText($maxNbChars = 200, $indexSize = 2)
-    {
+class Text extends \Faker\Provider\Text {
+
+    public function realText($maxNbChars = 200, $indexSize = 2) {
         $text = parent::realText($maxNbChars, $indexSize);
         $text = str_replace('„', '', $text);
 
@@ -7182,4 +7181,5 @@ Tu počal dědeček měkce prozpěvovat divnou a tichou píseň: „Lalala hou, 
 pán, binkili bunkili hou ta ta…“
 Prokop konečně usnul pokojným a posilujícím spánkem beze snů.
 EOT;
+
 }

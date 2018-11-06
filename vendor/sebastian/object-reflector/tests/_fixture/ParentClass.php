@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of object-reflector.
  *
@@ -8,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\ObjectReflector\TestFixture;
 
-class ParentClass
-{
+class ParentClass {
+
     private $privateInParent = 'private';
     private $protectedInParent = 'protected';
     private $publicInParent = 'public';
+
 }

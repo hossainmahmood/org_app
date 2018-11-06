@@ -4,8 +4,8 @@ namespace Faker\Provider\pt_BR;
 
 require_once "check_digit.php";
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{firstNameMale}} {{lastName}}',
@@ -20,7 +20,6 @@ class Person extends \Faker\Provider\Person
         '{{titleMale}} {{firstNameMale}} {{firstNameMale}} {{lastName}} {{suffix}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}} {{lastName}} {{suffix}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{firstNameFemale}} {{lastName}}',
@@ -35,7 +34,6 @@ class Person extends \Faker\Provider\Person
         '{{titleFemale}} {{firstNameFemale}} {{firstNameFemale}} {{lastName}} {{suffix}}',
         '{{titleFemale}} {{firstNameFemale}} {{lastName}} {{lastName}} {{suffix}}',
     );
-
     protected static $firstNameMale = array(
         'Aaron', 'Adriano', 'Alan', 'Alexandre', 'Alonso', 'Anderson', 'Andres', 'Antônio', 'Benjamin', 'Bruno', 'Camilo', 'Carlos', 'Christian',
         'Christopher', 'Cristóvão', 'Daniel', 'Dante', 'David', 'Diego', 'Eduardo', 'Elias', 'Emanuel', 'Emiliano', 'Emílio', 'Estêvão',
@@ -46,7 +44,6 @@ class Person extends \Faker\Provider\Person
         'Thales', 'Thiago', 'Tomás', 'Valentin', 'Vicente', 'Agostinho', 'Demian', 'Giovane', 'Jácomo', 'Martinho', 'Maximiano', 'Natal', 'Sebastião',
         'Simão', 'Teobaldo', 'Ziraldo'
     );
-
     protected static $firstNameFemale = array(
         'Abril', 'Adriana', 'Agustina', 'Alessandra', 'Alexa', 'Allison', 'Alma', 'Amanda', 'Amélia', 'Ana', 'Andrea', 'Antonieta', 'Ariadna',
         'Ariana', 'Ashley', 'Beatriz', 'Bianca', 'Camila', 'Carla', 'Carolina', 'Catarina', 'Clara', 'Daniela', 'Elizabeth', 'Emília',
@@ -57,7 +54,6 @@ class Person extends \Faker\Provider\Person
         'Sabrina', 'Salomé', 'Samanta', 'Sara', 'Silvana', 'Sofia', 'Sophie', 'Suzana', 'Taís', 'Tábata', 'Valentina', 'Valéria',
         'Violeta', 'Vitória', 'Abgail', 'Constância', 'Hortência', 'Tessália', 'Thalissa'
     );
-
     protected static $lastName = array(
         'Abreu', 'Azevedo', 'Aguiar', 'Aragão', 'Assunção', 'Aranda', 'Ávila',
         'Balestero', 'Barreto', 'Barros', 'Batista', 'Bezerra', 'Beltrão',
@@ -75,7 +71,7 @@ class Person extends \Faker\Provider\Person
         'Marinho', 'Marques', 'Martines', 'Mascarenhas', 'Matias', 'Matos',
         'Maia', 'Medina', 'Meireles', 'Mendes', 'Mendonça', 'Molina',
         'Montenegro', 'Neves', 'Oliveira', 'Ortega', 'Ortiz', 'Quintana',
-        'Queirós',  'Pacheco', 'Padilha', 'Padrão', 'Paes', 'Paz', 'Pedrosa',
+        'Queirós', 'Pacheco', 'Padilha', 'Padrão', 'Paes', 'Paz', 'Pedrosa',
         'Pena', 'Pereira', 'Perez', 'Prado', 'Pontes', 'Quintana', 'Queirós',
         'Ramires', 'Ramos', 'Rangel', 'Rezende', 'Reis', 'Rico', 'Rios',
         'Rivera', 'Rocha', 'Rodrigues', 'Romero', 'Roque', 'Rosa', 'Salas',
@@ -87,18 +83,14 @@ class Person extends \Faker\Provider\Person
         'Zamana', 'Zambrano', 'Zaragoça', 'da Cruz', 'da Rosa', 'da Silva',
         'das Dores', 'das Neves', 'de Aguiar', 'de Oliveira', 'de Souza'
     );
-
     protected static $titleMale = array('Sr.', 'Dr.',);
-
     protected static $titleFemale = array('Sra.', 'Srta.', 'Dr.',);
-
     protected static $suffix = array('Filho', 'Neto', 'Sobrinho', 'Jr.');
 
     /**
      * @example 'Jr.'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
 
@@ -108,13 +100,12 @@ class Person extends \Faker\Provider\Person
      * @param bool $formatted If the number should have dots/dashes or not.
      * @return string
      */
-    public function cpf($formatted = true)
-    {
+    public function cpf($formatted = true) {
         $n = $this->generator->numerify('#########');
         $n .= check_digit($n);
         $n .= check_digit($n);
 
-        return $formatted? vsprintf('%d%d%d.%d%d%d.%d%d%d-%d%d', str_split($n)) : $n;
+        return $formatted ? vsprintf('%d%d%d.%d%d%d.%d%d%d-%d%d', str_split($n)) : $n;
     }
 
     /**
@@ -123,11 +114,11 @@ class Person extends \Faker\Provider\Person
      * @param bool $formatted If the number should have dots/dashes or not.
      * @return string
      */
-    public function rg($formatted = true)
-    {
+    public function rg($formatted = true) {
         $n = $this->generator->numerify('########');
         $n .= check_digit($n);
 
-        return $formatted? vsprintf('%d%d.%d%d%d.%d%d%d-%s', str_split($n)) : $n;
+        return $formatted ? vsprintf('%d%d.%d%d%d.%d%d%d-%s', str_split($n)) : $n;
     }
+
 }

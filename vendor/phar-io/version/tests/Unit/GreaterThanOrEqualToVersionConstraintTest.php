@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \PharIo\Version\GreaterThanOrEqualToVersionConstraint
  */
 class GreaterThanOrEqualToVersionConstraintTest extends TestCase {
+
     public function versionProvider() {
         return [
             // compliant versions
@@ -44,4 +46,5 @@ class GreaterThanOrEqualToVersionConstraintTest extends TestCase {
 
         $this->assertSame($expectedResult, $constraint->complies($version));
     }
+
 }

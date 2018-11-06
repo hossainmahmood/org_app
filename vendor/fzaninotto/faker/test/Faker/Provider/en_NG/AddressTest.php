@@ -6,16 +6,14 @@ use Faker\Generator;
 use Faker\Provider\en_NG\Address;
 use PHPUnit\Framework\TestCase;
 
-class AddressTest extends TestCase
-{
+class AddressTest extends TestCase {
 
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Address($faker));
         $this->faker = $faker;
@@ -24,8 +22,7 @@ class AddressTest extends TestCase
     /**
      *
      */
-    public function testPostcodeIsNotEmptyAndIsValid()
-    {
+    public function testPostcodeIsNotEmptyAndIsValid() {
         $postcode = $this->faker->postcode();
 
         $this->assertNotEmpty($postcode);
@@ -35,8 +32,7 @@ class AddressTest extends TestCase
     /**
      * Test the name of the Nigerian State/County
      */
-    public function testCountyIsAValidString()
-    {
+    public function testCountyIsAValidString() {
         $county = $this->faker->county;
 
         $this->assertNotEmpty($county);
@@ -46,8 +42,7 @@ class AddressTest extends TestCase
     /**
      * Test the name of the Nigerian Region in a State.
      */
-    public function testRegionIsAValidString()
-    {
+    public function testRegionIsAValidString() {
         $region = $this->faker->region;
 
         $this->assertNotEmpty($region);

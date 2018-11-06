@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -18,17 +20,18 @@ use SebastianBergmann\Diff\Differ;
  *
  * Generates (strict) Unified diff's (unidiffs) with hunks.
  */
-final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
-{
+final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface {
+
     private static $default = [
-        'collapseRanges'      => true, // ranges of length one are rendered with the trailing `,1`
-        'commonLineThreshold' => 6,    // number of same lines before ending a new hunk and creating a new one (if needed)
-        'contextLines'        => 3,    // like `diff:  -u, -U NUM, --unified[=NUM]`, for patch/git apply compatibility best to keep at least @ 3
-        'fromFile'            => null,
-        'fromFileDate'        => null,
-        'toFile'              => null,
-        'toFileDate'          => null,
+        'collapseRanges' => true, // ranges of length one are rendered with the trailing `,1`
+        'commonLineThreshold' => 6, // number of same lines before ending a new hunk and creating a new one (if needed)
+        'contextLines' => 3, // like `diff:  -u, -U NUM, --unified[=NUM]`, for patch/git apply compatibility best to keep at least @ 3
+        'fromFile' => null,
+        'fromFileDate' => null,
+        'toFile' => null,
+        'toFileDate' => null,
     ];
+
     /**
      * @var bool
      */
@@ -54,8 +57,7 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
      */
     private $contextLines;
 
-    public function __construct(array $options = [])
-    {
+    public function __construct(array $options = []) {
         $options = \array_merge(self::$default, $options);
 
         if (!\is_bool($options['collapseRanges'])) {
@@ -83,20 +85,15 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
         }
 
         $this->header = \sprintf(
-            "--- %s%s\n+++ %s%s\n",
-            $options['fromFile'],
-            null === $options['fromFileDate'] ? '' : "\t" . $options['fromFileDate'],
-            $options['toFile'],
-            null === $options['toFileDate'] ? '' : "\t" . $options['toFileDate']
+                "--- %s%s\n+++ %s%s\n", $options['fromFile'], null === $options['fromFileDate'] ? '' : "\t" . $options['fromFileDate'], $options['toFile'], null === $options['toFileDate'] ? '' : "\t" . $options['toFileDate']
         );
 
-        $this->collapseRanges      = $options['collapseRanges'];
+        $this->collapseRanges = $options['collapseRanges'];
         $this->commonLineThreshold = $options['commonLineThreshold'];
-        $this->contextLines        = $options['contextLines'];
+        $this->contextLines = $options['contextLines'];
     }
 
-    public function getDiff(array $diff): string
-    {
+    public function getDiff(array $diff): string {
         if (0 === \count($diff)) {
             return '';
         }
@@ -122,14 +119,11 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
         // This might happen when both the `from` and `to` do not have a trailing linebreak
         $last = \substr($diff, -1);
 
-        return "\n" !== $last && "\r" !== $last
-            ? $diff . "\n"
-            : $diff
+        return "\n" !== $last && "\r" !== $last ? $diff . "\n" : $diff
         ;
     }
 
-    private function writeDiffHunks($output, array $diff): void
-    {
+    private function writeDiffHunks($output, array $diff): void {
         // detect "No newline at end of file" and insert into `$diff` if needed
 
         $upperLimit = \count($diff);
@@ -163,10 +157,10 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
 
         // write hunks to output buffer
 
-        $cutOff      = \max($this->commonLineThreshold, $this->contextLines);
+        $cutOff = \max($this->commonLineThreshold, $this->contextLines);
         $hunkCapture = false;
-        $sameCount   = $toRange = $fromRange = 0;
-        $toStart     = $fromStart = 1;
+        $sameCount = $toRange = $fromRange = 0;
+        $toStart = $fromStart = 1;
 
         foreach ($diff as $i => $entry) {
             if (0 === $entry[1]) { // same
@@ -182,9 +176,7 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
                 ++$fromRange;
 
                 if ($sameCount === $cutOff) {
-                    $contextStartOffset = ($hunkCapture - $this->contextLines) < 0
-                        ? $hunkCapture
-                        : $this->contextLines
+                    $contextStartOffset = ($hunkCapture - $this->contextLines) < 0 ? $hunkCapture : $this->contextLines
                     ;
 
                     // note: $contextEndOffset = $this->contextLines;
@@ -199,21 +191,14 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
                     // ; that would be true for a trailing incomplete hunk case which is dealt with after this loop
 
                     $this->writeHunk(
-                        $diff,
-                        $hunkCapture - $contextStartOffset,
-                        $i - $cutOff + $this->contextLines + 1,
-                        $fromStart - $contextStartOffset,
-                        $fromRange - $cutOff + $contextStartOffset + $this->contextLines,
-                        $toStart - $contextStartOffset,
-                        $toRange - $cutOff + $contextStartOffset + $this->contextLines,
-                        $output
+                            $diff, $hunkCapture - $contextStartOffset, $i - $cutOff + $this->contextLines + 1, $fromStart - $contextStartOffset, $fromRange - $cutOff + $contextStartOffset + $this->contextLines, $toStart - $contextStartOffset, $toRange - $cutOff + $contextStartOffset + $this->contextLines, $output
                     );
 
                     $fromStart += $fromRange;
                     $toStart += $toRange;
 
                     $hunkCapture = false;
-                    $sameCount   = $toRange = $fromRange = 0;
+                    $sameCount = $toRange = $fromRange = 0;
                 }
 
                 continue;
@@ -247,9 +232,7 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
         // we end here when cutoff (commonLineThreshold) was not reached, but we where capturing a hunk,
         // do not render hunk till end automatically because the number of context lines might be less than the commonLineThreshold
 
-        $contextStartOffset = $hunkCapture - $this->contextLines < 0
-            ? $hunkCapture
-            : $this->contextLines
+        $contextStartOffset = $hunkCapture - $this->contextLines < 0 ? $hunkCapture : $this->contextLines
         ;
 
         // prevent trying to write out more common lines than there are in the diff _and_
@@ -260,26 +243,12 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
         $toRange -= $sameCount;
 
         $this->writeHunk(
-            $diff,
-            $hunkCapture - $contextStartOffset,
-            $i - $sameCount + $contextEndOffset + 1,
-            $fromStart - $contextStartOffset,
-            $fromRange + $contextStartOffset + $contextEndOffset,
-            $toStart - $contextStartOffset,
-            $toRange + $contextStartOffset + $contextEndOffset,
-            $output
+                $diff, $hunkCapture - $contextStartOffset, $i - $sameCount + $contextEndOffset + 1, $fromStart - $contextStartOffset, $fromRange + $contextStartOffset + $contextEndOffset, $toStart - $contextStartOffset, $toRange + $contextStartOffset + $contextEndOffset, $output
         );
     }
 
     private function writeHunk(
-        array $diff,
-        int $diffStartIndex,
-        int $diffEndIndex,
-        int $fromStart,
-        int $fromRange,
-        int $toStart,
-        int $toRange,
-        $output
+    array $diff, int $diffStartIndex, int $diffEndIndex, int $fromStart, int $fromRange, int $toStart, int $toRange, $output
     ): void {
         \fwrite($output, '@@ -' . $fromStart);
 
@@ -309,10 +278,11 @@ final class StrictUnifiedDiffOutputBuilder implements DiffOutputBuilderInterface
                 \fwrite($output, $diff[$i][0]);
             }
             //} elseif ($diff[$i][1] === Differ::DIFF_LINE_END_WARNING) { // custom comment inserted by PHPUnit/diff package
-                //  skip
+            //  skip
             //} else {
-                //  unknown/invalid
+            //  unknown/invalid
             //}
         }
     }
+
 }

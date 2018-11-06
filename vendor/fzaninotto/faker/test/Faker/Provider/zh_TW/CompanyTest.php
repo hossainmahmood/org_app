@@ -6,22 +6,21 @@ use Faker\Generator;
 use Faker\Provider\zh_TW\Company;
 use PHPUnit\Framework\TestCase;
 
-class CompanyTest extends TestCase
-{
+class CompanyTest extends TestCase {
+
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Company($faker));
         $this->faker = $faker;
     }
 
-    public function testVAT()
-    {
+    public function testVAT() {
         $this->assertEquals(8, floor(log10($this->faker->VAT) + 1));
     }
+
 }

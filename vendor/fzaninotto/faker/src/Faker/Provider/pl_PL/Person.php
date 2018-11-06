@@ -6,13 +6,12 @@ namespace Faker\Provider\pl_PL;
  * Most popular first and last names published by Ministry of the Interior:
  * @link https://msw.gov.pl/pl/sprawy-obywatelskie/ewidencja-ludnosci-dowo/statystyki-imion-i-nazw
  */
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $lastNameFormat = array(
         '{{lastNameMale}}',
         '{{lastNameFemale}}',
     );
-
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastNameMale}}',
         '{{firstNameMale}} {{lastNameMale}}',
@@ -21,7 +20,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastNameMale}}',
         '{{title}} {{title}} {{firstNameMale}} {{lastNameMale}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastNameFemale}}',
         '{{firstNameFemale}} {{lastNameFemale}}',
@@ -30,7 +28,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameFemale}} {{lastNameFemale}}',
         '{{title}} {{title}} {{firstNameFemale}} {{lastNameFemale}}',
     );
-
     protected static $firstNameMale = array(
         'Adam', 'Adrian', 'Alan', 'Albert', 'Aleks', 'Aleksander', 'Alex', 'Andrzej', 'Antoni', 'Arkadiusz', 'Artur',
         'Bartek', 'Błażej', 'Borys', 'Bruno', 'Cezary', 'Cyprian', 'Damian', 'Daniel', 'Dariusz', 'Dawid', 'Dominik',
@@ -42,7 +39,6 @@ class Person extends \Faker\Provider\Person
         'Patryk', 'Paweł', 'Piotr', 'Przemysław', 'Radosław', 'Rafał', 'Robert', 'Ryszard', 'Sebastian', 'Stanisław', 'Stefan', 'Szymon',
         'Tadeusz', 'Tomasz', 'Tymon', 'Tymoteusz', 'Wiktor', 'Witold', 'Wojciech',
     );
-
     protected static $firstNameFemale = array(
         'Ada', 'Adrianna', 'Agata', 'Agnieszka', 'Aleksandra', 'Alicja', 'Amelia', 'Anastazja', 'Angelika', 'Aniela', 'Anita',
         'Anna', 'Anna', 'Antonina', 'Apolonia', 'Aurelia', 'Barbara', 'Bianka', 'Blanka', 'Dagmara', 'Daria', 'Dominika', 'Dorota',
@@ -54,7 +50,6 @@ class Person extends \Faker\Provider\Person
         'Olga', 'Oliwia', 'Patrycja', 'Paulina', 'Pola', 'Roksana', 'Rozalia', 'Róża', 'Sandra', 'Sara', 'Sonia', 'Sylwia',
         'Tola', 'Urszula', 'Weronika', 'Wiktoria', 'Zofia', 'Zuzanna',
     );
-
     protected static $lastNameMale = array(
         'Adamczyk', 'Adamski', 'Andrzejewski', 'Baran', 'Baranowski', 'Bąk', 'Błaszczyk', 'Borkowski', 'Borowski', 'Brzeziński',
         'Chmielewski', 'Cieślak', 'Czarnecki', 'Czerwiński', 'Dąbrowski', 'Duda', 'Dudek', 'Gajewski', 'Głowacki', 'Górski', 'Grabowski',
@@ -66,7 +61,6 @@ class Person extends \Faker\Provider\Person
         'Tomaszewski', 'Urbański', 'Walczak', 'Wasilewski', 'Wieczorek', 'Wilk', 'Wiśniewski', 'Witkowski', 'Włodarczyk', 'Wojciechowski',
         'Woźniak', 'Wójcik', 'Wróbel', 'Wróblewski', 'Wysocki', 'Zając', 'Zakrzewski', 'Zalewski', 'Zawadzki', 'Zieliński', 'Ziółkowski',
     );
-
     protected static $lastNameFemale = array(
         'Adamczyk', 'Adamska', 'Andrzejewska', 'Baran', 'Baranowska', 'Bąk', 'Błaszczyk', 'Borkowska', 'Borowska', 'Brzezińska',
         'Chmielewska', 'Cieślak', 'Czarnecka', 'Czerwińska', 'Dąbrowska', 'Duda', 'Dudek', 'Gajewska', 'Głowacka', 'Górecka', 'Górska', 'Grabowska',
@@ -85,14 +79,13 @@ class Person extends \Faker\Provider\Person
      *
      * @var string
      */
-    protected static $title = array('mgr','inż.', 'dr', 'doc.');
+    protected static $title = array('mgr', 'inż.', 'dr', 'doc.');
 
     /**
      * @param string|null $gender 'male', 'female' or null for any
      * @example 'Adamczyk'
      */
-    public function lastName($gender = null)
-    {
+    public function lastName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return static::lastNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -102,34 +95,29 @@ class Person extends \Faker\Provider\Person
         return $this->generator->parse(static::randomElement(static::$lastNameFormat));
     }
 
-    public static function lastNameMale()
-    {
+    public static function lastNameMale() {
         return static::randomElement(static::$lastNameMale);
     }
 
-    public static function lastNameFemale()
-    {
+    public static function lastNameFemale() {
         return static::randomElement(static::$lastNameFemale);
     }
 
-    public function title($gender = null)
-    {
+    public function title($gender = null) {
         return static::randomElement(static::$title);
     }
 
     /**
      * replaced by specific unisex Polish title
      */
-    public static function titleMale()
-    {
+    public static function titleMale() {
         return static::title();
     }
 
     /**
      * replaced by specific unisex Polish title
      */
-    public static function titleFemale()
-    {
+    public static function titleFemale() {
         return static::title();
     }
 
@@ -140,8 +128,7 @@ class Person extends \Faker\Provider\Person
      * @param  string   $sex       M for male or F for female
      * @return string   11 digit number, like 44051401358
      */
-    public static function pesel($birthdate = null, $sex = null)
-    {
+    public static function pesel($birthdate = null, $sex = null) {
         if ($birthdate === null) {
             $birthdate = \Faker\Provider\DateTime::dateTimeThisCentury();
         }
@@ -151,7 +138,7 @@ class Person extends \Faker\Provider\Person
 
         $fullYear = (int) $birthdate->format('Y');
         $year = (int) $birthdate->format('y');
-        $month = $birthdate->format('m') + (((int) ($fullYear/100) - 14) % 5) * 20;
+        $month = $birthdate->format('m') + (((int) ($fullYear / 100) - 14) % 5) * 20;
         $day = $birthdate->format('d');
 
         $result = array((int) ($year / 10), $year % 10, (int) ($month / 10), $month % 10, (int) ($day / 10), $day % 10);
@@ -180,8 +167,7 @@ class Person extends \Faker\Provider\Person
      * @link http://en.wikipedia.org/wiki/Polish_National_Identity_Card
      * @return string 3 letters and 6 digits, like ABA300000
      */
-    public static function personalIdentityNumber()
-    {
+    public static function personalIdentityNumber() {
         $range = str_split("ABCDEFGHIJKLMNPRSTUVWXYZ");
         $low = array("A", static::randomElement($range), static::randomElement($range));
         $high = array(static::randomDigit(), static::randomDigit(), static::randomDigit(), static::randomDigit(), static::randomDigit());
@@ -191,11 +177,11 @@ class Person extends \Faker\Provider\Person
             $checksum += $weights[$i] * (ord($low[$i]) - 55);
         }
         for ($i = 0, $size = count($high); $i < $size; $i++) {
-            $checksum += $weights[$i+3] * $high[$i];
+            $checksum += $weights[$i + 3] * $high[$i];
         }
         $checksum %= 10;
 
-        return implode('', $low).$checksum.implode('', $high);
+        return implode('', $low) . $checksum . implode('', $high);
     }
 
     /**
@@ -204,8 +190,7 @@ class Person extends \Faker\Provider\Person
      * @link http://pl.wikipedia.org/wiki/NIP
      * @return string 10 digit number
      */
-    public static function taxpayerIdentificationNumber()
-    {
+    public static function taxpayerIdentificationNumber() {
         $weights = array(6, 5, 7, 2, 3, 4, 5, 6, 7);
         $result = array();
         do {
@@ -224,4 +209,5 @@ class Person extends \Faker\Provider\Person
 
         return implode('', $result);
     }
+
 }

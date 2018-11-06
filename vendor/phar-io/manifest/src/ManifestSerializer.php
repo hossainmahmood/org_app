@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -16,6 +17,7 @@ use PharIo\Version\VersionConstraint;
 use XMLWriter;
 
 class ManifestSerializer {
+
     /**
      * @var XMLWriter
      */
@@ -23,8 +25,7 @@ class ManifestSerializer {
 
     public function serializeToFile(Manifest $manifest, $filename) {
         file_put_contents(
-            $filename,
-            $this->serializeToString($manifest)
+                $filename, $this->serializeToString($manifest)
         );
     }
 
@@ -65,25 +66,25 @@ class ManifestSerializer {
 
         switch (true) {
             case $type->isApplication(): {
-                $this->xmlWriter->writeAttribute('type', 'application');
-                break;
-            }
+                    $this->xmlWriter->writeAttribute('type', 'application');
+                    break;
+                }
 
             case $type->isLibrary(): {
-                $this->xmlWriter->writeAttribute('type', 'library');
-                break;
-            }
+                    $this->xmlWriter->writeAttribute('type', 'library');
+                    break;
+                }
 
             case $type->isExtension(): {
-                /* @var $type Extension */
-                $this->xmlWriter->writeAttribute('type', 'extension');
-                $this->addExtension($type->getApplicationName(), $type->getVersionConstraint());
-                break;
-            }
+                    /* @var $type Extension */
+                    $this->xmlWriter->writeAttribute('type', 'extension');
+                    $this->addExtension($type->getApplicationName(), $type->getVersionConstraint());
+                    break;
+                }
 
             default: {
-                $this->xmlWriter->writeAttribute('type', 'custom');
-            }
+                    $this->xmlWriter->writeAttribute('type', 'custom');
+                }
         }
 
         $this->xmlWriter->endElement();
@@ -92,7 +93,7 @@ class ManifestSerializer {
     private function addCopyright(CopyrightInformation $copyrightInformation) {
         $this->xmlWriter->startElement('copyright');
 
-        foreach($copyrightInformation->getAuthors() as $author) {
+        foreach ($copyrightInformation->getAuthors() as $author) {
             $this->xmlWriter->startElement('author');
             $this->xmlWriter->writeAttribute('name', $author->getName());
             $this->xmlWriter->writeAttribute('email', (string) $author->getEmail());
@@ -111,9 +112,9 @@ class ManifestSerializer {
 
     private function addRequirements(RequirementCollection $requirementCollection) {
         $phpRequirement = new AnyVersionConstraint();
-        $extensions     = [];
+        $extensions = [];
 
-        foreach($requirementCollection as $requirement) {
+        foreach ($requirementCollection as $requirement) {
             if ($requirement instanceof PhpVersionRequirement) {
                 $phpRequirement = $requirement->getVersionConstraint();
                 continue;
@@ -128,7 +129,7 @@ class ManifestSerializer {
         $this->xmlWriter->startElement('php');
         $this->xmlWriter->writeAttribute('version', $phpRequirement->asString());
 
-        foreach($extensions as $extension) {
+        foreach ($extensions as $extension) {
             $this->xmlWriter->startElement('ext');
             $this->xmlWriter->writeAttribute('name', $extension);
             $this->xmlWriter->endElement();
@@ -144,7 +145,7 @@ class ManifestSerializer {
         }
         $this->xmlWriter->startElement('bundles');
 
-        foreach($bundledComponentCollection as $bundledComponent) {
+        foreach ($bundledComponentCollection as $bundledComponent) {
             $this->xmlWriter->startElement('component');
             $this->xmlWriter->writeAttribute('name', $bundledComponent->getName());
             $this->xmlWriter->writeAttribute('version', $bundledComponent->getVersion()->getVersionString());
@@ -160,4 +161,5 @@ class ManifestSerializer {
         $this->xmlWriter->writeAttribute('compatible', $versionConstraint->asString());
         $this->xmlWriter->endElement();
     }
+
 }

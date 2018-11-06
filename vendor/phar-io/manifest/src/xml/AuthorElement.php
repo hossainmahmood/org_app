@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class AuthorElement extends ManifestElement {
+
     public function getName() {
         return $this->getAttributeValue('name');
     }
@@ -18,4 +20,5 @@ class AuthorElement extends ManifestElement {
     public function getEmail() {
         return $this->getAttributeValue('email');
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\tr_TR;
 
-class Color extends \Faker\Provider\Color
-{
+class Color extends \Faker\Provider\Color {
+
     /**
      * @link http://tr.wikipedia.org/wiki/Renkler_listesi
      */
@@ -11,7 +11,6 @@ class Color extends \Faker\Provider\Color
         'siyah', 'kırmızı', 'sarı', 'mavi', 'turuncu',
         'yeşil', 'mor', 'gümüş', 'gri', 'pembe',
     );
-
     protected static $allColorNames = array(
         'Alev kırmızısı', 'Alice mavisi', 'Alizarin', 'Altunî', 'Ametist', 'Armut',
         'Akuamarin', 'Asker yeşili', 'Bakır', 'Barut', 'Bataklık yeşili',
@@ -55,4 +54,5 @@ class Color extends \Faker\Provider\Color
         'Vurgun pembe', 'Salamura grisi', 'Tenné (Tawny)', 'Küçük kara', 'Lacivert', 'Viridian',
         'Zinnwaldite',
     );
+
 }

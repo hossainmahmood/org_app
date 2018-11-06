@@ -4,8 +4,8 @@ namespace Carbon;
 
 use Symfony\Component\Translation;
 
-class Translator extends Translation\Translator
-{
+class Translator extends Translation\Translator {
+
     /**
      * Singleton for Translator.
      *
@@ -27,8 +27,7 @@ class Translator extends Translation\Translator
      *
      * @return static
      */
-    public static function get($locale = null)
-    {
+    public static function get($locale = null) {
         if (static::$singleton === null) {
             static::$singleton = new static($locale ?: 'en');
         }
@@ -36,8 +35,7 @@ class Translator extends Translation\Translator
         return static::$singleton;
     }
 
-    public function __construct($locale, Translation\Formatter\MessageFormatterInterface $formatter = null, $cacheDir = null, $debug = false)
-    {
+    public function __construct($locale, Translation\Formatter\MessageFormatterInterface $formatter = null, $cacheDir = null, $debug = false) {
         $this->addLoader('array', new Translation\Loader\ArrayLoader());
         parent::__construct($locale, $formatter, $cacheDir, $debug);
     }
@@ -51,15 +49,14 @@ class Translator extends Translation\Translator
      *
      * @return bool
      */
-    public function resetMessages($locale = null)
-    {
+    public function resetMessages($locale = null) {
         if ($locale === null) {
             static::$messages = array();
 
             return true;
         }
 
-        if (file_exists($filename = __DIR__.'/Lang/'.$locale.'.php')) {
+        if (file_exists($filename = __DIR__ . '/Lang/' . $locale . '.php')) {
             static::$messages[$locale] = require $filename;
             $this->addResource('array', static::$messages[$locale], $locale);
 
@@ -76,8 +73,7 @@ class Translator extends Translation\Translator
      *
      * @return bool
      */
-    protected function loadMessagesFromFile($locale)
-    {
+    protected function loadMessagesFromFile($locale) {
         if (isset(static::$messages[$locale])) {
             return true;
         }
@@ -93,13 +89,11 @@ class Translator extends Translation\Translator
      *
      * @return $this
      */
-    public function setMessages($locale, $messages)
-    {
+    public function setMessages($locale, $messages) {
         $this->loadMessagesFromFile($locale);
         $this->addResource('array', $messages, $locale);
         static::$messages[$locale] = array_merge(
-            isset(static::$messages[$locale]) ? static::$messages[$locale] : array(),
-            $messages
+                isset(static::$messages[$locale]) ? static::$messages[$locale] : array(), $messages
         );
 
         return $this;
@@ -113,8 +107,7 @@ class Translator extends Translation\Translator
      *
      * @return array
      */
-    public function getMessages($locale = null)
-    {
+    public function getMessages($locale = null) {
         return $locale === null ? static::$messages : static::$messages[$locale];
     }
 
@@ -125,11 +118,10 @@ class Translator extends Translation\Translator
      *
      * @return bool
      */
-    public function setLocale($locale)
-    {
+    public function setLocale($locale) {
         $locale = preg_replace_callback('/[-_]([a-z]{2,})/', function ($matches) {
             // _2-letters is a region, _3+-letters is a variant
-            return '_'.call_user_func(strlen($matches[1]) > 2 ? 'ucfirst' : 'strtoupper', $matches[1]);
+            return '_' . call_user_func(strlen($matches[1]) > 2 ? 'ucfirst' : 'strtoupper', $matches[1]);
         }, strtolower($locale));
 
         if ($this->loadMessagesFromFile($locale)) {
@@ -140,4 +132,5 @@ class Translator extends Translation\Translator
 
         return false;
     }
+
 }

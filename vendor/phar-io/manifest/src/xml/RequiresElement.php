@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,9 +12,11 @@
 namespace PharIo\Manifest;
 
 class RequiresElement extends ManifestElement {
+
     public function getPHPElement() {
         return new PhpElement(
-            $this->getChildByName('php')
+                $this->getChildByName('php')
         );
     }
+
 }

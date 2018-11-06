@@ -2,14 +2,12 @@
 
 namespace Faker\Provider;
 
-class Company extends Base
-{
+class Company extends Base {
+
     protected static $formats = array(
         '{{lastName}} {{companySuffix}}',
     );
-
     protected static $companySuffix = array('Ltd');
-
     protected static $jobTitleFormat = array(
         '{{word}}',
     );
@@ -17,8 +15,7 @@ class Company extends Base
     /**
      * @example 'Acme Ltd'
      */
-    public function company()
-    {
+    public function company() {
         $format = static::randomElement(static::$formats);
 
         return $this->generator->parse($format);
@@ -27,18 +24,17 @@ class Company extends Base
     /**
      * @example 'Ltd'
      */
-    public static function companySuffix()
-    {
+    public static function companySuffix() {
         return static::randomElement(static::$companySuffix);
     }
 
     /**
      * @example 'Job'
      */
-    public function jobTitle()
-    {
+    public function jobTitle() {
         $format = static::randomElement(static::$jobTitleFormat);
 
         return $this->generator->parse($format);
     }
+
 }

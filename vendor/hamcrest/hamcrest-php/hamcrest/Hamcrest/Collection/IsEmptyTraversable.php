@@ -1,30 +1,28 @@
 <?php
+
 namespace Hamcrest\Collection;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\BaseMatcher;
 use Hamcrest\Description;
 
 /**
  * Matches if traversable is empty or non-empty.
  */
-class IsEmptyTraversable extends BaseMatcher
-{
+class IsEmptyTraversable extends BaseMatcher {
 
     private static $_INSTANCE;
     private static $_NOT_INSTANCE;
-
     private $_empty;
 
-    public function __construct($empty = true)
-    {
+    public function __construct($empty = true) {
         $this->_empty = $empty;
     }
 
-    public function matches($item)
-    {
+    public function matches($item) {
         if (!$item instanceof \Traversable) {
             return false;
         }
@@ -36,8 +34,7 @@ class IsEmptyTraversable extends BaseMatcher
         return $this->_empty;
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendText($this->_empty ? 'an empty traversable' : 'a non-empty traversable');
     }
 
@@ -46,8 +43,7 @@ class IsEmptyTraversable extends BaseMatcher
      *
      * @factory
      */
-    public static function emptyTraversable()
-    {
+    public static function emptyTraversable() {
         if (!self::$_INSTANCE) {
             self::$_INSTANCE = new self;
         }
@@ -60,12 +56,12 @@ class IsEmptyTraversable extends BaseMatcher
      *
      * @factory
      */
-    public static function nonEmptyTraversable()
-    {
+    public static function nonEmptyTraversable() {
         if (!self::$_NOT_INSTANCE) {
             self::$_NOT_INSTANCE = new self(false);
         }
 
         return self::$_NOT_INSTANCE;
     }
+
 }

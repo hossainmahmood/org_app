@@ -2,15 +2,14 @@
 
 namespace Faker\Provider\nl_NL;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{lastName}} {{companySuffix}}',
         '{{lastName}} {{lastName}} {{companySuffix}}',
         '{{lastName}}',
         '{{lastName}}',
     );
-
     protected static $companySuffix = array('VOF', 'CV', 'LLP', 'BV', 'NV', 'IBC', 'CSL', 'EESV', 'SE', 'CV', 'Stichting', '& Zonen', '& Zn');
 
     /**
@@ -23,17 +22,15 @@ class Company extends \Faker\Provider\Company
      *
      * @return string VAT Number
      */
-    public static function vat()
-    {
+    public static function vat() {
         return sprintf("%s%d%s%d", 'NL', self::randomNumber(9, true), 'B', self::randomNumber(2, true));
-
     }
 
     /**
      * Alias dutch vat number format
      */
-    public static function btw()
-    {
+    public static function btw() {
         return self::vat();
     }
+
 }

@@ -2,8 +2,7 @@
 
 namespace Faker\Provider\zh_CN;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
 
     protected static $cites = array(
         '北京', '上海', '天津', '重庆',
@@ -16,7 +15,6 @@ class Address extends \Faker\Provider\Address
         '广州', '福州', '海口',
         '香港', '澳门'
     );
-
     protected static $states = array(
         '北京市', '天津市', '河北省', '山西省',
         '内蒙古自治区', '辽宁省', '吉林省',
@@ -29,7 +27,6 @@ class Address extends \Faker\Provider\Address
         '宁夏回族自治区', '新疆维吾尔自治区',
         '香港特别行政区', '澳门特别行政区', '台湾省'
     );
-
     protected static $stateAbbr = array(
         '京', '皖', '渝', '闽',
         '甘', '粤', '桂', '黔',
@@ -41,7 +38,6 @@ class Address extends \Faker\Provider\Address
         '新', '滇', '浙', '港',
         '澳', '台'
     );
-
     protected static $areas = array(
         '西夏区', '永川区', '秀英区', '高港区',
         '清城区', '兴山区', '锡山区', '清河区',
@@ -58,7 +54,6 @@ class Address extends \Faker\Provider\Address
         '淄川区', '高明区', '金水区', '中原区',
         '高新开发区', '经济开发新区', '新区'
     );
-
     protected static $country = array(
         '阿富汗', '阿拉斯加', '阿尔巴尼亚', '阿尔及利亚',
         '安道尔', '安哥拉', '安圭拉岛英', '安提瓜和巴布达',
@@ -109,41 +104,35 @@ class Address extends \Faker\Provider\Address
         '扎伊尔', '赞比亚', '桑给巴尔', '津巴布韦', '中华人民共和国', '中国'
     );
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$cites);
     }
 
-    public function state()
-    {
+    public function state() {
         return static::randomElement(static::$states);
     }
 
-    public function stateAbbr()
-    {
+    public function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
 
-    public static function area()
-    {
-         return static::randomElement(static::$areas);
+    public static function area() {
+        return static::randomElement(static::$areas);
     }
 
-    public static function country()
-    {
-         return static::randomElement(static::$country);
+    public static function country() {
+        return static::randomElement(static::$country);
     }
 
-    public function address()
-    {
-         return $this->city() . static::area();
+    public function address() {
+        return $this->city() . static::area();
     }
 
-    public static function postcode()
-    {
+    public static function postcode() {
         $prefix = str_pad(mt_rand(1, 85), 2, 0, STR_PAD_LEFT);
         $suffix = '00';
 
         return $prefix . mt_rand(10, 88) . $suffix;
     }
+
 }

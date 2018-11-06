@@ -5,7 +5,6 @@ namespace Cron;
 use DateTime;
 use InvalidArgumentException;
 
-
 /**
  * Day of week field.  Allows: * / , - ? L #
  *
@@ -19,23 +18,19 @@ use InvalidArgumentException;
  * number between one and five. It allows you to specify constructs such as
  * "the second Friday" of a given month.
  */
-class DayOfWeekField extends AbstractField
-{
+class DayOfWeekField extends AbstractField {
+
     protected $rangeStart = 0;
     protected $rangeEnd = 7;
-
     protected $nthRange;
-
     protected $literals = [1 => 'MON', 2 => 'TUE', 3 => 'WED', 4 => 'THU', 5 => 'FRI', 6 => 'SAT', 7 => 'SUN'];
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->nthRange = range(1, 5);
         parent::__construct();
     }
 
-    public function isSatisfiedBy(DateTime $date, $value)
-    {
+    public function isSatisfiedBy(DateTime $date, $value) {
         if ($value == '?') {
             return true;
         }
@@ -55,8 +50,8 @@ class DayOfWeekField extends AbstractField
             while ($tdate->format('w') != $weekday) {
                 $tdateClone = new DateTime();
                 $tdate = $tdateClone
-                    ->setTimezone($tdate->getTimezone())
-                    ->setDate($currentYear, $currentMonth, --$lastDayOfMonth);
+                        ->setTimezone($tdate->getTimezone())
+                        ->setDate($currentYear, $currentMonth, --$lastDayOfMonth);
             }
 
             return $date->format('j') == $lastDayOfMonth;
@@ -127,8 +122,7 @@ class DayOfWeekField extends AbstractField
         return $this->isSatisfied($fieldValue, $value);
     }
 
-    public function increment(DateTime $date, $invert = false)
-    {
+    public function increment(DateTime $date, $invert = false) {
         if ($invert) {
             $date->modify('-1 day');
             $date->setTime(23, 59, 0);
@@ -143,8 +137,7 @@ class DayOfWeekField extends AbstractField
     /**
      * @inheritDoc
      */
-    public function validate($value)
-    {
+    public function validate($value) {
         $basicChecks = parent::validate($value);
 
         if (!$basicChecks) {
@@ -167,4 +160,5 @@ class DayOfWeekField extends AbstractField
 
         return $basicChecks;
     }
+
 }

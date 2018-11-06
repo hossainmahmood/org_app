@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,8 @@
 namespace PharIo\Manifest;
 
 class InvalidApplicationNameException extends \InvalidArgumentException implements Exception {
-    const NotAString    = 1;
+
+    const NotAString = 1;
     const InvalidFormat = 2;
+
 }

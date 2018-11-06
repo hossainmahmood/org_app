@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\zh_CN;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * @see https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%93%B6%E8%A1%8C%E5%88%97%E8%A1%A8
      * @var array
@@ -34,8 +34,8 @@ class Payment extends \Faker\Provider\Payment
      * @example '中国建设银行'
      * @return string
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
+
 }

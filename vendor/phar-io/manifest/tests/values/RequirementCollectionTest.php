@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -21,6 +22,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Version\VersionConstraint
  */
 class RequirementCollectionTest extends TestCase {
+
     /**
      * @var RequirementCollection
      */
@@ -33,7 +35,7 @@ class RequirementCollectionTest extends TestCase {
 
     protected function setUp() {
         $this->collection = new RequirementCollection;
-        $this->item       = new PhpVersionRequirement(new ExactVersionConstraint('7.1.0'));
+        $this->item = new PhpVersionRequirement(new ExactVersionConstraint('7.1.0'));
     }
 
     public function testCanBeCreated() {
@@ -55,7 +57,7 @@ class RequirementCollectionTest extends TestCase {
 
     public function testKeyPositionCanBeRetreived() {
         $this->collection->add($this->item);
-        foreach($this->collection as $key => $item) {
+        foreach ($this->collection as $key => $item) {
             $this->assertEquals(0, $key);
         }
     }

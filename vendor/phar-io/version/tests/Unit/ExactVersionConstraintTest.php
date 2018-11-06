@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \PharIo\Version\ExactVersionConstraint
  */
 class ExactVersionConstraintTest extends TestCase {
+
     public function compliantVersionProvider() {
         return [
             ['1.0.2', new Version('1.0.2')],
@@ -55,4 +57,5 @@ class ExactVersionConstraintTest extends TestCase {
 
         $this->assertFalse($constraint->complies($version));
     }
+
 }

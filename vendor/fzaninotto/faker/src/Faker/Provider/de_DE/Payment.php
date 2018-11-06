@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\de_DE;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * International Bank Account Number (IBAN)
      * @link http://en.wikipedia.org/wiki/International_Bank_Account_Number
@@ -12,8 +12,7 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'DE', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'DE', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
 
@@ -49,8 +48,8 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'Volksbank Stuttgart'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
+
 }

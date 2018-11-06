@@ -7,19 +7,17 @@ use Faker\Generator;
 use Faker\Provider\fr_FR\Payment;
 use PHPUnit\Framework\TestCase;
 
-class PaymentTest extends TestCase
-{
+class PaymentTest extends TestCase {
+
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Payment($faker));
         $this->faker = $faker;
     }
 
-    public function testFormattedVat()
-    {
+    public function testFormattedVat() {
         $vat = $this->faker->vat(true);
         $this->assertRegExp("/^FR\s\w{2}\s\d{3}\s\d{3}\s\d{3}$/", $vat);
 
@@ -29,12 +27,11 @@ class PaymentTest extends TestCase
 
         $key = (int) substr($siren, 2, 2);
         if ($key === 0) {
-            $this->assertEqual($key, (12 + 3 * ($siren % 97)) % 97);            
+            $this->assertEqual($key, (12 + 3 * ($siren % 97)) % 97);
         }
     }
 
-    public function testUnformattedVat()
-    {
+    public function testUnformattedVat() {
         $vat = $this->faker->vat(false);
         $this->assertRegExp("/^FR\w{2}\d{9}$/", $vat);
 
@@ -43,7 +40,8 @@ class PaymentTest extends TestCase
 
         $key = (int) substr($siren, 2, 2);
         if ($key === 0) {
-            $this->assertEqual($key, (12 + 3 * ($siren % 97)) % 97);            
+            $this->assertEqual($key, (12 + 3 * ($siren % 97)) % 97);
         }
     }
+
 }

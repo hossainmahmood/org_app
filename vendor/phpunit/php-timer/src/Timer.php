@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of phpunit/php-timer.
  *
@@ -10,13 +11,13 @@
 
 namespace SebastianBergmann\Timer;
 
-final class Timer
-{
+final class Timer {
+
     /**
      * @var array
      */
     private static $times = [
-        'hour'   => 3600000,
+        'hour' => 3600000,
         'minute' => 60000,
         'second' => 1000
     ];
@@ -26,18 +27,15 @@ final class Timer
      */
     private static $startTimes = [];
 
-    public static function start(): void
-    {
+    public static function start(): void {
         self::$startTimes[] = \microtime(true);
     }
 
-    public static function stop(): float
-    {
+    public static function stop(): float {
         return \microtime(true) - \array_pop(self::$startTimes);
     }
 
-    public static function secondsToTimeString(float $time): string
-    {
+    public static function secondsToTimeString(float $time): string {
         $ms = \round($time * 1000);
 
         foreach (self::$times as $unit => $value) {
@@ -54,8 +52,7 @@ final class Timer
     /**
      * @throws RuntimeException
      */
-    public static function timeSinceStartOfRequest(): string
-    {
+    public static function timeSinceStartOfRequest(): string {
         if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
             $startOfRequest = $_SERVER['REQUEST_TIME_FLOAT'];
         } elseif (isset($_SERVER['REQUEST_TIME'])) {
@@ -70,12 +67,10 @@ final class Timer
     /**
      * @throws RuntimeException
      */
-    public static function resourceUsage(): string
-    {
+    public static function resourceUsage(): string {
         return \sprintf(
-            'Time: %s, Memory: %4.2fMB',
-            self::timeSinceStartOfRequest(),
-            \memory_get_peak_usage(true) / 1048576
+                'Time: %s, Memory: %4.2fMB', self::timeSinceStartOfRequest(), \memory_get_peak_usage(true) / 1048576
         );
     }
+
 }

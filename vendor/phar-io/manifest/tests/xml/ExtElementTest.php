@@ -3,6 +3,7 @@
 namespace PharIo\Manifest;
 
 class ExtElementTest extends \PHPUnit\Framework\TestCase {
+
     /**
      * @var ExtElement
      */

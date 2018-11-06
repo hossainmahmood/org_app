@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Version package.
  *
@@ -13,8 +14,8 @@ namespace SebastianBergmann;
 /**
  * @since Class available since Release 1.0.0
  */
-class Version
-{
+class Version {
+
     /**
      * @var string
      */
@@ -34,17 +35,15 @@ class Version
      * @param string $release
      * @param string $path
      */
-    public function __construct($release, $path)
-    {
+    public function __construct($release, $path) {
         $this->release = $release;
-        $this->path    = $path;
+        $this->path = $path;
     }
 
     /**
      * @return string
      */
-    public function getVersion()
-    {
+    public function getVersion() {
         if ($this->version === null) {
             if (count(explode('.', $this->release)) == 3) {
                 $this->version = $this->release;
@@ -73,20 +72,16 @@ class Version
      *
      * @return bool|string
      */
-    private function getGitInformation($path)
-    {
+    private function getGitInformation($path) {
         if (!is_dir($path . DIRECTORY_SEPARATOR . '.git')) {
             return false;
         }
 
         $process = proc_open(
-            'git describe --tags',
-            [
-                1 => ['pipe', 'w'],
-                2 => ['pipe', 'w'],
-            ],
-            $pipes,
-            $path
+                'git describe --tags', [
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w'],
+                ], $pipes, $path
         );
 
         if (!is_resource($process)) {
@@ -106,4 +101,5 @@ class Version
 
         return $result;
     }
+
 }

@@ -1,34 +1,30 @@
 <?php
+
 namespace Hamcrest\Type;
 
-class IsResourceTest extends \Hamcrest\AbstractMatcherTest
-{
+class IsResourceTest extends \Hamcrest\AbstractMatcherTest {
 
-    protected function createMatcher()
-    {
+    protected function createMatcher() {
         return \Hamcrest\Type\IsResource::resourceValue();
     }
 
-    public function testEvaluatesToTrueIfArgumentMatchesType()
-    {
+    public function testEvaluatesToTrueIfArgumentMatchesType() {
         assertThat(tmpfile(), resourceValue());
     }
 
-    public function testEvaluatesToFalseIfArgumentDoesntMatchType()
-    {
+    public function testEvaluatesToFalseIfArgumentDoesntMatchType() {
         assertThat(false, not(resourceValue()));
         assertThat(5, not(resourceValue()));
         assertThat('foo', not(resourceValue()));
     }
 
-    public function testHasAReadableDescription()
-    {
+    public function testHasAReadableDescription() {
         $this->assertDescription('a resource', resourceValue());
     }
 
-    public function testDecribesActualTypeInMismatchMessage()
-    {
+    public function testDecribesActualTypeInMismatchMessage() {
         $this->assertMismatchDescription('was null', resourceValue(), null);
         $this->assertMismatchDescription('was a string "foo"', resourceValue(), 'foo');
     }
+
 }

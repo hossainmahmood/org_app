@@ -2,13 +2,12 @@
 
 namespace Faker\Provider\sk_SK;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $lastNameFormat = array(
         '{{lastNameMale}}',
         '{{lastNameFemale}}',
     );
-
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastNameMale}}',
         '{{firstNameMale}} {{lastNameMale}}',
@@ -17,7 +16,6 @@ class Person extends \Faker\Provider\Person
         '{{titleMale}} {{firstNameMale}} {{lastNameMale}}',
         '{{titleMale}} {{firstNameMale}} {{lastNameMale}} {{suffix}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastNameFemale}}',
         '{{firstNameFemale}} {{lastNameFemale}}',
@@ -26,7 +24,6 @@ class Person extends \Faker\Provider\Person
         '{{titleFemale}} {{firstNameFemale}} {{lastNameFemale}}',
         '{{titleFemale}} {{firstNameFemale}} {{lastNameFemale}} {{suffix}}'
     );
-
     protected static $firstNameMale = array(
         'Drahoslav', 'Severín', 'Alexej', 'Ernest', 'Rastislav', 'Radovan', 'Dobroslav', 'Dalibor', 'Vincent', 'Miloš', 'Timotej', 'Gejza', 'Bohuš',
         'Alfonz', 'Gašpar', 'Emil', 'Erik', 'Blažej', 'Zdenko', 'Dezider', 'Arpád', 'Valentín', 'Pravoslav', 'Jaromír', 'Roman', 'Matej', 'Frederik',
@@ -43,9 +40,7 @@ class Person extends \Faker\Provider\Person
         'Aurel', 'Demeter', 'Denis', 'Hubert', 'Karol', 'Imrich', 'René', 'Bohumír', 'Teodor', 'Tibor', 'Maroš', 'Martin', 'Svätopluk', 'Stanislav',
         'Leopold', 'Eugen', 'Félix', 'Klement', 'Kornel', 'Milan', 'Vratko', 'Ondrej', 'Andrej', 'Edmund', 'Oldrich', 'Oto', 'Mikuláš', 'Ambróz',
         'Radúz', 'Bohdan', 'Adam', 'Štefan', 'Dávid', 'Silvester'
-
     );
-
     protected static $firstNameFemale = array(
         'Alexandra', 'Karina', 'Daniela', 'Andrea', 'Antónia', 'Bohuslava', 'Dáša', 'Malvína', 'Kristína', 'Nataša', 'Bohdana', 'Drahomíra',
         'Sára', 'Zora', 'Tamara', 'Ema', 'Tatiana', 'Erika', 'Veronika', 'Agáta', 'Dorota', 'Vanda', 'Zoja', 'Gabriela', 'Perla', 'Ida', 'Liana',
@@ -63,9 +58,7 @@ class Person extends \Faker\Provider\Person
         'Klaudia', 'Alžbeta', 'Elvíra', 'Cecília', 'Emília', 'Katarína', 'Henrieta', 'Bibiána', 'Barbora', 'Marína', 'Izabela', 'Hilda', 'Otília',
         'Lucia', 'Branislava', 'Bronislava', 'Ivica', 'Albína', 'Kornélia', 'Sláva', 'Slávka', 'Judita', 'Dagmara', 'Adela', 'Nadežda', 'Eva',
         'Filoména', 'Ivana', 'Milada'
-
     );
-
     protected static $lastNameMale = array(
         'Sloboda', 'Novotný', 'Kučera', 'Veselý', 'Horák', 'Marek', 'Pokorný', 'Král', 'Růžička', 'Zeman', 'Kolár', 'Urban', 'Bartoš', 'Vlček',
         'Polák', 'Kopecký', 'Konečný', 'Malý', 'Holub', 'Abrahám', 'Adam', 'Adamec', 'Almáši', 'Anderle', 'Antal', 'Babka', 'Bahna', 'Bahno',
@@ -88,9 +81,7 @@ class Person extends \Faker\Provider\Person
         'Varga', 'Vašíček', 'Vesel', 'Vico', 'Višňovský', 'Vydarený', 'Weiss', 'Zima', 'Zimka', 'Zipser', 'Zátopek', 'Zúbrik', 'Čaplovič',
         'Čarnogurský', 'Čierny', 'Ďaďo', 'Ďurica', 'Ďuriš', 'Šimonovič', 'Škriniar', 'Šouc', 'Šoustal', 'Štefan', 'Štefanka', 'Šulc', 'Šurka',
         'Švehla', 'Šťastný'
-
     );
-
     protected static $lastNameFemale = array(
         'Slobodová', 'Novotná', 'Čierna', 'Kučerová', 'Veselá', 'Krajčíová', 'Nemcová', 'Králová', 'Růžičková', 'Fialová', 'Zemanová',
         'Kolárová', 'Kováčová', 'Vlčková', 'Poláková', 'Kopecká', 'Šimková', 'Konečná', 'Malá', 'Holubová', 'Staneková', 'Šťastná',
@@ -102,34 +93,29 @@ class Person extends \Faker\Provider\Person
         'Kolrusová', 'Košíková', 'Kušnírová', 'Kravjarová', 'Hotová', 'Hajzerová', 'Ferjenčíková', 'Senková', 'Adamcová', 'Pirošová', 'Šimonová',
         'Finková', 'Hrdá', 'Murčová'
     );
-
     protected static $title = array(
         'Bc.', 'Ing.', 'MUDr.', 'MVDr.', 'Mgr.', 'JUDr.', 'PhDr.', 'RNDr.', 'doc.', 'Dr.', 'BcA.', 'ICDr.', 'Ing.', 'Ing. arch.', 'JUDr.',
         'Mgr. art.', 'MSDr.', 'PaedDr.', 'PharmDr.', 'PhDr.', 'PhMr.', 'RNDr.', 'RSDr.', 'ThDr.', 'ThLic.', 'prof.', 'Dr. h. c.'
     );
-
     private static $suffix = array(
         'CSc.', 'DrSc.', 'DSc.', 'Ph.D.', 'Th.D.'
     );
 
-    public function title($gender = null)
-    {
+    public function title($gender = null) {
         return static::titleMale();
     }
 
     /**
      * replaced by specific unisex slovakian title
      */
-    public static function titleMale()
-    {
+    public static function titleMale() {
         return static::randomElement(static::$title);
     }
 
     /**
      * replaced by specific unisex slovakian title
      */
-    public static function titleFemale()
-    {
+    public static function titleFemale() {
         return static::titleMale();
     }
 
@@ -137,8 +123,7 @@ class Person extends \Faker\Provider\Person
      * @param string|null $gender 'male', 'female' or null for any
      * @example 'Novotný'
      */
-    public function lastName($gender = null)
-    {
+    public function lastName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return static::lastNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -148,21 +133,19 @@ class Person extends \Faker\Provider\Person
         return $this->generator->parse(static::randomElement(static::$lastNameFormat));
     }
 
-    public static function lastNameMale()
-    {
+    public static function lastNameMale() {
         return static::randomElement(static::$lastNameMale);
     }
 
-    public static function lastNameFemale()
-    {
+    public static function lastNameFemale() {
         return static::randomElement(static::$lastNameFemale);
     }
 
     /**
      * @example 'PhD'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
+
 }

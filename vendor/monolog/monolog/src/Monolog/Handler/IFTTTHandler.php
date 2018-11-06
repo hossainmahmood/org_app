@@ -24,8 +24,8 @@ use Monolog\Logger;
  *
  * @author Nehal Patel <nehal@nehalpatel.me>
  */
-class IFTTTHandler extends AbstractProcessingHandler
-{
+class IFTTTHandler extends AbstractProcessingHandler {
+
     private $eventName;
     private $secretKey;
 
@@ -35,8 +35,7 @@ class IFTTTHandler extends AbstractProcessingHandler
      * @param int     $level     The minimum logging level at which this handler will be triggered
      * @param Boolean $bubble    Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct($eventName, $secretKey, $level = Logger::ERROR, $bubble = true)
-    {
+    public function __construct($eventName, $secretKey, $level = Logger::ERROR, $bubble = true) {
         $this->eventName = $eventName;
         $this->secretKey = $secretKey;
 
@@ -46,8 +45,7 @@ class IFTTTHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    public function write(array $record)
-    {
+    public function write(array $record) {
         $postData = array(
             "value1" => $record["channel"],
             "value2" => $record["level_name"],
@@ -66,4 +64,5 @@ class IFTTTHandler extends AbstractProcessingHandler
 
         Curl\Util::execute($ch);
     }
+
 }

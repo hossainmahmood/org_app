@@ -6,21 +6,20 @@ use Faker\Generator;
 use Faker\Provider\pt_PT\PhoneNumber;
 use PHPUnit\Framework\TestCase;
 
-class PhoneNumberTest extends TestCase
-{
-    public function setUp()
-    {
+class PhoneNumberTest extends TestCase {
+
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new PhoneNumber($faker));
         $this->faker = $faker;
     }
 
-    public function testPhoneNumberReturnsPhoneNumberWithOrWithoutPrefix()
-    {
+    public function testPhoneNumberReturnsPhoneNumberWithOrWithoutPrefix() {
         $this->assertRegExp('/^(9[1,2,3,6][0-9]{7})|(2[0-9]{8})|(\+351 [2][0-9]{8})|(\+351 9[1,2,3,6][0-9]{7})/', $this->faker->phoneNumber());
     }
-    public function testMobileNumberReturnsMobileNumberWithOrWithoutPrefix()
-    {
+
+    public function testMobileNumberReturnsMobileNumberWithOrWithoutPrefix() {
         $this->assertRegExp('/^(9[1,2,3,6][0-9]{7})/', $this->faker->mobileNumber());
     }
+
 }

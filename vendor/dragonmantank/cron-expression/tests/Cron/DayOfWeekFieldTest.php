@@ -9,13 +9,12 @@ use PHPUnit\Framework\TestCase;
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
-class DayOfWeekFieldTest extends TestCase
-{
+class DayOfWeekFieldTest extends TestCase {
+
     /**
      * @covers \Cron\DayOfWeekField::validate
      */
-    public function testValidatesField()
-    {
+    public function testValidatesField() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->validate('1'));
         $this->assertTrue($f->validate('01'));
@@ -29,8 +28,7 @@ class DayOfWeekFieldTest extends TestCase
     /**
      * @covers \Cron\DayOfWeekField::isSatisfiedBy
      */
-    public function testChecksIfSatisfied()
-    {
+    public function testChecksIfSatisfied() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '?'));
     }
@@ -38,8 +36,7 @@ class DayOfWeekFieldTest extends TestCase
     /**
      * @covers \Cron\DayOfWeekField::increment
      */
-    public function testIncrementsDate()
-    {
+    public function testIncrementsDate() {
         $d = new DateTime('2011-03-15 11:15:00');
         $f = new DayOfWeekField();
         $f->increment($d);
@@ -55,8 +52,7 @@ class DayOfWeekFieldTest extends TestCase
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Weekday must be a value between 0 and 7. 12 given
      */
-    public function testValidatesHashValueWeekday()
-    {
+    public function testValidatesHashValueWeekday() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '12#1'));
     }
@@ -66,8 +62,7 @@ class DayOfWeekFieldTest extends TestCase
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage There are never more than 5 or less than 1 of a given weekday in a month
      */
-    public function testValidatesHashValueNth()
-    {
+    public function testValidatesHashValueNth() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '3#6'));
     }
@@ -75,8 +70,7 @@ class DayOfWeekFieldTest extends TestCase
     /**
      * @covers \Cron\DayOfWeekField::validate
      */
-    public function testValidateWeekendHash()
-    {
+    public function testValidateWeekendHash() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->validate('MON#1'));
         $this->assertTrue($f->validate('TUE#2'));
@@ -91,8 +85,7 @@ class DayOfWeekFieldTest extends TestCase
     /**
      * @covers \Cron\DayOfWeekField::isSatisfiedBy
      */
-    public function testHandlesZeroAndSevenDayOfTheWeekValues()
-    {
+    public function testHandlesZeroAndSevenDayOfTheWeekValues() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime('2011-09-04 00:00:00'), '0-2'));
         $this->assertTrue($f->isSatisfiedBy(new DateTime('2011-09-04 00:00:00'), '6-0'));
@@ -120,10 +113,10 @@ class DayOfWeekFieldTest extends TestCase
     /**
      * @see https://github.com/laravel/framework/commit/07d160ac3cc9764d5b429734ffce4fa311385403
      */
-    public function testLiteralsExpandProperly()
-    {
+    public function testLiteralsExpandProperly() {
         $f = new DayOfWeekField();
         $this->assertTrue($f->validate('MON-FRI'));
-        $this->assertSame([1,2,3,4,5], $f->getRangeForExpression('MON-FRI', 7));
+        $this->assertSame([1, 2, 3, 4, 5], $f->getRangeForExpression('MON-FRI', 7));
     }
+
 }

@@ -51,10 +51,14 @@
         "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid"
     },
     "autoload": {
-        "psr-4": {"Ramsey\\Uuid\\": "src/"}
+        "psr-4": {
+            "Ramsey\\Uuid\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": {"Ramsey\\Uuid\\Test\\": "tests/"}
+        "psr-4": {
+            "Ramsey\\Uuid\\Test\\": "tests/"
+        }
     },
     "replace": {
         "rhumsaa/uuid": "self.version"

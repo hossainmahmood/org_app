@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -20,15 +21,14 @@ use Ramsey\Uuid\Provider\NodeProviderInterface;
  * SystemNodeProvider provides functionality to get the system node ID (MAC
  * address) using external system calls
  */
-class SystemNodeProvider implements NodeProviderInterface
-{
+class SystemNodeProvider implements NodeProviderInterface {
+
     /**
      * Returns the system node ID
      *
      * @return string|false System node ID as a hexadecimal string, or false if it is not found
      */
-    public function getNode()
-    {
+    public function getNode() {
         static $node = null;
 
         if ($node !== null) {
@@ -60,8 +60,7 @@ class SystemNodeProvider implements NodeProviderInterface
      * @codeCoverageIgnore
      * @return string
      */
-    protected function getIfconfig()
-    {
+    protected function getIfconfig() {
         if (strpos(strtolower(ini_get('disable_functions')), 'passthru') !== false) {
             return '';
         }
@@ -91,8 +90,7 @@ class SystemNodeProvider implements NodeProviderInterface
      *
      * @return string|bool
      */
-    protected function getSysfs()
-    {
+    protected function getSysfs() {
         $mac = false;
 
         if (strtoupper(php_uname('s')) === 'LINUX') {
@@ -111,10 +109,10 @@ class SystemNodeProvider implements NodeProviderInterface
             // remove invalid entries
             $macs = array_filter($macs, function ($mac) {
                 return
-                    // localhost adapter
-                    $mac !== '00:00:00:00:00:00' &&
-                    // must match  mac adress
-                    preg_match('/^([0-9a-f]{2}:){5}[0-9a-f]{2}$/i', $mac);
+                        // localhost adapter
+                        $mac !== '00:00:00:00:00:00' &&
+                        // must match  mac adress
+                        preg_match('/^([0-9a-f]{2}:){5}[0-9a-f]{2}$/i', $mac);
             });
 
             $mac = reset($macs);
@@ -122,4 +120,5 @@ class SystemNodeProvider implements NodeProviderInterface
 
         return $mac;
     }
+
 }

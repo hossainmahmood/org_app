@@ -2,11 +2,11 @@
 
 namespace Faker\Provider\id_ID;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     /**
      * @link http://bandung.go.id/images/download/daftarruasjalan.htm
-     **/
+     * */
     protected static $street = array(
         "Abang", "Abdul", "Abdul Muis", "Abdul Rahmat", "Abdul. Muis", "Abdullah",
         "Aceh", "Achmad", "Achmad Yani", "Acordion", "Adisucipto",
@@ -64,7 +64,6 @@ class Address extends \Faker\Provider\Address
         "Yap Tjwan Bing", "Yoga", "Yogyakarta", "Yohanes", "Yos",
         "Yos Sudarso", "Yosodipuro", "Zamrud",
     );
-
     protected static $streetPrefix = array(
         "Ds.", "Dk.", "Gg.", "Jln.", "Jr.", "Kpg.", "Ki.", "Psr."
     );
@@ -89,48 +88,38 @@ class Address extends \Faker\Provider\Address
      * @var array
      */
     protected static $stateAbbr = array(
-       'Aceh', 'SumUt', 'SumBar', 'Jambi', 'BaBel', 'Riau', 'KepR', 'Bengkulu', 'SumSel',
-       'Lampung', 'Banten', 'DKI', 'JaBar', 'JaTeng', 'JaTim', 'NTT', 'DIY',
-       'Bali', 'NTB', 'KalBar', 'KalTeng', 'KalSel', 'KalTim', 'KalUt', 'SulSel',
-       'SulUt', 'Gorontalo', 'SulTeng', 'SulBar', 'SulTra', 'Maluku', 'MalUt',
-       'PapBar', 'Papua'
+        'Aceh', 'SumUt', 'SumBar', 'Jambi', 'BaBel', 'Riau', 'KepR', 'Bengkulu', 'SumSel',
+        'Lampung', 'Banten', 'DKI', 'JaBar', 'JaTeng', 'JaTim', 'NTT', 'DIY',
+        'Bali', 'NTB', 'KalBar', 'KalTeng', 'KalSel', 'KalTim', 'KalUt', 'SulSel',
+        'SulUt', 'Gorontalo', 'SulTeng', 'SulBar', 'SulTra', 'Maluku', 'MalUt',
+        'PapBar', 'Papua'
     );
 
     /**
-    * @link http://id.wikipedia.org/wiki/Daftar_negara-negara_di_dunia
-    **/
+     * @link http://id.wikipedia.org/wiki/Daftar_negara-negara_di_dunia
+     * */
     protected static $country = array(
         'Afganistan', 'Afrika Selatan', 'Albania', 'Aljazair',
         'Amerika Serikat', 'Andorra', 'Angola', 'Anguilla',
-
         // http://id.wikipedia.org/wiki/Antartika
         'Antarktika',
-
         'Antigua and Barbuda',
-
         // http://id.wikipedia.org/wiki/Antillen_Belanda
         'Antillen Belanda',
-
         'Arab Saudi', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria',
         'Azerbaijan', 'Bahama', 'Bahrain', 'Bangladesh', 'Barbados', 'Belanda',
         'Belarus', 'Belgia', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia',
-
         // http://id.wikipedia.org/wiki/Bosnia_dan_Herzegovina
         'Bosnia dan Herzegovina',
-
         'Botswana', 'Brasil', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso',
         'Burundi', 'Chili', 'Cina', 'Cocos (Keeling)', 'Denmark', 'Djibouti',
-
         // http://id.wikipedia.org/wiki/Dominica
         'Dominika',
-
         'Ekuador', 'El Salvador', 'Eritrea', 'Estonia', 'Ethiopia',
         'Federasi Rusia', 'Fiji', 'Filipina', 'Finlandia', 'Gabon', 'Gambia',
         'Georgia',
-
         // http://id.wikipedia.org/wiki/South_Georgia_and_the_South_Sandwich_Islands
         'Georgia Selatan dan Kepulauan Sandwich Selatan',
-
         'Ghana', 'Gibraltar', 'Greenland', 'Grenada', 'Guadeloupe', 'Guam',
         'Guatemala', 'Guernsey', 'Guinea', 'Guinea Ekuatorial', 'Guinea-Bissau',
         'Guyana', 'Guyana Prancis', 'Haiti', 'Honduras', 'Hong Kong',
@@ -141,59 +130,41 @@ class Address extends \Faker\Provider\Address
         'Kepulauan Falkland (Malvinas)', 'Kepulauan Faroe',
         'Kepulauan Mariana Utara', 'Kepulauan Marshall', 'Kepulauan Pitcairn',
         'Kepulauan Solomon',
-
         // http://id.wikipedia.org/wiki/United_States_Minor_Outlying_Islands
         'Kepulauan Terluar Kecil Amerika Serikat',
-
         'Kepulauan Turks dan Caicos',
-
         // http://id.wikipedia.org/wiki/United_States_Virgin_Islands
         'Kepulauan Virgin Amerika Serikat',
-
         'Kepulauan Virgin Inggris', 'Kiribati', 'Kolombia', 'Komoro', 'Kongo', 'Korea',
         'Korea', 'Kosta Rika', 'Kroasia',
-
         // http://id.wikipedia.org/wiki/Cuba
         'Kuba',
-
         'Kuwait', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libyan Arab Jamahiriya',
         'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagaskar', 'Makau', 'Makedonia',
         'Maladewa', 'Malawi', 'Malaysia', 'Mali', 'Malta', 'Maroko',
-
         // http://id.wikipedia.org/wiki/Martinique
         'Martinik',
-
         'Mauritania', 'Mauritius', 'Mayotte', 'Meksiko', 'Mesir', 'Mikronesia', 'Moldova',
         'Monako', 'Mongolia', 'Montenegro', 'Montserrat', 'Mozambik', 'Myanmar',
         'Namibia', 'Nauru', 'Nepal', 'Niger', 'Nigeria', 'Nikaragua', 'Niue', 'Norwegia',
         'Oman', 'Pakistan', 'Palau', 'Panama',
-
         // http://id.wikipedia.org/wiki/Cote_d%27Ivoire
         'Pantai Gading',
-
         'Papua Nugini', 'Paraguay', 'Peru', 'Polandia', 'Polinesia Prancis', 'Portugal',
         'Prancis', 'Puerto Rico',
-
         // http://ms.wikipedia.org/wiki/Pulau_Bouvet
         'Pulau Bouvet',
-
         // http://id.wikipedia.org/wiki/Pulau_Heard_dan_Kepulauan_McDonald
         'Pulau Heard dan Kepulauan McDonald',
-
         // http://id.wikipedia.org/wiki/Isle_of_Man
         'Pulau Man',
-
         'Pulau Natal', 'Pulau Norfolk', 'Qatar', 'Republik Afrika Tengah',
         'Republik Ceko',
-
         // http://id.wikipedia.org/wiki/Chad
         'Republik Chad',
-
         'Republik Demokratik Rakyat Laos', 'Republik Dominika', 'Republik Kirgizstan',
-
         // http://id.wikipedia.org/wiki/Reunion
         'Réunion',
-
         'Rumania', 'Rwanda', 'Sahara Barat', 'Saint Barthelemy', 'Saint Helena',
         'Saint Kitts dan Nevis', 'Saint Lucia', 'Saint Martin',
         'Saint Pierre dan Miquelon', 'Saint Vincent dan Grenadines', 'Samoa',
@@ -202,22 +173,16 @@ class Address extends \Faker\Provider\Address
         'Slovakia (Republik Slovak)', 'Slovenia', 'Somalia', 'Spanyol', 'Sri Lanka',
         'Sudan', 'Suriah', 'Suriname', 'Svalbard & Jan Mayen Islands', 'Swaziland',
         'Swedia', 'Swiss', 'Taiwan', 'Tajikistan',
-
         // http://id.wikipedia.org/wiki/Cape_Verde
         'Tanjung Verde',
-
         'Tanzania', 'Thailand', 'Timor-Leste', 'Togo', 'Tokelau', 'Tonga',
         'Trinidad dan Tobago', 'Tunisia', 'Turki', 'Turkmenistan', 'Tuvalu', 'Uganda',
         'Ukraina', 'Uni Emirat Arab', 'Uruguay', 'Uzbekistan', 'Vanuatu',
-
         // http://id.wikipedia.org/wiki/Holy_See
         'Vatikan',
-
         'Venezuela', 'Vietnam', 'Wallis dan Futuna', 'Wilayah Palestina',
-
         // http://id.wikipedia.org/wiki/United_States_Virgin_Islands
         'Wilayah Samudra Hindia Britania',
-
         'Wilayah Selatan Perancis', 'Yaman', 'Yunani', 'Zambia', 'Zimbabwe'
     );
 
@@ -252,65 +217,54 @@ class Address extends \Faker\Provider\Address
         "Ternate", "Tidore Kepulauan", "Tomohon", "Tual",
         "Yogyakarta",
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{street}}'
     );
-
     protected static $streetAddressFormats = array(
         '{{streetPrefix}} {{street}} No. {{buildingNumber}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}, {{city}} {{postcode}}, {{stateAbbr}}",
     );
-
     protected static $postcode = array('%####');
 
     /**
      * @example 'Kalimantan Tengah'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'Banten'
      */
-    public static function stateAbbr()
-    {
+    public static function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
 
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
-    public function city()
-    {
+    public function city() {
         $format = static::randomElement(static::$cityFormats);
 
         return $this->generator->parse($format);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::numberBetween(1, 999);
     }
+
 }

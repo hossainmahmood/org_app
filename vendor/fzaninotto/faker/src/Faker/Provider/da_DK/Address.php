@@ -5,8 +5,8 @@ namespace Faker\Provider\da_DK;
 /**
  * @author Antoine Corcy <contact@sbin.dk>
  */
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     /**
      * @var array Danish city suffixes.
      */
@@ -220,8 +220,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
@@ -230,8 +229,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function streetSuffixWord()
-    {
+    public static function streetSuffixWord() {
         return static::randomElement(static::$streetSuffixWord);
     }
 
@@ -240,8 +238,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::toUpper(static::bothify(static::randomElement(static::$buildingNumber)));
     }
 
@@ -250,8 +247,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function buildingLevel()
-    {
+    public static function buildingLevel() {
         return static::numerify(static::randomElement(static::$buildingLevel));
     }
 
@@ -260,8 +256,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function buildingSide()
-    {
+    public static function buildingSide() {
         return static::randomElement(static::$buildingSide);
     }
 
@@ -270,8 +265,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function kommune()
-    {
+    public static function kommune() {
         return static::randomElement(static::$kommuneNames);
     }
 
@@ -280,8 +274,8 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$regionNames);
     }
+
 }

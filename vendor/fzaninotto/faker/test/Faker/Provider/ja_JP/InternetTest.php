@@ -6,10 +6,9 @@ use Faker\Generator;
 use Faker\Provider\ja_JP\Internet;
 use PHPUnit\Framework\TestCase;
 
-class InternetTest extends TestCase
-{
-    public function testUserName()
-    {
+class InternetTest extends TestCase {
+
+    public function testUserName() {
         $faker = new Generator();
         $faker->addProvider(new Internet($faker));
         $faker->seed(1);
@@ -17,12 +16,12 @@ class InternetTest extends TestCase
         $this->assertEquals('akira72', $faker->userName);
     }
 
-    public function testDomainName()
-    {
+    public function testDomainName() {
         $faker = new Generator();
         $faker->addProvider(new Internet($faker));
         $faker->seed(1);
 
         $this->assertEquals('nakajima.com', $faker->domainName);
     }
+
 }

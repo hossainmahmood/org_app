@@ -2,8 +2,8 @@
 
 namespace Faker\Provider;
 
-class Miscellaneous extends Base
-{
+class Miscellaneous extends Base {
+
     /**
      * @link https://en.wikipedia.org/wiki/Emoji#Unicode_blocks
      * On date of 2017-03-26
@@ -116,7 +116,6 @@ class Miscellaneous extends Base
         'UGA', 'UKR', 'UMI', 'URY', 'USA', 'UZB', 'VAT', 'VCT', 'VEN', 'VGB',
         'VIR', 'VNM', 'VUT', 'WLF', 'WSM', 'YEM', 'ZAF', 'ZMB', 'ZWE',
     );
-
     protected static $localeData = array(
         'aa_DJ', 'aa_ER', 'aa_ET',
         'af_NA', 'af_ZA', 'ak_GH',
@@ -236,40 +235,35 @@ class Miscellaneous extends Base
      *
      * @example true
      */
-    public static function boolean($chanceOfGettingTrue = 50)
-    {
+    public static function boolean($chanceOfGettingTrue = 50) {
         return mt_rand(1, 100) <= $chanceOfGettingTrue;
     }
 
     /**
      * @example 'cfcd208495d565ef66e7dff9f98764da'
      */
-    public static function md5()
-    {
+    public static function md5() {
         return md5(mt_rand());
     }
 
     /**
      * @example 'b5d86317c2a144cd04d0d7c03b2b02666fafadf2'
      */
-    public static function sha1()
-    {
+    public static function sha1() {
         return sha1(mt_rand());
     }
 
     /**
      * @example '85086017559ccc40638fcde2fecaf295e0de7ca51b7517b6aebeaaf75b4d4654'
      */
-    public static function sha256()
-    {
+    public static function sha256() {
         return hash('sha256', mt_rand());
     }
 
     /**
      * @example 'fr_FR'
      */
-    public static function locale()
-    {
+    public static function locale() {
         return static::randomElement(static::$localeData);
     }
 
@@ -278,8 +272,7 @@ class Miscellaneous extends Base
      *
      * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
      */
-    public static function countryCode()
-    {
+    public static function countryCode() {
         return static::randomElement(static::$countryCode);
     }
 
@@ -288,16 +281,14 @@ class Miscellaneous extends Base
      *
      * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
      */
-    public static function countryISOAlpha3()
-    {
+    public static function countryISOAlpha3() {
         return static::randomElement(static::$countryISOAlpha3);
     }
 
     /**
      * @example 'fr'
      */
-    public static function languageCode()
-    {
+    public static function languageCode() {
         return static::randomElement(static::$languageCode);
     }
 
@@ -306,8 +297,7 @@ class Miscellaneous extends Base
      *
      * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
      */
-    public static function currencyCode()
-    {
+    public static function currencyCode() {
         return static::randomElement(static::$currencyCode);
     }
 
@@ -316,8 +306,8 @@ class Miscellaneous extends Base
      *
      * @link https://en.wikipedia.org/wiki/Emoji#Unicode_blocks
      */
-    public static function emoji()
-    {
+    public static function emoji() {
         return json_decode('"' . static::randomElement(static::$emoji) . '"');
     }
+
 }

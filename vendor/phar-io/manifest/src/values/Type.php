@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -13,6 +14,7 @@ namespace PharIo\Manifest;
 use PharIo\Version\VersionConstraint;
 
 abstract class Type {
+
     /**
      * @return Application
      */
@@ -57,4 +59,5 @@ abstract class Type {
     public function isExtension() {
         return false;
     }
+
 }

@@ -2,13 +2,12 @@
 
 namespace Faker\Provider\ne_NP;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $wardNumber = array('##', '#');
     protected static $streetSuffix = array(
         'bagh', 'bazaar', 'besi', 'chowk', 'gaun', 'kot', 'mandir', 'marg', 'nagar', 'sahar', 'sthan', 'tar'
     );
-
     protected static $postcode = array('#####');
 
     /**
@@ -39,7 +38,7 @@ class Address extends \Faker\Provider\Address
      * @link http://www.fallingrain.com/world/NP/
      */
     protected static $cityName = array(
-        'Achham', 'Aiselukharka', 'Amardaha', 'Amariya', 'Amlekhganj', 'Amraia', 'Andia', 'Andruli', 'Angbung',  'Arghkot', 'Arughatbazaar', 'Asaina', 'Ataria', 'Atrauli', 'Aulgurta',
+        'Achham', 'Aiselukharka', 'Amardaha', 'Amariya', 'Amlekhganj', 'Amraia', 'Andia', 'Andruli', 'Angbung', 'Arghkot', 'Arughatbazaar', 'Asaina', 'Ataria', 'Atrauli', 'Aulgurta',
         'Bachhuwa', 'Badirpatti', 'Bagar', 'Bagarchhap', 'Baglungbazaar', 'Bahadurganj', 'Bahrabise', 'Bahsi', 'Baijnathpurwa', 'Baindoli', 'Bairia', 'Baitadi', 'Bajhang', 'Bajura', 'Bakarkot', 'Balapur', 'Baldenggarhi', 'Balkot', 'Balma', 'Bandipur', 'Banepa', 'Banepabazaar', 'Baneshore', 'Banghi', 'Banke', 'Bansangu', 'Barbatta', 'Bardiya', 'Barhamjia', 'Basbeti', 'Batarbazaar', 'Bathala', 'Battar', 'Baudha', 'Baudhatinchule', 'Baugachia', 'Beding', 'Belahia', 'Belgaon', 'Belwa', 'Beni', 'Benighat', 'Berhampuri', 'Besisahar', 'Beteni', 'Bethari', 'Betrwati', 'Bhadgaon', 'Bhadrapur', 'Bhagaura', 'Bhagwanpur', 'Bhainsah', 'Bhainse', 'Bhainsedobhn', 'Bhairahawa', 'Bhajni', 'Bhaktapur', 'Bhandar', 'Bharatpur', 'Bhartbs', 'Bhata', 'Bhataulia', 'Bhawanipur', 'Bhikhnatdjori', 'Bhiknathor', 'Bhimkothi', 'Bhimphedi', 'Bhingrigaon', 'Bhitania', 'Bhojpur', 'Bholi', 'Bhopatpur', 'Bhowa', 'Bhujauli', 'Bhurchaur', 'Bhurkia', 'Bijulpura', 'Bilauri', 'Binayakgaon', 'Biprat', 'Biratnagar', 'Birendranagar', 'Birgunj', 'Birkot', 'Birta', 'Bishunpura', 'Bithara', 'Bogri', 'Boradandi', 'Bramhadeumandi', 'Budanilkantha', 'Budhabare', 'Bungmati', 'Burili', 'Burthum', 'Burtibang', 'Butwal',
         'Captainganj', 'Chainpur', 'Chaitya', 'Champapur', 'Chandragadhi', 'Changrang', 'Chapagaun', 'Charikot', 'Chaturale', 'Chaubisho', 'Chaukle', 'Chaukun', 'Chaunrikharka', 'Chautara', 'Chautha', 'Chepang', 'Chepti', 'Chepuwa', 'Chhapia', 'Chhapre', 'Chharkabhot', 'Chhibro', 'Chhintapu', 'Chhokang', 'Chhrkbhotgaon', 'Chhukgaon', 'Chhule', 'Chilankha', 'Chilha', 'Chilkhaya', 'Chisapani', 'Chisapanigadhi', 'Chiybri', 'Chobhar', 'Cholpa', 'Chong', 'Choutar', 'Chuchekanda', 'Chukhung', 'Chumikgyatsa', 'Chunemari', 'Chyabari', 'Chyamtang', 'Chyangthapu', 'Colonelbari',
         'Daban', 'Dabhung', 'Dadeldhura', 'Dahawa', 'Dailekh', 'Dakhakot', 'Dakshnkli', 'Daliwa', 'Dall', 'Dalphu', 'Daman', 'Damdwali', 'Dandakharka', 'Dang', 'Dangarmarwa', 'Daregaunra', 'Daura', 'Debichaur', 'Debikot', 'Dekhatbhuli', 'Deomoro', 'Deoraha', 'Deurali', 'Dhabi', 'Dhadinbesi', 'Dhakela', 'Dhalkebar', 'Dhamaura', 'Dhangadhi', 'Dhankuta', 'Dhankutabazaar', 'Dharamnagar', 'Dharampur', 'Dharan', 'Dharnbzr', 'Dharot', 'Dharsing', 'Dhita', 'Dhuli', 'Dhulikhel', 'Dhunche', 'Dhungrebas', 'Dhurjanna', 'Dhurkot', 'Diktel', 'Diktelbazaar', 'Dillikot', 'Dingboche', 'Dingla', 'Dipayal', 'Doglng', 'Dolakha', 'Dolalghat', 'Dorpattan', 'Doti', 'Dugtha', 'Dullu', 'Dumja', 'Dumn', 'Dumrchaur', 'Dumuhn', 'Dunai', 'Dunglang', 'Durgaon', 'Durgoli',
@@ -61,7 +60,6 @@ class Address extends \Faker\Provider\Address
         'Waling', 'Walungchunggola', 'Wapsakhani',
         'Yala', 'Yalbang', 'Yamphodin', 'Yrsa',
     );
-
     protected static $country = array(
         'Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica (the territory South of 60 deg S)', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan',
         'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Bouvet Island (Bouvetoya)', 'Brazil', 'British Indian Ocean Territory (Chagos Archipelago)', 'British Virgin Islands', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Burundi',
@@ -106,24 +104,22 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Kalaiya'
      */
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityName);
     }
 
     /**
      * @example '5'
      */
-    public static function wardNumber()
-    {
+    public static function wardNumber() {
         return static::numerify(static::randomElement(static::$wardNumber));
     }
 
     /**
      * @example 'Bara'
      */
-    public static function district()
-    {
+    public static function district() {
         return static::randomElement(static::$district);
     }
+
 }

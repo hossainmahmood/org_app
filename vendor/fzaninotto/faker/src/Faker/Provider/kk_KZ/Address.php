@@ -2,15 +2,13 @@
 
 namespace Faker\Provider\kk_KZ;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $citySuffix = array('қаласы');
+class Address extends \Faker\Provider\Address {
 
+    protected static $citySuffix = array('қаласы');
     protected static $regionSuffix = array('облысы');
     protected static $streetSuffix = array(
         'көшесі', 'даңғылы',
     );
-
     protected static $buildingNumber = array('###');
     protected static $postcode = array('0#####');
     // TODO list all country names in the world
@@ -18,7 +16,6 @@ class Address extends \Faker\Provider\Address
         'Қазақстан',
         'Ресей',
     );
-
     protected static $region = array(
         'Алматы',
         'Ақтау',
@@ -39,7 +36,6 @@ class Address extends \Faker\Provider\Address
         'Өскемен',
         'Шымкент',
     );
-
     protected static $city = array(
         'Алматы',
         'Ақтау',
@@ -60,7 +56,6 @@ class Address extends \Faker\Provider\Address
         'Өскемен',
         'Шымкент',
     );
-
     protected static $street = array(
         'Абай',
         'Гоголь',
@@ -69,37 +64,31 @@ class Address extends \Faker\Provider\Address
         'Достық',
         'Бұқар жырау',
     );
-
     protected static $addressFormats = array(
         "{{postcode}}, {{region}} {{regionSuffix}}, {{city}} {{citySuffix}}, {{street}} {{streetSuffix}}, {{buildingNumber}}",
     );
-
     protected static $streetAddressFormats = array(
         "{{street}} {{streetSuffix}}, {{buildingNumber}}"
     );
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::numerify(static::randomElement(static::$buildingNumber));
     }
 
-    public static function regionSuffix()
-    {
+    public static function regionSuffix() {
         return static::randomElement(static::$regionSuffix);
     }
 
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
+
 }

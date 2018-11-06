@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class BundledComponentCollection implements \Countable, \IteratorAggregate {
+
     /**
      * @var BundledComponent[]
      */
@@ -40,4 +42,5 @@ class BundledComponentCollection implements \Countable, \IteratorAggregate {
     public function getIterator() {
         return new BundledComponentCollectionIterator($this);
     }
+
 }

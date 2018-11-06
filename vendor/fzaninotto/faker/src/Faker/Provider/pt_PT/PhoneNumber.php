@@ -2,11 +2,11 @@
 
 namespace Faker\Provider\pt_PT;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
-     /*
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+    /*
      * @link http://en.wikipedia.org/wiki/Telephone_numbers_in_Portugal
      */
+
     protected static $formats = array(
         '+351 91#######',
         '+351 92#######',
@@ -35,7 +35,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '28#######',
         '29#######',
     );
-
     protected static $mobileNumberPrefixes = array(
         '91#######',
         '92#######',
@@ -43,8 +42,8 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '96#######',
     );
 
-    public static function mobileNumber()
-    {
+    public static function mobileNumber() {
         return static::numerify(static::randomElement(static::$mobileNumberPrefixes));
     }
+
 }

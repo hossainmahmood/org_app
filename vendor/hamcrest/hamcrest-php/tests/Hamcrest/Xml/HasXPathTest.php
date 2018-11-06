@@ -1,14 +1,14 @@
 <?php
+
 namespace Hamcrest\Xml;
 
-class HasXPathTest extends \Hamcrest\AbstractMatcherTest
-{
+class HasXPathTest extends \Hamcrest\AbstractMatcherTest {
+
     protected static $xml;
     protected static $doc;
     protected static $html;
 
-    public static function setUpBeforeClass()
-    {
+    public static function setUpBeforeClass() {
         self::$xml = <<<XML
 <?xml version="1.0"?>
 <users>
@@ -45,154 +45,109 @@ XML;
 HTML;
     }
 
-    protected function createMatcher()
-    {
+    protected function createMatcher() {
         return \Hamcrest\Xml\HasXPath::hasXPath('/users/user');
     }
 
-    public function testMatchesWhenXPathIsFound()
-    {
+    public function testMatchesWhenXPathIsFound() {
         assertThat('one match', self::$doc, hasXPath('user[id = "bob"]'));
         assertThat('two matches', self::$doc, hasXPath('user[role = "user"]'));
     }
 
-    public function testDoesNotMatchWhenXPathIsNotFound()
-    {
+    public function testDoesNotMatchWhenXPathIsNotFound() {
         assertThat(
-            'no match',
-            self::$doc,
-            not(hasXPath('user[contains(id, "frank")]'))
+                'no match', self::$doc, not(hasXPath('user[contains(id, "frank")]'))
         );
     }
 
-    public function testMatchesWhenExpressionWithoutMatcherEvaluatesToTrue()
-    {
+    public function testMatchesWhenExpressionWithoutMatcherEvaluatesToTrue() {
         assertThat(
-            'one match',
-            self::$doc,
-            hasXPath('count(user[id = "bob"])')
+                'one match', self::$doc, hasXPath('count(user[id = "bob"])')
         );
     }
 
-    public function testDoesNotMatchWhenExpressionWithoutMatcherEvaluatesToFalse()
-    {
+    public function testDoesNotMatchWhenExpressionWithoutMatcherEvaluatesToFalse() {
         assertThat(
-            'no matches',
-            self::$doc,
-            not(hasXPath('count(user[id = "frank"])'))
+                'no matches', self::$doc, not(hasXPath('count(user[id = "frank"])'))
         );
     }
 
-    public function testMatchesWhenExpressionIsEqual()
-    {
+    public function testMatchesWhenExpressionIsEqual() {
         assertThat(
-            'one match',
-            self::$doc,
-            hasXPath('count(user[id = "bob"])', 1)
+                'one match', self::$doc, hasXPath('count(user[id = "bob"])', 1)
         );
         assertThat(
-            'two matches',
-            self::$doc,
-            hasXPath('count(user[role = "user"])', 2)
+                'two matches', self::$doc, hasXPath('count(user[role = "user"])', 2)
         );
     }
 
-    public function testDoesNotMatchWhenExpressionIsNotEqual()
-    {
+    public function testDoesNotMatchWhenExpressionIsNotEqual() {
         assertThat(
-            'no match',
-            self::$doc,
-            not(hasXPath('count(user[id = "frank"])', 2))
+                'no match', self::$doc, not(hasXPath('count(user[id = "frank"])', 2))
         );
         assertThat(
-            'one match',
-            self::$doc,
-            not(hasXPath('count(user[role = "admin"])', 2))
+                'one match', self::$doc, not(hasXPath('count(user[role = "admin"])', 2))
         );
     }
 
-    public function testMatchesWhenContentMatches()
-    {
+    public function testMatchesWhenContentMatches() {
         assertThat(
-            'one match',
-            self::$doc,
-            hasXPath('user/name', containsString('ice'))
+                'one match', self::$doc, hasXPath('user/name', containsString('ice'))
         );
         assertThat(
-            'two matches',
-            self::$doc,
-            hasXPath('user/role', equalTo('user'))
+                'two matches', self::$doc, hasXPath('user/role', equalTo('user'))
         );
     }
 
-    public function testDoesNotMatchWhenContentDoesNotMatch()
-    {
+    public function testDoesNotMatchWhenContentDoesNotMatch() {
         assertThat(
-            'no match',
-            self::$doc,
-            not(hasXPath('user/name', containsString('Bobby')))
+                'no match', self::$doc, not(hasXPath('user/name', containsString('Bobby')))
         );
         assertThat(
-            'no matches',
-            self::$doc,
-            not(hasXPath('user/role', equalTo('owner')))
+                'no matches', self::$doc, not(hasXPath('user/role', equalTo('owner')))
         );
     }
 
-    public function testProvidesConvenientShortcutForHasXPathEqualTo()
-    {
+    public function testProvidesConvenientShortcutForHasXPathEqualTo() {
         assertThat('matches', self::$doc, hasXPath('count(user)', 3));
         assertThat('matches', self::$doc, hasXPath('user[2]/id', 'bob'));
     }
 
-    public function testProvidesConvenientShortcutForHasXPathCountEqualTo()
-    {
+    public function testProvidesConvenientShortcutForHasXPathCountEqualTo() {
         assertThat('matches', self::$doc, hasXPath('user[id = "charlie"]', 1));
     }
 
-    public function testMatchesAcceptsXmlString()
-    {
+    public function testMatchesAcceptsXmlString() {
         assertThat('accepts XML string', self::$xml, hasXPath('user'));
     }
 
-    public function testMatchesAcceptsHtmlString()
-    {
+    public function testMatchesAcceptsHtmlString() {
         assertThat('accepts HTML string', self::$html, hasXPath('body/h1', 'Heading'));
     }
 
-    public function testHasAReadableDescription()
-    {
+    public function testHasAReadableDescription() {
         $this->assertDescription(
-            'XML or HTML document with XPath "/users/user"',
-            hasXPath('/users/user')
+                'XML or HTML document with XPath "/users/user"', hasXPath('/users/user')
         );
         $this->assertDescription(
-            'XML or HTML document with XPath "count(/users/user)" <2>',
-            hasXPath('/users/user', 2)
+                'XML or HTML document with XPath "count(/users/user)" <2>', hasXPath('/users/user', 2)
         );
         $this->assertDescription(
-            'XML or HTML document with XPath "/users/user/name"'
-            . ' a string starting with "Alice"',
-            hasXPath('/users/user/name', startsWith('Alice'))
+                'XML or HTML document with XPath "/users/user/name"'
+                . ' a string starting with "Alice"', hasXPath('/users/user/name', startsWith('Alice'))
         );
     }
 
-    public function testHasAReadableMismatchDescription()
-    {
+    public function testHasAReadableMismatchDescription() {
         $this->assertMismatchDescription(
-            'XPath returned no results',
-            hasXPath('/users/name'),
-            self::$doc
+                'XPath returned no results', hasXPath('/users/name'), self::$doc
         );
         $this->assertMismatchDescription(
-            'XPath expression result was <3F>',
-            hasXPath('/users/user', 2),
-            self::$doc
+                'XPath expression result was <3F>', hasXPath('/users/user', 2), self::$doc
         );
         $this->assertMismatchDescription(
-            'XPath returned ["alice", "bob", "charlie"]',
-            hasXPath('/users/user/id', 'Frank'),
-            self::$doc
+                'XPath returned ["alice", "bob", "charlie"]', hasXPath('/users/user/id', 'Frank'), self::$doc
         );
     }
+
 }

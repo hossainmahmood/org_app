@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\it_CH;
 
-class Person extends \Faker\Provider\it_IT\Person
-{
+class Person extends \Faker\Provider\it_IT\Person {
+
     /**
      * @link http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
      */
@@ -85,4 +85,5 @@ class Person extends \Faker\Provider\it_IT\Person
         'Weber', 'Widmer',
         'Zanetti', 'Zanini', 'Zimmermann',
     );
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/global-state.
  *
@@ -8,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\GlobalState;
 
@@ -21,100 +22,85 @@ use SebastianBergmann\GlobalState\TestFixture\BlacklistedInterface;
 /**
  * @covers \SebastianBergmann\GlobalState\Blacklist
  */
-class BlacklistTest extends TestCase
-{
+class BlacklistTest extends TestCase {
+
     /**
      * @var \SebastianBergmann\GlobalState\Blacklist
      */
     private $blacklist;
 
-    protected function setUp()
-    {
+    protected function setUp() {
         $this->blacklist = new Blacklist;
     }
 
-    public function testGlobalVariableThatIsNotBlacklistedIsNotTreatedAsBlacklisted()
-    {
+    public function testGlobalVariableThatIsNotBlacklistedIsNotTreatedAsBlacklisted() {
         $this->assertFalse($this->blacklist->isGlobalVariableBlacklisted('variable'));
     }
 
-    public function testGlobalVariableCanBeBlacklisted()
-    {
+    public function testGlobalVariableCanBeBlacklisted() {
         $this->blacklist->addGlobalVariable('variable');
 
         $this->assertTrue($this->blacklist->isGlobalVariableBlacklisted('variable'));
     }
 
-    public function testStaticAttributeThatIsNotBlacklistedIsNotTreatedAsBlacklisted()
-    {
+    public function testStaticAttributeThatIsNotBlacklistedIsNotTreatedAsBlacklisted() {
         $this->assertFalse(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedClass::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedClass::class, 'attribute'
+                )
         );
     }
 
-    public function testClassCanBeBlacklisted()
-    {
+    public function testClassCanBeBlacklisted() {
         $this->blacklist->addClass(BlacklistedClass::class);
 
         $this->assertTrue(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedClass::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedClass::class, 'attribute'
+                )
         );
     }
 
-    public function testSubclassesCanBeBlacklisted()
-    {
+    public function testSubclassesCanBeBlacklisted() {
         $this->blacklist->addSubclassesOf(BlacklistedClass::class);
 
         $this->assertTrue(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedChildClass::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedChildClass::class, 'attribute'
+                )
         );
     }
 
-    public function testImplementorsCanBeBlacklisted()
-    {
+    public function testImplementorsCanBeBlacklisted() {
         $this->blacklist->addImplementorsOf(BlacklistedInterface::class);
 
         $this->assertTrue(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedImplementor::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedImplementor::class, 'attribute'
+                )
         );
     }
 
-    public function testClassNamePrefixesCanBeBlacklisted()
-    {
+    public function testClassNamePrefixesCanBeBlacklisted() {
         $this->blacklist->addClassNamePrefix('SebastianBergmann\GlobalState');
 
         $this->assertTrue(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedClass::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedClass::class, 'attribute'
+                )
         );
     }
 
-    public function testStaticAttributeCanBeBlacklisted()
-    {
+    public function testStaticAttributeCanBeBlacklisted() {
         $this->blacklist->addStaticAttribute(
-            BlacklistedClass::class,
-            'attribute'
+                BlacklistedClass::class, 'attribute'
         );
 
         $this->assertTrue(
-            $this->blacklist->isStaticAttributeBlacklisted(
-                BlacklistedClass::class,
-                'attribute'
-            )
+                $this->blacklist->isStaticAttributeBlacklisted(
+                        BlacklistedClass::class, 'attribute'
+                )
         );
     }
+
 }

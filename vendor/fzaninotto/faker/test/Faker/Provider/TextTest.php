@@ -1,14 +1,14 @@
 <?php
+
 namespace Faker\Test\Provider;
 
 use Faker\Provider\en_US\Text;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
-{
-    public function testTextMaxLength()
-    {
+class TextTest extends TestCase {
+
+    public function testTextMaxLength() {
         $generator = new Generator();
         $generator->addProvider(new Text($generator));
         $generator->seed(0);
@@ -23,20 +23,18 @@ class TextTest extends TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testTextMaxIndex()
-    {
-    $generator = new Generator();
+    public function testTextMaxIndex() {
+        $generator = new Generator();
         $generator->addProvider(new Text($generator));
         $generator->seed(0);
-    $generator->realText(200, 11);
+        $generator->realText(200, 11);
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testTextMinIndex()
-    {
-    $generator = new Generator();
+    public function testTextMinIndex() {
+        $generator = new Generator();
         $generator->addProvider(new Text($generator));
         $generator->seed(0);
         $generator->realText(200, 0);
@@ -45,11 +43,11 @@ class TextTest extends TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testTextMinLength()
-    {
-    $generator = new Generator();
+    public function testTextMinLength() {
+        $generator = new Generator();
         $generator->addProvider(new Text($generator));
         $generator->seed(0);
         $generator->realText(9);
     }
+
 }

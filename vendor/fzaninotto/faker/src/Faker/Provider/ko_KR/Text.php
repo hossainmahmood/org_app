@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ko_KR;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * From ko.wikisource.org
      *
@@ -1720,4 +1720,5 @@ F역이라는 것은 삼림 속에 있는 조그마한 정거장으로 집이라
 만일 정임이가 죽었다는 기별이 오면 나는 한 번 더 시베리아에 가서 둘을 가지런히 묻고 `두 별 무덤'이라는 비를 세워 줄 생각이다. 그러나 나는 정임이가 조선으로 오기를 바란다.
 여러분은 최석과 정임에게 대한 이 기록을 믿고 그 두 사람에게 대한 오해를 풀라.
 EOT;
+
 }

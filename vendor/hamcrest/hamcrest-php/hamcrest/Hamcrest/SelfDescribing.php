@@ -1,15 +1,15 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
  * The ability of an object to describe itself.
  */
-interface SelfDescribing
-{
+interface SelfDescribing {
 
     /**
      * Generates a description of the object.  The description may be part

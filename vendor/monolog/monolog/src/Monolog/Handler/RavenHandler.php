@@ -22,19 +22,19 @@ use Raven_Client;
  *
  * @author Marc Abramowitz <marc@marc-abramowitz.com>
  */
-class RavenHandler extends AbstractProcessingHandler
-{
+class RavenHandler extends AbstractProcessingHandler {
+
     /**
      * Translates Monolog log levels to Raven log levels.
      */
     private $logLevels = array(
-        Logger::DEBUG     => Raven_Client::DEBUG,
-        Logger::INFO      => Raven_Client::INFO,
-        Logger::NOTICE    => Raven_Client::INFO,
-        Logger::WARNING   => Raven_Client::WARNING,
-        Logger::ERROR     => Raven_Client::ERROR,
-        Logger::CRITICAL  => Raven_Client::FATAL,
-        Logger::ALERT     => Raven_Client::FATAL,
+        Logger::DEBUG => Raven_Client::DEBUG,
+        Logger::INFO => Raven_Client::INFO,
+        Logger::NOTICE => Raven_Client::INFO,
+        Logger::WARNING => Raven_Client::WARNING,
+        Logger::ERROR => Raven_Client::ERROR,
+        Logger::CRITICAL => Raven_Client::FATAL,
+        Logger::ALERT => Raven_Client::FATAL,
         Logger::EMERGENCY => Raven_Client::FATAL,
     );
 
@@ -59,8 +59,7 @@ class RavenHandler extends AbstractProcessingHandler
      * @param int          $level       The minimum logging level at which this handler will be triggered
      * @param Boolean      $bubble      Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct(Raven_Client $ravenClient, $level = Logger::DEBUG, $bubble = true)
-    {
+    public function __construct(Raven_Client $ravenClient, $level = Logger::DEBUG, $bubble = true) {
         parent::__construct($level, $bubble);
 
         $this->ravenClient = $ravenClient;
@@ -69,8 +68,7 @@ class RavenHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    public function handleBatch(array $records)
-    {
+    public function handleBatch(array $records) {
         $level = $this->level;
 
         // filter records based on their level
@@ -109,8 +107,7 @@ class RavenHandler extends AbstractProcessingHandler
      *
      * @param FormatterInterface $formatter
      */
-    public function setBatchFormatter(FormatterInterface $formatter)
-    {
+    public function setBatchFormatter(FormatterInterface $formatter) {
         $this->batchFormatter = $formatter;
     }
 
@@ -119,8 +116,7 @@ class RavenHandler extends AbstractProcessingHandler
      *
      * @return FormatterInterface
      */
-    public function getBatchFormatter()
-    {
+    public function getBatchFormatter() {
         if (!$this->batchFormatter) {
             $this->batchFormatter = $this->getDefaultBatchFormatter();
         }
@@ -131,8 +127,7 @@ class RavenHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         $previousUserContext = false;
         $options = array();
         $options['level'] = $this->logLevels[$record['level']];
@@ -194,8 +189,7 @@ class RavenHandler extends AbstractProcessingHandler
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter()
-    {
+    protected function getDefaultFormatter() {
         return new LineFormatter('[%channel%] %message%');
     }
 
@@ -204,8 +198,7 @@ class RavenHandler extends AbstractProcessingHandler
      *
      * @return FormatterInterface
      */
-    protected function getDefaultBatchFormatter()
-    {
+    protected function getDefaultBatchFormatter() {
         return new LineFormatter();
     }
 
@@ -214,8 +207,7 @@ class RavenHandler extends AbstractProcessingHandler
      *
      * @return array
      */
-    protected function getExtraParameters()
-    {
+    protected function getExtraParameters() {
         return array('checksum', 'release', 'event_id');
     }
 
@@ -223,10 +215,10 @@ class RavenHandler extends AbstractProcessingHandler
      * @param string $value
      * @return self
      */
-    public function setRelease($value)
-    {
+    public function setRelease($value) {
         $this->release = $value;
 
         return $this;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -20,8 +21,8 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for a {@}since tag in a Docblock.
  */
-final class Since extends BaseTag implements Factory\StaticMethod
-{
+final class Since extends BaseTag implements Factory\StaticMethod {
+
     protected $name = 'since';
 
     /**
@@ -43,32 +44,29 @@ final class Since extends BaseTag implements Factory\StaticMethod
     /** @var string The version vector. */
     private $version = '';
 
-    public function __construct($version = null, Description $description = null)
-    {
+    public function __construct($version = null, Description $description = null) {
         Assert::nullOrStringNotEmpty($version);
 
-        $this->version     = $version;
+        $this->version = $version;
         $this->description = $description;
     }
 
     /**
      * @return static
      */
-    public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null)
-    {
+    public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null) {
         Assert::nullOrString($body);
         if (empty($body)) {
             return new static();
         }
 
         $matches = [];
-        if (! preg_match('/^(' . self::REGEX_VECTOR . ')\s*(.+)?$/sux', $body, $matches)) {
+        if (!preg_match('/^(' . self::REGEX_VECTOR . ')\s*(.+)?$/sux', $body, $matches)) {
             return null;
         }
 
         return new static(
-            $matches[1],
-            $descriptionFactory->create(isset($matches[2]) ? $matches[2] : '', $context)
+                $matches[1], $descriptionFactory->create(isset($matches[2]) ? $matches[2] : '', $context)
         );
     }
 
@@ -77,8 +75,7 @@ final class Since extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function getVersion()
-    {
+    public function getVersion() {
         return $this->version;
     }
 
@@ -87,8 +84,8 @@ final class Since extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return $this->version . ($this->description ? ' ' . $this->description->render() : '');
     }
+
 }

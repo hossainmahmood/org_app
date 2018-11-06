@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\vi_VN;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $areaCodes = array(
         76, 281, 64, 781, 240, 241,
         75, 650, 56, 651, 62, 780,
@@ -24,7 +24,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         99, 199, // Gmobile
         95, // Sfone
     );
-
     protected static $formats = array(
         '7' => array(
             '0[a] ### ####',
@@ -46,8 +45,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         ),
     );
 
-    public function phoneNumber()
-    {
+    public function phoneNumber() {
         $areaCode = static::randomElement(static::$areaCodes);
         $areaCodeLength = strlen($areaCode);
         $digits = 7;
@@ -58,4 +56,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
 
         return static::numerify(str_replace('[a]', $areaCode, static::randomElement(static::$formats[$digits])));
     }
+
 }

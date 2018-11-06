@@ -9,13 +9,12 @@ use PHPUnit\Framework\TestCase;
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
-class MinutesFieldTest extends TestCase
-{
+class MinutesFieldTest extends TestCase {
+
     /**
      * @covers \Cron\MinutesField::validate
      */
-    public function testValidatesField()
-    {
+    public function testValidatesField() {
         $f = new MinutesField();
         $this->assertTrue($f->validate('1'));
         $this->assertTrue($f->validate('*'));
@@ -25,8 +24,7 @@ class MinutesFieldTest extends TestCase
     /**
      * @covers \Cron\MinutesField::increment
      */
-    public function testIncrementsDate()
-    {
+    public function testIncrementsDate() {
         $d = new DateTime('2011-03-15 11:15:00');
         $f = new MinutesField();
         $f->increment($d);
@@ -41,11 +39,11 @@ class MinutesFieldTest extends TestCase
      * @author Chris Tankersley
      * @since 2017-08-18
      */
-    public function testBadSyntaxesShouldNotValidate()
-    {
+    public function testBadSyntaxesShouldNotValidate() {
         $f = new MinutesField();
         $this->assertFalse($f->validate('*-1'));
         $this->assertFalse($f->validate('1-2-3'));
         $this->assertFalse($f->validate('-1'));
     }
+
 }

@@ -1,9 +1,11 @@
 <?php
+
 namespace Hamcrest\Core;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
+
 use Hamcrest\Description;
 use Hamcrest\Matcher;
 use Hamcrest\TypeSafeMatcher;
@@ -12,20 +14,17 @@ use Hamcrest\Util;
 /**
  * Tests if an array contains values that match one or more Matchers.
  */
-class IsCollectionContaining extends TypeSafeMatcher
-{
+class IsCollectionContaining extends TypeSafeMatcher {
 
     private $_elementMatcher;
 
-    public function __construct(Matcher $elementMatcher)
-    {
+    public function __construct(Matcher $elementMatcher) {
         parent::__construct(self::TYPE_ARRAY);
 
         $this->_elementMatcher = $elementMatcher;
     }
 
-    protected function matchesSafely($items)
-    {
+    protected function matchesSafely($items) {
         foreach ($items as $item) {
             if ($this->_elementMatcher->matches($item)) {
                 return true;
@@ -35,17 +34,15 @@ class IsCollectionContaining extends TypeSafeMatcher
         return false;
     }
 
-    protected function describeMismatchSafely($items, Description $mismatchDescription)
-    {
+    protected function describeMismatchSafely($items, Description $mismatchDescription) {
         $mismatchDescription->appendText('was ')->appendValue($items);
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description
                 ->appendText('a collection containing ')
                 ->appendDescriptionOf($this->_elementMatcher)
-                ;
+        ;
     }
 
     /**
@@ -60,8 +57,7 @@ class IsCollectionContaining extends TypeSafeMatcher
      *
      * @factory ...
      */
-    public static function hasItem()
-    {
+    public static function hasItem() {
         $args = func_get_args();
         $firstArg = array_shift($args);
 
@@ -79,8 +75,7 @@ class IsCollectionContaining extends TypeSafeMatcher
      *
      * @factory ...
      */
-    public static function hasItems(/* args... */)
-    {
+    public static function hasItems(/* args... */) {
         $args = func_get_args();
         $matchers = array();
 
@@ -90,4 +85,5 @@ class IsCollectionContaining extends TypeSafeMatcher
 
         return AllOf::allOf($matchers);
     }
+
 }

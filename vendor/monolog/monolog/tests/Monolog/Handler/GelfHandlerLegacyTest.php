@@ -16,10 +16,9 @@ use Monolog\TestCase;
 use Monolog\Logger;
 use Monolog\Formatter\GelfMessageFormatter;
 
-class GelfHandlerLegacyTest extends TestCase
-{
-    public function setUp()
-    {
+class GelfHandlerLegacyTest extends TestCase {
+
+    public function setUp() {
         if (!class_exists('Gelf\MessagePublisher') || !class_exists('Gelf\Message')) {
             $this->markTestSkipped("mlehner/gelf-php not installed");
         }
@@ -30,26 +29,22 @@ class GelfHandlerLegacyTest extends TestCase
     /**
      * @covers Monolog\Handler\GelfHandler::__construct
      */
-    public function testConstruct()
-    {
+    public function testConstruct() {
         $handler = new GelfHandler($this->getMessagePublisher());
         $this->assertInstanceOf('Monolog\Handler\GelfHandler', $handler);
     }
 
-    protected function getHandler($messagePublisher)
-    {
+    protected function getHandler($messagePublisher) {
         $handler = new GelfHandler($messagePublisher);
 
         return $handler;
     }
 
-    protected function getMessagePublisher()
-    {
+    protected function getMessagePublisher() {
         return new GelfMockMessagePublisher('localhost');
     }
 
-    public function testDebug()
-    {
+    public function testDebug() {
         $messagePublisher = $this->getMessagePublisher();
         $handler = $this->getHandler($messagePublisher);
 
@@ -62,8 +57,7 @@ class GelfHandlerLegacyTest extends TestCase
         $this->assertEquals(null, $messagePublisher->lastMessage->getFullMessage());
     }
 
-    public function testWarning()
-    {
+    public function testWarning() {
         $messagePublisher = $this->getMessagePublisher();
         $handler = $this->getHandler($messagePublisher);
 
@@ -76,8 +70,7 @@ class GelfHandlerLegacyTest extends TestCase
         $this->assertEquals(null, $messagePublisher->lastMessage->getFullMessage());
     }
 
-    public function testInjectedGelfMessageFormatter()
-    {
+    public function testInjectedGelfMessageFormatter() {
         $messagePublisher = $this->getMessagePublisher();
         $handler = $this->getHandler($messagePublisher);
 
@@ -92,4 +85,5 @@ class GelfHandlerLegacyTest extends TestCase
         $this->assertArrayHasKey('_EXTblarg', $messagePublisher->lastMessage->toArray());
         $this->assertArrayHasKey('_CTXfrom', $messagePublisher->lastMessage->toArray());
     }
+
 }

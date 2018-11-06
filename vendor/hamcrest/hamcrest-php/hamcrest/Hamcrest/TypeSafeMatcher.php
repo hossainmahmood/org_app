@@ -1,4 +1,5 @@
 <?php
+
 namespace Hamcrest;
 
 /**
@@ -9,11 +10,9 @@ namespace Hamcrest;
  * be cast to certain data types such as numerics (or even strings if
  * __toString() has not be defined).
  */
-
-abstract class TypeSafeMatcher extends BaseMatcher
-{
-
+abstract class TypeSafeMatcher extends BaseMatcher {
     /* Types that PHP can compare against */
+
     const TYPE_ANY = 0;
     const TYPE_STRING = 1;
     const TYPE_NUMERIC = 2;
@@ -36,19 +35,16 @@ abstract class TypeSafeMatcher extends BaseMatcher
      */
     private $_expectedSubtype;
 
-    public function __construct($expectedType, $expectedSubtype = null)
-    {
+    public function __construct($expectedType, $expectedSubtype = null) {
         $this->_expectedType = $expectedType;
         $this->_expectedSubtype = $expectedSubtype;
     }
 
-    final public function matches($item)
-    {
+    final public function matches($item) {
         return $this->_isSafeType($item) && $this->matchesSafely($item);
     }
 
-    final public function describeMismatch($item, Description $mismatchDescription)
-    {
+    final public function describeMismatch($item, Description $mismatchDescription) {
         if (!$this->_isSafeType($item)) {
             parent::describeMismatch($item, $mismatchDescription);
         } else {
@@ -70,8 +66,7 @@ abstract class TypeSafeMatcher extends BaseMatcher
 
     // -- Private Methods
 
-    private function _isSafeType($value)
-    {
+    private function _isSafeType($value) {
         switch ($this->_expectedType) {
 
             case self::TYPE_ANY:
@@ -87,21 +82,17 @@ abstract class TypeSafeMatcher extends BaseMatcher
                 return is_array($value);
 
             case self::TYPE_OBJECT:
-                return is_object($value)
-                        && ($this->_expectedSubtype === null
-                                || $value instanceof $this->_expectedSubtype);
+                return is_object($value) && ($this->_expectedSubtype === null || $value instanceof $this->_expectedSubtype);
 
             case self::TYPE_RESOURCE:
-                return is_resource($value)
-                        && ($this->_expectedSubtype === null
-                                || get_resource_type($value) == $this->_expectedSubtype);
+                return is_resource($value) && ($this->_expectedSubtype === null || get_resource_type($value) == $this->_expectedSubtype);
 
             case self::TYPE_BOOLEAN:
                 return true;
 
             default:
                 return true;
-
         }
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -23,8 +24,8 @@ use RandomLib\Factory;
  *
  * @link https://packagist.org/packages/ircmaxell/random-lib
  */
-class RandomLibAdapter implements RandomGeneratorInterface
-{
+class RandomLibAdapter implements RandomGeneratorInterface {
+
     /**
      * @var Generator
      */
@@ -38,8 +39,7 @@ class RandomLibAdapter implements RandomGeneratorInterface
      *
      * @param Generator $generator An ircmaxell/random-lib `Generator`
      */
-    public function __construct(Generator $generator = null)
-    {
+    public function __construct(Generator $generator = null) {
         $this->generator = $generator;
 
         if ($this->generator === null) {
@@ -55,8 +55,8 @@ class RandomLibAdapter implements RandomGeneratorInterface
      * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
      */
-    public function generate($length)
-    {
+    public function generate($length) {
         return $this->generator->generate($length);
     }
+
 }

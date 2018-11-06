@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class RequirementCollection implements \Countable, \IteratorAggregate {
+
     /**
      * @var Requirement[]
      */
@@ -40,4 +42,5 @@ class RequirementCollection implements \Countable, \IteratorAggregate {
     public function getIterator() {
         return new RequirementCollectionIterator($this);
     }
+
 }

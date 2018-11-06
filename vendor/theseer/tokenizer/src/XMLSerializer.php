@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
+
 namespace TheSeer\Tokenizer;
 
 use DOMDocument;
@@ -80,7 +83,7 @@ class XMLSerializer {
             $this->writer->endElement();
 
             $this->writer->startElement('line');
-            $this->writer->writeAttribute('no', (string)$token->getLine());
+            $this->writer->writeAttribute('no', (string) $token->getLine());
             $this->previousToken = $token;
         }
 
@@ -91,4 +94,5 @@ class XMLSerializer {
             $this->writer->endElement();
         }
     }
+
 }

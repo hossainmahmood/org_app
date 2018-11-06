@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ms_MY;
 
-class Miscellaneous extends \Faker\Provider\Miscellaneous
-{
+class Miscellaneous extends \Faker\Provider\Miscellaneous {
+
     /**
      * @link https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia
      */
@@ -26,23 +26,23 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * @link https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia#Current_format
      */
     protected static $peninsularPrefix = array(
-        'A','A','B','C','D','F','J','J','K','M','N','P','P','R','T','V',
-        'W','W','W','W','W','W',
+        'A', 'A', 'B', 'C', 'D', 'F', 'J', 'J', 'K', 'M', 'N', 'P', 'P', 'R', 'T', 'V',
+        'W', 'W', 'W', 'W', 'W', 'W',
     );
 
     /**
      * @link https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia#Current_format_2
      */
     protected static $sarawakPrefix = array(
-        'QA','QK','QB','QC','QL','QM','QP','QR','QS','QT'
+        'QA', 'QK', 'QB', 'QC', 'QL', 'QM', 'QP', 'QR', 'QS', 'QT'
     );
 
     /**
      * @link https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia#Current_format_3
      */
     protected static $sabahPrefix = array(
-        'SA','SAA','SAB','SAC','SB','SD','SG',
-        'SK','SL','SS','SSA','ST','STA','SU'
+        'SA', 'SAA', 'SAB', 'SAC', 'SB', 'SD', 'SG',
+        'SK', 'SL', 'SS', 'SSA', 'ST', 'STA', 'SU'
     );
 
     /**
@@ -53,19 +53,19 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
         'A1M',
         'BAMbee',
         'Chancellor',
-        'G','G1M','GP','GT',
+        'G', 'G1M', 'GP', 'GT',
         'Jaguh',
-        'K1M','KRISS',
+        'K1M', 'KRISS',
         'LOTUS',
-        'NAAM','NAZA','NBOS',
-        'PATRIOT','Perdana','PERFECT','Perodua','Persona','Proton','Putra','PUTRAJAYA',
+        'NAAM', 'NAZA', 'NBOS',
+        'PATRIOT', 'Perdana', 'PERFECT', 'Perodua', 'Persona', 'Proton', 'Putra', 'PUTRAJAYA',
         'RIMAU',
-        'SAM','SAS','Satria','SMS','SUKOM',
-        'T1M','Tiara','TTB',
-        'U','US',
+        'SAM', 'SAS', 'Satria', 'SMS', 'SUKOM',
+        'T1M', 'Tiara', 'TTB',
+        'U', 'US',
         'VIP',
         'WAJA',
-        'XIIINAM','XOIC','XXVIASEAN','XXXIDB',
+        'XIIINAM', 'XOIC', 'XXVIASEAN', 'XXXIDB',
         'Y'
     );
 
@@ -75,10 +75,10 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * @link https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia#Current_format
      */
     protected static $validAlphabets = array(
-        'A','B','C','D','E','F',
-        'G','H','J','K','L','M',
-        'N','P','Q','R','S','T',
-        'U','V','W','X','Y',''
+        'A', 'B', 'C', 'D', 'E', 'F',
+        'G', 'H', 'J', 'K', 'L', 'M',
+        'N', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', ''
     );
 
     /**
@@ -88,8 +88,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public function jpjNumberPlate()
-    {
+    public function jpjNumberPlate() {
         $formats = static::toUpper(static::lexify(static::bothify(static::randomElement(static::$jpjNumberPlateFormats))));
 
         return $this->generator->parse($formats);
@@ -102,8 +101,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public static function peninsularPrefix()
-    {
+    public static function peninsularPrefix() {
         return static::randomElement(static::$peninsularPrefix);
     }
 
@@ -114,8 +112,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public static function sarawakPrefix()
-    {
+    public static function sarawakPrefix() {
         return static::randomElement(static::$sarawakPrefix);
     }
 
@@ -126,8 +123,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public static function sabahPrefix()
-    {
+    public static function sabahPrefix() {
         return static::randomElement(static::$sabahPrefix);
     }
 
@@ -138,8 +134,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public static function specialPrefix()
-    {
+    public static function specialPrefix() {
         return static::randomElement(static::$specialPrefix);
     }
 
@@ -150,8 +145,7 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @string
      */
-    public static function validAlphabet()
-    {
+    public static function validAlphabet() {
         return static::randomElement(static::$validAlphabets);
     }
 
@@ -162,8 +156,8 @@ class Miscellaneous extends \Faker\Provider\Miscellaneous
      * 
      * @return @integer
      */
-    public static function numberSequence()
-    {
+    public static function numberSequence() {
         return mt_rand(1, 9999);
     }
+
 }

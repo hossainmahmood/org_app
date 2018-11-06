@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\it_IT;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityPrefix = array('San', 'Borgo', 'Sesto', 'Quarto', 'Settimo');
     protected static $citySuffix = array('a mare', 'lido', 'ligure', 'del friuli', 'salentino', 'calabro', 'veneto', 'nell\'emilia', 'umbro', 'laziale', 'terme', 'sardo');
     protected static $buildingNumber = array('###', '##', '#');
@@ -66,32 +66,29 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'East'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example 'Appt. 350'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'California'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'CA'
      */
-    public static function stateAbbr()
-    {
+    public static function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
+
 }

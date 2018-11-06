@@ -8,8 +8,8 @@ use Doctrine\Common\Persistence\ObjectManager;
  * Service class for populating a database using the Doctrine ORM or ODM.
  * A Populator can populate several tables using ActiveRecord classes.
  */
-class Populator
-{
+class Populator {
+
     protected $generator;
     protected $manager;
     protected $entities = array();
@@ -20,8 +20,7 @@ class Populator
      * @param \Faker\Generator $generator
      * @param ObjectManager|null $manager
      */
-    public function __construct(\Faker\Generator $generator, ObjectManager $manager = null)
-    {
+    public function __construct(\Faker\Generator $generator, ObjectManager $manager = null) {
         $this->generator = $generator;
         $this->manager = $manager;
     }
@@ -32,8 +31,7 @@ class Populator
      * @param mixed $entity A Doctrine classname, or a \Faker\ORM\Doctrine\EntityPopulator instance
      * @param int   $number The number of entities to populate
      */
-    public function addEntity($entity, $number, $customColumnFormatters = array(), $customModifiers = array(), $generateId = false)
-    {
+    public function addEntity($entity, $number, $customColumnFormatters = array(), $customModifiers = array(), $generateId = false) {
         if (!$entity instanceof \Faker\ORM\Doctrine\EntityPopulator) {
             if (null === $this->manager) {
                 throw new \InvalidArgumentException("No entity manager passed to Doctrine Populator.");
@@ -59,8 +57,7 @@ class Populator
      *
      * @return array A list of the inserted PKs
      */
-    public function execute($entityManager = null)
-    {
+    public function execute($entityManager = null) {
         if (null === $entityManager) {
             $entityManager = $this->manager;
         }
@@ -71,12 +68,13 @@ class Populator
         $insertedEntities = array();
         foreach ($this->quantities as $class => $number) {
             $generateId = $this->generateId[$class];
-            for ($i=0; $i < $number; $i++) {
-                $insertedEntities[$class][]= $this->entities[$class]->execute($entityManager, $insertedEntities, $generateId);
+            for ($i = 0; $i < $number; $i++) {
+                $insertedEntities[$class][] = $this->entities[$class]->execute($entityManager, $insertedEntities, $generateId);
             }
             $entityManager->flush();
         }
 
         return $insertedEntities;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -19,6 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Version\VersionConstraint
  */
 class PhpVersionRequirementTest extends TestCase {
+
     /**
      * @var PhpVersionRequirement
      */
@@ -35,4 +37,5 @@ class PhpVersionRequirementTest extends TestCase {
     public function testVersionConstraintCanBeRetrieved() {
         $this->assertEquals('7.1.0', $this->requirement->getVersionConstraint()->asString());
     }
+
 }

@@ -6,19 +6,17 @@ use Faker\Generator;
 use Faker\Provider\nl_NL\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
+
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
     }
 
-    public function testGenerateValidIdNumber()
-    {
+    public function testGenerateValidIdNumber() {
         $idNumber = $this->faker->idNumber();
         $this->assertEquals(9, strlen($idNumber));
 
@@ -30,4 +28,5 @@ class PersonTest extends TestCase
         }
         $this->assertTrue($sum != 0 && $sum % 11 == 0);
     }
+
 }

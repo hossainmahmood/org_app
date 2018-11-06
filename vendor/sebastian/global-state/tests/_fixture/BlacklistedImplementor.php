@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/global-state.
  *
@@ -8,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\GlobalState\TestFixture;
 
-class BlacklistedImplementor implements BlacklistedInterface
-{
+class BlacklistedImplementor implements BlacklistedInterface {
+
     private static $attribute;
+
 }

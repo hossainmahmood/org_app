@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of object-reflector.
  *
@@ -8,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\ObjectReflector;
 
-class ObjectReflector
-{
+class ObjectReflector {
+
     /**
      * @param object $object
      *
@@ -21,14 +22,13 @@ class ObjectReflector
      *
      * @throws InvalidArgumentException
      */
-    public function getAttributes($object): array
-    {
+    public function getAttributes($object): array {
         if (!is_object($object)) {
             throw new InvalidArgumentException;
         }
 
         $attributes = [];
-        $className  = get_class($object);
+        $className = get_class($object);
 
         foreach ((array) $object as $name => $value) {
             $name = explode("\0", (string) $name);
@@ -48,4 +48,5 @@ class ObjectReflector
 
         return $attributes;
     }
+
 }

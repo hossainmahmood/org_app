@@ -2,14 +2,13 @@
 
 namespace Faker\Provider\pt_BR;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     protected static $cardVendors = array(
         'Visa', 'Visa', 'Visa', 'Visa', 'Visa',
         'MasterCard', 'MasterCard', 'MasterCard', 'MasterCard', 'MasterCard',
         'American Express', 'Discover Card', 'Diners', 'Elo', 'Hipercard'
     );
-
     // see https://gist.github.com/erikhenrique/5931368 / http://pt.stackoverflow.com/q/3715/26461
     protected static $cardParams = array(
         'Visa' => array(
@@ -65,8 +64,8 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'BR', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'BR', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
+
 }

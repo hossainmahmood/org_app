@@ -4,22 +4,20 @@ namespace Faker\Provider\en_ZA;
 
 use Faker\Calculator\Luhn;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
         '{{titleFemale}} {{firstNameFemale}} {{lastName}}',
     );
-
     protected static $firstNameMale = array(
         'Abraham', 'Adriaan', 'Adrian', 'Ahmed', 'Alan', 'Albert', 'Alex', 'Alexander', 'Alfred', 'Allan', 'Andile', 'Andre', 'Andrew',
         'André', 'Anthony', 'Anton', 'Arnold', 'Arthur', 'Ayanda', 'Barry', 'Ben', 'Benjamin', 'Bernard', 'Bongani', 'Bradley',
@@ -50,7 +48,6 @@ class Person extends \Faker\Provider\Person
         'Personal', 'Phumzile', 'Refiloe', 'Sello', 'Sibongile', 'Sifiso', 'Siphokazi', 'Takalani', 'Teboho', 'Thandeka', 'Thandi', 'Thembi',
         'Thulani', 'Tumelo', 'Unathi', 'Vusi', 'Vuyokazi', 'Yolandi', 'Your', 'Zandile',
     );
-
     protected static $firstNameFemale = array(
         'Abigail', 'Adele', 'Alicia', 'Alison', 'Amanda', 'Andiswa', 'Andrea', 'Angela', 'Angelique', 'Anita', 'Anna', 'Anne', 'Anthea',
         'Antoinette', 'Asanda', 'Ashley', 'Aubrey', 'Barbara', 'Belinda', 'Beverley', 'Bianca', 'Boitumelo', 'Bongiwe', 'Brenda', 'Bronwyn',
@@ -76,7 +73,6 @@ class Person extends \Faker\Provider\Person
         'Personal', 'Phumzile', 'Refiloe', 'Sello', 'Sibongile', 'Sifiso', 'Siphokazi', 'Takalani', 'Teboho', 'Thandeka', 'Thandi', 'Thembi',
         'Thulani', 'Tumelo', 'Unathi', 'Vusi', 'Vuyokazi', 'Yolandi', 'Your', 'Zandile',
     );
-
     protected static $lastName = array(
         'Naidoo', 'Govender', 'Pillay', 'Smith', 'Botha', 'van der Merwe', 'Jacobs', 'Moodley', 'Singh', 'Ndlovu', 'Dlamini',
         'Pretorius', 'Williams', 'Khumalo', 'du Plessis', 'Nkosi', 'Coetzee', 'Venter', 'Nel', 'Fourie', 'Van Wyk', 'Chetty',
@@ -125,11 +121,8 @@ class Person extends \Faker\Provider\Person
         'Hughes', 'Hanekom', 'Ally', 'Schmidt', 'Butler', 'Mtsweni', 'Maphumulo', 'Manamela', 'Hoffman', 'Wolmarans', 'Duma',
         'Pule', 'Hlophe', 'Miya', 'Moagi',
     );
-
     protected static $titleMale = array('Mr.', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
-
     protected static $titleFemale = array('Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.', 'Rev.', 'Hon.');
-
     protected static $licenceCodes = array('A', 'A1', 'B', 'C', 'C1', 'C2', 'EB', 'EC', 'EC1', 'I', 'L', 'L1');
 
     /**
@@ -141,8 +134,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public function idNumber(\DateTime $birthdate = null, $citizen = true, $gender = null)
-    {
+    public function idNumber(\DateTime $birthdate = null, $citizen = true, $gender = null) {
         if (!$birthdate) {
             $birthdate = $this->generator->dateTimeThisCentury();
         }
@@ -171,8 +163,8 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public function licenceCode()
-    {
+    public function licenceCode() {
         return static::randomElement(static::$licenceCodes);
     }
+
 }

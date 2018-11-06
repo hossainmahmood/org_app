@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -23,8 +24,8 @@ use phpDocumentor\Reflection\Type;
  * using an OR operator (`|`). This combination of types signifies that whatever is associated with this compound type
  * may contain a value with any of the given types.
  */
-final class Compound implements Type, IteratorAggregate
-{
+final class Compound implements Type, IteratorAggregate {
+
     /** @var Type[] */
     private $types;
 
@@ -34,8 +35,7 @@ final class Compound implements Type, IteratorAggregate
      * @param Type[] $types
      * @throws \InvalidArgumentException when types are not all instance of Type
      */
-    public function __construct(array $types)
-    {
+    public function __construct(array $types) {
         foreach ($types as $type) {
             if (!$type instanceof Type) {
                 throw new \InvalidArgumentException('A compound type can only have other types as elements');
@@ -52,8 +52,7 @@ final class Compound implements Type, IteratorAggregate
      *
      * @return Type|null
      */
-    public function get($index)
-    {
+    public function get($index) {
         if (!$this->has($index)) {
             return null;
         }
@@ -68,8 +67,7 @@ final class Compound implements Type, IteratorAggregate
      *
      * @return bool
      */
-    public function has($index)
-    {
+    public function has($index) {
         return isset($this->types[$index]);
     }
 
@@ -78,16 +76,15 @@ final class Compound implements Type, IteratorAggregate
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return implode('|', $this->types);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
-    {
+    public function getIterator() {
         return new ArrayIterator($this->types);
     }
+
 }

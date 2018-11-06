@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -21,8 +22,8 @@ namespace Ramsey\Uuid\Generator;
  * @link http://php.net/random_bytes
  * @link https://github.com/paragonie/random_compat
  */
-class RandomBytesGenerator implements RandomGeneratorInterface
-{
+class RandomBytesGenerator implements RandomGeneratorInterface {
+
     /**
      * Generates a string of random binary data of the specified length
      *
@@ -30,8 +31,8 @@ class RandomBytesGenerator implements RandomGeneratorInterface
      * @return string A binary string
      * @throws \Exception if it was not possible to gather sufficient entropy
      */
-    public function generate($length)
-    {
+    public function generate($length) {
         return random_bytes($length);
     }
+
 }

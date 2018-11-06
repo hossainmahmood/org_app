@@ -2,17 +2,16 @@
 
 namespace Faker\Provider\ar_JO;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $streetPrefix = array('شارع');
+class Address extends \Faker\Provider\Address {
 
-    protected static $cityPrefix = array('شمال', 'شرق', 'غرب', 'جنوب', 'وسط', );
+    protected static $streetPrefix = array('شارع');
+    protected static $cityPrefix = array('شمال', 'شرق', 'غرب', 'جنوب', 'وسط',);
 
     /**
      * @link http://ar.wikipedia.org/wiki/%D9%85%D9%84%D8%AD%D9%82:%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D9%85%D8%AF%D9%86_%D8%A7%D9%84%D8%A3%D8%B1%D8%AF%D9%86
      */
     protected static $cityName = array(
-        'اربد', 'أبو نصير', 'الجبيهه', 'الحصن', 'الرصيفة', 'الرمثا', 'الزرقاء', 'السلط', 'الشهيد عزمي', 'الصريح', 'الضليل', 'الطفيلة', 'العقبة',     'القويسمة', 'الكرك', 'المشارع', 'المفرق', 'الهاشمية', 'ام قصير', 'ايدون',
+        'اربد', 'أبو نصير', 'الجبيهه', 'الحصن', 'الرصيفة', 'الرمثا', 'الزرقاء', 'السلط', 'الشهيد عزمي', 'الصريح', 'الضليل', 'الطفيلة', 'العقبة', 'القويسمة', 'الكرك', 'المشارع', 'المفرق', 'الهاشمية', 'ام قصير', 'ايدون',
         'بيت راس',
         'تلاع العلي',
         'جرش',
@@ -26,9 +25,7 @@ class Address extends \Faker\Provider\Address
         'ناعور',
         'وادي السير',
     );
-
     protected static $buildingNumber = array('#####', '####', '##');
-
     protected static $postcode = array('#####', '#####-####');
 
     /**
@@ -43,16 +40,15 @@ class Address extends \Faker\Provider\Address
         'ساموا الأمريكية',
         'غوام',
         'فرجينيا الغربية', 'فلوريدا', 'فيرجينيا', 'فيرجينيا الغربية', 'فيرمونت',
-        'كارولاينا الجنوبية', 'كارولاينا الشمالية','كارولينا الشمالية', 'كاليفورنيا', 'كانساس', 'كنتاكي', 'كولورادو', 'كونيتيكت',
+        'كارولاينا الجنوبية', 'كارولاينا الشمالية', 'كارولينا الشمالية', 'كاليفورنيا', 'كانساس', 'كنتاكي', 'كولورادو', 'كونيتيكت',
         'لويزيانا',
         'ماريلاند', 'ماساتشوستس', 'ماين', 'مسيسيبي', 'مونتانا', 'ميريلاند', 'ميزوري', 'ميشيغان', 'مين', 'مينيسوتا',
         'نبراسكا', 'نيفادا', 'نيو جيرسي', 'نيو ميكسيكو', 'نيوهامشير', 'نيويورك',
         'هاواي',
         'واشنطن', 'وايومنغ', 'ويسكنسن', 'يوتا',
     );
-
     protected static $stateAbbr = array(
-       'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'
+        'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'
     );
 
     /**
@@ -81,72 +77,62 @@ class Address extends \Faker\Provider\Address
         'هايتي', 'هندوراس', 'هولندا', 'هونج كونج الصينية',
         'وسط آسيا', 'وسط افريقيا',
     );
-
     protected static $cityFormats = array(
         '{{cityPrefix}} {{cityName}}',
         '{{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{streetPrefix}} {{firstName}} {{lastName}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{buildingNumber}} {{streetName}}',
         '{{buildingNumber}} {{streetName}} {{secondaryAddress}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}\n{{city}}",
     );
-
     protected static $secondaryAddressFormats = array('شقة رقم. ##', 'بناية رقم ##');
 
     /**
      * @example 'شرق'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example 'عمان'
      */
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityName);
     }
 
     /**
      * @example 'شارع'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'شقة رقم. 350'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'كاليفورنيا'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'CA'
      */
-    public static function stateAbbr()
-    {
+    public static function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
+
 }

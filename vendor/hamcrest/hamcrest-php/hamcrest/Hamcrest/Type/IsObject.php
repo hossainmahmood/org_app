@@ -1,22 +1,22 @@
 <?php
+
 namespace Hamcrest\Type;
 
 /*
- Copyright (c) 2010 hamcrest.org
+  Copyright (c) 2010 hamcrest.org
  */
+
 use Hamcrest\Core\IsTypeOf;
 
 /**
  * Tests whether the value is an object.
  */
-class IsObject extends IsTypeOf
-{
+class IsObject extends IsTypeOf {
 
     /**
      * Creates a new instance of IsObject
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct('object');
     }
 
@@ -25,8 +25,8 @@ class IsObject extends IsTypeOf
      *
      * @factory anObject
      */
-    public static function objectValue()
-    {
+    public static function objectValue() {
         return new self;
     }
+
 }

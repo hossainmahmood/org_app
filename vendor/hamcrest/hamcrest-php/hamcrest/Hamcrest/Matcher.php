@@ -1,8 +1,9 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
@@ -20,8 +21,7 @@ namespace Hamcrest;
  * @see Hamcrest\CoreMatchers
  * @see Hamcrest\BaseMatcher
  */
-interface Matcher extends SelfDescribing
-{
+interface Matcher extends SelfDescribing {
 
     /**
      * Evaluates the matcher for argument <var>$item</var>.
@@ -35,16 +35,16 @@ interface Matcher extends SelfDescribing
      */
     public function matches($item);
 
-        /**
-         * Generate a description of why the matcher has not accepted the item.
-         * The description will be part of a larger description of why a matching
-         * failed, so it should be concise.
-         * This method assumes that <code>matches($item)</code> is false, but
-         * will not check this.
-         *
-         * @param mixed $item The item that the Matcher has rejected.
-         * @param Description $description
-         * @return
-         */
+    /**
+     * Generate a description of why the matcher has not accepted the item.
+     * The description will be part of a larger description of why a matching
+     * failed, so it should be concise.
+     * This method assumes that <code>matches($item)</code> is false, but
+     * will not check this.
+     *
+     * @param mixed $item The item that the Matcher has rejected.
+     * @param Description $description
+     * @return
+     */
     public function describeMismatch($item, Description $description);
 }

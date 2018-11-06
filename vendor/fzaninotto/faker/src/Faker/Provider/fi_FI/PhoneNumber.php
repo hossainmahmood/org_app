@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fi_FI;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     /**
      * @link https://www.viestintavirasto.fi/en/internettelephone/numberingoftelecommunicationsnetworks/localcallsandtelecommunicationsareas/mapoftelecommunicationsareas.html
      * @var array
@@ -34,12 +34,10 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '044',
         '045',
     );
-
     protected static $numberFormats = array(
         '### ####',
         '#######',
     );
-
     protected static $formats = array(
         '+358 ({{ e164MobileNetworkAreaCode }}) {{ numberFormat }}',
         '+358 {{ e164MobileNetworkAreaCode }} {{ numberFormat }}',
@@ -52,48 +50,43 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * @return string
      */
-    public function landLineAreaCode()
-    {
+    public function landLineAreaCode() {
         return static::randomElement(static::$landLineareaCodes);
     }
 
     /**
      * @return string
      */
-    public function e164landLineAreaCode()
-    {
+    public function e164landLineAreaCode() {
         return substr(static::randomElement(static::$landLineareaCodes), 1);
     }
 
     /**
      * @return string
      */
-    public function mobileNetworkAreaCode()
-    {
+    public function mobileNetworkAreaCode() {
         return static::randomElement(static::$mobileNetworkAreaCodes);
     }
 
     /**
      * @return string
      */
-    public function e164MobileNetworkAreaCode()
-    {
+    public function e164MobileNetworkAreaCode() {
         return substr(static::randomElement(static::$mobileNetworkAreaCodes), 1);
     }
 
     /**
      * @return string
      */
-    public function numberFormat()
-    {
+    public function numberFormat() {
         return static::randomElement(static::$numberFormats);
     }
 
     /**
      * @return string
      */
-    public function separator()
-    {
+    public function separator() {
         return static::randomElement(array(' ', '-'));
     }
+
 }

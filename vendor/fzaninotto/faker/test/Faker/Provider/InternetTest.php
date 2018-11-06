@@ -9,15 +9,14 @@ use Faker\Provider\Lorem;
 use Faker\Provider\Person;
 use PHPUnit\Framework\TestCase;
 
-class InternetTest extends TestCase
-{
+class InternetTest extends TestCase {
+
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Lorem($faker));
         $faker->addProvider(new Person($faker));
@@ -26,8 +25,7 @@ class InternetTest extends TestCase
         $this->faker = $faker;
     }
 
-    public function localeDataProvider()
-    {
+    public function localeDataProvider() {
         $providerPath = realpath(__DIR__ . '/../../../src/Faker/Provider');
         $localePaths = array_filter(glob($providerPath . '/*', GLOB_ONLYDIR));
         foreach ($localePaths as $path) {
@@ -43,8 +41,7 @@ class InternetTest extends TestCase
      *
      * @dataProvider localeDataProvider
      */
-    public function testEmailIsValid($locale)
-    {
+    public function testEmailIsValid($locale) {
         if ($locale !== 'en_US' && !class_exists('Transliterator')) {
             $this->markTestSkipped('Transliterator class not available (intl extension)');
         }
@@ -58,8 +55,7 @@ class InternetTest extends TestCase
     /**
      * @dataProvider localeDataProvider
      */
-    public function testUsernameIsValid($locale)
-    {
+    public function testUsernameIsValid($locale) {
         if ($locale !== 'en_US' && !class_exists('Transliterator')) {
             $this->markTestSkipped('Transliterator class not available (intl extension)');
         }
@@ -73,8 +69,7 @@ class InternetTest extends TestCase
     /**
      * @dataProvider localeDataProvider
      */
-    public function testDomainnameIsValid($locale)
-    {
+    public function testDomainnameIsValid($locale) {
         if ($locale !== 'en_US' && !class_exists('Transliterator')) {
             $this->markTestSkipped('Transliterator class not available (intl extension)');
         }
@@ -88,8 +83,7 @@ class InternetTest extends TestCase
     /**
      * @dataProvider localeDataProvider
      */
-    public function testDomainwordIsValid($locale)
-    {
+    public function testDomainwordIsValid($locale) {
         if ($locale !== 'en_US' && !class_exists('Transliterator')) {
             $this->markTestSkipped('Transliterator class not available (intl extension)');
         }
@@ -100,68 +94,59 @@ class InternetTest extends TestCase
         $this->assertRegExp($pattern, $domainWord);
     }
 
-    public function loadLocalProviders($locale)
-    {
+    public function loadLocalProviders($locale) {
         $providerPath = realpath(__DIR__ . '/../../../src/Faker/Provider');
-        if (file_exists($providerPath.'/'.$locale.'/Internet.php')) {
+        if (file_exists($providerPath . '/' . $locale . '/Internet.php')) {
             $internet = "\\Faker\\Provider\\$locale\\Internet";
             $this->faker->addProvider(new $internet($this->faker));
         }
-        if (file_exists($providerPath.'/'.$locale.'/Person.php')) {
+        if (file_exists($providerPath . '/' . $locale . '/Person.php')) {
             $person = "\\Faker\\Provider\\$locale\\Person";
             $this->faker->addProvider(new $person($this->faker));
         }
-        if (file_exists($providerPath.'/'.$locale.'/Company.php')) {
+        if (file_exists($providerPath . '/' . $locale . '/Company.php')) {
             $company = "\\Faker\\Provider\\$locale\\Company";
             $this->faker->addProvider(new $company($this->faker));
         }
     }
 
-    public function testPasswordIsValid()
-    {
+    public function testPasswordIsValid() {
         $this->assertRegexp('/^.{6}$/', $this->faker->password(6, 6));
     }
 
-    public function testSlugIsValid()
-    {
+    public function testSlugIsValid() {
         $pattern = '/^[a-z0-9-]+$/';
         $slug = $this->faker->slug();
         $this->assertSame(preg_match($pattern, $slug), 1);
     }
 
-    public function testUrlIsValid()
-    {
+    public function testUrlIsValid() {
         $url = $this->faker->url();
         $this->assertNotFalse(filter_var($url, FILTER_VALIDATE_URL));
     }
 
-    public function testLocalIpv4()
-    {
+    public function testLocalIpv4() {
         $this->assertNotFalse(filter_var(Internet::localIpv4(), FILTER_VALIDATE_IP, FILTER_FLAG_IPV4));
     }
 
-    public function testIpv4()
-    {
+    public function testIpv4() {
         $this->assertNotFalse(filter_var($this->faker->ipv4(), FILTER_VALIDATE_IP, FILTER_FLAG_IPV4));
     }
 
-    public function testIpv4NotLocalNetwork()
-    {
+    public function testIpv4NotLocalNetwork() {
         $this->assertNotRegExp('/\A0\./', $this->faker->ipv4());
     }
 
-    public function testIpv4NotBroadcast()
-    {
+    public function testIpv4NotBroadcast() {
         $this->assertNotEquals('255.255.255.255', $this->faker->ipv4());
     }
 
-    public function testIpv6()
-    {
+    public function testIpv6() {
         $this->assertNotFalse(filter_var($this->faker->ipv6(), FILTER_VALIDATE_IP, FILTER_FLAG_IPV6));
     }
 
-    public function testMacAddress()
-    {
+    public function testMacAddress() {
         $this->assertRegExp('/^([0-9A-F]{2}[:]){5}([0-9A-F]{2})$/i', Internet::macAddress());
     }
+
 }

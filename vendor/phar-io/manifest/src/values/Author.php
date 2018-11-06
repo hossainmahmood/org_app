@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class Author {
+
     /**
      * @var string
      */
@@ -26,7 +28,7 @@ class Author {
      * @param Email  $email
      */
     public function __construct($name, Email $email) {
-        $this->name  = $name;
+        $this->name = $name;
         $this->email = $email;
     }
 
@@ -49,9 +51,8 @@ class Author {
      */
     public function __toString() {
         return sprintf(
-            '%s <%s>',
-            $this->name,
-            $this->email
+                '%s <%s>', $this->name, $this->email
         );
     }
+
 }

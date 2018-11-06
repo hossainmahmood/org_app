@@ -5,6 +5,7 @@ namespace PharIo\Manifest;
 use DOMDocument;
 
 class PhpElementTest extends \PHPUnit\Framework\TestCase {
+
     /**
      * @var DOMDocument
      */
@@ -41,7 +42,7 @@ class PhpElementTest extends \PHPUnit\Framework\TestCase {
 
     private function addExtElement() {
         $this->dom->documentElement->appendChild(
-            $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'ext')
+                $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'ext')
         );
     }
 

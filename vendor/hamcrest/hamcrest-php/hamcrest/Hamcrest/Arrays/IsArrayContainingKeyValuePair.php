@@ -1,4 +1,5 @@
 <?php
+
 namespace Hamcrest\Arrays;
 
 /**
@@ -12,23 +13,19 @@ use Hamcrest\Util;
 /**
  * @namespace
  */
-
-class IsArrayContainingKeyValuePair extends TypeSafeMatcher
-{
+class IsArrayContainingKeyValuePair extends TypeSafeMatcher {
 
     private $_keyMatcher;
     private $_valueMatcher;
 
-    public function __construct(Matcher $keyMatcher, Matcher $valueMatcher)
-    {
+    public function __construct(Matcher $keyMatcher, Matcher $valueMatcher) {
         parent::__construct(self::TYPE_ARRAY);
 
         $this->_keyMatcher = $keyMatcher;
         $this->_valueMatcher = $valueMatcher;
     }
 
-    protected function matchesSafely($array)
-    {
+    protected function matchesSafely($array) {
         foreach ($array as $key => $value) {
             if ($this->_keyMatcher->matches($key) && $this->_valueMatcher->matches($value)) {
                 return true;
@@ -38,12 +35,11 @@ class IsArrayContainingKeyValuePair extends TypeSafeMatcher
         return false;
     }
 
-    protected function describeMismatchSafely($array, Description $mismatchDescription)
-    {
+    protected function describeMismatchSafely($array, Description $mismatchDescription) {
         //Not using appendValueList() so that keys can be shown
         $mismatchDescription->appendText('array was ')
-                                                ->appendText('[')
-                                                ;
+                ->appendText('[')
+        ;
         $loop = false;
         foreach ($array as $key => $value) {
             if ($loop) {
@@ -55,14 +51,13 @@ class IsArrayContainingKeyValuePair extends TypeSafeMatcher
         $mismatchDescription->appendText(']');
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendText('array containing [')
-                                ->appendDescriptionOf($this->_keyMatcher)
-                                ->appendText(' => ')
-                                ->appendDescriptionOf($this->_valueMatcher)
-                                ->appendText(']')
-                                ;
+                ->appendDescriptionOf($this->_keyMatcher)
+                ->appendText(' => ')
+                ->appendDescriptionOf($this->_valueMatcher)
+                ->appendText(']')
+        ;
     }
 
     /**
@@ -70,11 +65,10 @@ class IsArrayContainingKeyValuePair extends TypeSafeMatcher
      *
      * @factory hasEntry
      */
-    public static function hasKeyValuePair($key, $value)
-    {
+    public static function hasKeyValuePair($key, $value) {
         return new self(
-            Util::wrapValueWithIsEqual($key),
-            Util::wrapValueWithIsEqual($value)
+                Util::wrapValueWithIsEqual($key), Util::wrapValueWithIsEqual($value)
         );
     }
+
 }

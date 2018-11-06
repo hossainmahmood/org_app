@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\el_CY;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * @var array
      * @link http://www.mof.gov.cy/mof/cystat/statistics.nsf/populationcondition_22main_gr/populationcondition_22main_gr?OpenForm&sub=2&sel=2
@@ -91,7 +91,7 @@ class Person extends \Faker\Provider\Person
         'Φίλιππου', 'Φαίδωνος', 'Φειδία', 'Φοίβου', 'Φώτη',
         'Χαραλάμπους', 'Χαριλάου', 'Χρίστου', 'Χριστοδούλου', 'Χριστοφή', 'Χριστοφόρου', 'Χρυσόστομος', 'Χρύσανθου',
     );
-
     protected static $titleMale = array('κος.', 'κ.');
     protected static $titleFemale = array('δις.', 'δνις.', 'κα.');
+
 }

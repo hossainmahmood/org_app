@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of phpunit/php-timer.
  *
@@ -15,49 +16,41 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \SebastianBergmann\Timer\Timer
  */
-class TimerTest extends TestCase
-{
-    public function testStartStop(): void
-    {
+class TimerTest extends TestCase {
+
+    public function testStartStop(): void {
         $this->assertInternalType('float', Timer::stop());
     }
 
     /**
      * @dataProvider secondsProvider
      */
-    public function testSecondsToTimeString(string $string, string $seconds): void
-    {
+    public function testSecondsToTimeString(string $string, string $seconds): void {
         $this->assertEquals(
-            $string,
-            Timer::secondsToTimeString($seconds)
+                $string, Timer::secondsToTimeString($seconds)
         );
     }
 
-    public function testTimeSinceStartOfRequest(): void
-    {
+    public function testTimeSinceStartOfRequest(): void {
         $this->assertStringMatchesFormat(
-            '%f %s',
-            Timer::timeSinceStartOfRequest()
+                '%f %s', Timer::timeSinceStartOfRequest()
         );
     }
 
-    public function testTimeSinceStartOfRequest2(): void
-    {
+    public function testTimeSinceStartOfRequest2(): void {
         if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
             unset($_SERVER['REQUEST_TIME_FLOAT']);
         }
 
         $this->assertStringMatchesFormat(
-            '%f %s',
-            Timer::timeSinceStartOfRequest()
+                '%f %s', Timer::timeSinceStartOfRequest()
         );
     }
 
     /**
      * @backupGlobals     enabled
      */
-    public function testTimeSinceStartOfRequest3(): void
-    {
+    public function testTimeSinceStartOfRequest3(): void {
         if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
             unset($_SERVER['REQUEST_TIME_FLOAT']);
         }
@@ -71,16 +64,13 @@ class TimerTest extends TestCase
         Timer::timeSinceStartOfRequest();
     }
 
-    public function testResourceUsage(): void
-    {
+    public function testResourceUsage(): void {
         $this->assertStringMatchesFormat(
-            'Time: %s, Memory: %fMB',
-            Timer::resourceUsage()
+                'Time: %s, Memory: %fMB', Timer::resourceUsage()
         );
     }
 
-    public function secondsProvider()
-    {
+    public function secondsProvider() {
         return [
             ['0 ms', 0],
             ['1 ms', .001],
@@ -118,4 +108,5 @@ class TimerTest extends TestCase
             ['2 hours', 7199.9999],
         ];
     }
+
 }

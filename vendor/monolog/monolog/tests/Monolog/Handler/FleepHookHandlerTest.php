@@ -18,8 +18,8 @@ use Monolog\TestCase;
 /**
  * @coversDefaultClass \Monolog\Handler\FleepHookHandler
  */
-class FleepHookHandlerTest extends TestCase
-{
+class FleepHookHandlerTest extends TestCase {
+
     /**
      * Default token to use in tests
      */
@@ -30,8 +30,7 @@ class FleepHookHandlerTest extends TestCase
      */
     private $handler;
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
 
         if (!extension_loaded('openssl')) {
@@ -45,8 +44,7 @@ class FleepHookHandlerTest extends TestCase
     /**
      * @covers ::__construct
      */
-    public function testConstructorSetsExpectedDefaults()
-    {
+    public function testConstructorSetsExpectedDefaults() {
         $this->assertEquals(Logger::DEBUG, $this->handler->getLevel());
         $this->assertEquals(true, $this->handler->getBubble());
     }
@@ -54,8 +52,7 @@ class FleepHookHandlerTest extends TestCase
     /**
      * @covers ::getDefaultFormatter
      */
-    public function testHandlerUsesLineFormatterWhichIgnoresEmptyArrays()
-    {
+    public function testHandlerUsesLineFormatterWhichIgnoresEmptyArrays() {
         $record = array(
             'message' => 'msg',
             'context' => array(),
@@ -78,8 +75,8 @@ class FleepHookHandlerTest extends TestCase
     /**
      * @covers ::__construct
      */
-    public function testConnectionStringisConstructedCorrectly()
-    {
+    public function testConnectionStringisConstructedCorrectly() {
         $this->assertEquals('ssl://' . FleepHookHandler::FLEEP_HOST . ':443', $this->handler->getConnectionString());
     }
+
 }

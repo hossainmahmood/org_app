@@ -5,16 +5,15 @@ namespace TijsVerkoyen\CssToInlineStyles\Css\Rule;
 use Symfony\Component\CssSelector\Node\Specificity;
 use \TijsVerkoyen\CssToInlineStyles\Css\Property\Processor as PropertyProcessor;
 
-class Processor
-{
+class Processor {
+
     /**
      * Split a string into seperate rules
      *
      * @param string $rulesString
      * @return array
      */
-    public function splitIntoSeparateRules($rulesString)
-    {
+    public function splitIntoSeparateRules($rulesString) {
         $rulesString = $this->cleanup($rulesString);
 
         return (array) explode('}', $rulesString);
@@ -24,8 +23,7 @@ class Processor
      * @param string $string
      * @return string
      */
-    private function cleanup($string)
-    {
+    private function cleanup($string) {
         $string = str_replace(array("\r", "\n"), '', $string);
         $string = str_replace(array("\t"), ' ', $string);
         $string = str_replace('"', '\'', $string);
@@ -45,8 +43,7 @@ class Processor
      * @param int    $originalOrder
      * @return array
      */
-    public function convertToObjects($rule, $originalOrder)
-    {
+    public function convertToObjects($rule, $originalOrder) {
         $rule = $this->cleanup($rule);
 
         $chunks = explode('{', $rule);
@@ -63,10 +60,7 @@ class Processor
             $specificity = $this->calculateSpecificityBasedOnASelector($selector);
 
             $rules[] = new Rule(
-                $selector,
-                $propertiesProcessor->convertArrayToObjects($properties, $specificity),
-                $specificity,
-                $originalOrder
+                    $selector, $propertiesProcessor->convertArrayToObjects($properties, $specificity), $specificity, $originalOrder
             );
         }
 
@@ -81,8 +75,7 @@ class Processor
      * @param string $selector
      * @return Specificity
      */
-    public function calculateSpecificityBasedOnASelector($selector)
-    {
+    public function calculateSpecificityBasedOnASelector($selector) {
         $idSelectorsPattern = "  \#";
         $classAttributesPseudoClassesSelectorsPattern = "  (\.[\w]+)                     # classes
                         |
@@ -111,9 +104,7 @@ class Processor
                       )";
 
         return new Specificity(
-            preg_match_all("/{$idSelectorsPattern}/ix", $selector, $matches),
-            preg_match_all("/{$classAttributesPseudoClassesSelectorsPattern}/ix", $selector, $matches),
-            preg_match_all("/{$typePseudoElementsSelectorPattern}/ix", $selector, $matches)
+                preg_match_all("/{$idSelectorsPattern}/ix", $selector, $matches), preg_match_all("/{$classAttributesPseudoClassesSelectorsPattern}/ix", $selector, $matches), preg_match_all("/{$typePseudoElementsSelectorPattern}/ix", $selector, $matches)
         );
     }
 
@@ -121,8 +112,7 @@ class Processor
      * @param array $rules
      * @return Rule[]
      */
-    public function convertArrayToObjects(array $rules, array $objects = array())
-    {
+    public function convertArrayToObjects(array $rules, array $objects = array()) {
         $order = 1;
         foreach ($rules as $rule) {
             $objects = array_merge($objects, $this->convertToObjects($rule, $order));
@@ -140,8 +130,7 @@ class Processor
      * @param  Rule $e1 The first element.
      * @param  Rule $e2 The second element.
      */
-    public static function sortOnSpecificity(Rule $e1, Rule $e2)
-    {
+    public static function sortOnSpecificity(Rule $e1, Rule $e2) {
         $e1Specificity = $e1->getSpecificity();
         $value = $e1Specificity->compareTo($e2->getSpecificity());
 
@@ -152,4 +141,5 @@ class Processor
 
         return $value;
     }
+
 }

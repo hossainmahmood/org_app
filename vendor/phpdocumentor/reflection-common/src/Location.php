@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -15,8 +16,8 @@ namespace phpDocumentor\Reflection;
 /**
  * The location where an element occurs within a file.
  */
-final class Location
-{
+final class Location {
+
     /** @var int  */
     private $lineNumber = 0;
 
@@ -29,9 +30,8 @@ final class Location
      * @param int $lineNumber
      * @param int $columnNumber
      */
-    public function __construct($lineNumber, $columnNumber = 0)
-    {
-        $this->lineNumber   = $lineNumber;
+    public function __construct($lineNumber, $columnNumber = 0) {
+        $this->lineNumber = $lineNumber;
         $this->columnNumber = $columnNumber;
     }
 
@@ -40,8 +40,7 @@ final class Location
      *
      * @return integer
      */
-    public function getLineNumber()
-    {
+    public function getLineNumber() {
         return $this->lineNumber;
     }
 
@@ -50,8 +49,8 @@ final class Location
      *
      * @return integer
      */
-    public function getColumnNumber()
-    {
+    public function getColumnNumber() {
         return $this->columnNumber;
     }
+
 }

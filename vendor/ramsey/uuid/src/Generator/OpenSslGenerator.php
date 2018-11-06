@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -23,16 +24,16 @@ namespace Ramsey\Uuid\Generator;
  *
  * @link http://php.net/openssl_random_pseudo_bytes
  */
-class OpenSslGenerator implements RandomGeneratorInterface
-{
+class OpenSslGenerator implements RandomGeneratorInterface {
+
     /**
      * Generates a string of random binary data of the specified length
      *
      * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
      */
-    public function generate($length)
-    {
+    public function generate($length) {
         return openssl_random_pseudo_bytes($length);
     }
+
 }

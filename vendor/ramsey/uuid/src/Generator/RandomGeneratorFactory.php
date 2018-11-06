@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -17,15 +18,15 @@ namespace Ramsey\Uuid\Generator;
 /**
  * A factory for retrieving a random generator, based on the environment
  */
-class RandomGeneratorFactory
-{
+class RandomGeneratorFactory {
+
     /**
      * Returns a default random generator, based on the current environment
      *
      * @return RandomGeneratorInterface
      */
-    public static function getGenerator()
-    {
+    public static function getGenerator() {
         return new RandomBytesGenerator();
     }
+
 }

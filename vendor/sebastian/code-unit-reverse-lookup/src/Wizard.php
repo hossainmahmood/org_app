@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of code-unit-reverse-lookup.
  *
@@ -13,8 +14,8 @@ namespace SebastianBergmann\CodeUnitReverseLookup;
 /**
  * @since Class available since Release 1.0.0
  */
-class Wizard
-{
+class Wizard {
+
     /**
      * @var array
      */
@@ -36,8 +37,7 @@ class Wizard
      *
      * @return string
      */
-    public function lookup($filename, $lineNumber)
-    {
+    public function lookup($filename, $lineNumber) {
         if (!isset($this->lookupTable[$filename][$lineNumber])) {
             $this->updateLookupTable();
         }
@@ -49,14 +49,12 @@ class Wizard
         }
     }
 
-    private function updateLookupTable()
-    {
+    private function updateLookupTable() {
         $this->processClassesAndTraits();
         $this->processFunctions();
     }
 
-    private function processClassesAndTraits()
-    {
+    private function processClassesAndTraits() {
         foreach (array_merge(get_declared_classes(), get_declared_traits()) as $classOrTrait) {
             if (isset($this->processedClasses[$classOrTrait])) {
                 continue;
@@ -72,8 +70,7 @@ class Wizard
         }
     }
 
-    private function processFunctions()
-    {
+    private function processFunctions() {
         foreach (get_defined_functions()['user'] as $function) {
             if (isset($this->processedFunctions[$function])) {
                 continue;
@@ -88,8 +85,7 @@ class Wizard
     /**
      * @param \ReflectionFunctionAbstract $functionOrMethod
      */
-    private function processFunctionOrMethod(\ReflectionFunctionAbstract $functionOrMethod)
-    {
+    private function processFunctionOrMethod(\ReflectionFunctionAbstract $functionOrMethod) {
         if ($functionOrMethod->isInternal()) {
             return;
         }
@@ -108,4 +104,5 @@ class Wizard
             $this->lookupTable[$functionOrMethod->getFileName()][$line] = $name;
         }
     }
+
 }

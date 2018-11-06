@@ -5,8 +5,8 @@ namespace Faker\Provider\en_ZA;
 /**
  * Class Company.
  */
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $legalEntities = array(
         '01', '02', '06', '07', '08', '09', '10', '11', '12', '14', '15', '16', '17', '20', '21', '22', '23', '24', '25',
         '26', '30', '31', '80',
@@ -17,13 +17,10 @@ class Company extends \Faker\Provider\Company
      *
      * @return string
      */
-    public function companyNumber()
-    {
+    public function companyNumber() {
         return sprintf(
-            '%s/%s/%s',
-            \Faker\Provider\DateTime::dateTimeBetween('-50 years', 'now')->format('Y'),
-            static::randomNumber(6, true),
-            static::randomElement(static::$legalEntities)
+                '%s/%s/%s', \Faker\Provider\DateTime::dateTimeBetween('-50 years', 'now')->format('Y'), static::randomNumber(6, true), static::randomElement(static::$legalEntities)
         );
     }
+
 }

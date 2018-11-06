@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -20,18 +21,18 @@ namespace Ramsey\Uuid\Generator;
  *
  * @link https://pecl.php.net/package/uuid
  */
-class PeclUuidRandomGenerator implements RandomGeneratorInterface
-{
+class PeclUuidRandomGenerator implements RandomGeneratorInterface {
+
     /**
      * Generates a string of random binary data of the specified length
      *
      * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
      */
-    public function generate($length)
-    {
+    public function generate($length) {
         $uuid = uuid_create(UUID_TYPE_RANDOM);
 
         return uuid_parse($uuid);
     }
+
 }

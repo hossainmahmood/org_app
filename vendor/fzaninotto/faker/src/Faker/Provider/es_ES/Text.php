@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\es_ES;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * Benito Pérez Galdós
      * Tarfalgar
@@ -684,4 +684,5 @@ Todo lo que estaba viendo me parecía expresar la felicidad de los esposos y com
 Mi propósito era inquebrantable.
 Sin perder tiempo salí de Medinasidonia, decidido a no servir ni en aquella casa ni en la de Vejer. Después de reflexionar un poco, determiné ir a Cádiz para desde allí trasladarme a Madrid. Así lo hice, venciendo los halagos de Doña Flora, que trató de atarme con una cadena formada de las marchitas rosas de su amor; y desde aquel día, ¡cuántas cosas me han pasado dignas de ser referidas! Mi destino, que ya me había llevado a Trafalgar, llevome después a otros escenarios gloriosos o menguados, pero todos dignos de memoria. ¿Queréis saber mi vida entera? Pues aguardad un poco, y os diré algo más en otro libro.
 EOT;
+
 }

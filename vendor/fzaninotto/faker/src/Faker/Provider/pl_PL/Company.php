@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\pl_PL;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{lastName}}',
         '{{lastName}}',
@@ -14,16 +14,13 @@ class Company extends \Faker\Provider\Company
         '{{companyPrefix}} {{lastName}}',
         '{{lastName}}-{{lastName}}',
     );
-
     protected static $companySuffix = array('S.A.', 'i syn', 'sp. z o.o.', 'sp. j.', 'sp. p.', 'sp. k.', 'S.K.A', 's. c.', 'P.P.O.F');
-
     protected static $companyPrefix = array('Grupa', 'Fundacja', 'Stowarzyszenie', 'Spółdzielnia');
 
     /**
      * @example 'Grupa'
      */
-    public static function companyPrefix()
-    {
+    public static function companyPrefix() {
         return static::randomElement(static::$companyPrefix);
     }
 
@@ -32,8 +29,8 @@ class Company extends \Faker\Provider\Company
      * @link http://pl.wikipedia.org/wiki/REGON
      * @return 9 digit number
      */
-    public static function regon()
-    {
+
+    public static function regon() {
         $weights = array(8, 9, 2, 3, 4, 5, 6, 7);
         $regionNumber = static::numberBetween(0, 49) * 2 + 1;
         $result = array((int) ($regionNumber / 10), $regionNumber % 10);
@@ -58,8 +55,7 @@ class Company extends \Faker\Provider\Company
      * @link http://pl.wikipedia.org/wiki/REGON
      * @return 14 digit number
      */
-    public static function regonLocal()
-    {
+    public static function regonLocal() {
         $weights = array(2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8);
         $result = str_split(static::regon());
         for ($i = count($result), $size = count($weights); $i < $size; $i++) {
@@ -77,4 +73,5 @@ class Company extends \Faker\Provider\Company
 
         return implode('', $result);
     }
+
 }

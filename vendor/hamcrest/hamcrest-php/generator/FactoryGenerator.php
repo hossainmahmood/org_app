@@ -1,7 +1,7 @@
 <?php
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
@@ -10,8 +10,8 @@
  *
  * Uses File_Iterator to scan for PHP files.
  */
-class FactoryGenerator
-{
+class FactoryGenerator {
+
     /**
      * Path to the Hamcrest PHP files to process.
      *
@@ -24,19 +24,16 @@ class FactoryGenerator
      */
     private $factoryFiles;
 
-    public function __construct($path)
-    {
+    public function __construct($path) {
         $this->path = $path;
         $this->factoryFiles = array();
     }
 
-    public function addFactoryFile(FactoryFile $factoryFile)
-    {
+    public function addFactoryFile(FactoryFile $factoryFile) {
         $this->factoryFiles[] = $factoryFile;
     }
 
-    public function generate()
-    {
+    public function generate() {
         $classes = $this->getClassesWithFactoryMethods();
         foreach ($classes as $class) {
             foreach ($class->getMethods() as $method) {
@@ -49,16 +46,14 @@ class FactoryGenerator
         }
     }
 
-    public function write()
-    {
+    public function write() {
         foreach ($this->factoryFiles as $file) {
             $file->build();
             $file->write();
         }
     }
 
-    public function getClassesWithFactoryMethods()
-    {
+    public function getClassesWithFactoryMethods() {
         $classes = array();
         $files = $this->getSortedFiles();
         foreach ($files as $file) {
@@ -71,8 +66,7 @@ class FactoryGenerator
         return $classes;
     }
 
-    public function getSortedFiles()
-    {
+    public function getSortedFiles() {
         $iter = \File_Iterator_Factory::getFileIterator($this->path, '.php');
         $files = array();
         foreach ($iter as $file) {
@@ -83,8 +77,7 @@ class FactoryGenerator
         return $files;
     }
 
-    public function getFactoryClass($file)
-    {
+    public function getFactoryClass($file) {
         $name = $this->getFactoryClassName($file);
         if ($name !== null) {
             require_once $file;
@@ -100,16 +93,14 @@ class FactoryGenerator
         return null;
     }
 
-    public function getFactoryClassName($file)
-    {
+    public function getFactoryClassName($file) {
         $content = file_get_contents($file);
-        if (preg_match('/namespace\s+(.+);/', $content, $namespace)
-            && preg_match('/\n\s*class\s+(\w+)\s+extends\b/', $content, $className)
-            && preg_match('/@factory\b/', $content)
+        if (preg_match('/namespace\s+(.+);/', $content, $namespace) && preg_match('/\n\s*class\s+(\w+)\s+extends\b/', $content, $className) && preg_match('/@factory\b/', $content)
         ) {
             return $namespace[1] . '\\' . $className[1];
         }
 
         return null;
     }
+
 }

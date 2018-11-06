@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,8 +12,8 @@
 
 namespace SebastianBergmann\Diff\Output;
 
-abstract class AbstractChunkOutputBuilder implements DiffOutputBuilderInterface
-{
+abstract class AbstractChunkOutputBuilder implements DiffOutputBuilderInterface {
+
     /**
      * Takes input of the diff array and returns the common parts.
      * Iterates through diff line by line.
@@ -21,20 +23,19 @@ abstract class AbstractChunkOutputBuilder implements DiffOutputBuilderInterface
      *
      * @return array
      */
-    protected function getCommonChunks(array $diff, int $lineThreshold = 5): array
-    {
-        $diffSize     = \count($diff);
-        $capturing    = false;
-        $chunkStart   = 0;
-        $chunkSize    = 0;
+    protected function getCommonChunks(array $diff, int $lineThreshold = 5): array {
+        $diffSize = \count($diff);
+        $capturing = false;
+        $chunkStart = 0;
+        $chunkSize = 0;
         $commonChunks = [];
 
         for ($i = 0; $i < $diffSize; ++$i) {
             if ($diff[$i][1] === 0 /* OLD */) {
                 if ($capturing === false) {
-                    $capturing  = true;
+                    $capturing = true;
                     $chunkStart = $i;
-                    $chunkSize  = 0;
+                    $chunkSize = 0;
                 } else {
                     ++$chunkSize;
                 }
@@ -53,4 +54,5 @@ abstract class AbstractChunkOutputBuilder implements DiffOutputBuilderInterface
 
         return $commonChunks;
     }
+
 }

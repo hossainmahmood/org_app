@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fa_IR;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * generates text string in arabic
      *
@@ -13,8 +13,7 @@ class Text extends \Faker\Provider\Text
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function realText($maxNbChars = 200, $indexSize = 2)
-    {
+    public function realText($maxNbChars = 200, $indexSize = 2) {
         if ($maxNbChars < 10) {
             throw new \InvalidArgumentException('maxNbChars must be at least 10');
         }
@@ -57,7 +56,7 @@ class Text extends \Faker\Provider\Text
         // build result
         $result = implode(' ', $result);
 
-        return $result.'.';
+        return $result . '.';
     }
 
     /**
@@ -543,4 +542,5 @@ class Text extends \Faker\Provider\Text
 
 که عرق سرد بر بدن من نشست. چایی‌ام را که خوردم، روی همان کاغذ نشان‌دار دادگستری استعفانامه‌ام را نوشتم و به نام هم‌کلاسی پخمه‌ام که تازه رئیس شده بود، دم در پست کردم.
 EOT;
+
 }
