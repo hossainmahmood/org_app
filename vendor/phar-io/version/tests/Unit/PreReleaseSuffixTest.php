@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \PharIo\Version\PreReleaseSuffix
  */
 class PreReleaseSuffixTest extends TestCase {
+
     /**
      * @dataProvider greaterThanProvider
      *
@@ -16,9 +17,7 @@ class PreReleaseSuffixTest extends TestCase {
      * @param bool $expectedResult
      */
     public function testGreaterThanReturnsExpectedResult(
-        $leftSuffixValue,
-        $rightSuffixValue,
-        $expectedResult
+    $leftSuffixValue, $rightSuffixValue, $expectedResult
     ) {
         $leftSuffix = new PreReleaseSuffix($leftSuffixValue);
         $rightSuffix = new PreReleaseSuffix($rightSuffixValue);
@@ -43,4 +42,5 @@ class PreReleaseSuffixTest extends TestCase {
             ['alpha.3', 'alpha.2', true],
         ];
     }
+
 }

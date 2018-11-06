@@ -17,23 +17,20 @@ use Monolog\Logger;
 /**
  * @covers Monolog\Handler\BrowserConsoleHandlerTest
  */
-class BrowserConsoleHandlerTest extends TestCase
-{
-    protected function setUp()
-    {
+class BrowserConsoleHandlerTest extends TestCase {
+
+    protected function setUp() {
         BrowserConsoleHandler::reset();
     }
 
-    protected function generateScript()
-    {
+    protected function generateScript() {
         $reflMethod = new \ReflectionMethod('Monolog\Handler\BrowserConsoleHandler', 'generateScript');
         $reflMethod->setAccessible(true);
 
         return $reflMethod->invoke(null);
     }
 
-    public function testStyling()
-    {
+    public function testStyling() {
         $handler = new BrowserConsoleHandler();
         $handler->setFormatter($this->getIdentityFormatter());
 
@@ -48,8 +45,7 @@ EOF;
         $this->assertEquals($expected, $this->generateScript());
     }
 
-    public function testEscaping()
-    {
+    public function testEscaping() {
         $handler = new BrowserConsoleHandler();
         $handler->setFormatter($this->getIdentityFormatter());
 
@@ -64,8 +60,7 @@ EOF;
         $this->assertEquals($expected, $this->generateScript());
     }
 
-    public function testAutolabel()
-    {
+    public function testAutolabel() {
         $handler = new BrowserConsoleHandler();
         $handler->setFormatter($this->getIdentityFormatter());
 
@@ -84,8 +79,7 @@ EOF;
         $this->assertEquals($expected, $this->generateScript());
     }
 
-    public function testContext()
-    {
+    public function testContext() {
         $handler = new BrowserConsoleHandler();
         $handler->setFormatter($this->getIdentityFormatter());
 
@@ -103,8 +97,7 @@ EOF;
         $this->assertEquals($expected, $this->generateScript());
     }
 
-    public function testConcurrentHandlers()
-    {
+    public function testConcurrentHandlers() {
         $handler1 = new BrowserConsoleHandler();
         $handler1->setFormatter($this->getIdentityFormatter());
 
@@ -127,4 +120,5 @@ EOF;
 
         $this->assertEquals($expected, $this->generateScript());
     }
+
 }

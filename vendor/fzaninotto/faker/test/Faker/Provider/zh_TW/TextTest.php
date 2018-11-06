@@ -4,12 +4,11 @@ namespace Faker\Test\Provider\zh_TW;
 
 use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
-{
+class TextTest extends TestCase {
+
     private $textClass;
 
-    public function setUp()
-    {
+    public function setUp() {
         $this->textClass = new \ReflectionClass('Faker\Provider\zh_TW\Text');
     }
 
@@ -22,31 +21,25 @@ class TextTest extends TestCase
     }
 
     /** @test */
-    function testItShouldExplodeTheStringToArray()
-    {
+    function testItShouldExplodeTheStringToArray() {
         $this->assertSame(
-            array('中', '文', '測', '試', '真', '有', '趣'),
-            $this->getMethod('explode')->invokeArgs(null, array('中文測試真有趣'))
+                array('中', '文', '測', '試', '真', '有', '趣'), $this->getMethod('explode')->invokeArgs(null, array('中文測試真有趣'))
         );
 
         $this->assertSame(
-            array('標', '點', '，', '符', '號', '！'),
-            $this->getMethod('explode')->invokeArgs(null, array('標點，符號！'))
+                array('標', '點', '，', '符', '號', '！'), $this->getMethod('explode')->invokeArgs(null, array('標點，符號！'))
         );
     }
 
     /** @test */
-    function testItShouldReturnTheStringLength()
-    {
+    function testItShouldReturnTheStringLength() {
         $this->assertContains(
-            $this->getMethod('strlen')->invokeArgs(null, array('中文測試真有趣')),
-            array(7, 21)
+                $this->getMethod('strlen')->invokeArgs(null, array('中文測試真有趣')), array(7, 21)
         );
     }
 
     /** @test */
-    function testItShouldReturnTheCharacterIsValidStartOrNot()
-    {
+    function testItShouldReturnTheCharacterIsValidStartOrNot() {
         $this->assertTrue($this->getMethod('validStart')->invokeArgs(null, array('中')));
 
         $this->assertTrue($this->getMethod('validStart')->invokeArgs(null, array('2')));
@@ -59,21 +52,18 @@ class TextTest extends TestCase
     }
 
     /** @test */
-    function testItShouldAppendEndPunctToTheEndOfString()
-    {
+    function testItShouldAppendEndPunctToTheEndOfString() {
         $this->assertSame(
-            '中文測試真有趣。',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣'))
+                '中文測試真有趣。', $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣'))
         );
 
         $this->assertSame(
-            '中文測試真有趣。',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣，'))
+                '中文測試真有趣。', $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣，'))
         );
 
         $this->assertSame(
-            '中文測試真有趣！',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣！'))
+                '中文測試真有趣！', $this->getMethod('appendEnd')->invokeArgs(null, array('中文測試真有趣！'))
         );
     }
+
 }

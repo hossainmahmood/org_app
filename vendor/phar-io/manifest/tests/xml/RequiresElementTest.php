@@ -5,6 +5,7 @@ namespace PharIo\Manifest;
 use DOMDocument;
 
 class RequiresElementTest extends \PHPUnit\Framework\TestCase {
+
     /**
      * @var DOMDocument
      */
@@ -28,7 +29,7 @@ class RequiresElementTest extends \PHPUnit\Framework\TestCase {
 
     public function testHasExtElementsReturnsTrueWhenExtensionsAreRequired() {
         $this->dom->documentElement->appendChild(
-            $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'php')
+                $this->dom->createElementNS('https://phar.io/xml/manifest/1.0', 'php')
         );
 
         $this->assertInstanceOf(PhpElement::class, $this->requires->getPHPElement());

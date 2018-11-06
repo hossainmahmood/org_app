@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use SebastianBergmann\Exporter\Exporter;
@@ -14,8 +16,8 @@ use SebastianBergmann\Exporter\Exporter;
 /**
  * Abstract base class for comparators which compare values for equality.
  */
-abstract class Comparator
-{
+abstract class Comparator {
+
     /**
      * @var Factory
      */
@@ -26,13 +28,11 @@ abstract class Comparator
      */
     protected $exporter;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->exporter = new Exporter;
     }
 
-    public function setFactory(Factory $factory)
-    {
+    public function setFactory(Factory $factory) {
         $this->factory = $factory;
     }
 

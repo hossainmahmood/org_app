@@ -2,15 +2,14 @@
 
 namespace Faker\Provider\fa_IR;
 
-class Internet extends \Faker\Provider\Internet
-{
+class Internet extends \Faker\Provider\Internet {
+
     protected static $userNameFormats = array(
         '{{lastNameAscii}}.{{firstNameAscii}}',
         '{{firstNameAscii}}.{{lastNameAscii}}',
         '{{firstNameAscii}}##',
         '?{{lastNameAscii}}',
     );
-
     protected static $safeEmailTld = array(
         'com', 'ir', 'me', 'net', 'org',
     );
@@ -72,21 +71,18 @@ class Internet extends \Faker\Provider\Internet
         'zahra', 'zarine', 'zeynab', 'zhila',
     );
 
-    public static function lastNameAscii()
-    {
+    public static function lastNameAscii() {
         return static::randomElement(static::$lastNameAscii);
     }
 
-    public static function firstNameAscii()
-    {
+    public static function firstNameAscii() {
         return static::randomElement(static::$firstNameAscii);
     }
 
     /**
      * @example 'ali.rezaei'
      */
-    public function userName()
-    {
+    public function userName() {
         $format = static::randomElement(static::$userNameFormats);
 
         return static::bothify($this->generator->parse($format));
@@ -95,8 +91,8 @@ class Internet extends \Faker\Provider\Internet
     /**
      * @example 'ahmad.ir'
      */
-    public function domainName()
-    {
+    public function domainName() {
         return static::randomElement(static::$lastNameAscii) . '.' . $this->tld();
     }
+
 }

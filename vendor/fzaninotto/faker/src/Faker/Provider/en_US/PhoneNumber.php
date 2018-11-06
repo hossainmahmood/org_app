@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_US;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     /**
      * @see https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#United_States.2C_Canada.2C_and_other_NANP_countries
      */
@@ -14,29 +14,24 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+1-{{areaCode}}-{{exchangeCode}}-####',
         '+1.{{areaCode}}.{{exchangeCode}}.####',
         '+1{{areaCode}}{{exchangeCode}}####',
-
         // Standard formats
         '{{areaCode}}-{{exchangeCode}}-####',
         '({{areaCode}}) {{exchangeCode}}-####',
         '1-{{areaCode}}-{{exchangeCode}}-####',
         '{{areaCode}}.{{exchangeCode}}.####',
-
         '{{areaCode}}-{{exchangeCode}}-####',
         '({{areaCode}}) {{exchangeCode}}-####',
         '1-{{areaCode}}-{{exchangeCode}}-####',
         '{{areaCode}}.{{exchangeCode}}.####',
-
         // Extensions
         '{{areaCode}}-{{exchangeCode}}-#### x###',
         '({{areaCode}}) {{exchangeCode}}-#### x###',
         '1-{{areaCode}}-{{exchangeCode}}-#### x###',
         '{{areaCode}}.{{exchangeCode}}.#### x###',
-
         '{{areaCode}}-{{exchangeCode}}-#### x####',
         '({{areaCode}}) {{exchangeCode}}-#### x####',
         '1-{{areaCode}}-{{exchangeCode}}-#### x####',
         '{{areaCode}}.{{exchangeCode}}.#### x####',
-
         '{{areaCode}}-{{exchangeCode}}-#### x#####',
         '({{areaCode}}) {{exchangeCode}}-#### x#####',
         '1-{{areaCode}}-{{exchangeCode}}-#### x#####',
@@ -57,13 +52,11 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '{{tollFreeAreaCode}}.{{exchangeCode}}.####',
     );
 
-    public function tollFreeAreaCode()
-    {
+    public function tollFreeAreaCode() {
         return self::randomElement(static::$tollFreeAreaCodes);
     }
 
-    public function tollFreePhoneNumber()
-    {
+    public function tollFreePhoneNumber() {
         $format = self::randomElement(static::$tollFreeFormats);
 
         return self::numerify($this->generator->parse($format));
@@ -76,8 +69,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      *
      * @return string
      */
-    public static function areaCode()
-    {
+    public static function areaCode() {
         $digits[] = self::numberBetween(2, 9);
         $digits[] = self::randomDigit();
         $digits[] = self::randomDigitNot($digits[1]);
@@ -92,8 +84,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      *
      * @return string
      */
-    public static function exchangeCode()
-    {
+    public static function exchangeCode() {
         $digits[] = self::numberBetween(2, 9);
         $digits[] = self::randomDigit();
 
@@ -105,4 +96,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
 
         return join('', $digits);
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ar_SA;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $streetPrefix = array('شارع', 'طريق', 'ممر');
 
     /**
@@ -45,9 +45,7 @@ class Address extends \Faker\Provider\Address
         'الباحة', 'بلجرشي', 'المندق', 'المخواة', 'قلوة', 'العقيق', 'القرى', 'غامد الزناد', 'الحجرة', 'بني حسن',
         'سكاكا', 'القريات', 'دومة الجندل', 'طبرجل'
     );
-
     protected static $buildingNumber = array('#####', '####', '##');
-
     protected static $postcode = array('#####', '#####-####');
 
     /**
@@ -76,71 +74,61 @@ class Address extends \Faker\Provider\Address
         'هايتي', 'هندوراس', 'هولندا', 'هونج كونج الصينية',
         'وسط آسيا', 'وسط افريقيا',
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{streetPrefix}} {{firstName}} {{lastName}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{buildingNumber}} {{streetName}}',
         '{{buildingNumber}} {{streetName}} {{secondaryAddress}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}\n{{city}}",
     );
-
     protected static $secondaryAddressFormats = array('شقة رقم. ##', 'عمارة رقم ##');
 
     /**
      * @example 'شرق'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example 'الرياض'
      */
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$cityName);
     }
 
     /**
      * @example 'شارع'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'شقة رقم. 350'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'منطقة الرياض'
      */
-    public static function subdivision()
-    {
+    public static function subdivision() {
         return static::randomElement(static::$subdivisions);
     }
 
     /**
      * @example 'منطقة الرياض'
      */
-    public static function governorate()
-    {
+    public static function governorate() {
         return static::randomElement(static::$governorates);
     }
+
 }

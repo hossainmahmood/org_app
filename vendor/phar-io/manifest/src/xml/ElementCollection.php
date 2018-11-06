@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -14,11 +15,11 @@ use DOMElement;
 use DOMNodeList;
 
 abstract class ElementCollection implements \Iterator {
+
     /**
      * @var DOMNodeList
      */
     private $nodeList;
-
     private $position;
 
     /**
@@ -55,4 +56,5 @@ abstract class ElementCollection implements \Iterator {
     public function rewind() {
         $this->position = 0;
     }
+
 }

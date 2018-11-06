@@ -2,8 +2,7 @@
 
 namespace Faker\ORM\CakePHP;
 
-class Populator
-{
+class Populator {
 
     protected $generator;
     protected $entities = [];
@@ -13,32 +12,28 @@ class Populator
     /**
      * @param \Faker\Generator $generator
      */
-    public function __construct(\Faker\Generator $generator)
-    {
+    public function __construct(\Faker\Generator $generator) {
         $this->generator = $generator;
     }
 
     /**
      * @return \Faker\Generator
      */
-    public function getGenerator()
-    {
+    public function getGenerator() {
         return $this->generator;
     }
 
     /**
      * @return array
      */
-    public function getGuessers()
-    {
+    public function getGuessers() {
         return $this->guessers;
     }
 
     /**
      * @return $this
      */
-    public function removeGuesser($name)
-    {
+    public function removeGuesser($name) {
         if ($this->guessers[$name]) {
             unset($this->guessers[$name]);
         }
@@ -49,8 +44,7 @@ class Populator
      * @return $this
      * @throws \Exception
      */
-    public function addGuesser($class)
-    {
+    public function addGuesser($class) {
         if (!is_object($class)) {
             $class = new $class($this->generator);
         }
@@ -68,8 +62,7 @@ class Populator
      * @param array $customModifiers
      * @return $this
      */
-    public function addEntity($entity, $number, $customColumnFormatters = [], $customModifiers = [])
-    {
+    public function addEntity($entity, $number, $customColumnFormatters = [], $customModifiers = []) {
         if (!$entity instanceof EntityPopulator) {
             $entity = new EntityPopulator($entity);
         }
@@ -94,8 +87,7 @@ class Populator
      * @param array $options
      * @return array
      */
-    public function execute($options = [])
-    {
+    public function execute($options = []) {
         $insertedEntities = [];
 
         foreach ($this->quantities as $class => $number) {
@@ -106,4 +98,5 @@ class Populator
 
         return $insertedEntities;
     }
+
 }

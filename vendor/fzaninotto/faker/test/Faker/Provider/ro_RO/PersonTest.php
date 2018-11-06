@@ -7,8 +7,8 @@ use Faker\Provider\DateTime;
 use Faker\Provider\ro_RO\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
+
     const TEST_CNP_REGEX = '/^[1-9][0-9]{2}(?:0[1-9]|1[012])(?:0[1-9]|[12][0-9]|3[01])(?:0[1-9]|[123][0-9]|4[0-6]|5[12])[0-9]{3}[0-9]$/';
 
     /**
@@ -17,8 +17,7 @@ class PersonTest extends TestCase
      */
     protected $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new DateTime($faker));
         $faker->addProvider(new Person($faker));
@@ -26,13 +25,11 @@ class PersonTest extends TestCase
         $this->faker = $faker;
     }
 
-    public function tearDown()
-    {
+    public function tearDown() {
         $this->faker->setDefaultTimezone();
     }
 
-    public function invalidGenderProvider()
-    {
+    public function invalidGenderProvider() {
         return array(
             array('elf'),
             array('ent'),
@@ -41,8 +38,7 @@ class PersonTest extends TestCase
         );
     }
 
-    public function invalidYearProvider()
-    {
+    public function invalidYearProvider() {
         return array(
             array(1652),
             array(1799),
@@ -51,8 +47,7 @@ class PersonTest extends TestCase
         );
     }
 
-    public function validYearProvider()
-    {
+    public function validYearProvider() {
         return array(
             array(null),
             array(''),
@@ -65,8 +60,7 @@ class PersonTest extends TestCase
         );
     }
 
-    public function validCountyCodeProvider()
-    {
+    public function validCountyCodeProvider() {
         return array(
             array('AB'), array('AR'), array('AG'), array('B'), array('BC'), array('BH'), array('BN'), array('BT'),
             array('BV'), array('BR'), array('BZ'), array('CS'), array('CL'), array('CJ'), array('CT'), array('CV'),
@@ -77,49 +71,43 @@ class PersonTest extends TestCase
         );
     }
 
-    public function invalidCountyCodeProvider()
-    {
+    public function invalidCountyCodeProvider() {
         return array(
             array('JK'), array('REW'), array('x'), array('FF'), array('aaaddadaada')
         );
     }
 
-    public function validInputDataProvider()
-    {
+    public function validInputDataProvider() {
         return array(
-            array(Person::GENDER_MALE, '1981-06-16','B2', true, '181061642'),
-            array(Person::GENDER_FEMALE, '1981-06-16','B2', true, '281061642'),
-            array(Person::GENDER_MALE, '1981-06-16','B2', false, '981061642'),
-            array(Person::GENDER_FEMALE, '1981-06-16','B2', false, '981061642'),
-        );
-    }
-    /**
-     *
-     */
-    public function test_allRandom_returnsValidCnp()
-    {
-        $cnp = $this->faker->cnp;
-        $this->assertTrue(
-            $this->isValidCnp($cnp),
-            sprintf("Invalid CNP '%' generated", $cnp)
+            array(Person::GENDER_MALE, '1981-06-16', 'B2', true, '181061642'),
+            array(Person::GENDER_FEMALE, '1981-06-16', 'B2', true, '281061642'),
+            array(Person::GENDER_MALE, '1981-06-16', 'B2', false, '981061642'),
+            array(Person::GENDER_FEMALE, '1981-06-16', 'B2', false, '981061642'),
         );
     }
 
     /**
      *
      */
-    public function test_validGender_returnsValidCnp()
-    {
+    public function test_allRandom_returnsValidCnp() {
+        $cnp = $this->faker->cnp;
+        $this->assertTrue(
+                $this->isValidCnp($cnp), sprintf("Invalid CNP '%' generated", $cnp)
+        );
+    }
+
+    /**
+     *
+     */
+    public function test_validGender_returnsValidCnp() {
         $cnp = $this->faker->cnp(Person::GENDER_MALE);
         $this->assertTrue(
-            $this->isValidMaleCnp($cnp),
-            sprintf("Invalid CNP '%' generated for '%s' gender", $cnp, Person::GENDER_MALE)
+                $this->isValidMaleCnp($cnp), sprintf("Invalid CNP '%' generated for '%s' gender", $cnp, Person::GENDER_MALE)
         );
 
         $cnp = $this->faker->cnp(Person::GENDER_FEMALE);
         $this->assertTrue(
-            $this->isValidFemaleCnp($cnp),
-            sprintf("Invalid CNP '%' generated for '%s' gender", $cnp, Person::GENDER_FEMALE)
+                $this->isValidFemaleCnp($cnp), sprintf("Invalid CNP '%' generated for '%s' gender", $cnp, Person::GENDER_FEMALE)
         );
     }
 
@@ -128,8 +116,7 @@ class PersonTest extends TestCase
      *
      * @dataProvider invalidGenderProvider
      */
-    public function test_invalidGender_throwsException($value)
-    {
+    public function test_invalidGender_throwsException($value) {
         $this->setExpectedException('InvalidArgumentException');
         $this->faker->cnp($value);
     }
@@ -139,12 +126,10 @@ class PersonTest extends TestCase
      *
      * @dataProvider validYearProvider
      */
-    public function test_validYear_returnsValidCnp($value)
-    {
+    public function test_validYear_returnsValidCnp($value) {
         $cnp = $this->faker->cnp(null, $value);
         $this->assertTrue(
-            $this->isValidCnp($cnp),
-            sprintf("Invalid CNP '%' generated for valid year '%s'", $cnp, $value)
+                $this->isValidCnp($cnp), sprintf("Invalid CNP '%' generated for valid year '%s'", $cnp, $value)
         );
     }
 
@@ -153,8 +138,7 @@ class PersonTest extends TestCase
      *
      * @dataProvider invalidYearProvider
      */
-    public function test_invalidYear_throwsException($value)
-    {
+    public function test_invalidYear_throwsException($value) {
         $this->setExpectedException('InvalidArgumentException');
         $this->faker->cnp(null, $value);
     }
@@ -163,12 +147,10 @@ class PersonTest extends TestCase
      * @param $value
      * @dataProvider validCountyCodeProvider
      */
-    public function test_validCountyCode_returnsValidCnp($value)
-    {
+    public function test_validCountyCode_returnsValidCnp($value) {
         $cnp = $this->faker->cnp(null, null, $value);
         $this->assertTrue(
-            $this->isValidCnp($cnp),
-            sprintf("Invalid CNP '%' generated for valid year '%s'", $cnp, $value)
+                $this->isValidCnp($cnp), sprintf("Invalid CNP '%' generated for valid year '%s'", $cnp, $value)
         );
     }
 
@@ -176,8 +158,7 @@ class PersonTest extends TestCase
      * @param $value
      * @dataProvider invalidCountyCodeProvider
      */
-    public function test_invalidCountyCode_throwsException($value)
-    {
+    public function test_invalidCountyCode_throwsException($value) {
         $this->setExpectedException('InvalidArgumentException');
         $this->faker->cnp(null, null, $value);
     }
@@ -185,17 +166,13 @@ class PersonTest extends TestCase
     /**
      *
      */
-    public function test_nonResident_returnsValidCnp()
-    {
+    public function test_nonResident_returnsValidCnp() {
         $cnp = $this->faker->cnp(null, null, null, false);
         $this->assertTrue(
-            $this->isValidCnp($cnp),
-            sprintf("Invalid CNP '%' generated for non resident", $cnp)
+                $this->isValidCnp($cnp), sprintf("Invalid CNP '%' generated for non resident", $cnp)
         );
         $this->assertStringStartsWith(
-            '9',
-            $cnp,
-            sprintf("Invalid CNP '%' generated for non resident (should start with 9)", $cnp)
+                '9', $cnp, sprintf("Invalid CNP '%' generated for non resident (should start with 9)", $cnp)
         );
     }
 
@@ -209,35 +186,28 @@ class PersonTest extends TestCase
      *
      * @dataProvider validInputDataProvider
      */
-    public function test_validInputData_returnsValidCnp($gender, $dateOfBirth, $county, $isResident, $expectedCnpStart)
-    {
+    public function test_validInputData_returnsValidCnp($gender, $dateOfBirth, $county, $isResident, $expectedCnpStart) {
         $cnp = $this->faker->cnp($gender, $dateOfBirth, $county, $isResident);
         $this->assertStringStartsWith(
-            $expectedCnpStart,
-            $cnp,
-            sprintf("Invalid CNP '%' generated for non valid data", $cnp)
+                $expectedCnpStart, $cnp, sprintf("Invalid CNP '%' generated for non valid data", $cnp)
         );
     }
 
-
-    protected function isValidFemaleCnp($value)
-    {
+    protected function isValidFemaleCnp($value) {
         return $this->isValidCnp($value) && in_array($value[0], array(2, 4, 6, 8, 9));
     }
 
-    protected function isValidMaleCnp($value)
-    {
+    protected function isValidMaleCnp($value) {
         return $this->isValidCnp($value) && in_array($value[0], array(1, 3, 5, 7, 9));
     }
 
-    protected function isValidCnp($cnp)
-    {
+    protected function isValidCnp($cnp) {
         if (preg_match(static::TEST_CNP_REGEX, $cnp) !== false) {
             $checkNumber = 279146358279;
 
             $checksum = 0;
             foreach (range(0, 11) as $digit) {
-                $checksum += (int)substr($cnp, $digit, 1) * (int)substr($checkNumber, $digit, 1);
+                $checksum += (int) substr($cnp, $digit, 1) * (int) substr($checkNumber, $digit, 1);
             }
             $checksum = $checksum % 11;
             $checksum = $checksum == 10 ? 1 : $checksum;
@@ -249,4 +219,5 @@ class PersonTest extends TestCase
 
         return false;
     }
+
 }

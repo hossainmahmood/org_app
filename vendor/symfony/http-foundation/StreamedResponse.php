@@ -111,7 +111,7 @@ class StreamedResponse extends Response
             throw new \LogicException('The Response callback must not be null.');
         }
 
-        call_user_func($this->callback);
+        \call_user_func($this->callback);
 
         return $this;
     }
@@ -129,6 +129,8 @@ class StreamedResponse extends Response
             throw new \LogicException('The content cannot be set on a StreamedResponse instance.');
         }
 
+        $this->streamed = true;
+
         return $this;
     }
 
@@ -140,17 +142,5 @@ class StreamedResponse extends Response
     public function getContent()
     {
         return false;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return $this
-     */
-    public function setNotModified()
-    {
-        $this->setCallback(function () {});
-
-        return parent::setNotModified();
     }
 }

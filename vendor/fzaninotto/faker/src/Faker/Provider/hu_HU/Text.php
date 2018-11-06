@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\hu_HU;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      *
      * Author: Rejtő Jenő
@@ -3404,4 +3404,5 @@ Valaki mesélte, hogy nemrég Alaszkában látták, ahol játékbarlangot nyitot
 Egyszer híre járt, hogy meghalt, de utóbb kiderült, hogy ő a kapitánya annak az ócska kis gőzösnek, amely dühöngő viharban segítségére sietett a zátonyra futó Tokio-Maru luxusgőzösnek, és ötven utast megmentett. Ezek később észrevették, hogy minden értéktárgyuk eltűnt.
 Azóta is feltűnik időnként Kantonban, Triesztben vagy Rio de Janeiróban; mogorván, egyedül, mint a kikötők vándorlásra ítélt Bolygó Hollandija, és csak kevesen tudják, hogy valahol az ócska ruha és a szakadt ing mögött mégiscsak olyan szív dobog, amelyik tudott szeretni, fájni és aggódni is valamikor.
 EOT;
+
 }

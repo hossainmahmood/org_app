@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -21,8 +22,8 @@ use Ramsey\Uuid\Converter\TimeConverterInterface;
  * available to the PHP programming language to provide facilities for
  * converting parts of time into representations that may be used in UUIDs
  */
-class PhpTimeConverter implements TimeConverterInterface
-{
+class PhpTimeConverter implements TimeConverterInterface {
+
     /**
      * Uses the provided seconds and micro-seconds to calculate the time_low,
      * time_mid, and time_high fields used by RFC 4122 version 1 UUIDs
@@ -32,8 +33,7 @@ class PhpTimeConverter implements TimeConverterInterface
      * @return string[] An array containing `low`, `mid`, and `high` keys
      * @link http://tools.ietf.org/html/rfc4122#section-4.2.2
      */
-    public function calculateTime($seconds, $microSeconds)
-    {
+    public function calculateTime($seconds, $microSeconds) {
         // 0x01b21dd213814000 is the number of 100-ns intervals between the
         // UUID epoch 1582-10-15 00:00:00 and the Unix epoch 1970-01-01 00:00:00.
         $uuidTime = ($seconds * 10000000) + ($microSeconds * 10) + 0x01b21dd213814000;
@@ -44,4 +44,5 @@ class PhpTimeConverter implements TimeConverterInterface
             'hi' => sprintf('%04x', ($uuidTime >> 48) & 0x0fff),
         );
     }
+
 }

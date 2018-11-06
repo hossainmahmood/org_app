@@ -2,12 +2,12 @@
 
 namespace Faker\Provider\es_PE;
 
-class Address extends \Faker\Provider\es_ES\Address
-{
+class Address extends \Faker\Provider\es_ES\Address {
+
     protected static $cityPrefix = array('San', 'Puerto', 'Gral.', 'Don');
     protected static $citySuffix = array('Alta', 'Baja', 'Norte', 'Este', ' Sur', ' Oeste');
     protected static $buildingNumber = array('#####', '####', '###', '##', '#');
-    protected static $streetPrefix = array('Jr.', 'Av.', 'Cl.', 'Urb.' );
+    protected static $streetPrefix = array('Jr.', 'Av.', 'Cl.', 'Urb.');
     protected static $streetSuffix = array('');
     protected static $postcode = array('LIMA ##');
     protected static $state = array(
@@ -34,32 +34,29 @@ class Address extends \Faker\Provider\es_ES\Address
     /**
      * @example ''
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example 'Jr.'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'Dpto. 402'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'Lima'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
+
 }

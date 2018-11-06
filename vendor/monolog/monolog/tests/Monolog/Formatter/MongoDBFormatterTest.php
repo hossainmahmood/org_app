@@ -16,17 +16,15 @@ use Monolog\Logger;
 /**
  * @author Florian Plattner <me@florianplattner.de>
  */
-class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
-{
-    public function setUp()
-    {
+class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase {
+
+    public function setUp() {
         if (!class_exists('MongoDate')) {
             $this->markTestSkipped('mongo extension not installed');
         }
     }
 
-    public function constructArgumentProvider()
-    {
+    public function constructArgumentProvider() {
         return array(
             array(1, true, 1, true),
             array(0, false, 0, false),
@@ -41,8 +39,7 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider constructArgumentProvider
      */
-    public function testConstruct($traceDepth, $traceAsString, $expectedTraceDepth, $expectedTraceAsString)
-    {
+    public function testConstruct($traceDepth, $traceAsString, $expectedTraceDepth, $expectedTraceAsString) {
         $formatter = new MongoDBFormatter($traceDepth, $traceAsString);
 
         $reflTrace = new \ReflectionProperty($formatter, 'exceptionTraceAsString');
@@ -54,8 +51,7 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedTraceDepth, $reflDepth->getValue($formatter));
     }
 
-    public function testSimpleFormat()
-    {
+    public function testSimpleFormat() {
         $record = array(
             'message' => 'some log message',
             'context' => array(),
@@ -80,8 +76,7 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $formattedRecord['extra']);
     }
 
-    public function testRecursiveFormat()
-    {
+    public function testRecursiveFormat() {
         $someObject = new \stdClass();
         $someObject->foo = 'something';
         $someObject->bar = 'stuff';
@@ -109,12 +104,11 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\MongoDate', $formattedRecord['context']['stuff']);
         $this->assertEquals('0.00000000 1391221893', $formattedRecord['context']['stuff']->__toString());
         $this->assertEquals(
-            array(
-                'foo' => 'something',
-                'bar' => 'stuff',
-                'class' => 'stdClass',
-            ),
-            $formattedRecord['context']['some_object']
+                array(
+            'foo' => 'something',
+            'bar' => 'stuff',
+            'class' => 'stdClass',
+                ), $formattedRecord['context']['some_object']
         );
         $this->assertEquals('some string', $formattedRecord['context']['context_string']);
         $this->assertEquals(123456, $formattedRecord['context']['context_int']);
@@ -128,8 +122,7 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Exception', $formattedRecord['context']['except']['class']);
     }
 
-    public function testFormatDepthArray()
-    {
+    public function testFormatDepthArray() {
         $record = array(
             'message' => 'some log message',
             'context' => array(
@@ -152,18 +145,16 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $formattedResult = $formatter->format($record);
 
         $this->assertEquals(
-            array(
-                'nest2' => array(
-                    'property' => 'anything',
-                    'nest3' => '[...]',
-                ),
+                array(
+            'nest2' => array(
+                'property' => 'anything',
+                'nest3' => '[...]',
             ),
-            $formattedResult['context']
+                ), $formattedResult['context']
         );
     }
 
-    public function testFormatDepthArrayInfiniteNesting()
-    {
+    public function testFormatDepthArrayInfiniteNesting() {
         $record = array(
             'message' => 'some log message',
             'context' => array(
@@ -188,23 +179,21 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $formattedResult = $formatter->format($record);
 
         $this->assertEquals(
-            array(
-                'nest2' => array(
-                    'property' => 'something',
-                    'nest3' => array(
-                        'property' => 'anything',
-                        'nest4' => array(
-                            'property' => 'nothing',
-                        ),
+                array(
+            'nest2' => array(
+                'property' => 'something',
+                'nest3' => array(
+                    'property' => 'anything',
+                    'nest4' => array(
+                        'property' => 'nothing',
                     ),
                 ),
             ),
-            $formattedResult['context']
+                ), $formattedResult['context']
         );
     }
 
-    public function testFormatDepthObjects()
-    {
+    public function testFormatDepthObjects() {
         $someObject = new \stdClass();
         $someObject->property = 'anything';
         $someObject->nest3 = new \stdClass();
@@ -227,19 +216,17 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $formattedResult = $formatter->format($record);
 
         $this->assertEquals(
-            array(
-                'nest2' => array(
-                    'property' => 'anything',
-                    'nest3' => '[...]',
-                    'class' => 'stdClass',
-                ),
+                array(
+            'nest2' => array(
+                'property' => 'anything',
+                'nest3' => '[...]',
+                'class' => 'stdClass',
             ),
-            $formattedResult['context']
+                ), $formattedResult['context']
         );
     }
 
-    public function testFormatDepthException()
-    {
+    public function testFormatDepthException() {
         $record = array(
             'message' => 'some log message',
             'context' => array(
@@ -259,4 +246,5 @@ class MongoDBFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(987, $formattedRecord['context']['nest2']['code']);
         $this->assertEquals('[...]', $formattedRecord['context']['nest2']['trace']);
     }
+
 }

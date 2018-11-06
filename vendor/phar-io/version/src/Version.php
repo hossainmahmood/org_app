@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class Version {
+
     /**
      * @var VersionNumber
      */
@@ -166,10 +168,11 @@ class Version {
 
         if (preg_match($regex, $version, $matches) !== 1) {
             throw new InvalidVersionException(
-                sprintf("Version string '%s' does not follow SemVer semantics", $version)
+            sprintf("Version string '%s' does not follow SemVer semantics", $version)
             );
         }
 
         $this->parseVersion($matches);
     }
+
 }

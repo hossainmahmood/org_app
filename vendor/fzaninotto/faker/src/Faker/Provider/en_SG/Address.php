@@ -2,12 +2,10 @@
 
 namespace Faker\Provider\en_SG;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
 
     // http://en.wikipedia.org/wiki/Singapore_Post#Address_format
     protected static $streetNumber = array('##', '###');
-
     // http://en.wikipedia.org/wiki/Singapore_Post#Address_format
     protected static $blockNumber = array(
         'Blk ##',
@@ -21,7 +19,6 @@ class Address extends \Faker\Provider\Address
         'Blk ###G',
         'Blk ###H',
     );
-
     // http://www.streetdirectory.com/asia_travel/travel/street/alphabet2/
     protected static $streetSuffix = array(
         'Alley', 'Avenue',
@@ -36,12 +33,10 @@ class Address extends \Faker\Provider\Address
         'Road',
         'Walk', 'Way',
     );
-
     // http://www.streetdirectory.com/asia_travel/travel/street/alphabet2/
     protected static $streetPrefix = array(
         'Jalan',
     );
-
     // http://www.streetdirectory.com/asia_travel/travel/street/alphabet2/
     // http://remembersingapore.org/2011/04/04/old-names-of-places/
     protected static $streetName = array(
@@ -66,61 +61,49 @@ class Address extends \Faker\Provider\Address
         'Sixth', 'Somerset', 'Stanley', 'Stamford', 'Shenton', 'Sultan',
         'Telok Ayer', 'Temple', 'Thomson', 'Unity', 'Victoria', 'Xilin', 'York', 'Zion',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetPrefix}} {{streetName}}',
         '{{streetName}} {{streetSuffix}}',
     );
-
     protected static $floorNumber = array(
         '##', '0#',
     );
-
     protected static $apartmentNumber = array(
         '##', '###',
     );
-
     // http://en.wikipedia.org/wiki/Singapore_Post#Address_format
     protected static $addressFormats = array(
         "{{streetNumber}} {{streetAddress}}\n{{townName}} {{postcode}}",
         "{{blockNumber}} {{streetAddress}}\n{{floorNumber}} {{apartmentNumber}}\n{{townName}} {{postcode}}",
     );
-
     protected static $townName = 'SINGAPORE';
-
     protected static $postcode = array('######');
-
     protected static $country = array(
         'SINGAPORE',
     );
 
-    public function streetPrefix()
-    {
+    public function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
-    public function streetNumber()
-    {
+    public function streetNumber() {
         return static::numerify(static::randomElement(static::$streetNumber));
     }
 
-    public function blockNumber()
-    {
+    public function blockNumber() {
         return static::numerify(static::randomElement(static::$blockNumber));
     }
 
-    public function floorNumber()
-    {
+    public function floorNumber() {
         return static::randomElement(static::$floorNumber);
     }
 
-    public function apartmentNumber()
-    {
+    public function apartmentNumber() {
         return static::randomElement(static::$apartmentNumber);
     }
 
-    public function townName()
-    {
+    public function townName() {
         return static::$townName;
     }
+
 }

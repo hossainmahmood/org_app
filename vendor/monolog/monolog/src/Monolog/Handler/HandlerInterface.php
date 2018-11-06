@@ -18,8 +18,8 @@ use Monolog\Formatter\FormatterInterface;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-interface HandlerInterface
-{
+interface HandlerInterface {
+
     /**
      * Checks whether the given record will be handled by this handler.
      *

@@ -2,8 +2,7 @@
 
 namespace Faker\Provider\kk_KZ;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
 
     protected static $banks = array(
         'Қазкоммерцбанк',
@@ -13,8 +12,7 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'Қазкоммерцбанк'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
 
@@ -26,8 +24,8 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'KZ', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'KZ', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\nl_BE;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * International Bank Account Number (IBAN)
      * @link http://en.wikipedia.org/wiki/International_Bank_Account_Number
@@ -12,8 +12,7 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'BE', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'BE', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
 
@@ -30,10 +29,10 @@ class Payment extends \Faker\Provider\Payment
      *
      * @return string VAT Number
      */
-    public static function vat($spacedNationalPrefix = true)
-    {
+    public static function vat($spacedNationalPrefix = true) {
         $prefix = ($spacedNationalPrefix) ? "BE " : "BE";
 
         return sprintf("%s0%d", $prefix, self::randomNumber(9, true));
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,9 +12,11 @@
 namespace PharIo\Manifest;
 
 class BundlesElement extends ManifestElement {
+
     public function getComponentElements() {
         return new ComponentElementCollection(
-            $this->getChildrenByName('component')
+                $this->getChildrenByName('component')
         );
     }
+
 }

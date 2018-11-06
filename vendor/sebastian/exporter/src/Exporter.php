@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the exporter package.
  *
@@ -23,8 +24,8 @@ use SebastianBergmann\RecursionContext\Context;
  * print $exporter->export(new Exception);
  * </code>
  */
-class Exporter
-{
+class Exporter {
+
     /**
      * Exports a value as a string
      *
@@ -43,8 +44,7 @@ class Exporter
      *
      * @return string
      */
-    public function export($value, $indentation = 0)
-    {
+    public function export($value, $indentation = 0) {
         return $this->recursiveExport($value, $indentation);
     }
 
@@ -54,9 +54,8 @@ class Exporter
      *
      * @return string
      */
-    public function shortenedRecursiveExport(&$data, Context $context = null)
-    {
-        $result   = [];
+    public function shortenedRecursiveExport(&$data, Context $context = null) {
+        $result = [];
         $exporter = new self();
 
         if (!$context) {
@@ -72,8 +71,7 @@ class Exporter
                     $result[] = '*RECURSION*';
                 } else {
                     $result[] = sprintf(
-                        'array(%s)',
-                        $this->shortenedRecursiveExport($data[$key], $context)
+                            'array(%s)', $this->shortenedRecursiveExport($data[$key], $context)
                     );
                 }
             } else {
@@ -99,8 +97,7 @@ class Exporter
      *
      * @see    SebastianBergmann\Exporter\Exporter::export
      */
-    public function shortenedExport($value)
-    {
+    public function shortenedExport($value) {
         if (is_string($value)) {
             $string = str_replace("\n", '', $this->export($value));
 
@@ -119,16 +116,13 @@ class Exporter
 
         if (is_object($value)) {
             return sprintf(
-                '%s Object (%s)',
-                get_class($value),
-                count($this->toArray($value)) > 0 ? '...' : ''
+                    '%s Object (%s)', get_class($value), count($this->toArray($value)) > 0 ? '...' : ''
             );
         }
 
         if (is_array($value)) {
             return sprintf(
-                'Array (%s)',
-                count($value) > 0 ? '...' : ''
+                    'Array (%s)', count($value) > 0 ? '...' : ''
             );
         }
 
@@ -143,8 +137,7 @@ class Exporter
      *
      * @return array
      */
-    public function toArray($value)
-    {
+    public function toArray($value) {
         if (!is_object($value)) {
             return (array) $value;
         }
@@ -206,8 +199,7 @@ class Exporter
      *
      * @see    SebastianBergmann\Exporter\Exporter::export
      */
-    protected function recursiveExport(&$value, $indentation, $processed = null)
-    {
+    protected function recursiveExport(&$value, $indentation, $processed = null) {
         if ($value === null) {
             return 'null';
         }
@@ -226,9 +218,7 @@ class Exporter
 
         if (is_resource($value)) {
             return sprintf(
-                'resource(%d) of type (%s)',
-                $value,
-                get_resource_type($value)
+                    'resource(%d) of type (%s)', $value, get_resource_type($value)
             );
         }
 
@@ -239,14 +229,11 @@ class Exporter
             }
 
             return "'" .
-            str_replace('<lf>', "\n",
-                str_replace(
-                    ["\r\n", "\n\r", "\r", "\n"],
-                    ['\r\n<lf>', '\n\r<lf>', '\r<lf>', '\n<lf>'],
-                    $value
-                )
-            ) .
-            "'";
+                    str_replace('<lf>', "\n", str_replace(
+                                    ["\r\n", "\n\r", "\r", "\n"], ['\r\n<lf>', '\n\r<lf>', '\r<lf>', '\n<lf>'], $value
+                            )
+                    ) .
+                    "'";
         }
 
         $whitespace = str_repeat(' ', 4 * $indentation);
@@ -260,17 +247,14 @@ class Exporter
                 return 'Array &' . $key;
             }
 
-            $array  = $value;
-            $key    = $processed->add($value);
+            $array = $value;
+            $key = $processed->add($value);
             $values = '';
 
             if (count($array) > 0) {
                 foreach ($array as $k => $v) {
                     $values .= sprintf(
-                        '%s    %s => %s' . "\n",
-                        $whitespace,
-                        $this->recursiveExport($k, $indentation),
-                        $this->recursiveExport($value[$k], $indentation + 1, $processed)
+                            '%s    %s => %s' . "\n", $whitespace, $this->recursiveExport($k, $indentation), $this->recursiveExport($value[$k], $indentation + 1, $processed)
                     );
                 }
 
@@ -287,17 +271,14 @@ class Exporter
                 return sprintf('%s Object &%s', $class, $hash);
             }
 
-            $hash   = $processed->add($value);
+            $hash = $processed->add($value);
             $values = '';
-            $array  = $this->toArray($value);
+            $array = $this->toArray($value);
 
             if (count($array) > 0) {
                 foreach ($array as $k => $v) {
                     $values .= sprintf(
-                        '%s    %s => %s' . "\n",
-                        $whitespace,
-                        $this->recursiveExport($k, $indentation),
-                        $this->recursiveExport($v, $indentation + 1, $processed)
+                            '%s    %s => %s' . "\n", $whitespace, $this->recursiveExport($k, $indentation), $this->recursiveExport($v, $indentation + 1, $processed)
                     );
                 }
 
@@ -309,4 +290,5 @@ class Exporter
 
         return var_export($value, true);
     }
+
 }

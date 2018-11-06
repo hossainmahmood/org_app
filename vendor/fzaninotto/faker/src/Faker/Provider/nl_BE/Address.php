@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\nl_BE;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $postcodes = array(
         '2970', '3700', '7510', '9420', '8511', '3800', '9300', '9880', '3200', '8700', '8211', '2630', '4557',
         '4280', '3930', '5590', '5362', '4219', '6280', '9991', '8660', '1790', '9051', '5544', '4317', '5310',
@@ -18,19 +18,14 @@ class Address extends \Faker\Provider\Address
         '5570', '7534', '5370', '6940', '7971', '4983', '4690', '9968', '7830', '6600', '3870', '4651', '7130',
         '7331', '7870', '7604', '1401', '9520', '8531', '9150', '4052', '6980', '1320', '6594', '7532', '3960',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}'
     );
-
     protected static $streetNameFormats = array('{{lastName}}{{streetSuffix}}');
-
     protected static $cityFormats = array('{{cityName}}');
-
     protected static $addressFormats = array(
         "{{streetAddress}}\n {{postcode}} {{city}}",
     );
-
     protected static $streetSuffix = array(
         'baan', 'boulevard', 'dreef', 'hof', 'laan', 'pad', 'ring', 'singel', 'steeg', 'straat', 'weg',
     );
@@ -59,12 +54,10 @@ class Address extends \Faker\Provider\Address
         'Turnhout', 'Verviers', 'Veurne', 'Vilvoorde', 'Virton', 'Walcourt', 'Waregem', 'Waver', 'Wervik', 'Wezet',
         'Zinnik', 'Zottegem', 'Zoutleeuw'
     );
-
     protected static $state = array(
         'Antwerpen', 'Limburg', 'Oost-Vlaanderen', 'Vlaams-Brabant', 'West-Vlaanderen',
         'Henegouwen', 'Luik', 'Luxemburg', 'Namen', 'Waals-Brabant'
     );
-
     protected static $country = array(
         'Afghanistan', 'Albanië', 'Algerije', 'Amerikaans-Samoa', 'Andorra', 'Angola', 'Amerikaanse Virgineilanden',
         'Anguilla', 'Antartica', 'Antigua en Barbuda', 'Argentinië', 'Armenië', 'Aruba', 'Australië', 'Azerbeidzjan',
@@ -101,24 +94,22 @@ class Address extends \Faker\Provider\Address
         'Wit-Rusland', 'Zambia', 'Zuid-Afrika', 'Zuid-Georgia en de Zuidelijke Sandwicheilanden', 'Zimbabwe'
     );
 
-    public static function postcode()
-    {
+    public static function postcode() {
         return static::randomElement(static::$postcodes);
     }
 
     /**
      * @example 'Gelderland'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @see parent
      */
-    public function cityName()
-    {
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
+
 }

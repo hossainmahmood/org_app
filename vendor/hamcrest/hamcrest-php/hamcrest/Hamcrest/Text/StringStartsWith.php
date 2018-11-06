@@ -1,18 +1,17 @@
 <?php
+
 namespace Hamcrest\Text;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
  * Tests if the argument is a string that contains a substring.
  */
-class StringStartsWith extends SubstringMatcher
-{
+class StringStartsWith extends SubstringMatcher {
 
-    public function __construct($substring)
-    {
+    public function __construct($substring) {
         parent::__construct($substring);
     }
 
@@ -21,20 +20,18 @@ class StringStartsWith extends SubstringMatcher
      *
      * @factory
      */
-    public static function startsWith($substring)
-    {
+    public static function startsWith($substring) {
         return new self($substring);
     }
 
     // -- Protected Methods
 
-    protected function evalSubstringOf($string)
-    {
+    protected function evalSubstringOf($string) {
         return (substr($string, 0, strlen($this->_substring)) === $this->_substring);
     }
 
-    protected function relationship()
-    {
+    protected function relationship() {
         return 'starting with';
     }
+
 }

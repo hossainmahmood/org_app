@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,18 +12,17 @@
 
 namespace SebastianBergmann\Diff;
 
-final class TimeEfficientLongestCommonSubsequenceCalculator implements LongestCommonSubsequenceCalculator
-{
+final class TimeEfficientLongestCommonSubsequenceCalculator implements LongestCommonSubsequenceCalculator {
+
     /**
      * {@inheritdoc}
      */
-    public function calculate(array $from, array $to): array
-    {
-        $common     = [];
+    public function calculate(array $from, array $to): array {
+        $common = [];
         $fromLength = \count($from);
-        $toLength   = \count($to);
-        $width      = $fromLength + 1;
-        $matrix     = new \SplFixedArray($width * ($toLength + 1));
+        $toLength = \count($to);
+        $width = $fromLength + 1;
+        $matrix = new \SplFixedArray($width * ($toLength + 1));
 
         for ($i = 0; $i <= $fromLength; ++$i) {
             $matrix[$i] = 0;
@@ -33,11 +34,9 @@ final class TimeEfficientLongestCommonSubsequenceCalculator implements LongestCo
 
         for ($i = 1; $i <= $fromLength; ++$i) {
             for ($j = 1; $j <= $toLength; ++$j) {
-                $o          = ($j * $width) + $i;
+                $o = ($j * $width) + $i;
                 $matrix[$o] = \max(
-                    $matrix[$o - 1],
-                    $matrix[$o - $width],
-                    $from[$i - 1] === $to[$j - 1] ? $matrix[$o - $width - 1] + 1 : 0
+                        $matrix[$o - 1], $matrix[$o - $width], $from[$i - 1] === $to[$j - 1] ? $matrix[$o - $width - 1] + 1 : 0
                 );
             }
         }
@@ -63,4 +62,5 @@ final class TimeEfficientLongestCommonSubsequenceCalculator implements LongestCo
 
         return \array_reverse($common);
     }
+
 }

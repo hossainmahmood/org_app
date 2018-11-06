@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -13,6 +14,7 @@ namespace PharIo\Manifest;
 use PharIo\Version\Version;
 
 class BundledComponent {
+
     /**
      * @var string
      */
@@ -28,7 +30,7 @@ class BundledComponent {
      * @param Version $version
      */
     public function __construct($name, Version $version) {
-        $this->name    = $name;
+        $this->name = $name;
         $this->version = $version;
     }
 
@@ -45,4 +47,5 @@ class BundledComponent {
     public function getVersion() {
         return $this->version;
     }
+
 }

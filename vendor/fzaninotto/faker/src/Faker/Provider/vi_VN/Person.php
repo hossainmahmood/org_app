@@ -2,25 +2,23 @@
 
 namespace Faker\Provider\vi_VN;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{lastName}} {{firstNameMale}}',
         '{{titleMale}}. {{lastName}} {{firstNameMale}}',
         '{{lastName}} {{middleNameMale}} {{firstNameMale}}',
         '{{titleMale}}. {{lastName}} {{middleNameMale}} {{firstNameMale}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{lastName}} {{firstNameFemale}}',
         '{{titleFemale}}. {{lastName}} {{firstNameFemale}}',
         '{{lastName}} {{middleNameFemale}} {{firstNameFemale}}',
         '{{titleFemale}}. {{lastName}} {{middleNameFemale}} {{firstNameFemale}}',
     );
-
     protected static $middleNameFormat = array(
-      '{{firstNameMale}}',
-      '{{firstNameFemale}}',
+        '{{firstNameMale}}',
+        '{{firstNameFemale}}',
     );
 
     /**
@@ -156,13 +154,10 @@ class Person extends \Faker\Provider\Person
         'Vi', 'Viên', 'Võ', 'Văn', 'Vũ', 'Vương', 'Vừ', 'Xa',
         'Yên',
     );
-
     protected static $titleMale = array('Cụ', 'Ông', 'Bác', 'Chú', 'Anh', 'Em');
-
     protected static $titleFemale = array('Cụ', 'Bà', 'Bác', 'Cô', 'Chị', 'Em');
 
-    public function middleName($gender = null)
-    {
+    public function middleName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return static::middleNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -172,13 +167,12 @@ class Person extends \Faker\Provider\Person
         return $this->generator->parse(static::randomElement(static::$middleNameFormat));
     }
 
-    public static function middleNameMale()
-    {
+    public static function middleNameMale() {
         return static::randomElement(static::$middleNameMale);
     }
 
-    public static function middleNameFemale()
-    {
+    public static function middleNameFemale() {
         return static::randomElement(static::$middleNameFemale);
     }
+
 }

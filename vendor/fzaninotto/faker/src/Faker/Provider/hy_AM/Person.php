@@ -2,14 +2,13 @@
 
 namespace Faker\Provider\hy_AM;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -87,26 +86,22 @@ class Person extends \Faker\Provider\Person
         'Վերջալոյս', 'Վրէժուհի', 'Տաթեւիկ', 'Տալիթա', 'Տենչալի', 'Տեսիլ', 'Տիգրանուհի', 'Տիրուկ', 'Տիրուհի', 'Ցօլինէ', 'Ցողիկ', 'Փաթիլ', 'Փայլուն', 'Փառանձեմ', 'Փասիան',
         'Փերուզ', 'Փիւնիկ', 'Քաղրուհի', 'Քնար', 'Քնքուշ', 'Քրիստինէ'
     );
-
     protected static $lastName = array(
-        'Կարապետյան','Ասատրյան','Հովսեփյան','Մուրադյան','Հովհաննիսյան',
-        'Աբգարյան','Գրիգորյան','Կարապետյան','Հայրապետյան','Ավագյան',
-        'Պետրոսյան','Պողոսյան','Աբդալյան','Բադալյան','Մելիքյան','Մկրտչյան',
-        'Դարբինյան','Կիրակոսյան','Հակոբյան','Խաչատրյան','Վարդանյան',
-        'Համբարձումյան','Սարգսյան',
+        'Կարապետյան', 'Ասատրյան', 'Հովսեփյան', 'Մուրադյան', 'Հովհաննիսյան',
+        'Աբգարյան', 'Գրիգորյան', 'Կարապետյան', 'Հայրապետյան', 'Ավագյան',
+        'Պետրոսյան', 'Պողոսյան', 'Աբդալյան', 'Բադալյան', 'Մելիքյան', 'Մկրտչյան',
+        'Դարբինյան', 'Կիրակոսյան', 'Հակոբյան', 'Խաչատրյան', 'Վարդանյան',
+        'Համբարձումյան', 'Սարգսյան',
     );
-
     protected static $titleMale = array('Պարոն');
-
-    protected static $titleFemale = array('տիկին','օրիորդ');
-
+    protected static $titleFemale = array('տիկին', 'օրիորդ');
     private static $suffix = array('',);
 
     /**
      * @example 'PhD'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
+
 }

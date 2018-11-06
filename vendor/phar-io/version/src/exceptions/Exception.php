@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,4 +12,5 @@
 namespace PharIo\Version;
 
 interface Exception {
+    
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\zh_CN;
 
-class Color extends \Faker\Provider\Color
-{
+class Color extends \Faker\Provider\Color {
+
     /**
      * @link https://zh.wikipedia.org/zh-cn/%E9%A2%9C%E8%89%B2%E5%88%97%E8%A1%A8
      */
@@ -12,7 +12,6 @@ class Color extends \Faker\Provider\Color
         '紫', '凫绿', '鲜绿色', '蓝色', '银色',
         '灰色', '黄色', '品红', '水色', '白色'
     );
-
     protected static $allColorNames = array(
         '黑色', '昏灰', '灰色', '暗灰', '银色', '亮灰色',
         '庚斯博罗灰', '白烟色', '白色', '雪色', '铁灰色',
@@ -63,4 +62,5 @@ class Color extends \Faker\Provider\Color
         '樱桃红', '浅鲑红', '绯红', '粉红', '亮粉红', '壳黄红',
         '茜红',
     );
+
 }

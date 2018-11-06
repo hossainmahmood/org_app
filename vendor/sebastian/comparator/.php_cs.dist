@@ -1,4 +1,5 @@
 <?php
+
 $header = <<<'EOF'
 This file is part of sebastian/comparator.
 

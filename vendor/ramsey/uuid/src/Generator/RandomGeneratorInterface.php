@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -18,8 +19,8 @@ namespace Ramsey\Uuid\Generator;
  * RandomGeneratorInterface provides functionality to generate strings of random
  * binary data
  */
-interface RandomGeneratorInterface
-{
+interface RandomGeneratorInterface {
+
     /**
      * Generates a string of random binary data of the specified length
      *

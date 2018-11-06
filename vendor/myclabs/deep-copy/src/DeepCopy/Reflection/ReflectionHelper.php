@@ -8,8 +8,8 @@ use ReflectionException;
 use ReflectionObject;
 use ReflectionProperty;
 
-class ReflectionHelper
-{
+class ReflectionHelper {
+
     /**
      * Retrieves all properties (including private ones), from object and all its ancestors.
      *
@@ -22,8 +22,7 @@ class ReflectionHelper
      *
      * @return ReflectionProperty[]
      */
-    public static function getProperties(ReflectionClass $ref)
-    {
+    public static function getProperties(ReflectionClass $ref) {
         $props = $ref->getProperties();
         $propsArr = array();
 
@@ -55,8 +54,7 @@ class ReflectionHelper
      *
      * @return ReflectionProperty
      */
-    public static function getProperty($object, $name)
-    {
+    public static function getProperty($object, $name) {
         $reflection = is_object($object) ? new ReflectionObject($object) : new ReflectionClass($object);
 
         if ($reflection->hasProperty($name)) {
@@ -68,11 +66,10 @@ class ReflectionHelper
         }
 
         throw new PropertyException(
-            sprintf(
-                'The class "%s" doesn\'t have a property with the given name: "%s".',
-                is_object($object) ? get_class($object) : $object,
-                $name
-            )
+        sprintf(
+                'The class "%s" doesn\'t have a property with the given name: "%s".', is_object($object) ? get_class($object) : $object, $name
+        )
         );
     }
+
 }

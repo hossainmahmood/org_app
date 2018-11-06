@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -17,12 +19,11 @@ use PHPUnit\Framework\TestCase;
  *
  * @uses SebastianBergmann\Diff\Chunk
  */
-final class DiffTest extends TestCase
-{
-    public function testGettersAfterConstructionWithDefault(): void
-    {
+final class DiffTest extends TestCase {
+
+    public function testGettersAfterConstructionWithDefault(): void {
         $from = 'line1a';
-        $to   = 'line2a';
+        $to = 'line2a';
         $diff = new Diff($from, $to);
 
         $this->assertSame($from, $diff->getFrom());
@@ -30,10 +31,9 @@ final class DiffTest extends TestCase
         $this->assertSame([], $diff->getChunks(), 'Expect chunks to be default value "array()".');
     }
 
-    public function testGettersAfterConstructionWithChunks(): void
-    {
-        $from   = 'line1b';
-        $to     = 'line2b';
+    public function testGettersAfterConstructionWithChunks(): void {
+        $from = 'line1b';
+        $to = 'line2b';
         $chunks = [new Chunk(), new Chunk(2, 3)];
 
         $diff = new Diff($from, $to, $chunks);
@@ -43,8 +43,7 @@ final class DiffTest extends TestCase
         $this->assertSame($chunks, $diff->getChunks(), 'Expect chunks to be passed value.');
     }
 
-    public function testSetChunksAfterConstruction(): void
-    {
+    public function testSetChunksAfterConstruction(): void {
         $diff = new Diff('line1c', 'line2c');
         $this->assertSame([], $diff->getChunks(), 'Expect chunks to be default value "array()".');
 
@@ -52,4 +51,5 @@ final class DiffTest extends TestCase
         $diff->setChunks($chunks);
         $this->assertSame($chunks, $diff->getChunks(), 'Expect chunks to be passed value.');
     }
+
 }

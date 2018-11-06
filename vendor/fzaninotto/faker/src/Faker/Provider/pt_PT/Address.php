@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\pt_PT;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $streetPrefix = array('Av.', 'Avenida', 'R.', 'Rua', 'Travessa', 'Largo');
+class Address extends \Faker\Provider\Address {
 
+    protected static $streetPrefix = array('Av.', 'Avenida', 'R.', 'Rua', 'Travessa', 'Largo');
     protected static $streetNameFormats = array(
         '{{streetPrefix}} {{lastName}}',
         '{{streetPrefix}} {{firstName}} {{lastName}}',
@@ -13,19 +12,18 @@ class Address extends \Faker\Provider\Address
         '{{streetPrefix}} São. {{firstName}}',
         '{{streetPrefix}} de {{lastName}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}}',
         '{{streetName}}, {{buildingNumber}}',
         '{{streetName}}, {{buildingNumber}}, {{secondaryAddress}}',
     );
 
-    /** @link http://www.univ-ab.pt/PINTAC/carta_normas.htm address example in letters **/
+    /** @link http://www.univ-ab.pt/PINTAC/carta_normas.htm address example in letters * */
     protected static $addressFormats = array(
         "{{streetAddress}} {{postcode}} {{city}}",
     );
 
-    /** @link http://www.mapadeportugal.net/indicecidades.asp **/
+    /** @link http://www.mapadeportugal.net/indicecidades.asp * */
     private static $cities = array(
         'Abrantes', 'Agualva-Cacém', 'Águeda', 'Albufeira', 'Alcácer do Sal', 'Alcobaça', 'Almada', 'Almeirim', 'Alverca do Ribatejo', 'Amadora', 'Amarante', 'Amora', 'Anadia', 'Angra do Heroísmo', 'Aveiro', 'Barcelos', 'Barreiro',
         'Beja', 'Braga', 'Bragança', 'Caldas da Rainha', 'Camara de Lobos', 'Cantanhede', 'Cartaxo', 'Castelo Branco', 'Chaves', 'Coimbra', 'Covilhã', 'Elvas', 'Entroncamento', 'Ermesinde', 'Esmoriz', 'Espinho', 'Esposende', 'Estarreja',
@@ -37,17 +35,14 @@ class Address extends \Faker\Provider\Address
         'São João da Madeira', 'São Mamede de Infesta', 'Seia', 'Seixal', 'Setúbal', 'Silves', 'Sines', 'Tarouca', 'Tavira', 'Tomar', 'Tondela', 'Torres Novas', 'Torres Vedras', 'Valbom', 'Vale de Cambra', 'Valongo', 'Valpaços', 'Vendas Novas',
         'Viana do Castelo', 'Vila do Conde', 'Vila Franca de Xira', 'Vila Nova de Famalicão', 'Vila Nova de Foz Côa', 'Vila Nova de Gaia', 'Vila Praia da Vitória', 'Vila Real', 'Vila Real de Santo António', 'Viseu', 'Vizela'
     );
-
     protected static $postcode = array(
         '%##0-###', '%##0',
         '%##1-###', '%##1',
         '%##4-###', '%##4',
         '%##5-###', '%##5',
         '%##9-###', '%##9',
-        );
-
-    protected static $buildingNumber = array('nº %', 'nº %%','nº %%%', '%', '%#', '%##');
-
+    );
+    protected static $buildingNumber = array('nº %', 'nº %%', 'nº %%%', '%', '%#', '%##');
     protected static $secondaryAddressFormats = array(
         'Bloco %', 'Bl. %',
         '%º Dir.', '%#º Dir.', '%º Dr.', '%#º Dr.',
@@ -57,12 +52,11 @@ class Address extends \Faker\Provider\Address
     /**
      * @example '6º Dir.'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
-    /** @link http://www.indexmundi.com/pt/ **/
+    /** @link http://www.indexmundi.com/pt/ * */
     protected static $country = array(
         'Afeganistão', 'África do Sul', 'Albânia', 'Alemanha', 'Andorra',
         'Angola', 'Antigua e Barbuda', 'Arabia Saudita', 'Argélia',
@@ -77,7 +71,7 @@ class Address extends \Faker\Provider\Address
         'Djibouti', 'Domênica', 'Equador', 'Egito', 'El Salvador',
         'Emirados Árabes Unidos', 'Eritrea', 'Eslováquia', 'Eslovênia',
         'Espanha', 'Estados Unidos da América', 'Estónia', 'Etiópia',
-        'Filipinas', 'Finlândia', 'Fiji','França', 'Gabão', 'Gâmbia',
+        'Filipinas', 'Finlândia', 'Fiji', 'França', 'Gabão', 'Gâmbia',
         'Georgia', 'Gana', 'Granada', 'Grécia', 'Guatemala',
         'Guiné Equatorial', 'Guiné Bissau', 'Guiana', 'Haiti', 'Honduras',
         'Hungria', 'Índia', 'Indonésia', 'Iraque', 'Irlanda', 'Irã',
@@ -89,7 +83,7 @@ class Address extends \Faker\Provider\Address
         'Marrocos', 'Mauritânia', 'Micronésia', 'Moldávia', 'Mongólia',
         'Montenegro', 'Moçambique', 'México', 'Mónaco', 'Namíbia', 'Nauru',
         'Nepal', 'Nicarágua', 'Nigéria', 'Noruega', 'Nova Guiné',
-        'Nova Zelândia', 'Níger', 'Omã', 'Qatar', 'Quênia','Quirguistão',
+        'Nova Zelândia', 'Níger', 'Omã', 'Qatar', 'Quênia', 'Quirguistão',
         'Paquistão', 'Palaos', 'Panamá', 'Papua Nova Guiné', 'Paraguai',
         'Países Baixos', 'Peru', 'Polónia', 'Portugal', 'Reino Unido',
         'Reino Unido da Grã Bretanha e Irlanda do Norte',
@@ -109,16 +103,15 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Avenida' ' Rua'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'Aveiro' 'Oliveira de Azeméis'
      */
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$cities);
     }
+
 }

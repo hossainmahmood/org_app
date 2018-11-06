@@ -2,8 +2,8 @@
 
 namespace Psr\SimpleCache;
 
-interface CacheInterface
-{
+interface CacheInterface {
+
     /**
      * Fetches a value from the cache.
      *

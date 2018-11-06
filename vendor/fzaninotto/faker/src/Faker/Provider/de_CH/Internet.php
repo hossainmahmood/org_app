@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\de_CH;
 
-class Internet extends \Faker\Provider\Internet
-{
+class Internet extends \Faker\Provider\Internet {
+
     protected static $freeEmailDomain = array(
         'gmail.com',
         'hotmail.com',
@@ -14,4 +14,5 @@ class Internet extends \Faker\Provider\Internet
         'swissonline.ch'
     );
     protected static $tld = array('com', 'com', 'com', 'net', 'org', 'li', 'ch', 'ch');
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\id_ID;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{companyPrefix}} {{lastName}}',
         '{{companyPrefix}} {{lastName}} {{lastName}}',
@@ -26,8 +26,7 @@ class Company extends \Faker\Provider\Company
      *
      * @return string company prefix
      */
-    public static function companyPrefix()
-    {
+    public static function companyPrefix() {
         return static::randomElement(static::$companyPrefix);
     }
 
@@ -36,8 +35,8 @@ class Company extends \Faker\Provider\Company
      *
      * @return string company suffix
      */
-    public static function companySuffix()
-    {
+    public static function companySuffix() {
         return static::randomElement(static::$companySuffix);
     }
+
 }

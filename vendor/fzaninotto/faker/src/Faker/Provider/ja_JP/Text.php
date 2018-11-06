@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ja_JP;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     protected static $separator = '';
     protected static $separatorLen = 0;
 
@@ -595,8 +595,7 @@ class Text extends \Faker\Provider\Text
 ジョバンニはもういろいろなことで胸むねがいっぱいで、なんにも言いえずに博士はかせの前をはなれて、早くお母さんに牛乳ぎゅうにゅうを持もって行って、お父さんの帰ることを知らせようと思うと、もういちもくさんに河原かわらを街まちの方へ走りました。
 EOT;
 
-    protected static function explode($text)
-    {
+    protected static function explode($text) {
         $chars = array();
         foreach (preg_split('//u', preg_replace('/\s+/', '', $text)) as $char) {
             if ($char !== '') {
@@ -606,18 +605,15 @@ EOT;
         return $chars;
     }
 
-    protected static function strlen($text)
-    {
+    protected static function strlen($text) {
         return function_exists('mb_strlen') ? mb_strlen($text, 'UTF-8') : count(static::explode($text));
     }
 
-    protected static function validStart($word)
-    {
+    protected static function validStart($word) {
         return !in_array($word, static::$notBeginPunct);
     }
 
-    protected static function appendEnd($text)
-    {
+    protected static function appendEnd($text) {
         // extract the last char of $text
         if (function_exists('mb_substr')) {
             $last = mb_substr($text, 0, mb_strlen($text) - 1, 'UTF-8');
@@ -632,4 +628,5 @@ EOT;
         // if the last char is not a valid punctuation, append a default one.
         return in_array($last, static::$endPunct) ? $text : $text . '。';
     }
+
 }

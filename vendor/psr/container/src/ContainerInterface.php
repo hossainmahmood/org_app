@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
  */
@@ -8,8 +9,8 @@ namespace Psr\Container;
 /**
  * Describes the interface of a container that exposes methods to read its entries.
  */
-interface ContainerInterface
-{
+interface ContainerInterface {
+
     /**
      * Finds an entry of the container by its identifier and returns it.
      *

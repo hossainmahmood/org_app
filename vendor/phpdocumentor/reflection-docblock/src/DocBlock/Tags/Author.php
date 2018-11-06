@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -17,8 +18,8 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for an {@}author tag in a Docblock.
  */
-final class Author extends BaseTag implements Factory\StaticMethod
-{
+final class Author extends BaseTag implements Factory\StaticMethod {
+
     /** @var string register that this is the author tag. */
     protected $name = 'author';
 
@@ -34,15 +35,14 @@ final class Author extends BaseTag implements Factory\StaticMethod
      * @param string $authorName
      * @param string $authorEmail
      */
-    public function __construct($authorName, $authorEmail)
-    {
+    public function __construct($authorName, $authorEmail) {
         Assert::string($authorName);
         Assert::string($authorEmail);
         if ($authorEmail && !filter_var($authorEmail, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('The author tag does not have a valid e-mail address');
         }
 
-        $this->authorName  = $authorName;
+        $this->authorName = $authorName;
         $this->authorEmail = $authorEmail;
     }
 
@@ -51,8 +51,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return string The author's name.
      */
-    public function getAuthorName()
-    {
+    public function getAuthorName() {
         return $this->authorName;
     }
 
@@ -61,8 +60,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return string The author's email.
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->authorEmail;
     }
 
@@ -71,8 +69,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return $this->authorName . (strlen($this->authorEmail) ? ' <' . $this->authorEmail . '>' : '');
     }
 
@@ -83,8 +80,7 @@ final class Author extends BaseTag implements Factory\StaticMethod
      *
      * @return static
      */
-    public static function create($body)
-    {
+    public static function create($body) {
         Assert::string($body);
 
         $splitTagContent = preg_match('/^([^\<]*)(?:\<([^\>]*)\>)?$/u', $body, $matches);
@@ -97,4 +93,5 @@ final class Author extends BaseTag implements Factory\StaticMethod
 
         return new static($authorName, $email);
     }
+
 }

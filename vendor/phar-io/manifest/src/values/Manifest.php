@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -13,6 +14,7 @@ namespace PharIo\Manifest;
 use PharIo\Version\Version;
 
 class Manifest {
+
     /**
      * @var ApplicationName
      */
@@ -44,12 +46,12 @@ class Manifest {
     private $bundledComponents;
 
     public function __construct(ApplicationName $name, Version $version, Type $type, CopyrightInformation $copyrightInformation, RequirementCollection $requirements, BundledComponentCollection $bundledComponents) {
-        $this->name                 = $name;
-        $this->version              = $version;
-        $this->type                 = $type;
+        $this->name = $name;
+        $this->version = $version;
+        $this->type = $type;
         $this->copyrightInformation = $copyrightInformation;
-        $this->requirements         = $requirements;
-        $this->bundledComponents    = $bundledComponents;
+        $this->requirements = $requirements;
+        $this->bundledComponents = $bundledComponents;
     }
 
     /**
@@ -135,4 +137,5 @@ class Manifest {
 
         return $type->isExtensionFor($application);
     }
+
 }

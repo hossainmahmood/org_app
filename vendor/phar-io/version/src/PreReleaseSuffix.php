@@ -3,6 +3,7 @@
 namespace PharIo\Version;
 
 class PreReleaseSuffix {
+
     private $valueScoreMap = [
         'dev' => 0,
         'a' => 1,
@@ -88,8 +89,9 @@ class PreReleaseSuffix {
 
         $this->value = $matches[1];
         if (isset($matches[2])) {
-            $this->number = (int)$matches[2];
+            $this->number = (int) $matches[2];
         }
         $this->valueScore = $this->mapValueToScore($this->value);
     }
+
 }

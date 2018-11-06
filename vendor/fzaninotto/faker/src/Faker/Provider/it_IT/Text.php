@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\it_IT;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * Carlo Collodi
      * Pinocchio
@@ -1991,4 +1991,5 @@ Pinocchio si voltò a guardarlo; e dopo che l’ebbe guardato un poco, disse den
 – Com’ero buffo, quand’ero un burattino!... e come ora son contento di essere diventato un ragazzino perbene!...
 Fine.
 EOT;
+
 }

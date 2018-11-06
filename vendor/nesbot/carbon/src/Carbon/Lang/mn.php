@@ -27,7 +27,6 @@ return array(
     'min' => ':countм',
     'second' => ':count секунд',
     's' => ':countс',
-
     'ago' => ':timeн өмнө',
     'year_ago' => ':count жилий',
     'month_ago' => ':count сары',
@@ -35,7 +34,6 @@ return array(
     'hour_ago' => ':count цагий',
     'minute_ago' => ':count минуты',
     'second_ago' => ':count секунды',
-
     'from_now' => 'одоогоос :time',
     'year_from_now' => ':count жилийн дараа',
     'month_from_now' => ':count сарын дараа',
@@ -43,7 +41,6 @@ return array(
     'hour_from_now' => ':count цагийн дараа',
     'minute_from_now' => ':count минутын дараа',
     'second_from_now' => ':count секундын дараа',
-
     // Does it required to make translation for before, after as follows? hmm, I think we've made it with ago and from now keywords already. Anyway, I've included it just in case of undesired action...
     'after' => ':timeн дараа',
     'year_after' => ':count жилий',

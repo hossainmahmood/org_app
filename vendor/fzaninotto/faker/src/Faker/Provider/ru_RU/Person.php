@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ru_RU;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{middleNameMale}} {{lastName}}',
         '{{lastName}} {{firstNameMale}} {{middleNameMale}}',
@@ -21,7 +21,7 @@ class Person extends \Faker\Provider\Person
     /**
      * {@link} http://ru.wikipedia.org/wiki/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B5_%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D0%B5_%D0%B8%D0%BC%D1%8F
      * {@link} http://masterrussian.com/aa031701a.shtml
-     **/
+     * */
     protected static $firstNameMale = array(
         'Абрам', 'Август', 'Адам', 'Адриан', 'Аким', 'Александр', 'Алексей', 'Альберт', 'Ананий', 'Анатолий', 'Андрей', 'Антон', 'Антонин',
         'Аполлон', 'Аркадий', 'Арсений', 'Артемий', 'Артур', 'Артём', 'Афанасий', 'Богдан', 'Болеслав', 'Борис', 'Бронислав', 'Вадим',
@@ -38,7 +38,7 @@ class Person extends \Faker\Provider\Person
 
     /**
      * {@link} http://masterrussian.com/aa031001a.shtml
-     **/
+     * */
     protected static $firstNameFemale = array(
         'Александра', 'Алина', 'Алиса', 'Алла', 'Альбина', 'Алёна', 'Анастасия', 'Анжелика', 'Анна', 'Антонина', 'Анфиса', 'Валентина', 'Валерия',
         'Варвара', 'Василиса', 'Вера', 'Вероника', 'Виктория', 'Владлена', 'Галина', 'Дарья', 'Диана', 'Дина', 'Доминика', 'Ева',
@@ -49,13 +49,11 @@ class Person extends \Faker\Provider\Person
         'Розалина', 'Светлана', 'Софья', 'София', 'Таисия', 'Тамара', 'Татьяна', 'Ульяна', 'Фаина', 'Федосья', 'Флорентина', 'Эльвира', 'Эмилия',
         'Эмма', 'Юлия', 'Яна', 'Ярослава',
     );
-
     protected static $middleNameMale = array(
         'Александрович', 'Алексеевич', 'Андреевич', 'Дмитриевич', 'Евгеньевич',
         'Сергеевич', 'Иванович', 'Фёдорович', 'Львович', 'Романович', 'Владимирович',
         'Борисович', 'Максимович',
     );
-
     protected static $middleNameFemale = array(
         'Александровна', 'Алексеевна', 'Андреевна', 'Дмитриевна', 'Евгеньевна',
         'Сергеевна', 'Ивановна', 'Фёдоровна', 'Львовна', 'Романовна', 'Владимировна',
@@ -64,7 +62,7 @@ class Person extends \Faker\Provider\Person
 
     /**
      * {@link} http://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BE%D0%B1%D1%89%D0%B5%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D1%85_%D1%84%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D0%B9
-     **/
+     * */
     protected static $lastName = array(
         'Смирнов', 'Иванов', 'Кузнецов', 'Соколов', 'Попов', 'Лебедев', 'Козлов',
         'Новиков', 'Морозов', 'Петров', 'Волков', 'Соловьёв', 'Васильев', 'Зайцев',
@@ -114,8 +112,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string Middle name
      */
-    public function middleNameMale()
-    {
+    public function middleNameMale() {
         return static::randomElement(static::$middleNameMale);
     }
 
@@ -128,8 +125,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string Middle name
      */
-    public function middleNameFemale()
-    {
+    public function middleNameFemale() {
         return static::randomElement(static::$middleNameFemale);
     }
 
@@ -141,8 +137,7 @@ class Person extends \Faker\Provider\Person
      *     for. If the argument is skipped a random gender will be used.
      * @return string Middle name
      */
-    public function middleName($gender = null)
-    {
+    public function middleName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return $this->middleNameMale();
         } elseif ($gender === static::GENDER_FEMALE) {
@@ -150,8 +145,9 @@ class Person extends \Faker\Provider\Person
         }
 
         return $this->middleName(static::randomElement(array(
-            static::GENDER_MALE,
-            static::GENDER_FEMALE,
+                            static::GENDER_MALE,
+                            static::GENDER_FEMALE,
         )));
     }
+
 }

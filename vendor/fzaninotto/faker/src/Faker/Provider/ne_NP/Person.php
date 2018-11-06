@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ne_NP;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -17,7 +17,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -31,7 +30,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
     );
-
     protected static $firstNameMale = array(
         'Aadarsh', 'Aadesh', 'Aaditya', 'Aakash', 'Aanand', 'Abud', 'Achyut', 'Ajay', 'Ajit', 'Akhil', 'Akshar', 'Akshay', 'Amar', 'Amir', 'Amit', 'Amod', 'Amrit', 'Amulya', 'Ananta', 'Angel', 'Angikar', 'Anil', 'Ankit', 'Ankur', 'Anmol', 'Anshu', 'Anuj', 'Arjun', 'Arun', 'Ashish', 'Ashok', 'Ashutosh', 'Atal', 'Avinash', 'Ayush',
         'Babish', 'Badal', 'Badri', 'Baibhav', 'Bhagwam', 'Bhakti', 'Bhanu', 'Bibek', 'Bicky', 'Bidur', 'Bidwan', 'Bikal', 'Bikash', 'Bikesh', 'Bikram', 'Bimal', 'Binamra', 'Binay', 'Bipin', 'Biplav', 'Bipul', 'Biraj', 'Birendra', 'Bishal', 'Bisu', 'Biswas', 'Brijesh', 'Buddha',
@@ -54,7 +52,6 @@ class Person extends \Faker\Provider\Person
         'Udit', 'Ujjwal', 'Umesh', 'Uttam',
         'Yogendra', 'Yogesh', 'Yuvaraj',
     );
-
     protected static $firstNameFemale = array(
         'Aakansha', 'Aanchal', 'Aarati', 'Aashika', 'Aayusha', 'Alisha', 'Ambika', 'Amrita', 'Anamika', 'Anita', 'Anjali', 'Anjana', 'Anjela', 'Anju', 'Ankita', 'Ansu', 'Anu', 'Anupa', 'Anushree', 'Anuska', 'Apeksha', 'Archana', 'Arpita', 'Aruna', 'Asha',
         'Bandita', 'Barsa', 'Bhawana', 'Bimala', 'Bina', 'Bindu', 'Binita', 'Bipana',
@@ -76,7 +73,6 @@ class Person extends \Faker\Provider\Person
         'Vandana',
         'Yami', 'Yasodha', 'Yushma',
     );
-
     protected static $lastName = array(
         'Acharya', 'Adhikari', 'Agarwal', 'Amatya', 'Aryal',
         'Baidya', 'Bajracharya', 'Balami', 'Banepali', 'Baniya', 'Banjade', 'Baral', 'Basnet', 'Bastakoti', 'Bastola', 'Basyal', 'Belbase', 'Bhandari', 'Bhatta', 'Bhattarai', 'Bhusal', 'Bijukchhe', 'Bisht', 'Bohara', 'Budathoki', 'Byanjankar',
@@ -99,23 +95,21 @@ class Person extends \Faker\Provider\Person
         'Wagle',
         'Yadav',
     );
-
     private static $middleNameMale = array('Bahadur', 'Dev', 'Kumar', 'Man', 'Mani', 'Nath', 'Prasad', 'Raj', 'Ratna');
     private static $middleNameFemale = array('Devi', 'Kumari');
 
     /**
      * @example 'Bahadur'
      */
-    public static function middleNameMale()
-    {
+    public static function middleNameMale() {
         return static::randomElement(static::$middleNameMale);
     }
 
     /**
      * @example 'Devi'
      */
-    public static function middleNameFemale()
-    {
+    public static function middleNameFemale() {
         return static::randomElement(static::$middleNameFemale);
     }
+
 }

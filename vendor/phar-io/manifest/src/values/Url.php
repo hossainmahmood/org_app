@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class Url {
+
     /**
      * @var string
      */
@@ -44,4 +46,5 @@ class Url {
             throw new InvalidUrlException;
         }
     }
+
 }

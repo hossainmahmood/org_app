@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/global-state.
  *
@@ -8,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\GlobalState;
 
@@ -18,8 +19,8 @@ use Serializable;
 /**
  * A snapshot of global state.
  */
-class Snapshot
-{
+class Snapshot {
+
     /**
      * @var Blacklist
      */
@@ -83,8 +84,7 @@ class Snapshot
     /**
      * Creates a snapshot of the current global state.
      */
-    public function __construct(Blacklist $blacklist = null, bool $includeGlobalVariables = true, bool $includeStaticAttributes = true, bool $includeConstants = true, bool $includeFunctions = true, bool $includeClasses = true, bool $includeInterfaces = true, bool $includeTraits = true, bool $includeIniSettings = true, bool $includeIncludedFiles = true)
-    {
+    public function __construct(Blacklist $blacklist = null, bool $includeGlobalVariables = true, bool $includeStaticAttributes = true, bool $includeConstants = true, bool $includeFunctions = true, bool $includeClasses = true, bool $includeInterfaces = true, bool $includeTraits = true, bool $includeIniSettings = true, bool $includeIncludedFiles = true) {
         if ($blacklist === null) {
             $blacklist = new Blacklist;
         }
@@ -127,71 +127,58 @@ class Snapshot
         $this->traits = \get_declared_traits();
     }
 
-    public function blacklist(): Blacklist
-    {
+    public function blacklist(): Blacklist {
         return $this->blacklist;
     }
 
-    public function globalVariables(): array
-    {
+    public function globalVariables(): array {
         return $this->globalVariables;
     }
 
-    public function superGlobalVariables(): array
-    {
+    public function superGlobalVariables(): array {
         return $this->superGlobalVariables;
     }
 
-    public function superGlobalArrays(): array
-    {
+    public function superGlobalArrays(): array {
         return $this->superGlobalArrays;
     }
 
-    public function staticAttributes(): array
-    {
+    public function staticAttributes(): array {
         return $this->staticAttributes;
     }
 
-    public function iniSettings(): array
-    {
+    public function iniSettings(): array {
         return $this->iniSettings;
     }
 
-    public function includedFiles(): array
-    {
+    public function includedFiles(): array {
         return $this->includedFiles;
     }
 
-    public function constants(): array
-    {
+    public function constants(): array {
         return $this->constants;
     }
 
-    public function functions(): array
-    {
+    public function functions(): array {
         return $this->functions;
     }
 
-    public function interfaces(): array
-    {
+    public function interfaces(): array {
         return $this->interfaces;
     }
 
-    public function classes(): array
-    {
+    public function classes(): array {
         return $this->classes;
     }
 
-    public function traits(): array
-    {
+    public function traits(): array {
         return $this->traits;
     }
 
     /**
      * Creates a snapshot user-defined constants.
      */
-    private function snapshotConstants()
-    {
+    private function snapshotConstants() {
         $constants = \get_defined_constants(true);
 
         if (isset($constants['user'])) {
@@ -202,8 +189,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined functions.
      */
-    private function snapshotFunctions()
-    {
+    private function snapshotFunctions() {
         $functions = \get_defined_functions();
 
         $this->functions = $functions['user'];
@@ -212,8 +198,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined classes.
      */
-    private function snapshotClasses()
-    {
+    private function snapshotClasses() {
         foreach (\array_reverse(\get_declared_classes()) as $className) {
             $class = new ReflectionClass($className);
 
@@ -230,8 +215,7 @@ class Snapshot
     /**
      * Creates a snapshot user-defined interfaces.
      */
-    private function snapshotInterfaces()
-    {
+    private function snapshotInterfaces() {
         foreach (\array_reverse(\get_declared_interfaces()) as $interfaceName) {
             $class = new ReflectionClass($interfaceName);
 
@@ -248,8 +232,7 @@ class Snapshot
     /**
      * Creates a snapshot of all global and super-global variables.
      */
-    private function snapshotGlobals()
-    {
+    private function snapshotGlobals() {
         $superGlobalArrays = $this->superGlobalArrays();
 
         foreach ($superGlobalArrays as $superGlobalArray) {
@@ -258,9 +241,9 @@ class Snapshot
 
         foreach (\array_keys($GLOBALS) as $key) {
             if ($key != 'GLOBALS' &&
-                !\in_array($key, $superGlobalArrays) &&
-                $this->canBeSerialized($GLOBALS[$key]) &&
-                !$this->blacklist->isGlobalVariableBlacklisted($key)) {
+                    !\in_array($key, $superGlobalArrays) &&
+                    $this->canBeSerialized($GLOBALS[$key]) &&
+                    !$this->blacklist->isGlobalVariableBlacklisted($key)) {
                 $this->globalVariables[$key] = \unserialize(\serialize($GLOBALS[$key]));
             }
         }
@@ -269,8 +252,7 @@ class Snapshot
     /**
      * Creates a snapshot a super-global variable array.
      */
-    private function snapshotSuperGlobalArray(string $superGlobalArray)
-    {
+    private function snapshotSuperGlobalArray(string $superGlobalArray) {
         $this->superGlobalVariables[$superGlobalArray] = [];
 
         if (isset($GLOBALS[$superGlobalArray]) && \is_array($GLOBALS[$superGlobalArray])) {
@@ -283,10 +265,9 @@ class Snapshot
     /**
      * Creates a snapshot of all static attributes in user-defined classes.
      */
-    private function snapshotStaticAttributes()
-    {
+    private function snapshotStaticAttributes() {
         foreach ($this->classes as $className) {
-            $class    = new ReflectionClass($className);
+            $class = new ReflectionClass($className);
             $snapshot = [];
 
             foreach ($class->getProperties() as $attribute) {
@@ -315,8 +296,7 @@ class Snapshot
     /**
      * Returns a list of all super-global variable arrays.
      */
-    private function setupSuperGlobalArrays()
-    {
+    private function setupSuperGlobalArrays() {
         $this->superGlobalArrays = [
             '_ENV',
             '_POST',
@@ -329,15 +309,14 @@ class Snapshot
 
         if (\ini_get('register_long_arrays') == '1') {
             $this->superGlobalArrays = \array_merge(
-                $this->superGlobalArrays,
-                [
-                    'HTTP_ENV_VARS',
-                    'HTTP_POST_VARS',
-                    'HTTP_GET_VARS',
-                    'HTTP_COOKIE_VARS',
-                    'HTTP_SERVER_VARS',
-                    'HTTP_POST_FILES'
-                ]
+                    $this->superGlobalArrays, [
+                'HTTP_ENV_VARS',
+                'HTTP_POST_VARS',
+                'HTTP_GET_VARS',
+                'HTTP_COOKIE_VARS',
+                'HTTP_SERVER_VARS',
+                'HTTP_POST_FILES'
+                    ]
             );
         }
     }
@@ -345,8 +324,7 @@ class Snapshot
     /**
      * @todo Implement this properly
      */
-    private function canBeSerialized($variable): bool
-    {
+    private function canBeSerialized($variable): bool {
         if (!\is_object($variable)) {
             return !\is_resource($variable);
         }
@@ -365,4 +343,5 @@ class Snapshot
 
         return true;
     }
+
 }

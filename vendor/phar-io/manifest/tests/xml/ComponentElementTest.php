@@ -3,6 +3,7 @@
 namespace PharIo\Manifest;
 
 class ComponentElementTest extends \PHPUnit\Framework\TestCase {
+
     /**
      * @var ComponentElement
      */

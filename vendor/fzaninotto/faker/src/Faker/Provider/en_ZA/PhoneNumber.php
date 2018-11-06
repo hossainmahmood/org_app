@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_ZA;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+27({{areaCode}})#######',
         '+27{{areaCode}}#######',
@@ -11,21 +11,18 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '0{{areaCode}} ### ####',
         '0{{areaCode}}-###-####',
     );
-
     protected static $cellphoneFormats = array(
         '+27{{cellphoneCode}}#######',
         '0{{cellphoneCode}}#######',
         '0{{cellphoneCode}} ### ####',
         '0{{cellphoneCode}}-###-####',
     );
-
     protected static $specialFormats = array(
         '{{specialCode}}#######',
         '{{specialCode}} ### ####',
         '{{specialCode}}-###-####',
         '({{specialCode}})###-####',
     );
-
     protected static $tollFreeAreaCodes = array(
         '0800', '0860', '0861', '0862',
     );
@@ -33,8 +30,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * @see https://en.wikipedia.org/wiki/Telephone_numbers_in_South_Africa
      */
-    public static function areaCode()
-    {
+    public static function areaCode() {
         $digits[] = self::numberBetween(1, 5);
         switch ($digits[0]) {
             case 1:
@@ -60,8 +56,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         return implode('', $digits);
     }
 
-    public static function cellphoneCode()
-    {
+    public static function cellphoneCode() {
         $digits[] = self::numberBetween(6, 8);
         switch ($digits[0]) {
             case 6:
@@ -79,22 +74,20 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         return implode('', $digits);
     }
 
-    public static function specialCode()
-    {
+    public static function specialCode() {
         return static::randomElement(static::$tollFreeAreaCodes);
     }
 
-    public function mobileNumber()
-    {
+    public function mobileNumber() {
         $format = static::randomElement(static::$cellphoneFormats);
 
         return self::numerify($this->generator->parse($format));
     }
 
-    public function tollFreeNumber()
-    {
+    public function tollFreeNumber() {
         $format = static::randomElement(static::$specialFormats);
 
         return self::numerify($this->generator->parse($format));
     }
+
 }

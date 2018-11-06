@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class PhpExtensionRequirement implements Requirement {
+
     /**
      * @var string
      */
@@ -29,4 +31,5 @@ class PhpExtensionRequirement implements Requirement {
     public function __toString() {
         return $this->extension;
     }
+
 }

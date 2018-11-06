@@ -1,51 +1,44 @@
 <?php
+
 namespace Hamcrest\Text;
 
-class IsEqualIgnoringWhiteSpaceTest extends \Hamcrest\AbstractMatcherTest
-{
+class IsEqualIgnoringWhiteSpaceTest extends \Hamcrest\AbstractMatcherTest {
 
     private $_matcher;
 
-    public function setUp()
-    {
+    public function setUp() {
         $this->_matcher = \Hamcrest\Text\IsEqualIgnoringWhiteSpace::equalToIgnoringWhiteSpace(
-            "Hello World   how\n are we? "
+                        "Hello World   how\n are we? "
         );
     }
 
-    protected function createMatcher()
-    {
+    protected function createMatcher() {
         return $this->_matcher;
     }
 
-    public function testPassesIfWordsAreSameButWhitespaceDiffers()
-    {
+    public function testPassesIfWordsAreSameButWhitespaceDiffers() {
         assertThat('Hello World how are we?', $this->_matcher);
         assertThat("   Hello \rWorld \t  how are\nwe?", $this->_matcher);
     }
 
-    public function testFailsIfTextOtherThanWhitespaceDiffers()
-    {
+    public function testFailsIfTextOtherThanWhitespaceDiffers() {
         assertThat('Hello PLANET how are we?', not($this->_matcher));
         assertThat('Hello World how are we', not($this->_matcher));
     }
 
-    public function testFailsIfWhitespaceIsAddedOrRemovedInMidWord()
-    {
+    public function testFailsIfWhitespaceIsAddedOrRemovedInMidWord() {
         assertThat('HelloWorld how are we?', not($this->_matcher));
         assertThat('Hello Wo rld how are we?', not($this->_matcher));
     }
 
-    public function testFailsIfMatchingAgainstNull()
-    {
+    public function testFailsIfMatchingAgainstNull() {
         assertThat(null, not($this->_matcher));
     }
 
-    public function testHasAReadableDescription()
-    {
+    public function testHasAReadableDescription() {
         $this->assertDescription(
-            "equalToIgnoringWhiteSpace(\"Hello World   how\\n are we? \")",
-            $this->_matcher
+                "equalToIgnoringWhiteSpace(\"Hello World   how\\n are we? \")", $this->_matcher
         );
     }
+
 }

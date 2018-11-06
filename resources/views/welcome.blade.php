@@ -6,14 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Org</title>
-
+   
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background: url("../images/background.jpg");
+                background-color: #EDEFF2;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -65,31 +66,33 @@
         </style>
     </head>
     <body>
+         
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
+            <div class="top-right links">
+                @auth
+                <a href="{{ url('/home') }}">Home</a>
+                @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+                @endauth
+            </div>
             @endif
 
-            <!--div class="content">
+            <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <h3> United We Fly</h3>
                 </div>
-
+<!--
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div-->
+                </div>-->
+            </div
         </div>
+      
     </body>
 </html>

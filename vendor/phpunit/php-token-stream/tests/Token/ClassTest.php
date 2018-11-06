@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of php-token-stream.
  *
@@ -10,8 +11,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-class PHP_Token_ClassTest extends TestCase
-{
+class PHP_Token_ClassTest extends TestCase {
+
     /**
      * @var PHP_Token_CLASS
      */
@@ -22,8 +23,7 @@ class PHP_Token_ClassTest extends TestCase
      */
     private $function;
 
-    protected function setUp()
-    {
+    protected function setUp() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'source2.php');
 
         foreach ($ts as $token) {
@@ -41,29 +41,25 @@ class PHP_Token_ClassTest extends TestCase
     /**
      * @covers PHP_Token_CLASS::getKeywords
      */
-    public function testGetClassKeywords()
-    {
+    public function testGetClassKeywords() {
         $this->assertEquals('abstract', $this->class->getKeywords());
     }
 
     /**
      * @covers PHP_Token_FUNCTION::getKeywords
      */
-    public function testGetFunctionKeywords()
-    {
+    public function testGetFunctionKeywords() {
         $this->assertEquals('abstract,static', $this->function->getKeywords());
     }
 
     /**
      * @covers PHP_Token_FUNCTION::getVisibility
      */
-    public function testGetFunctionVisibility()
-    {
+    public function testGetFunctionVisibility() {
         $this->assertEquals('public', $this->function->getVisibility());
     }
 
-    public function testIssue19()
-    {
+    public function testIssue19() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'issue19.php');
 
         foreach ($ts as $token) {
@@ -73,36 +69,32 @@ class PHP_Token_ClassTest extends TestCase
         }
     }
 
-    public function testIssue30()
-    {
+    public function testIssue30() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'issue30.php');
         $this->assertCount(1, $ts->getClasses());
     }
 
-    public function testAnonymousClassesAreHandledCorrectly()
-    {
+    public function testAnonymousClassesAreHandledCorrectly() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'class_with_method_that_declares_anonymous_class.php');
 
         $classes = $ts->getClasses();
 
         $this->assertEquals(
-            [
-                'class_with_method_that_declares_anonymous_class',
-                'AnonymousClass:9#31',
-                'AnonymousClass:10#55',
-                'AnonymousClass:11#75',
-                'AnonymousClass:12#91',
-                'AnonymousClass:13#107'
-            ],
-            array_keys($classes)
+                [
+            'class_with_method_that_declares_anonymous_class',
+            'AnonymousClass:9#31',
+            'AnonymousClass:10#55',
+            'AnonymousClass:11#75',
+            'AnonymousClass:12#91',
+            'AnonymousClass:13#107'
+                ], array_keys($classes)
         );
     }
 
     /**
      * @ticket https://github.com/sebastianbergmann/php-token-stream/issues/52
      */
-    public function testAnonymousClassesAreHandledCorrectly2()
-    {
+    public function testAnonymousClassesAreHandledCorrectly2() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'class_with_method_that_declares_anonymous_class2.php');
 
         $classes = $ts->getClasses();
@@ -113,8 +105,7 @@ class PHP_Token_ClassTest extends TestCase
         $this->assertEmpty($ts->getFunctions());
     }
 
-    public function testImportedFunctionsAreHandledCorrectly()
-    {
+    public function testImportedFunctionsAreHandledCorrectly() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'classUsesNamespacedFunction.php');
 
         $this->assertEmpty($ts->getFunctions());
@@ -124,8 +115,7 @@ class PHP_Token_ClassTest extends TestCase
     /**
      * @ticket https://github.com/sebastianbergmann/php-code-coverage/issues/543
      */
-    public function testClassWithMultipleAnonymousClassesAndFunctionsIsHandledCorrectly()
-    {
+    public function testClassWithMultipleAnonymousClassesAndFunctionsIsHandledCorrectly() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'class_with_multiple_anonymous_classes_and_functions.php');
 
         $classes = $ts->getClasses();
@@ -141,8 +131,7 @@ class PHP_Token_ClassTest extends TestCase
     /**
      * @ticket https://github.com/sebastianbergmann/php-token-stream/issues/68
      */
-    public function testClassWithMethodNamedEmptyIsHandledCorrectly()
-    {
+    public function testClassWithMethodNamedEmptyIsHandledCorrectly() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'class_with_method_named_empty.php');
 
         $classes = $ts->getClasses();
@@ -154,8 +143,7 @@ class PHP_Token_ClassTest extends TestCase
     /**
      * @ticket https://github.com/sebastianbergmann/php-code-coverage/issues/424
      */
-    public function testAnonymousFunctionDoesNotAffectStartAndEndLineOfMethod()
-    {
+    public function testAnonymousFunctionDoesNotAffectStartAndEndLineOfMethod() {
         $ts = new PHP_Token_Stream(TEST_FILES_PATH . 'php-code-coverage-issue-424.php');
 
         $classes = $ts->getClasses();
@@ -166,4 +154,5 @@ class PHP_Token_ClassTest extends TestCase
         $this->assertSame(7, $classes['Example']['methods']['anonymousFunction:7#28']['startLine']);
         $this->assertSame(9, $classes['Example']['methods']['anonymousFunction:7#28']['endLine']);
     }
+
 }

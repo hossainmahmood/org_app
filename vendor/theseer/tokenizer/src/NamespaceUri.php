@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
+
 namespace TheSeer\Tokenizer;
 
 class NamespaceUri {
@@ -21,8 +24,9 @@ class NamespaceUri {
     private function ensureValidUri($value) {
         if (strpos($value, ':') === false) {
             throw new NamespaceUriException(
-                sprintf("Namespace URI '%s' must contain at least one colon", $value)
+            sprintf("Namespace URI '%s' must contain at least one colon", $value)
             );
         }
     }
+
 }

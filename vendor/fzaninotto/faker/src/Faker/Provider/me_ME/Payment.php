@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\me_ME;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * International Bank Account Number (IBAN)
      * @link http://en.wikipedia.org/wiki/International_Bank_Account_Number
@@ -12,8 +12,8 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'ME', $length = '18')
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'ME', $length = '18') {
         return static::iban($countryCode, $prefix, $length);
     }
+
 }

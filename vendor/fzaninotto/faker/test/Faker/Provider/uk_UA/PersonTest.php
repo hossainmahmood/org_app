@@ -6,10 +6,9 @@ use Faker\Generator;
 use Faker\Provider\uk_UA\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
-    public function testFirstNameMaleReturns()
-    {
+class PersonTest extends TestCase {
+
+    public function testFirstNameMaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -17,8 +16,7 @@ class PersonTest extends TestCase
         $this->assertEquals('Максим', $faker->firstNameMale());
     }
 
-    public function testFirstNameFemaleReturns()
-    {
+    public function testFirstNameFemaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -26,8 +24,7 @@ class PersonTest extends TestCase
         $this->assertEquals('Людмила', $faker->firstNameFemale());
     }
 
-    public function testMiddleNameMaleReturns()
-    {
+    public function testMiddleNameMaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -35,8 +32,7 @@ class PersonTest extends TestCase
         $this->assertEquals('Миколайович', $faker->middleNameMale());
     }
 
-    public function testMiddleNameFemaleReturns()
-    {
+    public function testMiddleNameFemaleReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
@@ -44,14 +40,12 @@ class PersonTest extends TestCase
         $this->assertEquals('Миколаївна', $faker->middleNameFemale());
     }
 
-    public function testLastNameReturns()
-    {
+    public function testLastNameReturns() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->seed(1);
 
         $this->assertEquals('Броваренко', $faker->lastName());
     }
-
 
 }

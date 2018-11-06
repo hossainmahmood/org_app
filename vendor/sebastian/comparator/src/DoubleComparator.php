@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 /**
  * Compares doubles for equality.
  */
-class DoubleComparator extends NumericComparator
-{
+class DoubleComparator extends NumericComparator {
+
     /**
      * Smallest value available in PHP.
      *
@@ -29,8 +31,7 @@ class DoubleComparator extends NumericComparator
      *
      * @return bool
      */
-    public function accepts($expected, $actual)
-    {
+    public function accepts($expected, $actual) {
         return (\is_float($expected) || \is_float($actual)) && \is_numeric($expected) && \is_numeric($actual);
     }
 
@@ -45,12 +46,12 @@ class DoubleComparator extends NumericComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
-    {
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false) {
         if ($delta == 0) {
             $delta = self::EPSILON;
         }
 
         parent::assertEquals($expected, $actual, $delta, $canonicalize, $ignoreCase);
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class AuthorCollection implements \Countable, \IteratorAggregate {
+
     /**
      * @var Author[]
      */
@@ -40,4 +42,5 @@ class AuthorCollection implements \Countable, \IteratorAggregate {
     public function getIterator() {
         return new AuthorCollectionIterator($this);
     }
+
 }

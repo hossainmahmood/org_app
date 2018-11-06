@@ -1,25 +1,23 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
  * A {@link Hamcrest\Description} that is stored as a string.
  */
-class StringDescription extends BaseDescription
-{
+class StringDescription extends BaseDescription {
 
     private $_out;
 
-    public function __construct($out = '')
-    {
+    public function __construct($out = '') {
         $this->_out = (string) $out;
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return $this->_out;
     }
 
@@ -33,8 +31,7 @@ class StringDescription extends BaseDescription
      * @return string
      *   The description of the object.
      */
-    public static function toString(SelfDescribing $selfDescribing)
-    {
+    public static function toString(SelfDescribing $selfDescribing) {
         $self = new self();
 
         return (string) $self->appendDescriptionOf($selfDescribing);
@@ -43,15 +40,14 @@ class StringDescription extends BaseDescription
     /**
      * Alias for {@link toString()}.
      */
-    public static function asString(SelfDescribing $selfDescribing)
-    {
+    public static function asString(SelfDescribing $selfDescribing) {
         return self::toString($selfDescribing);
     }
 
     // -- Protected Methods
 
-    protected function append($str)
-    {
+    protected function append($str) {
         $this->_out .= $str;
     }
+
 }

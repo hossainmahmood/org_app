@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\el_CY;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * International Bank Account Number (IBAN).
      *
@@ -15,8 +15,7 @@ class Payment extends \Faker\Provider\Payment
      *
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'CY', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'CY', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
 
@@ -42,8 +41,8 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'Τράπεζα Κύπρου'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
+
 }

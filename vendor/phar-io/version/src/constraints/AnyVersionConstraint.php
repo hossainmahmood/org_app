@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class AnyVersionConstraint implements VersionConstraint {
+
     /**
      * @param Version $version
      *
@@ -26,4 +28,5 @@ class AnyVersionConstraint implements VersionConstraint {
     public function asString() {
         return '*';
     }
+
 }

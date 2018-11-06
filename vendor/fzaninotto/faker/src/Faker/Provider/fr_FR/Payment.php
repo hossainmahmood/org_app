@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fr_FR;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * Value Added Tax (VAT)
      *
@@ -17,8 +17,7 @@ class Payment extends \Faker\Provider\Payment
      *
      * @return string VAT Number
      */
-    public function vat($spacedNationalPrefix = true)
-    {
+    public function vat($spacedNationalPrefix = true) {
         $siren = Company::siren(false);
         $key = (12 + 3 * ($siren % 97)) % 97;
         $pattern = "%s%'.02d%s";
@@ -37,8 +36,8 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'FR', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'FR', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
+
 }

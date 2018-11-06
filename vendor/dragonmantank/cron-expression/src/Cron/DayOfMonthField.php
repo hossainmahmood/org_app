@@ -22,8 +22,8 @@ use DateTime;
  *
  * @author Michael Dowling <mtdowling@gmail.com>
  */
-class DayOfMonthField extends AbstractField
-{
+class DayOfMonthField extends AbstractField {
+
     protected $rangeStart = 1;
     protected $rangeEnd = 31;
 
@@ -36,8 +36,7 @@ class DayOfMonthField extends AbstractField
      *
      * @return \DateTime Returns the nearest date
      */
-    private static function getNearestWeekday($currentYear, $currentMonth, $targetDay)
-    {
+    private static function getNearestWeekday($currentYear, $currentMonth, $targetDay) {
         $tday = str_pad($targetDay, 2, '0', STR_PAD_LEFT);
         $target = DateTime::createFromFormat('Y-m-d', "$currentYear-$currentMonth-$tday");
         $currentWeekday = (int) $target->format('N');
@@ -59,8 +58,7 @@ class DayOfMonthField extends AbstractField
         }
     }
 
-    public function isSatisfiedBy(DateTime $date, $value)
-    {
+    public function isSatisfiedBy(DateTime $date, $value) {
         // ? states that the field value is to be skipped
         if ($value == '?') {
             return true;
@@ -79,17 +77,14 @@ class DayOfMonthField extends AbstractField
             $targetDay = substr($value, 0, strpos($value, 'W'));
             // Find out if the current day is the nearest day of the week
             return $date->format('j') == self::getNearestWeekday(
-                $date->format('Y'),
-                $date->format('m'),
-                $targetDay
-            )->format('j');
+                            $date->format('Y'), $date->format('m'), $targetDay
+                    )->format('j');
         }
 
         return $this->isSatisfied($date->format('d'), $value);
     }
 
-    public function increment(DateTime $date, $invert = false)
-    {
+    public function increment(DateTime $date, $invert = false) {
         if ($invert) {
             $date->modify('previous day');
             $date->setTime(23, 59);
@@ -104,8 +99,7 @@ class DayOfMonthField extends AbstractField
     /**
      * @inheritDoc
      */
-    public function validate($value)
-    {
+    public function validate($value) {
         $basicChecks = parent::validate($value);
 
         // Validate that a list don't have W or L
@@ -128,4 +122,5 @@ class DayOfMonthField extends AbstractField
 
         return $basicChecks;
     }
+
 }

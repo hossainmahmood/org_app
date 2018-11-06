@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\en_NG;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $postcode = array('#####', '## ###');
+class Address extends \Faker\Provider\Address {
 
+    protected static $postcode = array('#####', '## ###');
     private static $county = array(
         'Abuja', 'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra',
         'Bauchi', 'Bayelsa', 'Benue', 'Borno',
@@ -24,7 +23,6 @@ class Address extends \Faker\Provider\Address
         'Yobe',
         'Zamfara'
     );
-
     protected static $country = array(
         'Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica (the territory South of 60 deg S)', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan',
         'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Bouvet Island (Bouvetoya)', 'Brazil', 'British Indian Ocean Territory (Chagos Archipelago)', 'British Virgin Islands', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Burundi',
@@ -52,7 +50,6 @@ class Address extends \Faker\Provider\Address
         'Yemen',
         'Zambia', 'Zimbabwe'
     );
-
     private static $regions = array(
         'Abakaliki', 'Abeokuta', 'Akure', 'Asaba', 'Awka',
         'Bauchi',
@@ -79,8 +76,7 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function county()
-    {
+    public static function county() {
         return static::randomElement(static::$county);
     }
 
@@ -91,8 +87,8 @@ class Address extends \Faker\Provider\Address
      *
      * @return string
      */
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$regions);
     }
+
 }

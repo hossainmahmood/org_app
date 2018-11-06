@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class License {
+
     /**
      * @var string
      */
@@ -23,7 +25,7 @@ class License {
 
     public function __construct($name, Url $url) {
         $this->name = $name;
-        $this->url  = $url;
+        $this->url = $url;
     }
 
     /**
@@ -39,4 +41,5 @@ class License {
     public function getUrl() {
         return $this->url;
     }
+
 }

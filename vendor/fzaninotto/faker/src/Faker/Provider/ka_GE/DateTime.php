@@ -2,11 +2,9 @@
 
 namespace Faker\Provider\ka_GE;
 
-class DateTime extends \Faker\Provider\DateTime
-{
+class DateTime extends \Faker\Provider\DateTime {
 
-    public static function dayOfWeek($max = 'now')
-    {
+    public static function dayOfWeek($max = 'now') {
         $map = array(
             'Sunday' => 'კვირა',
             'Monday' => 'ორშაბათი',
@@ -20,8 +18,7 @@ class DateTime extends \Faker\Provider\DateTime
         return isset($map[$week]) ? $map[$week] : $week;
     }
 
-    public static function monthName($max = 'now')
-    {
+    public static function monthName($max = 'now') {
         $map = array(
             'January' => 'იანვარი',
             'February' => 'თებერვალი',
@@ -39,4 +36,5 @@ class DateTime extends \Faker\Provider\DateTime
         $month = static::dateTime($max)->format('F');
         return isset($map[$month]) ? $map[$month] : $month;
     }
+
 }

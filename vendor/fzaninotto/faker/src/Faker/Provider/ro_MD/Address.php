@@ -1,18 +1,17 @@
 <?php
+
 namespace Faker\Provider\ro_MD;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $buildingNumber = array('###', '##', '#', '#/#', '#A', '#B');
     protected static $apartmentNumber = array('#', '##');
     protected static $floor = array('#', '##');
     protected static $block = array('#', '##', 'A', 'B', 'C', 'D');
     protected static $blockSegment = array('A', 'B', 'C', 'D');
-
     protected static $streetPrefix = array(
         'Str.', 'B-dul.', 'Aleea', 'Calea', 'P-ța', 'Str-la'
     );
-
     // random selection of seemingly frequently used streets and naming categories
     protected static $streetPlainName = array(
         // historical events
@@ -28,9 +27,7 @@ class Address extends \Faker\Provider\Address
         // geography related
         'Chisinau', 'Paris'
     );
-
     protected static $postcode = array('####');
-
     // http://ro.wikipedia.org/wiki/Lista_ora%C8%99elor_din_Republica_Moldova
     protected static $cityNames = array(
         'Chișinău', 'Tiraspol', 'Bălți', 'Tighina', 'Râbnița', 'Cahul', 'Ungheni', 'Soroca',
@@ -43,7 +40,6 @@ class Address extends \Faker\Provider\Address
         'Cantemir', 'Vatra', 'Biruința', 'Crasnoe', 'Cornești', 'Costești', 'Mărculești', 'Ghindești',
         'Tiraspolul Nou', 'Frunză', 'Bucovăț', 'Maiac'
     );
-
     // http://ro.wikipedia.org/wiki/Lista_statelor_lumii#Lista_statelor_lumii
     protected static $country = array(
         'Afganistan', 'Africa de Sud', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua și Barbuda', 'Arabia Saudită', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaidjan',
@@ -61,16 +57,13 @@ class Address extends \Faker\Provider\Address
         'Statele Unite ale Americii', 'Sudan', 'Sudanul de Sud', 'Suedia', 'Surinam', 'Swaziland', 'Tadjikistan', 'Tanzania', 'Thailanda', 'Timorul de Est', 'Togo', 'Tonga', 'Trinidad-Tobago',
         'Tunisia', 'Turcia', 'Turkmenistan', 'Tuvalu', 'Ucraina', 'Uganda', 'Ungaria', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
         'Mun. {{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{streetPrefix}} {{streetPlainName}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}',
         '{{streetName}} {{buildingNumber}}',
@@ -79,70 +72,60 @@ class Address extends \Faker\Provider\Address
         '{{streetName}} nr. {{buildingNumber}}, bl. {{block}}, et. {{floor}}, ap. {{apartmentNumber}}',
         '{{streetName}} nr. {{buildingNumber}}, bl. {{block}}, sc. {{blockSegment}}, et. {{floor}}, ap. {{apartmentNumber}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}, {{city}}, CP {{postcode}}",
     );
 
-    public function cityName()
-    {
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
-    public static function block()
-    {
+    public static function block() {
         return static::numerify(static::randomElement(static::$block));
     }
 
-    public function blockSegment()
-    {
+    public function blockSegment() {
         return static::randomElement(static::$blockSegment);
     }
 
-    public static function floor()
-    {
+    public static function floor() {
         return static::numerify(static::randomElement(static::$floor));
     }
 
-    public static function apartmentNumber()
-    {
+    public static function apartmentNumber() {
         return static::numerify(static::randomElement(static::$apartmentNumber));
     }
 
-    public function streetPrefix()
-    {
+    public function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'Independenței'
      */
-    public function streetPlainName()
-    {
+    public function streetPlainName() {
         return static::randomElement(static::$streetPlainName);
     }
 
     /**
      * @example 'Splaiul Independenței'
      */
-    public function streetName()
-    {
+    public function streetName() {
         $format = static::randomElement(static::$streetNameFormats);
 
         return $this->generator->parse($format);
     }
 
-    public function address()
-    {
+    public function address() {
         $format = static::randomElement(static::$addressFormats);
 
         return $this->generator->parse($format);
     }
 
-    public function streetAddress()
-    {
+    public function streetAddress() {
         $format = static::randomElement(static::$streetAddressFormats);
 
         return $this->generator->parse($format);
     }
+
 }

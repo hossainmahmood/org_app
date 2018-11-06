@@ -5,30 +5,25 @@ namespace Faker\Test\Provider;
 use Faker\Provider\Image;
 use PHPUnit\Framework\TestCase;
 
-class ImageTest extends TestCase
-{
-    public function testImageUrlUses640x680AsTheDefaultSize()
-    {
+class ImageTest extends TestCase {
+
+    public function testImageUrlUses640x680AsTheDefaultSize() {
         $this->assertRegExp('#^https://lorempixel.com/640/480/#', Image::imageUrl());
     }
 
-    public function testImageUrlAcceptsCustomWidthAndHeight()
-    {
+    public function testImageUrlAcceptsCustomWidthAndHeight() {
         $this->assertRegExp('#^https://lorempixel.com/800/400/#', Image::imageUrl(800, 400));
     }
 
-    public function testImageUrlAcceptsCustomCategory()
-    {
+    public function testImageUrlAcceptsCustomCategory() {
         $this->assertRegExp('#^https://lorempixel.com/800/400/nature/#', Image::imageUrl(800, 400, 'nature'));
     }
 
-    public function testImageUrlAcceptsCustomText()
-    {
+    public function testImageUrlAcceptsCustomText() {
         $this->assertRegExp('#^https://lorempixel.com/800/400/nature/Faker#', Image::imageUrl(800, 400, 'nature', false, 'Faker'));
     }
 
-    public function testImageUrlAddsARandomGetParameterByDefault()
-    {
+    public function testImageUrlAddsARandomGetParameterByDefault() {
         $url = Image::imageUrl(800, 400);
         $splitUrl = preg_split('/\?/', $url);
 
@@ -39,13 +34,11 @@ class ImageTest extends TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testUrlWithDimensionsAndBadCategory()
-    {
+    public function testUrlWithDimensionsAndBadCategory() {
         Image::imageUrl(800, 400, 'bullhonky');
     }
 
-    public function testDownloadWithDefaults()
-    {
+    public function testDownloadWithDefaults() {
         $url = "http://lorempixel.com/";
         $curlPing = curl_init($url);
         curl_setopt($curlPing, CURLOPT_TIMEOUT, 5);
@@ -73,4 +66,5 @@ class ImageTest extends TestCase
             unlink($file);
         }
     }
+
 }

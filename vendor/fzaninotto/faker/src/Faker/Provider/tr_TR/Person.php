@@ -4,8 +4,8 @@ namespace Faker\Provider\tr_TR;
 
 use Faker\Calculator\TCNo;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * @var array Turkish person name formats.
      */
@@ -15,7 +15,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -73,27 +72,23 @@ class Person extends \Faker\Provider\Person
         'Çevik', 'Çörekçi', 'Önür', 'Örge', 'Öymen', 'Özberk', 'Özbey', 'Özbir', 'Özdenak', 'Özdoğan', 'Özgörkey',
         'Özkara', 'Özkök', 'Öztonga', 'Öztuna'
     );
-
     protected static $title = array('Doç. Dr.', 'Dr.', 'Prof. Dr.');
 
-    public function title($gender = null)
-    {
+    public function title($gender = null) {
         return static::titleMale();
     }
 
     /**
      * replaced by specific unisex Turkish title
      */
-    public static function titleMale()
-    {
+    public static function titleMale() {
         return static::randomElement(static::$title);
     }
 
     /**
      * replaced by specific unisex Turkish title
      */
-    public static function titleFemale()
-    {
+    public static function titleFemale() {
         return static::titleMale();
     }
 
@@ -102,11 +97,11 @@ class Person extends \Faker\Provider\Person
      * @link https://en.wikipedia.org/wiki/Turkish_Identification_Number
      * @return string on format XXXXXXXXXXX
      */
-    public function tcNo()
-    {
+    public function tcNo() {
         $randomDigits = static::numerify('#########');
         $checksum = TCNo::checksum($randomDigits);
 
         return $randomDigits . $checksum;
     }
+
 }

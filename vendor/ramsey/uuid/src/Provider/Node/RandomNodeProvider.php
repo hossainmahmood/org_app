@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -22,16 +23,15 @@ use Ramsey\Uuid\Provider\NodeProviderInterface;
  *
  * @link http://tools.ietf.org/html/rfc4122#section-4.5
  */
-class RandomNodeProvider implements NodeProviderInterface
-{
+class RandomNodeProvider implements NodeProviderInterface {
+
     /**
      * Returns the system node ID
      *
      * @return string System node ID as a hexadecimal string
      * @throws \Exception if it was not possible to gather sufficient entropy
      */
-    public function getNode()
-    {
+    public function getNode() {
         $node = hexdec(bin2hex(random_bytes(6)));
 
         // Set the multicast bit; see RFC 4122, section 4.5.
@@ -39,4 +39,5 @@ class RandomNodeProvider implements NodeProviderInterface
 
         return str_pad(dechex($node), 12, '0', STR_PAD_LEFT);
     }
+
 }

@@ -24,21 +24,17 @@ use Monolog\Logger;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-class IntrospectionProcessor
-{
+class IntrospectionProcessor {
+
     private $level;
-
     private $skipClassesPartials;
-
     private $skipStackFramesCount;
-
     private $skipFunctions = array(
         'call_user_func',
         'call_user_func_array',
     );
 
-    public function __construct($level = Logger::DEBUG, array $skipClassesPartials = array(), $skipStackFramesCount = 0)
-    {
+    public function __construct($level = Logger::DEBUG, array $skipClassesPartials = array(), $skipStackFramesCount = 0) {
         $this->level = Logger::toMonologLevel($level);
         $this->skipClassesPartials = array_merge(array('Monolog\\'), $skipClassesPartials);
         $this->skipStackFramesCount = $skipStackFramesCount;
@@ -48,18 +44,17 @@ class IntrospectionProcessor
      * @param  array $record
      * @return array
      */
-    public function __invoke(array $record)
-    {
+    public function __invoke(array $record) {
         // return if the level is not high enough
         if ($record['level'] < $this->level) {
             return $record;
         }
 
         /*
-        * http://php.net/manual/en/function.debug-backtrace.php
-        * As of 5.3.6, DEBUG_BACKTRACE_IGNORE_ARGS option was added.
-        * Any version less than 5.3.6 must use the DEBUG_BACKTRACE_IGNORE_ARGS constant value '2'.
-        */
+         * http://php.net/manual/en/function.debug-backtrace.php
+         * As of 5.3.6, DEBUG_BACKTRACE_IGNORE_ARGS option was added.
+         * Any version less than 5.3.6 must use the DEBUG_BACKTRACE_IGNORE_ARGS constant value '2'.
+         */
         $trace = debug_backtrace((PHP_VERSION_ID < 50306) ? 2 : DEBUG_BACKTRACE_IGNORE_ARGS);
 
         // skip first since it's always the current method
@@ -89,24 +84,23 @@ class IntrospectionProcessor
 
         // we should have the call source now
         $record['extra'] = array_merge(
-            $record['extra'],
-            array(
-                'file'      => isset($trace[$i - 1]['file']) ? $trace[$i - 1]['file'] : null,
-                'line'      => isset($trace[$i - 1]['line']) ? $trace[$i - 1]['line'] : null,
-                'class'     => isset($trace[$i]['class']) ? $trace[$i]['class'] : null,
-                'function'  => isset($trace[$i]['function']) ? $trace[$i]['function'] : null,
-            )
+                $record['extra'], array(
+            'file' => isset($trace[$i - 1]['file']) ? $trace[$i - 1]['file'] : null,
+            'line' => isset($trace[$i - 1]['line']) ? $trace[$i - 1]['line'] : null,
+            'class' => isset($trace[$i]['class']) ? $trace[$i]['class'] : null,
+            'function' => isset($trace[$i]['function']) ? $trace[$i]['function'] : null,
+                )
         );
 
         return $record;
     }
 
-    private function isTraceClassOrSkippedFunction(array $trace, $index)
-    {
+    private function isTraceClassOrSkippedFunction(array $trace, $index) {
         if (!isset($trace[$index])) {
             return false;
         }
 
         return isset($trace[$index]['class']) || in_array($trace[$index]['function'], $this->skipFunctions);
     }
+
 }

@@ -23,8 +23,8 @@ use Monolog\Logger;
  * @link https://github.com/aws/aws-sdk-php/
  * @author Andrew Lawson <adlawson@gmail.com>
  */
-class DynamoDbHandler extends AbstractProcessingHandler
-{
+class DynamoDbHandler extends AbstractProcessingHandler {
+
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uO';
 
     /**
@@ -53,8 +53,7 @@ class DynamoDbHandler extends AbstractProcessingHandler
      * @param int            $level
      * @param bool           $bubble
      */
-    public function __construct(DynamoDbClient $client, $table, $level = Logger::DEBUG, $bubble = true)
-    {
+    public function __construct(DynamoDbClient $client, $table, $level = Logger::DEBUG, $bubble = true) {
         if (defined('Aws\Sdk::VERSION') && version_compare(Sdk::VERSION, '3.0', '>=')) {
             $this->version = 3;
             $this->marshaler = new Marshaler;
@@ -71,8 +70,7 @@ class DynamoDbHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         $filtered = $this->filterEmptyFields($record['formatted']);
         if ($this->version === 3) {
             $formatted = $this->marshaler->marshalItem($filtered);
@@ -90,8 +88,7 @@ class DynamoDbHandler extends AbstractProcessingHandler
      * @param  array $record
      * @return array
      */
-    protected function filterEmptyFields(array $record)
-    {
+    protected function filterEmptyFields(array $record) {
         return array_filter($record, function ($value) {
             return !empty($value) || false === $value || 0 === $value;
         });
@@ -100,8 +97,8 @@ class DynamoDbHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultFormatter()
-    {
+    protected function getDefaultFormatter() {
         return new ScalarFormatter(self::DATE_FORMAT);
     }
+
 }

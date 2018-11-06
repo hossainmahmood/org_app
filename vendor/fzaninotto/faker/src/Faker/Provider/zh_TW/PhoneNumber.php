@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\zh_TW;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+8869########',
         '+886-9##-###-###',
@@ -16,4 +16,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '(0##)######',
         '(0##)###-###',
     );
+
 }

@@ -1,28 +1,26 @@
 <?php
+
 namespace Hamcrest\Core;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 use Hamcrest\Description;
 use Hamcrest\Matcher;
 use Hamcrest\TypeSafeDiagnosingMatcher;
 
-class Every extends TypeSafeDiagnosingMatcher
-{
+class Every extends TypeSafeDiagnosingMatcher {
 
     private $_matcher;
 
-    public function __construct(Matcher $matcher)
-    {
+    public function __construct(Matcher $matcher) {
         parent::__construct(self::TYPE_ARRAY);
 
         $this->_matcher = $matcher;
     }
 
-    protected function matchesSafelyWithDiagnosticDescription($items, Description $mismatchDescription)
-    {
+    protected function matchesSafelyWithDiagnosticDescription($items, Description $mismatchDescription) {
         foreach ($items as $item) {
             if (!$this->_matcher->matches($item)) {
                 $mismatchDescription->appendText('an item ');
@@ -35,8 +33,7 @@ class Every extends TypeSafeDiagnosingMatcher
         return true;
     }
 
-    public function describeTo(Description $description)
-    {
+    public function describeTo(Description $description) {
         $description->appendText('every item is ')->appendDescriptionOf($this->_matcher);
     }
 
@@ -49,8 +46,8 @@ class Every extends TypeSafeDiagnosingMatcher
      *
      * @factory
      */
-    public static function everyItem(Matcher $itemMatcher)
-    {
+    public static function everyItem(Matcher $itemMatcher) {
         return new self($itemMatcher);
     }
+
 }

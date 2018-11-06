@@ -14,10 +14,9 @@ namespace Monolog\Handler;
 use Monolog\TestCase;
 use Monolog\Logger;
 
-class CouchDBHandlerTest extends TestCase
-{
-    public function testHandle()
-    {
+class CouchDBHandlerTest extends TestCase {
+
+    public function testHandle() {
         $record = $this->getRecord(Logger::WARNING, 'test', array('data' => new \stdClass, 'foo' => 34));
 
         $handler = new CouchDBHandler();
@@ -28,4 +27,5 @@ class CouchDBHandlerTest extends TestCase
             $this->markTestSkipped('Could not connect to couchdb server on http://localhost:5984');
         }
     }
+
 }

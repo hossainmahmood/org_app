@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ru_RU;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     /**
      * @see list of Russian banks (2015-04-04), source: http://www.banki.ru/banks/
      * @example "cat *.html | grep 'b-cb-list__name' | iconv --f windows-1251 --t utf-8 | grep -o '>.*<' | \
@@ -804,8 +804,8 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'Новый Московский Банк'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
+
 }

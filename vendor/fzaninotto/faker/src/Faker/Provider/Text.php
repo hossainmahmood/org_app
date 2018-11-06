@@ -2,8 +2,8 @@
 
 namespace Faker\Provider;
 
-abstract class Text extends Base
-{
+abstract class Text extends Base {
+
     protected static $baseText = '';
     protected static $separator = ' ';
     protected static $separatorLen = 1;
@@ -26,8 +26,7 @@ abstract class Text extends Base
      *                             produce more correct text, at the price of less randomness.
      * @return string
      */
-    public function realText($maxNbChars = 200, $indexSize = 2)
-    {
+    public function realText($maxNbChars = 200, $indexSize = 2) {
         if ($maxNbChars < 10) {
             throw new \InvalidArgumentException('maxNbChars must be at least 10');
         }
@@ -74,8 +73,7 @@ abstract class Text extends Base
         return static::appendEnd($result);
     }
 
-    protected function getConsecutiveWords($indexSize)
-    {
+    protected function getConsecutiveWords($indexSize) {
         if (!isset($this->consecutiveWords[$indexSize])) {
             $parts = $this->getExplodedText();
             $words = array();
@@ -101,8 +99,7 @@ abstract class Text extends Base
         return $this->consecutiveWords[$indexSize];
     }
 
-    protected function getExplodedText()
-    {
+    protected function getExplodedText() {
         if ($this->explodedText === null) {
             $this->explodedText = static::explode(preg_replace('/\s+/u', ' ', static::$baseText));
         }
@@ -110,23 +107,19 @@ abstract class Text extends Base
         return $this->explodedText;
     }
 
-    protected static function explode($text)
-    {
+    protected static function explode($text) {
         return explode(static::$separator, $text);
     }
 
-    protected static function implode($words)
-    {
+    protected static function implode($words) {
         return implode(static::$separator, $words);
     }
 
-    protected static function strlen($text)
-    {
+    protected static function strlen($text) {
         return function_exists('mb_strlen') ? mb_strlen($text, 'UTF-8') : strlen($text);
     }
 
-    protected static function validStart($word)
-    {
+    protected static function validStart($word) {
         $isValid = true;
         if (static::$textStartsWithUppercase) {
             $isValid = preg_match('/^\p{Lu}/u', $word);
@@ -134,8 +127,8 @@ abstract class Text extends Base
         return $isValid;
     }
 
-    protected static function appendEnd($text)
-    {
-        return preg_replace("/([ ,-:;\x{2013}\x{2014}]+$)/us", '', $text).'.';
+    protected static function appendEnd($text) {
+        return preg_replace("/([ ,-:;\x{2013}\x{2014}]+$)/us", '', $text) . '.';
     }
+
 }

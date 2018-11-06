@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class SpecificMajorAndMinorVersionConstraint extends AbstractVersionConstraint {
+
     /**
      * @var int
      */
@@ -45,4 +47,5 @@ class SpecificMajorAndMinorVersionConstraint extends AbstractVersionConstraint {
 
         return $version->getMinor()->getValue() == $this->minor;
     }
+
 }

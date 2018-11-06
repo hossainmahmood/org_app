@@ -2,12 +2,12 @@
 
 namespace DeepCopy\f005;
 
-class Foo
-{
+class Foo {
+
     public $cloned = false;
 
-    public function __clone()
-    {
+    public function __clone() {
         $this->cloned = true;
     }
+
 }

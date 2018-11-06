@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 /**
  * Compares values for type equality.
  */
-class TypeComparator extends Comparator
-{
+class TypeComparator extends Comparator {
+
     /**
      * Returns whether the comparator can compare two values.
      *
@@ -22,8 +24,7 @@ class TypeComparator extends Comparator
      *
      * @return bool
      */
-    public function accepts($expected, $actual)
-    {
+    public function accepts($expected, $actual) {
         return true;
     }
 
@@ -38,22 +39,16 @@ class TypeComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
-    {
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false) {
         if (\gettype($expected) != \gettype($actual)) {
             throw new ComparisonFailure(
-                $expected,
-                $actual,
-                // we don't need a diff
-                '',
-                '',
-                false,
-                \sprintf(
-                    '%s does not match expected type "%s".',
-                    $this->exporter->shortenedExport($actual),
-                    \gettype($expected)
-                )
+            $expected, $actual,
+            // we don't need a diff
+            '', '', false, \sprintf(
+                    '%s does not match expected type "%s".', $this->exporter->shortenedExport($actual), \gettype($expected)
+            )
             );
         }
     }
+
 }

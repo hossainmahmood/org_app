@@ -2,8 +2,7 @@
 
 namespace Faker\Provider\ka_GE;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
 
     /**
      * @see list of Georgian banks (2015-12-26), source: https://www.nbg.gov.ge/index.php?m=403
@@ -33,8 +32,7 @@ class Payment extends \Faker\Provider\Payment
     /**
      * @example 'თიბისი ბანკი'
      */
-    public static function bank()
-    {
+    public static function bank() {
         return static::randomElement(static::$banks);
     }
 
@@ -46,8 +44,8 @@ class Payment extends \Faker\Provider\Payment
      * @param  integer $length      total length without country code and 2 check digits
      * @return string
      */
-    public static function bankAccountNumber($prefix = '', $countryCode = 'GE', $length = null)
-    {
+    public static function bankAccountNumber($prefix = '', $countryCode = 'GE', $length = null) {
         return static::iban($countryCode, $prefix, $length);
     }
+
 }

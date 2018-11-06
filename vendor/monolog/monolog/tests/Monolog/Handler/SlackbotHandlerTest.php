@@ -19,13 +19,12 @@ use Monolog\Logger;
  * @see    https://slack.com/apps/A0F81R8ET-slackbot
  * @coversDefaultClass Monolog\Handler\SlackbotHandler
  */
-class SlackbotHandlerTest extends TestCase
-{
+class SlackbotHandlerTest extends TestCase {
+
     /**
      * @covers ::__construct
      */
-    public function testConstructorMinimal()
-    {
+    public function testConstructorMinimal() {
         $handler = new SlackbotHandler('test-team', 'test-token', 'test-channel');
         $this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
     }
@@ -33,15 +32,11 @@ class SlackbotHandlerTest extends TestCase
     /**
      * @covers ::__construct
      */
-    public function testConstructorFull()
-    {
+    public function testConstructorFull() {
         $handler = new SlackbotHandler(
-            'test-team',
-            'test-token',
-            'test-channel',
-            Logger::DEBUG,
-            false
+                'test-team', 'test-token', 'test-channel', Logger::DEBUG, false
         );
         $this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
     }
+
 }

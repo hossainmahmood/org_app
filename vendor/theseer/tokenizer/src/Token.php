@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
+
 namespace TheSeer\Tokenizer;
 
 class Token {
@@ -26,8 +29,8 @@ class Token {
      * @param string $value
      */
     public function __construct(int $line, string $name, string $value) {
-        $this->line  = $line;
-        $this->name  = $name;
+        $this->line = $line;
+        $this->name = $name;
         $this->value = $value;
     }
 

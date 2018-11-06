@@ -10,22 +10,20 @@ use Datetime;
 /**
  * @group Person
  */
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
+
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
     }
 
-    public function testRrnIsValid()
-    {
+    public function testRrnIsValid() {
         $rrn = $this->faker->rrn();
 
         $this->assertEquals(11, strlen($rrn));
@@ -40,15 +38,14 @@ class PersonTest extends TestCase
         $this->assertLessThan(997, $middle);
     }
 
-    public function testRrnIsMale()
-    {
+    public function testRrnIsMale() {
         $rrn = $this->faker->rrn('male');
         $this->assertEquals(substr($rrn, 6, 3) % 2, 1);
     }
 
-    public function testRrnIsFemale()
-    {
+    public function testRrnIsFemale() {
         $rrn = $this->faker->rrn('female');
         $this->assertEquals(substr($rrn, 6, 3) % 2, 0);
     }
+
 }

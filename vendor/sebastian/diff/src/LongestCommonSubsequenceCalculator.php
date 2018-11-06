@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,8 +12,8 @@
 
 namespace SebastianBergmann\Diff;
 
-interface LongestCommonSubsequenceCalculator
-{
+interface LongestCommonSubsequenceCalculator {
+
     /**
      * Calculates the longest common subsequence of two arrays.
      *

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -18,8 +19,8 @@ namespace Ramsey\Uuid\Provider;
  * NodeProviderInterface provides functionality to get the node ID (or host ID
  * in the form of the system's MAC address) from a specific type of node provider
  */
-interface NodeProviderInterface
-{
+interface NodeProviderInterface {
+
     /**
      * Returns the system node ID
      *

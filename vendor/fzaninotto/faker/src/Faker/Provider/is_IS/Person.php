@@ -5,8 +5,8 @@ namespace Faker\Provider\is_IS;
 /**
  * @author Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
  */
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * @var array Icelandic person name formats.
      */
@@ -16,7 +16,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{middleName}} {{lastNameMale}}',
         '{{firstNameMale}} {{middleName}} {{lastNameMale}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastNameFemale}}',
         '{{firstNameFemale}} {{lastNameFemale}}',
@@ -46,8 +45,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public static function middleName()
-    {
+    public static function middleName() {
         return static::randomElement(static::$middleName);
     }
 
@@ -56,8 +54,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public function lastName()
-    {
+    public function lastName() {
         $name = static::firstNameMale();
 
         if (substr($name, -2) === 'ur') {
@@ -76,9 +73,8 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public function lastNameMale()
-    {
-        return $this->lastName().'son';
+    public function lastNameMale() {
+        return $this->lastName() . 'son';
     }
 
     /**
@@ -86,9 +82,8 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public function lastNameFemale()
-    {
-        return $this->lastName().'dóttir';
+    public function lastNameFemale() {
+        return $this->lastName() . 'dóttir';
     }
 
     /**
@@ -98,8 +93,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public static function ssn()
-    {
+    public static function ssn() {
         // random birth date
         $birthdate = new \DateTime('@' . mt_rand(0, time()));
 
@@ -112,12 +106,12 @@ class Person extends \Faker\Provider\Person
         // valid flag
         $valid = false;
 
-        while (! $valid) {
+        while (!$valid) {
             // make two random numbers
-            $rand = static::randomDigit().static::randomDigit();
+            $rand = static::randomDigit() . static::randomDigit();
 
             // 8 char string with birth date and two random numbers
-            $tmp = $birthdate->format('dmy').$rand;
+            $tmp = $birthdate->format('dmy') . $rand;
 
             // loop through temp string
             for ($i = 7, $sum = 0; $i >= 0; $i--) {
@@ -129,7 +123,7 @@ class Person extends \Faker\Provider\Person
             $chk = ($sum % 11 === 0) ? 0 : (11 - ($sum % 11));
 
             if ($chk < 10) {
-                $lastFour = $rand.$chk.substr($birthdate->format('Y'), 1, 1);
+                $lastFour = $rand . $chk . substr($birthdate->format('Y'), 1, 1);
 
                 $valid = true;
             }
@@ -137,4 +131,5 @@ class Person extends \Faker\Provider\Person
 
         return sprintf('%s-%s', $birthdate->format('dmy'), $lastFour);
     }
+
 }

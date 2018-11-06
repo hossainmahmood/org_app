@@ -2,16 +2,14 @@
 
 namespace Faker\Provider\ka_GE;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $cityPrefix = array('ქალაქი', 'ქ.');
+class Address extends \Faker\Provider\Address {
 
+    protected static $cityPrefix = array('ქალაქი', 'ქ.');
     protected static $regionSuffix = array('რაიონი');
     protected static $streetSuffix = array(
         'ჩიხი', 'ქ.', 'გამზირი', 'ქუჩა', 'გზატკეცილი', 'მოედანი', 'ბულვარი',
         'აღმართი', 'ხეივანი'
     );
-
     protected static $buildingNumber = array('##');
     protected static $postcode = array('####');
     protected static $country = array(
@@ -56,17 +54,14 @@ class Address extends \Faker\Provider\Address
         'წმინდა მარტინი (საფრანგეთის ნაწილი)', 'ხორვატია', 'ჯერზი', 'ჯიბუტი', 'ჰაიტი',
         'ჰერდი და მაკდონალდის კუნძულები', 'ჰონგ-კონგი', 'ჰონდურასი'
     );
-
     protected static $region = array(
         'აფხაზეთი', 'აჭარა', 'იმერეთი', 'სამეგრელო-ზემო სვანეთი', 'მცხეთა-მთიანეთი', 'სამცხე-ჯავახეთი',
         'შიდა ქართლი', 'კახეთი', 'რაჭა-ლეჩხუმი და ქვემო სვანეთი', 'გურია', 'ქვემო ქართლი'
     );
-
     protected static $regionGenitiveForm = array(
         'აფხაზეთის', 'აჭარის', 'იმერეთის', 'სამეგრელო-ზემო სვანეთის', 'მცხეთა-მთიანეთის', 'სამცხე-ჯავახეთის',
         'შიდა ქართლის', 'კახეთის', 'რაჭა-ლეჩხუმი და ქვემო სვანეთის', 'გურიის', 'ქვემო ქართლის'
     );
-
     protected static $city = array(
         'აბაშა', 'ამბროლაური', 'ახალი ათონი', 'ახალქალაქი', 'ახალციხე', 'ახმეტა', 'ბათუმი', 'ბაღდათი',
         'ბოლნისი', 'ბორჯომი', 'გაგრა', 'გალი', 'გარდაბანი', 'გორი', 'გუდაუთა', 'გურჯაანი', 'დედოფლისწყარო',
@@ -76,13 +71,11 @@ class Address extends \Faker\Provider\Address
         'ტყვარჩელი', 'ტყიბული', 'ფოთი', 'ქარელი', 'ქობულეთი', 'ქუთაისი', 'ყვარელი', 'ცაგერი', 'ცხინვალი',
         'წალენჯიხა', 'წალკა', 'წნორი', 'წყალტუბო', 'ჭიათურა', 'ხაშური', 'ხობი', 'ხონი', 'ჯვარი'
     );
-
     protected static $street = array(
         'რუსთაველის', 'ტაბიძის', 'აღმაშენებლის', 'ბარათაშვილის', 'თამარ მეფის', 'სააკაძის', 'ყაზბეგის', 'რობაქიძის',
         'ვაჟა-ფშაველას', 'ნუცუბიძის', 'შეშელიძის', 'სააკაძის', 'სანაპიროს', 'გორგასლის', 'ელიავას', 'ჭონქაძის',
         'ფანასკერტელის'
     );
-
     protected static $addressFormats = array(
         "საქართველო, {{regionGenitiveForm}} {{regionSuffix}}, {{city}}, {{streetAddress}}, {{postcode}}",
         "{{regionGenitiveForm}} {{regionSuffix}}, {{city}}, {{streetAddress}}, {{postcode}}",
@@ -93,48 +86,39 @@ class Address extends \Faker\Provider\Address
         "{{streetAddress}}, {{postcode}}, {{city}}",
         "{{streetAddress}}, {{postcode}}, {{city}}, საქართველო",
     );
-
     protected static $streetAddressFormats = array(
         "{{street}} {{streetSuffix}} #{{buildingNumber}}"
     );
-
     protected static $cityFormats = array(
         "{{cityPrefix}} {{cityName}}"
     );
 
-
-    public static function regionSuffix()
-    {
+    public static function regionSuffix() {
         return static::randomElement(static::$regionSuffix);
     }
 
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
 
-    public static function regionGenitiveForm()
-    {
+    public static function regionGenitiveForm() {
         return static::randomElement(static::$regionGenitiveForm);
     }
 
-    public static function cityName()
-    {
+    public static function cityName() {
         return static::randomElement(static::$city);
     }
 
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
-    public static function streetSuffix()
-    {
+    public static function streetSuffix() {
         return static::randomElement(static::$streetSuffix);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
+
 }

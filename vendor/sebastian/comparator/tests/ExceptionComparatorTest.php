@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use Exception;
@@ -20,21 +22,19 @@ use RuntimeException;
  * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-final class ExceptionComparatorTest extends TestCase
-{
+final class ExceptionComparatorTest extends TestCase {
+
     /**
      * @var ExceptionComparator
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->comparator = new ExceptionComparator;
         $this->comparator->setFactory(new Factory);
     }
 
-    public function acceptsSucceedsProvider()
-    {
+    public function acceptsSucceedsProvider() {
         return [
             [new Exception, new Exception],
             [new RuntimeException, new RuntimeException],
@@ -42,8 +42,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
-    {
+    public function acceptsFailsProvider() {
         return [
             [new Exception, null],
             [null, new Exception],
@@ -51,8 +50,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
-    {
+    public function assertEqualsSucceedsProvider() {
         $exception1 = new Exception;
         $exception2 = new Exception;
 
@@ -67,9 +65,8 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
-    {
-        $typeMessage  = 'not instance of expected class';
+    public function assertEqualsFailsProvider() {
+        $typeMessage = 'not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';
 
         $exception1 = new Exception('Error', 100);
@@ -91,33 +88,31 @@ final class ExceptionComparatorTest extends TestCase
     /**
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual): void
-    {
+    public function testAcceptsSucceeds($expected, $actual): void {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual): void
-    {
+    public function testAcceptsFails($expected, $actual): void {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual): void
-    {
+    public function testAssertEqualsSucceeds($expected, $actual): void {
         $exception = null;
 
         try {
             $this->comparator->assertEquals($expected, $actual);
         } catch (ComparisonFailure $exception) {
+            
         }
 
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
@@ -126,11 +121,11 @@ final class ExceptionComparatorTest extends TestCase
     /**
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $message): void
-    {
+    public function testAssertEqualsFails($expected, $actual, $message): void {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
 
         $this->comparator->assertEquals($expected, $actual);
     }
+
 }

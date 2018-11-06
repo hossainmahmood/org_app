@@ -6,18 +6,15 @@ use Faker\Generator;
 use Faker\Provider\pt_PT\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
+class PersonTest extends TestCase {
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
     }
 
-    public function testTaxpayerIdentificationNumberIsValid()
-    {
+    public function testTaxpayerIdentificationNumberIsValid() {
         $tin = $this->faker->taxpayerIdentificationNumber();
         $this->assertTrue($this->isValidTin($tin), $tin);
     }
@@ -30,8 +27,7 @@ class PersonTest extends TestCase
      *
      * @return boolean
      */
-    public static function isValidTin($tin)
-    {
+    public static function isValidTin($tin) {
         $regex = '(([1,2,3,5,6,8]{1}[0-9]{8})|((45)|(70)|(71)|(72)|(77)|(79)|(90|(98|(99))))[0-9]{7})';
         if (is_null($tin) || !is_numeric($tin) || !strlen($tin) == 9 || preg_match("/$regex/", $tin) !== 1) {
             return false;
@@ -50,4 +46,5 @@ class PersonTest extends TestCase
 
         return false;
     }
+
 }

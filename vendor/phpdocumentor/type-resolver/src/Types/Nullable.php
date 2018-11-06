@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -17,8 +18,8 @@ use phpDocumentor\Reflection\Type;
 /**
  * Value Object representing a nullable type. The real type is wrapped.
  */
-final class Nullable implements Type
-{
+final class Nullable implements Type {
+
     /**
      * @var Type
      */
@@ -29,8 +30,7 @@ final class Nullable implements Type
      *
      * @param Type $realType
      */
-    public function __construct(Type $realType)
-    {
+    public function __construct(Type $realType) {
         $this->realType = $realType;
     }
 
@@ -39,8 +39,7 @@ final class Nullable implements Type
      *
      * @return Type
      */
-    public function getActualType()
-    {
+    public function getActualType() {
         return $this->realType;
     }
 
@@ -49,8 +48,8 @@ final class Nullable implements Type
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return '?' . $this->realType->__toString();
     }
+
 }

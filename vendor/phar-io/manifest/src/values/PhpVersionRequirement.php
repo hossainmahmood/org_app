@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -13,6 +14,7 @@ namespace PharIo\Manifest;
 use PharIo\Version\VersionConstraint;
 
 class PhpVersionRequirement implements Requirement {
+
     /**
      * @var VersionConstraint
      */
@@ -28,4 +30,5 @@ class PhpVersionRequirement implements Requirement {
     public function getVersionConstraint() {
         return $this->versionConstraint;
     }
+
 }

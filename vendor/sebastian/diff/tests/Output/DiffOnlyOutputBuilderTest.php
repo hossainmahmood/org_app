@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -19,8 +21,8 @@ use SebastianBergmann\Diff\Differ;
  * @uses SebastianBergmann\Diff\Differ
  * @uses SebastianBergmann\Diff\TimeEfficientLongestCommonSubsequenceCalculator
  */
-final class DiffOnlyOutputBuilderTest extends TestCase
-{
+final class DiffOnlyOutputBuilderTest extends TestCase {
+
     /**
      * @param string $expected
      * @param string $from
@@ -29,15 +31,13 @@ final class DiffOnlyOutputBuilderTest extends TestCase
      *
      * @dataProvider textForNoNonDiffLinesProvider
      */
-    public function testDiffDoNotShowNonDiffLines(string $expected, string $from, string $to, string $header = ''): void
-    {
+    public function testDiffDoNotShowNonDiffLines(string $expected, string $from, string $to, string $header = ''): void {
         $differ = new Differ(new DiffOnlyOutputBuilder($header));
 
         $this->assertSame($expected, $differ->diff($from, $to));
     }
 
-    public function textForNoNonDiffLinesProvider(): array
-    {
+    public function textForNoNonDiffLinesProvider(): array {
         return [
             [
                 " #Warning: Strings contain different line endings!\n-A\r\n+B\n",
@@ -73,4 +73,5 @@ final class DiffOnlyOutputBuilderTest extends TestCase
             ],
         ];
     }
+
 }

@@ -28,7 +28,6 @@ return array(
     'from_now' => 'pēc :time',
     'after' => ':time vēlāk',
     'before' => ':time pirms',
-
     'year_after' => '0 gadus|:count gadu|:count gadus',
     'month_after' => '0 mēnešus|:count mēnesi|:count mēnešus',
     'week_after' => '0 nedēļas|:count nedēļu|:count nedēļas',
@@ -36,7 +35,6 @@ return array(
     'hour_after' => '0 stundas|:count stundu|:count stundas',
     'minute_after' => '0 minūtes|:count minūti|:count minūtes',
     'second_after' => '0 sekundes|:count sekundi|:count sekundes',
-
     'year_before' => '0 gadus|:count gadu|:count gadus',
     'month_before' => '0 mēnešus|:count mēnesi|:count mēnešus',
     'week_before' => '0 nedēļas|:count nedēļu|:count nedēļas',

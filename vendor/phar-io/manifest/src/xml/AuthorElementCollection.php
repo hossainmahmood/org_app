@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,9 +12,11 @@
 namespace PharIo\Manifest;
 
 class AuthorElementCollection extends ElementCollection {
+
     public function current() {
         return new AuthorElement(
-            $this->getCurrentElement()
+                $this->getCurrentElement()
         );
     }
+
 }

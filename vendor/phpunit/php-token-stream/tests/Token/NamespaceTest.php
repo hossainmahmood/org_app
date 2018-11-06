@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of php-token-stream.
  *
@@ -10,15 +11,14 @@
 
 use PHPUnit\Framework\TestCase;
 
-class PHP_Token_NamespaceTest extends TestCase
-{
+class PHP_Token_NamespaceTest extends TestCase {
+
     /**
      * @covers PHP_Token_NAMESPACE::getName
      */
-    public function testGetName()
-    {
+    public function testGetName() {
         $tokenStream = new PHP_Token_Stream(
-          TEST_FILES_PATH . 'classInNamespace.php'
+                TEST_FILES_PATH . 'classInNamespace.php'
         );
 
         foreach ($tokenStream as $token) {
@@ -28,8 +28,7 @@ class PHP_Token_NamespaceTest extends TestCase
         }
     }
 
-    public function testGetStartLineWithUnscopedNamespace()
-    {
+    public function testGetStartLineWithUnscopedNamespace() {
         $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classInNamespace.php');
         foreach ($tokenStream as $token) {
             if ($token instanceof PHP_Token_NAMESPACE) {
@@ -38,8 +37,7 @@ class PHP_Token_NamespaceTest extends TestCase
         }
     }
 
-    public function testGetEndLineWithUnscopedNamespace()
-    {
+    public function testGetEndLineWithUnscopedNamespace() {
         $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classInNamespace.php');
         foreach ($tokenStream as $token) {
             if ($token instanceof PHP_Token_NAMESPACE) {
@@ -47,8 +45,8 @@ class PHP_Token_NamespaceTest extends TestCase
             }
         }
     }
-    public function testGetStartLineWithScopedNamespace()
-    {
+
+    public function testGetStartLineWithScopedNamespace() {
         $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classInScopedNamespace.php');
         foreach ($tokenStream as $token) {
             if ($token instanceof PHP_Token_NAMESPACE) {
@@ -57,8 +55,7 @@ class PHP_Token_NamespaceTest extends TestCase
         }
     }
 
-    public function testGetEndLineWithScopedNamespace()
-    {
+    public function testGetEndLineWithScopedNamespace() {
         $tokenStream = new PHP_Token_Stream(TEST_FILES_PATH . 'classInScopedNamespace.php');
         foreach ($tokenStream as $token) {
             if ($token instanceof PHP_Token_NAMESPACE) {
@@ -66,4 +63,5 @@ class PHP_Token_NamespaceTest extends TestCase
             }
         }
     }
+
 }

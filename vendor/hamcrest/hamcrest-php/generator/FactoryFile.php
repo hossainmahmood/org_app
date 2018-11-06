@@ -1,11 +1,11 @@
 <?php
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
-abstract class FactoryFile
-{
+abstract class FactoryFile {
+
     /**
      * Hamcrest standard is two spaces for each level of indentation.
      *
@@ -14,13 +14,10 @@ abstract class FactoryFile
     const INDENT = '    ';
 
     private $indent;
-
     private $file;
-
     private $code;
 
-    public function __construct($file, $indent)
-    {
+    public function __construct($file, $indent) {
         $this->file = $file;
         $this->indent = $indent;
     }
@@ -29,29 +26,24 @@ abstract class FactoryFile
 
     abstract public function build();
 
-    public function addFileHeader()
-    {
+    public function addFileHeader() {
         $this->code = '';
         $this->addPart('file_header');
     }
 
-    public function addPart($name)
-    {
+    public function addPart($name) {
         $this->addCode($this->readPart($name));
     }
 
-    public function addCode($code)
-    {
+    public function addCode($code) {
         $this->code .= $code;
     }
 
-    public function readPart($name)
-    {
+    public function readPart($name) {
         return file_get_contents(__DIR__ . "/parts/$name.txt");
     }
 
-    public function generateFactoryCall(FactoryCall $call)
-    {
+    public function generateFactoryCall(FactoryCall $call) {
         $method = $call->getMethod();
         $code = $method->getComment($this->indent) . PHP_EOL;
         $code .= $this->generateDeclaration($call->getName(), $method);
@@ -61,22 +53,19 @@ abstract class FactoryFile
         return $code;
     }
 
-    public function generateDeclaration($name, FactoryMethod $method)
-    {
+    public function generateDeclaration($name, FactoryMethod $method) {
         $code = $this->indent . $this->getDeclarationModifiers()
-            . 'function ' . $name . '('
-            . $this->generateDeclarationArguments($method)
-            . ')' . PHP_EOL . $this->indent . '{' . PHP_EOL;
+                . 'function ' . $name . '('
+                . $this->generateDeclarationArguments($method)
+                . ')' . PHP_EOL . $this->indent . '{' . PHP_EOL;
         return $code;
     }
 
-    public function getDeclarationModifiers()
-    {
+    public function getDeclarationModifiers() {
         return '';
     }
 
-    public function generateDeclarationArguments(FactoryMethod $method)
-    {
+    public function generateDeclarationArguments(FactoryMethod $method) {
         if ($method->acceptsVariableArguments()) {
             return '/* args... */';
         } else {
@@ -84,13 +73,11 @@ abstract class FactoryFile
         }
     }
 
-    public function generateImport(FactoryMethod $method)
-    {
+    public function generateImport(FactoryMethod $method) {
         return $this->indent . self::INDENT . "require_once '" . $method->getClass()->getFile() . "';" . PHP_EOL;
     }
 
-    public function generateCall(FactoryMethod $method)
-    {
+    public function generateCall(FactoryMethod $method) {
         $code = '';
         if ($method->acceptsVariableArguments()) {
             $code .= $this->indent . self::INDENT . '$args = func_get_args();' . PHP_EOL;
@@ -99,24 +86,23 @@ abstract class FactoryFile
         $code .= $this->indent . self::INDENT . 'return ';
         if ($method->acceptsVariableArguments()) {
             $code .= 'call_user_func_array(array(\''
-                . '\\' . $method->getClassName() . '\', \''
-                . $method->getName() . '\'), $args);' . PHP_EOL;
+                    . '\\' . $method->getClassName() . '\', \''
+                    . $method->getName() . '\'), $args);' . PHP_EOL;
         } else {
             $code .= '\\' . $method->getClassName() . '::'
-                . $method->getName() . '('
-                . $method->getParameterInvocations() . ');' . PHP_EOL;
+                    . $method->getName() . '('
+                    . $method->getParameterInvocations() . ');' . PHP_EOL;
         }
 
         return $code;
     }
 
-    public function generateClosing()
-    {
+    public function generateClosing() {
         return $this->indent . '}' . PHP_EOL;
     }
 
-    public function write()
-    {
+    public function write() {
         file_put_contents($this->file, $this->code);
     }
+
 }

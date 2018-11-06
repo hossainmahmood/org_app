@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \PharIo\Version\Version
  */
 class VersionTest extends TestCase {
+
     /**
      * @dataProvider versionProvider
      *
@@ -27,12 +29,7 @@ class VersionTest extends TestCase {
      * @param int $expectedReleaseCount
      */
     public function testParsesVersionNumbers(
-        $versionString,
-        $expectedMajor,
-        $expectedMinor,
-        $expectedPatch,
-        $expectedPreReleaseValue = '',
-        $expectedReleaseCount = 0
+    $versionString, $expectedMajor, $expectedMinor, $expectedPatch, $expectedPreReleaseValue = '', $expectedReleaseCount = 0
     ) {
         $version = new Version($versionString);
 

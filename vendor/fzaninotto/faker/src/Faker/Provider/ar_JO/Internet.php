@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ar_JO;
 
-class Internet extends \Faker\Provider\Internet
-{
+class Internet extends \Faker\Provider\Internet {
+
     protected static $userNameFormats = array(
         '{{lastNameAscii}}.{{firstNameAscii}}',
         '{{firstNameAscii}}.{{lastNameAscii}}',
@@ -13,11 +13,9 @@ class Internet extends \Faker\Provider\Internet
     protected static $safeEmailTld = array(
         'com', 'jo', 'me', 'net', 'org',
     );
-
     protected static $tld = array(
         'biz', 'com', 'info', 'jo', 'net', 'org',
     );
-
     protected static $lastNameAscii = array(
         'abbad', 'abbadi', 'abbas', 'abulebbeh', 'flefel', 'hadi', 'hamad', 'hasan', 'jabri', 'kanaan', 'karam', 'maanee', 'melhem', 'nimry', 'obaisi', 'qasem', 'qawasmee', 'rabee', 'rashwani', 'shami', 'zaloum',
     );
@@ -25,21 +23,18 @@ class Internet extends \Faker\Provider\Internet
         'abd', 'abdullah', 'ahmad', 'akram', 'amr', 'bashar', 'bilal', 'fadi', 'ibrahim', 'khaled', 'layth', 'mohammad', 'mutaz', 'omar', 'osama', 'rami', 'saleem', 'samer', 'sami', 'yazan',
     );
 
-    public static function lastNameAscii()
-    {
+    public static function lastNameAscii() {
         return static::randomElement(static::$lastNameAscii);
     }
 
-    public static function firstNameAscii()
-    {
+    public static function firstNameAscii() {
         return static::randomElement(static::$firstNameAscii);
     }
 
     /**
      * @example 'ahmad.abbadi'
      */
-    public function userName()
-    {
+    public function userName() {
         $format = static::randomElement(static::$userNameFormats);
 
         return static::bothify($this->generator->parse($format));
@@ -48,8 +43,8 @@ class Internet extends \Faker\Provider\Internet
     /**
      * @example 'wewebit.jo'
      */
-    public function domainName()
-    {
+    public function domainName() {
         return static::randomElement(static::$lastNameAscii) . '.' . $this->tld();
     }
+
 }

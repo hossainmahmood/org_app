@@ -1,18 +1,17 @@
 <?php
+
 namespace Faker\Provider\ro_RO;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $buildingNumber = array('###', '##', '#', '#/#', '#A', '#B');
     protected static $apartmentNumber = array('#', '##');
     protected static $floor = array('#', '##');
     protected static $block = array('#', '##', 'A', 'B', 'C', 'D');
     protected static $blockSegment = array('A', 'B', 'C', 'D');
-
     protected static $streetPrefix = array(
         'Str.', 'B-dul.', 'Aleea', 'Splaiul', 'Calea', 'P-ța'
     );
-
     // random selection of seemingly frequently used streets and naming categories
     protected static $streetPlainName = array(
         // historical events
@@ -28,9 +27,7 @@ class Address extends \Faker\Provider\Address
         // geography related
         'Jiului', 'Bega', 'Someș', 'Făget', 'Sinaia', 'Herculane', 'Padiș'
     );
-
     protected static $postcode = array('######');
-
     // from http://ro.wikipedia.org/wiki/Lista_ora%C8%99elor_din_Rom%C3%A2nia#Lista_alfabetic.C4.83_a_ora.C8.99elor_din_Rom.C3.A2nia_.28inclusiv_municipii.29
     protected static $cityNames = array(
         'Abrud', 'Adjud', 'Agnita', 'Aiud', 'Alba Iulia', 'Aleșd', 'Alexandria', 'Amara', 'Anina', 'Aninoasa', 'Arad', 'Ardud', 'Avrig', 'Azuga', 'Babadag', 'Băbeni', 'Bacău', 'Baia de Aramă',
@@ -52,18 +49,16 @@ class Address extends \Faker\Provider\Address
         'Sebeș', 'Sebiș', 'Segarcea', 'Seini', 'Sfântu Gheorghe', 'Sibiu', 'Sighetu Marmației', 'Sighișoara', 'Simeria', 'Șimleu Silvaniei', 'Sinaia', 'Siret', 'Slănic', 'Slănic-Moldova',
         'Slatina', 'Slobozia', 'Solca', 'Șomcuta Mare', 'Sovata', 'Ștefănești, Argeș', 'Ștefănești, Botoșani', 'Ștei', 'Strehaia', 'Suceava', 'Sulina', 'Tălmaciu', 'Țăndărei', 'Târgoviște',
         'Târgu Bujor', 'Târgu Cărbunești', 'Târgu Frumos', 'Târgu Jiu', 'Târgu Lăpuș', 'Târgu Mureș', 'Târgu Neamț', 'Târgu Ocna', 'Târgu Secuiesc', 'Târnăveni', 'Tășnad', 'Tăuții-Măgherăuș',
-        'Techirghiol', 'Tecuci', 'Teiuș', 'Țicleni', 'Timișoara', 'Tismana', 'Titu', 'Toplița', 'Topoloveni', 'Tulcea', 'Turceni', 'Turda', 'Turnu Măgurele','Ulmeni', 'Ungheni', 'Uricani',
+        'Techirghiol', 'Tecuci', 'Teiuș', 'Țicleni', 'Timișoara', 'Tismana', 'Titu', 'Toplița', 'Topoloveni', 'Tulcea', 'Turceni', 'Turda', 'Turnu Măgurele', 'Ulmeni', 'Ungheni', 'Uricani',
         'Urlați', 'Urziceni', 'Valea lui Mihai', 'Vălenii de Munte', 'Vânju Mare', 'Vașcău', 'Vaslui', 'Vatra Dornei', 'Vicovu de Sus', 'Victoria', 'Videle', 'Vișeu de Sus', 'Vlăhița', 'Voluntari',
         'Vulcan', 'Zalău', 'Zărnești', 'Zimnicea', 'Zlatna'
     );
-
     // http://en.wikipedia.org/wiki/Counties_of_Romania#Current_list
     protected static $counties = array(
         'Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Bistrița Năsăud', 'Botoșani', 'Brăila', 'Brașov', 'București', 'Buzău', 'Călărași', 'Caraș-Severin', 'Cluj', 'Constanța', 'Covasna', 'Dâmbovița',
         'Dolj', 'Galați', 'Giurgiu', 'Gorj', 'Harghita', 'Hunedoara', 'Ialomița', 'Iași', 'Ilfov', 'Maramureț', 'Mehedinți', 'Mureș', 'Neamț', 'Olt', 'Prahova', 'Sălaj', 'Satu Mare', 'Sibiu',
         'Suceava', 'Teleorman', 'Timiș', 'Tulcea', 'Vâlcea', 'Vaslui', 'Vrancea'
     );
-
     // http://ro.wikipedia.org/wiki/Lista_statelor_lumii#Lista_statelor_lumii
     protected static $country = array(
         'Afganistan', 'Africa de Sud', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua și Barbuda', 'Arabia Saudită', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaidjan',
@@ -81,16 +76,13 @@ class Address extends \Faker\Provider\Address
         'Statele Unite ale Americii', 'Sudan', 'Sudanul de Sud', 'Suedia', 'Surinam', 'Swaziland', 'Tadjikistan', 'Tanzania', 'Thailanda', 'Timorul de Est', 'Togo', 'Tonga', 'Trinidad-Tobago',
         'Tunisia', 'Turcia', 'Turkmenistan', 'Tuvalu', 'Ucraina', 'Uganda', 'Ungaria', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
         'Mun. {{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{streetPrefix}} {{streetPlainName}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}',
         '{{streetName}} {{buildingNumber}}',
@@ -99,54 +91,45 @@ class Address extends \Faker\Provider\Address
         '{{streetName}} nr. {{buildingNumber}}, bl. {{block}}, et. {{floor}}, ap. {{apartmentNumber}}',
         '{{streetName}} nr. {{buildingNumber}}, bl. {{block}}, sc. {{blockSegment}}, et. {{floor}}, ap. {{apartmentNumber}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}, {{city}}, {{county}}, CP {{postcode}}",
     );
 
-    public function cityName()
-    {
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
-    public static function block()
-    {
+    public static function block() {
         return static::numerify(static::randomElement(static::$block));
     }
 
-    public function blockSegment()
-    {
+    public function blockSegment() {
         return static::randomElement(static::$blockSegment);
     }
 
-    public static function floor()
-    {
+    public static function floor() {
         return static::numerify(static::randomElement(static::$floor));
     }
 
-    public static function apartmentNumber()
-    {
+    public static function apartmentNumber() {
         return static::numerify(static::randomElement(static::$apartmentNumber));
     }
 
-    public function streetPrefix()
-    {
+    public function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
     /**
      * @example 'Independenței'
      */
-    public function streetPlainName()
-    {
+    public function streetPlainName() {
         return static::randomElement(static::$streetPlainName);
     }
 
     /**
      * @example 'Splaiul Independenței'
      */
-    public function streetName()
-    {
+    public function streetName() {
         $format = static::randomElement(static::$streetNameFormats);
 
         return $this->generator->parse($format);
@@ -155,22 +138,20 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Cluj'
      */
-    public function county()
-    {
+    public function county() {
         return static::randomElement(static::$counties);
     }
 
-    public function address()
-    {
+    public function address() {
         $format = static::randomElement(static::$addressFormats);
 
         return $this->generator->parse($format);
     }
 
-    public function streetAddress()
-    {
+    public function streetAddress() {
         $format = static::randomElement(static::$streetAddressFormats);
 
         return $this->generator->parse($format);
     }
+
 }

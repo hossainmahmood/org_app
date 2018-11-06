@@ -3,6 +3,7 @@
 namespace PharIo\Manifest;
 
 class ManifestDocumentTest extends \PHPUnit\Framework\TestCase {
+
     public function testThrowsExceptionWhenFileDoesNotExist() {
         $this->expectException(ManifestDocumentException::class);
         ManifestDocument::fromFile('/does/not/exist');
@@ -10,16 +11,14 @@ class ManifestDocumentTest extends \PHPUnit\Framework\TestCase {
 
     public function testCanBeCreatedFromFile() {
         $this->assertInstanceOf(
-            ManifestDocument::class,
-            ManifestDocument::fromFile(__DIR__ . '/../_fixture/phpunit-5.6.5.xml')
+                ManifestDocument::class, ManifestDocument::fromFile(__DIR__ . '/../_fixture/phpunit-5.6.5.xml')
         );
     }
 
     public function testCaneBeConstructedFromString() {
         $content = file_get_contents(__DIR__ . '/../_fixture/phpunit-5.6.5.xml');
         $this->assertInstanceOf(
-            ManifestDocument::class,
-            ManifestDocument::fromString($content)
+                ManifestDocument::class, ManifestDocument::fromString($content)
         );
     }
 
@@ -40,29 +39,25 @@ class ManifestDocumentTest extends \PHPUnit\Framework\TestCase {
 
     public function testContainsElementCanBeRetrieved() {
         $this->assertInstanceOf(
-            ContainsElement::class,
-            $this->loadFixture()->getContainsElement()
+                ContainsElement::class, $this->loadFixture()->getContainsElement()
         );
     }
 
     public function testRequiresElementCanBeRetrieved() {
         $this->assertInstanceOf(
-            RequiresElement::class,
-            $this->loadFixture()->getRequiresElement()
+                RequiresElement::class, $this->loadFixture()->getRequiresElement()
         );
     }
 
     public function testCopyrightElementCanBeRetrieved() {
         $this->assertInstanceOf(
-            CopyrightElement::class,
-            $this->loadFixture()->getCopyrightElement()
+                CopyrightElement::class, $this->loadFixture()->getCopyrightElement()
         );
     }
 
     public function testBundlesElementCanBeRetrieved() {
         $this->assertInstanceOf(
-            BundlesElement::class,
-            $this->loadFixture()->getBundlesElement()
+                BundlesElement::class, $this->loadFixture()->getBundlesElement()
         );
     }
 
@@ -88,13 +83,13 @@ class ManifestDocumentTest extends \PHPUnit\Framework\TestCase {
 
     public function testHasBundlesReturnsTrueWhenBundlesNodeIsPresent() {
         $this->assertTrue(
-            $this->loadFixture()->hasBundlesElement()
+                $this->loadFixture()->hasBundlesElement()
         );
     }
 
     public function testHasBundlesReturnsFalseWhenBundlesNoNodeIsPresent() {
         $this->assertFalse(
-            $this->loadEmptyFixture()->hasBundlesElement()
+                $this->loadEmptyFixture()->hasBundlesElement()
         );
     }
 
@@ -104,7 +99,8 @@ class ManifestDocumentTest extends \PHPUnit\Framework\TestCase {
 
     private function loadEmptyFixture() {
         return ManifestDocument::fromString(
-            '<?xml version="1.0" ?><phar xmlns="https://phar.io/xml/manifest/1.0" />'
+                        '<?xml version="1.0" ?><phar xmlns="https://phar.io/xml/manifest/1.0" />'
         );
     }
+
 }

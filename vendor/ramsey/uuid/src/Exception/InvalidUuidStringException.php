@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -17,6 +18,6 @@ namespace Ramsey\Uuid\Exception;
 /**
  * Thrown to indicate that the parsed UUID string is invalid.
  */
-class InvalidUuidStringException extends \InvalidArgumentException
-{
+class InvalidUuidStringException extends \InvalidArgumentException {
+    
 }

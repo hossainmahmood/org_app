@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ro_RO;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $normalFormats = array(
         'landline' => array(
             '021#######', // Bucharest
@@ -23,7 +23,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
             '07########',
         )
     );
-
     protected static $specialFormats = array(
         'toll-free' => array(
             '0800######',
@@ -43,25 +42,23 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * @link http://en.wikipedia.org/wiki/Telephone_numbers_in_Romania#Last_years
      */
-    public function phoneNumber()
-    {
+    public function phoneNumber() {
         $type = static::randomElement(array_keys(static::$normalFormats));
         $number = static::numerify(static::randomElement(static::$normalFormats[$type]));
 
         return $number;
     }
 
-    public static function tollFreePhoneNumber()
-    {
+    public static function tollFreePhoneNumber() {
         $number = static::numerify(static::randomElement(static::$specialFormats['toll-free']));
 
         return $number;
     }
 
-    public static function premiumRatePhoneNumber()
-    {
+    public static function premiumRatePhoneNumber() {
         $number = static::numerify(static::randomElement(static::$specialFormats['premium-rate']));
 
         return $number;
     }
+
 }

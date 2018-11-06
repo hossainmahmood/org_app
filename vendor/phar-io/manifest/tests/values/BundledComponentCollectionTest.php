@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -21,6 +22,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Version\Version
  */
 class BundledComponentCollectionTest extends TestCase {
+
     /**
      * @var BundledComponentCollection
      */
@@ -33,7 +35,7 @@ class BundledComponentCollectionTest extends TestCase {
 
     protected function setUp() {
         $this->collection = new BundledComponentCollection;
-        $this->item       = new BundledComponent('phpunit/php-code-coverage', new Version('4.0.2'));
+        $this->item = new BundledComponent('phpunit/php-code-coverage', new Version('4.0.2'));
     }
 
     public function testCanBeCreated() {
@@ -55,7 +57,7 @@ class BundledComponentCollectionTest extends TestCase {
 
     public function testKeyPositionCanBeRetreived() {
         $this->collection->add($this->item);
-        foreach($this->collection as $key => $item) {
+        foreach ($this->collection as $key => $item) {
             $this->assertEquals(0, $key);
         }
     }

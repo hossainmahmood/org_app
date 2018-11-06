@@ -2,19 +2,16 @@
 
 namespace Faker\Provider\de_AT;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $buildingNumber = array('###', '##', '#', '##[abc]', '#[abc]');
+class Address extends \Faker\Provider\Address {
 
+    protected static $buildingNumber = array('###', '##', '#', '##[abc]', '#[abc]');
     protected static $streetSuffixLong = array(
         'Gasse', 'Platz', 'Ring', 'Straße', 'Weg',
     );
     protected static $streetSuffixShort = array(
         'gasse', 'platz', 'ring', 'straße', 'weg',
     );
-
     protected static $postcode = array('####');
-
     protected static $cityNames = array(
         'Allentsteig', 'Altheim', 'Althofen', 'Amstetten', 'Ansfelden', 'Attnang-Puchheim',
         'Bad Aussee', 'Bad Hall', 'Bad Ischl', 'Bad Leonfelden', 'Bad Radkersburg', 'Bad Sankt Leonhard im Lavanttal', 'Bad Vöslau', 'Baden', 'Bärnbach', 'Berndorf', 'Bischofshofen', 'Bleiburg', 'Bludenz', 'Braunau am Inn', 'Bregenz', 'Bruck an der Leitha', 'Bruck an der Mur',
@@ -39,11 +36,9 @@ class Address extends \Faker\Provider\Address
         'Ybbs an der Donau',
         'Zell am See', 'Zeltweg', 'Zistersdorf', 'Zwettl',
     );
-
     protected static $state = array(
         'Burgenland', 'Kärnten', 'Niederösterreich', 'Oberösterreich', 'Salzburg', 'Steiermark', 'Tirol', 'Vorarlberg', 'Wien'
     );
-
     protected static $country = array(
         'Afghanistan', 'Alandinseln', 'Albanien', 'Algerien', 'Amerikanisch-Ozeanien', 'Amerikanisch-Samoa', 'Amerikanische Jungferninseln', 'Andorra', 'Angola', 'Anguilla', 'Antarktis', 'Antigua und Barbuda', 'Argentinien', 'Armenien', 'Aruba', 'Aserbaidschan', 'Australien', 'Ägypten', 'Äquatorialguinea', 'Äthiopien', 'Äußeres Ozeanien',
         'Bahamas', 'Bahrain', 'Bangladesch', 'Barbados', 'Belarus', 'Belgien', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivien', 'Bosnien und Herzegowina', 'Botsuana', 'Bouvetinsel', 'Brasilien', 'Britische Jungferninseln', 'Britisches Territorium im Indischen Ozean', 'Brunei Darussalam', 'Bulgarien', 'Burkina Faso', 'Burundi',
@@ -69,16 +64,13 @@ class Address extends \Faker\Provider\Address
         'Wallis und Futuna', 'Weihnachtsinsel', 'Westsahara',
         'Zentralafrikanische Republik', 'Zypern',
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
     );
-
     protected static $streetNameFormats = array(
         '{{lastName}}{{streetSuffixShort}}',
         '{{firstName}}-{{lastName}}-{{streetSuffixLong}}'
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}',
     );
@@ -86,31 +78,27 @@ class Address extends \Faker\Provider\Address
         "{{streetAddress}}\n{{postcode}} {{city}}",
     );
 
-    public function cityName()
-    {
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
-    public function streetSuffixShort()
-    {
+    public function streetSuffixShort() {
         return static::randomElement(static::$streetSuffixShort);
     }
 
-    public function streetSuffixLong()
-    {
+    public function streetSuffixLong() {
         return static::randomElement(static::$streetSuffixLong);
     }
 
     /**
      * @example 'Wien'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
-    public static function buildingNumber()
-    {
+    public static function buildingNumber() {
         return static::regexify(self::numerify(static::randomElement(static::$buildingNumber)));
     }
+
 }

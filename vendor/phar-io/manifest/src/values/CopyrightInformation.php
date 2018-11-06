@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class CopyrightInformation {
+
     /**
      * @var AuthorCollection
      */
@@ -39,4 +41,5 @@ class CopyrightInformation {
     public function getLicense() {
         return $this->license;
     }
+
 }

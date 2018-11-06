@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -18,8 +19,8 @@ namespace Ramsey\Uuid\Converter;
  * TimeConverterInterface provides facilities for converting parts of time into
  * representations that may be used in UUIDs
  */
-interface TimeConverterInterface
-{
+interface TimeConverterInterface {
+
     /**
      * Uses the provided seconds and micro-seconds to calculate the time_low,
      * time_mid, and time_high fields used by RFC 4122 version 1 UUIDs

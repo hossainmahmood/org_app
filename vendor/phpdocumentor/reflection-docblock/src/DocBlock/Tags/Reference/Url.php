@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -17,8 +18,8 @@ use Webmozart\Assert\Assert;
 /**
  * Url reference used by {@see phpDocumentor\Reflection\DocBlock\Tags\See}
  */
-final class Url implements Reference
-{
+final class Url implements Reference {
+
     /**
      * @var string
      */
@@ -27,14 +28,13 @@ final class Url implements Reference
     /**
      * Url constructor.
      */
-    public function __construct($uri)
-    {
+    public function __construct($uri) {
         Assert::stringNotEmpty($uri);
         $this->uri = $uri;
     }
 
-    public function __toString()
-    {
+    public function __toString() {
         return $this->uri;
     }
+
 }

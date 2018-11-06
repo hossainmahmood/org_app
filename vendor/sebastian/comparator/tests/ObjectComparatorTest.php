@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -19,21 +21,19 @@ use stdClass;
  * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-final class ObjectComparatorTest extends TestCase
-{
+final class ObjectComparatorTest extends TestCase {
+
     /**
      * @var ObjectComparator
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->comparator = new ObjectComparator;
         $this->comparator->setFactory(new Factory);
     }
 
-    public function acceptsSucceedsProvider()
-    {
+    public function acceptsSucceedsProvider() {
         return [
             [new TestClass, new TestClass],
             [new stdClass, new stdClass],
@@ -41,8 +41,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
-    {
+    public function acceptsFailsProvider() {
         return [
             [new stdClass, null],
             [null, new stdClass],
@@ -50,14 +49,13 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
-    {
+    public function assertEqualsSucceedsProvider() {
         // cyclic dependencies
-        $book1                  = new Book;
-        $book1->author          = new Author('Terry Pratchett');
+        $book1 = new Book;
+        $book1->author = new Author('Terry Pratchett');
         $book1->author->books[] = $book1;
-        $book2                  = new Book;
-        $book2->author          = new Author('Terry Pratchett');
+        $book2 = new Book;
+        $book2->author = new Author('Terry Pratchett');
         $book2->author->books[] = $book2;
 
         $object1 = new SampleClass(4, 8, 15);
@@ -72,22 +70,21 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
-    {
-        $typeMessage  = 'is not instance of expected class';
+    public function assertEqualsFailsProvider() {
+        $typeMessage = 'is not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';
 
         // cyclic dependencies
-        $book1                  = new Book;
-        $book1->author          = new Author('Terry Pratchett');
+        $book1 = new Book;
+        $book1->author = new Author('Terry Pratchett');
         $book1->author->books[] = $book1;
-        $book2                  = new Book;
-        $book2->author          = new Author('Terry Pratch');
+        $book2 = new Book;
+        $book2->author = new Author('Terry Pratch');
         $book2->author->books[] = $book2;
 
-        $book3         = new Book;
+        $book3 = new Book;
         $book3->author = 'Terry Pratchett';
-        $book4         = new stdClass;
+        $book4 = new stdClass;
         $book4->author = 'Terry Pratchett';
 
         $object1 = new SampleClass(4, 8, 15);
@@ -105,33 +102,31 @@ final class ObjectComparatorTest extends TestCase
     /**
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual): void
-    {
+    public function testAcceptsSucceeds($expected, $actual): void {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual): void
-    {
+    public function testAcceptsFails($expected, $actual): void {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
-    {
+    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void {
         $exception = null;
 
         try {
             $this->comparator->assertEquals($expected, $actual, $delta);
         } catch (ComparisonFailure $exception) {
+            
         }
 
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
@@ -140,11 +135,11 @@ final class ObjectComparatorTest extends TestCase
     /**
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0): void
-    {
+    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0): void {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
 
         $this->comparator->assertEquals($expected, $actual, $delta);
     }
+
 }

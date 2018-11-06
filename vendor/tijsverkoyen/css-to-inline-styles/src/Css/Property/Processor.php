@@ -4,16 +4,15 @@ namespace TijsVerkoyen\CssToInlineStyles\Css\Property;
 
 use Symfony\Component\CssSelector\Node\Specificity;
 
-class Processor
-{
+class Processor {
+
     /**
      * Split a string into seperate properties
      *
      * @param string $propertiesString
      * @return array
      */
-    public function splitIntoSeparateProperties($propertiesString)
-    {
+    public function splitIntoSeparateProperties($propertiesString) {
         $propertiesString = $this->cleanup($propertiesString);
 
         $properties = (array) explode(';', $propertiesString);
@@ -43,8 +42,7 @@ class Processor
      * @param $string
      * @return mixed|string
      */
-    private function cleanup($string)
-    {
+    private function cleanup($string) {
         $string = str_replace(array("\r", "\n"), '', $string);
         $string = str_replace(array("\t"), ' ', $string);
         $string = str_replace('"', '\'', $string);
@@ -63,8 +61,7 @@ class Processor
      * @param string $property
      * @return Property|null
      */
-    public function convertToObject($property, Specificity $specificity = null)
-    {
+    public function convertToObject($property, Specificity $specificity = null) {
         if (strpos($property, ':') === false) {
             return null;
         }
@@ -87,8 +84,7 @@ class Processor
      * @param array $properties
      * @return Property[]
      */
-    public function convertArrayToObjects(array $properties, Specificity $specificity = null)
-    {
+    public function convertArrayToObjects(array $properties, Specificity $specificity = null) {
         $objects = array();
 
         foreach ($properties as $property) {
@@ -109,8 +105,7 @@ class Processor
      * @param array $properties
      * @return string
      */
-    public function buildPropertiesString(array $properties)
-    {
+    public function buildPropertiesString(array $properties) {
         $chunks = array();
 
         foreach ($properties as $property) {
@@ -119,4 +114,5 @@ class Processor
 
         return implode(' ', $chunks);
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ka_GE;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+995 ### ## ## ##',
         '### ## ## ##',
@@ -11,4 +11,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '(###) ## ## ##',
         '+995(##)#######',
     );
+
 }

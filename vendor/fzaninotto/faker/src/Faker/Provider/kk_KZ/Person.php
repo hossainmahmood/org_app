@@ -4,20 +4,16 @@ namespace Faker\Provider\kk_KZ;
 
 use \Faker\Provider\DateTime;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
 
     const GENDER_MALE = 0;
     const GENDER_FEMALE = 1;
-
     const CENTURY_19TH = 0;
     const CENTURY_20TH = 1;
     const CENTURY_21ST = 2;
-
     const MALE_CENTURY_19TH = 1;
     const MALE_CENTURY_20TH = 3;
     const MALE_CENTURY_21ST = 5;
-
     const FEMALE_CENTURY_19TH = 2;
     const FEMALE_CENTURY_20TH = 4;
     const FEMALE_CENTURY_21ST = 6;
@@ -36,7 +32,7 @@ class Person extends \Faker\Provider\Person
      * @var array
      */
     public static $genderCenturyMap = array(
-        self::GENDER_MALE   => array(
+        self::GENDER_MALE => array(
             self::CENTURY_19TH => self::MALE_CENTURY_19TH,
             self::CENTURY_20TH => self::MALE_CENTURY_20TH,
             self::CENTURY_21ST => self::MALE_CENTURY_21ST,
@@ -181,8 +177,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return integer|null
      */
-    private static function getCenturyByYear($year)
-    {
+    private static function getCenturyByYear($year) {
         if ($year >= 2000 && $year <= DateTime::year()) {
             return self::CENTURY_21ST;
         } elseif ($year >= 1900) {
@@ -203,8 +198,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string 12 digits, like 780322300455
      */
-    public static function individualIdentificationNumber(\DateTime $birthDate = null, $gender = self::GENDER_MALE)
-    {
+    public static function individualIdentificationNumber(\DateTime $birthDate = null, $gender = self::GENDER_MALE) {
         if (!$birthDate) {
             $birthDate = DateTime::dateTimeBetween();
         }
@@ -227,8 +221,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return integer
      */
-    public static function checkSum($iinValue)
-    {
+    public static function checkSum($iinValue) {
         $controlDigit = self::getControlDigit($iinValue, self::$firstSequenceBitWeights);
 
         if ($controlDigit === 10) {
@@ -244,8 +237,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return integer
      */
-    protected static function getControlDigit($iinValue, $sequence)
-    {
+    protected static function getControlDigit($iinValue, $sequence) {
         $sum = 0;
 
         for ($i = 0; $i <= 10; $i++) {
@@ -254,4 +246,5 @@ class Person extends \Faker\Provider\Person
 
         return $sum % 11;
     }
+
 }

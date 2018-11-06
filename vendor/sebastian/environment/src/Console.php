@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/environment.
  *
@@ -8,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\Environment;
 
-final class Console
-{
+final class Console {
+
     /**
      * @var int
      */
-    const STDIN  = 0;
+    const STDIN = 0;
 
     /**
      * @var int
@@ -35,8 +36,7 @@ final class Console
      * This code has been copied and adapted from
      * Symfony\Component\Console\Output\OutputStream.
      */
-    public function hasColorSupport(): bool
-    {
+    public function hasColorSupport(): bool {
         if ($this->isWindows()) {
             // @codeCoverageIgnoreStart
             return false !== \getenv('ANSICON') || 'ON' === \getenv('ConEmuANSI') || 'xterm' === \getenv('TERM');
@@ -57,8 +57,7 @@ final class Console
      *
      * @codeCoverageIgnore
      */
-    public function getNumberOfColumns(): int
-    {
+    public function getNumberOfColumns(): int {
         if ($this->isWindows()) {
             return $this->getNumberOfColumnsWindows();
         }
@@ -75,21 +74,18 @@ final class Console
      *
      * @param int|resource $fileDescriptor
      */
-    public function isInteractive($fileDescriptor = self::STDOUT): bool
-    {
+    public function isInteractive($fileDescriptor = self::STDOUT): bool {
         return \function_exists('posix_isatty') && @\posix_isatty($fileDescriptor);
     }
 
-    private function isWindows(): bool
-    {
+    private function isWindows(): bool {
         return DIRECTORY_SEPARATOR === '\\';
     }
 
     /**
      * @codeCoverageIgnore
      */
-    private function getNumberOfColumnsInteractive(): int
-    {
+    private function getNumberOfColumnsInteractive(): int {
         if (\function_exists('shell_exec') && \preg_match('#\d+ (\d+)#', \shell_exec('stty size') ?? '', $match) === 1) {
             if ((int) $match[1] > 0) {
                 return (int) $match[1];
@@ -108,8 +104,7 @@ final class Console
     /**
      * @codeCoverageIgnore
      */
-    private function getNumberOfColumnsWindows(): int
-    {
+    private function getNumberOfColumnsWindows(): int {
         $ansicon = \getenv('ANSICON');
         $columns = 80;
 
@@ -117,15 +112,10 @@ final class Console
             $columns = $matches[1];
         } elseif (\function_exists('proc_open')) {
             $process = \proc_open(
-                'mode CON',
-                [
-                    1 => ['pipe', 'w'],
-                    2 => ['pipe', 'w']
-                ],
-                $pipes,
-                null,
-                null,
-                ['suppress_errors' => true]
+                    'mode CON', [
+                1 => ['pipe', 'w'],
+                2 => ['pipe', 'w']
+                    ], $pipes, null, null, ['suppress_errors' => true]
             );
 
             if (\is_resource($process)) {
@@ -143,4 +133,5 @@ final class Console
 
         return $columns - 1;
     }
+
 }

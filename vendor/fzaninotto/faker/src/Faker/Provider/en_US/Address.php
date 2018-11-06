@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\en_US;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityPrefix = array('North', 'East', 'West', 'South', 'New', 'Lake', 'Port');
     protected static $citySuffix = array('town', 'ton', 'land', 'ville', 'berg', 'burgh', 'borough', 'bury', 'view', 'port', 'mouth', 'stad', 'furt', 'chester', 'mouth', 'fort', 'haven', 'side', 'shire');
     protected static $buildingNumber = array('%####', '%###', '%##');
@@ -15,7 +15,7 @@ class Address extends \Faker\Provider\Address
         'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
     );
     protected static $stateAbbr = array(
-       'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'
+        'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'
     );
     protected static $country = array(
         'Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica (the territory South of 60 deg S)', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan',
@@ -66,32 +66,29 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'East'
      */
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
     /**
      * @example 'Appt. 350'
      */
-    public static function secondaryAddress()
-    {
+    public static function secondaryAddress() {
         return static::numerify(static::randomElement(static::$secondaryAddressFormats));
     }
 
     /**
      * @example 'California'
      */
-    public static function state()
-    {
+    public static function state() {
         return static::randomElement(static::$state);
     }
 
     /**
      * @example 'CA'
      */
-    public static function stateAbbr()
-    {
+    public static function stateAbbr() {
         return static::randomElement(static::$stateAbbr);
     }
+
 }

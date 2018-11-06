@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\de_CH;
 
-class Person extends \Faker\Provider\de_DE\Person
-{
+class Person extends \Faker\Provider\de_DE\Person {
+
     /**
      * @link http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
      */
@@ -86,4 +86,5 @@ class Person extends \Faker\Provider\de_DE\Person
         'Wagner', 'Walker', 'Walser', 'Weber', 'Wehrli', 'Weibel', 'Weiss', 'Wenger', 'Wicki', 'Widmer', 'Willi', 'Wirth', 'Wirz', 'Wittwer', 'Wolf', 'Wyss', 'Wüthrich',
         'Zaugg', 'Zbinden', 'Zehnder', 'Ziegler', 'Zimmermann', 'Zwahlen', 'Zürcher',
     );
+
 }

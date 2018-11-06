@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,13 +12,12 @@
 
 namespace SebastianBergmann\Diff\Output;
 
-final class StrictUnifiedDiffOutputBuilderDataProvider
-{
-    public static function provideOutputBuildingCases(): array
-    {
+final class StrictUnifiedDiffOutputBuilderDataProvider {
+
+    public static function provideOutputBuildingCases(): array {
         return [
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1,3 +1,4 @@
 +b
@@ -35,11 +36,11 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "b\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\n",
                 [
                     'fromFile' => 'input.txt',
-                    'toFile'   => 'output.txt',
+                    'toFile' => 'output.txt',
                 ],
             ],
             [
-'--- ' . __FILE__ . "\t2017-10-02 17:38:11.586413675 +0100
+                '--- ' . __FILE__ . "\t2017-10-02 17:38:11.586413675 +0100
 +++ output1.txt\t2017-10-03 12:09:43.086719482 +0100
 @@ -1,1 +1,1 @@
 -B
@@ -48,15 +49,15 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "B\n",
                 "X\n",
                 [
-                    'fromFile'       => __FILE__,
-                    'fromFileDate'   => '2017-10-02 17:38:11.586413675 +0100',
-                    'toFile'         => 'output1.txt',
-                    'toFileDate'     => '2017-10-03 12:09:43.086719482 +0100',
+                    'fromFile' => __FILE__,
+                    'fromFileDate' => '2017-10-02 17:38:11.586413675 +0100',
+                    'toFile' => 'output1.txt',
+                    'toFileDate' => '2017-10-03 12:09:43.086719482 +0100',
                     'collapseRanges' => false,
                 ],
             ],
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1 +1 @@
 -B
@@ -65,19 +66,18 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "B\n",
                 "X\n",
                 [
-                    'fromFile'       => 'input.txt',
-                    'toFile'         => 'output.txt',
+                    'fromFile' => 'input.txt',
+                    'toFile' => 'output.txt',
                     'collapseRanges' => true,
                 ],
             ],
         ];
     }
 
-    public static function provideSample(): array
-    {
+    public static function provideSample(): array {
         return [
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1,6 +1,6 @@
  1
@@ -92,17 +92,16 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "1\n2\n3\nX\n5\n6\n",
                 [
                     'fromFile' => 'input.txt',
-                    'toFile'   => 'output.txt',
+                    'toFile' => 'output.txt',
                 ],
             ],
         ];
     }
 
-    public static function provideBasicDiffGeneration(): array
-    {
+    public static function provideBasicDiffGeneration(): array {
         return [
             [
-"--- input.txt
+                "--- input.txt
 +++ output.txt
 @@ -1,2 +1 @@
 -A
@@ -113,7 +112,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "A\rB\n",
             ],
             [
-"--- input.txt
+                "--- input.txt
 +++ output.txt
 @@ -1 +1 @@
 -
@@ -124,7 +123,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "\r",
             ],
             [
-"--- input.txt
+                "--- input.txt
 +++ output.txt
 @@ -1 +1 @@
 -\r
@@ -135,7 +134,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "\n",
             ],
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1,3 +1,3 @@
  X
@@ -147,7 +146,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "X\nA\nB\n",
             ],
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1,3 +1,3 @@
  X
@@ -160,7 +159,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "X\nA\nB\n",
             ],
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1,3 +1,3 @@
  A
@@ -173,7 +172,7 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
                 "A\nA\nB",
             ],
             [
-'--- input.txt
+                '--- input.txt
 +++ output.txt
 @@ -1 +1 @@
 -A
@@ -186,4 +185,5 @@ final class StrictUnifiedDiffOutputBuilderDataProvider
             ],
         ];
     }
+
 }

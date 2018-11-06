@@ -1,8 +1,9 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
@@ -10,8 +11,7 @@ namespace Hamcrest;
  * <code>featureValueOf()</code> in a subclass to pull out the feature to be
  * matched against.
  */
-abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher
-{
+abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher {
 
     private $_subMatcher;
     private $_featureDescription;
@@ -26,8 +26,7 @@ abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher
      * @param string $featureDescription Descriptive text to use in describeTo
      * @param string $featureName Identifying text for mismatch message
      */
-    public function __construct($type, $subtype, Matcher $subMatcher, $featureDescription, $featureName)
-    {
+    public function __construct($type, $subtype, Matcher $subMatcher, $featureDescription, $featureName) {
         parent::__construct($type, $subtype);
 
         $this->_subMatcher = $subMatcher;
@@ -44,13 +43,12 @@ abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher
      */
     abstract protected function featureValueOf($actual);
 
-    public function matchesSafelyWithDiagnosticDescription($actual, Description $mismatchDescription)
-    {
+    public function matchesSafelyWithDiagnosticDescription($actual, Description $mismatchDescription) {
         $featureValue = $this->featureValueOf($actual);
 
         if (!$this->_subMatcher->matches($featureValue)) {
             $mismatchDescription->appendText($this->_featureName)
-                                                    ->appendText(' was ')->appendValue($featureValue);
+                    ->appendText(' was ')->appendValue($featureValue);
 
             return false;
         }
@@ -58,10 +56,10 @@ abstract class FeatureMatcher extends TypeSafeDiagnosingMatcher
         return true;
     }
 
-    final public function describeTo(Description $description)
-    {
+    final public function describeTo(Description $description) {
         $description->appendText($this->_featureDescription)->appendText(' ')
-                                ->appendDescriptionOf($this->_subMatcher)
-                             ;
+                ->appendDescriptionOf($this->_subMatcher)
+        ;
     }
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\es_VE;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * CNE is the official national election registry org.
      * @link http://www.cne.gob.ve/web/registro_electoral/ciudadanos_111_129_2011.php
@@ -131,20 +131,15 @@ class Person extends \Faker\Provider\Person
         'Villaseñor', 'Villegas', 'Vásquez', 'Vázquez', 'Vélez', 'Véliz', 'Ybarra', 'Yáñez', 'Zambrano', 'Zamora', 'Zamudio', 'Zapata',
         'Zaragoza', 'Zarate', 'Zavala', 'Zayas', 'Zelaya', 'Zepeda', 'Zúñiga', 'de Anda', 'de Jesús', 'Águilar', 'Álvarez', 'Ávalos', 'Ávila'
     );
-
     protected static $titleMale = array('Sr.', 'Dn.', 'Dr.', 'Lcdo.', 'Ing.');
-
     protected static $titleFemale = array('Sra.', 'Srita.', 'Dra.', 'Lcda.', 'Ing.');
-
     private static $suffix = array('Hijo');
-
     private static $nationalityId = array('V', 'E');
 
     /**
      * @example 'Hijo'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
 
@@ -155,8 +150,7 @@ class Person extends \Faker\Provider\Person
      * CNE is the official national election registry org.
      * @link http://www.cne.gob.ve/web/registro_electoral/ciudadanos_111_129_2011.php
      */
-    public function nationalId($separator = '')
-    {
+    public function nationalId($separator = '') {
         $id = static::randomElement(static::$nationalityId);
         if ($id == 'V') {
             return $id . $separator . $this->numberBetween(10000, 100000000);
@@ -164,4 +158,5 @@ class Person extends \Faker\Provider\Person
 
         return $id . $separator . $this->numberBetween(80000000, 100000000);
     }
+
 }

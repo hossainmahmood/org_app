@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ne_NP;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '01-4######',
         '01-5######',
@@ -16,4 +16,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '9813######',
         '9818######',
     );
+
 }

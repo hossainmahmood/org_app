@@ -1,7 +1,7 @@
 <?php
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
@@ -9,8 +9,8 @@
  *
  * @todo Search method in file contents for func_get_args() to replace factoryVarArgs.
  */
-class FactoryMethod
-{
+class FactoryMethod {
+
     /**
      * @var FactoryClass
      */
@@ -41,8 +41,7 @@ class FactoryMethod
      */
     private $parameters;
 
-    public function __construct(FactoryClass $class, ReflectionMethod $reflector)
-    {
+    public function __construct(FactoryClass $class, ReflectionMethod $reflector) {
         $this->class = $class;
         $this->reflector = $reflector;
         $this->extractCommentWithoutLeadingShashesAndStars();
@@ -50,8 +49,7 @@ class FactoryMethod
         $this->extractParameters();
     }
 
-    public function extractCommentWithoutLeadingShashesAndStars()
-    {
+    public function extractCommentWithoutLeadingShashesAndStars() {
         $this->comment = explode("\n", $this->reflector->getDocComment());
         foreach ($this->comment as &$line) {
             $line = preg_replace('#^\s*(/\\*+|\\*+/|\\*)\s?#', '', $line);
@@ -60,8 +58,7 @@ class FactoryMethod
         $this->trimTrailingBlankLinesFromComment();
     }
 
-    public function trimLeadingBlankLinesFromComment()
-    {
+    public function trimLeadingBlankLinesFromComment() {
         while (count($this->comment) > 0) {
             $line = array_shift($this->comment);
             if (trim($line) != '') {
@@ -71,8 +68,7 @@ class FactoryMethod
         }
     }
 
-    public function trimTrailingBlankLinesFromComment()
-    {
+    public function trimTrailingBlankLinesFromComment() {
         while (count($this->comment) > 0) {
             $line = array_pop($this->comment);
             if (trim($line) != '') {
@@ -82,8 +78,7 @@ class FactoryMethod
         }
     }
 
-    public function extractFactoryNamesFromComment()
-    {
+    public function extractFactoryNamesFromComment() {
         $this->calls = array();
         for ($i = 0; $i < count($this->comment); $i++) {
             if ($this->extractFactoryNamesFromLine($this->comment[$i])) {
@@ -93,21 +88,19 @@ class FactoryMethod
         $this->trimTrailingBlankLinesFromComment();
     }
 
-    public function extractFactoryNamesFromLine($line)
-    {
+    public function extractFactoryNamesFromLine($line) {
         if (preg_match('/^\s*@factory(\s+(.+))?$/', $line, $match)) {
             $this->createCalls(
-                $this->extractFactoryNamesFromAnnotation(
-                    isset($match[2]) ? trim($match[2]) : null
-                )
+                    $this->extractFactoryNamesFromAnnotation(
+                            isset($match[2]) ? trim($match[2]) : null
+                    )
             );
             return true;
         }
         return false;
     }
 
-    public function extractFactoryNamesFromAnnotation($value)
-    {
+    public function extractFactoryNamesFromAnnotation($value) {
         $primaryName = $this->reflector->getName();
         if (empty($value)) {
             return array($primaryName);
@@ -123,8 +116,7 @@ class FactoryMethod
         return $names;
     }
 
-    public function createCalls(array $names)
-    {
+    public function createCalls(array $names) {
         $names = array_unique($names);
         foreach ($names as $name) {
             if ($name != '-' && $name != '...') {
@@ -133,8 +125,7 @@ class FactoryMethod
         }
     }
 
-    public function extractParameters()
-    {
+    public function extractParameters() {
         $this->parameters = array();
         if (!$this->isVarArgs) {
             foreach ($this->reflector->getParameters() as $parameter) {
@@ -143,21 +134,18 @@ class FactoryMethod
         }
     }
 
-    public function getParameterDeclarations()
-    {
+    public function getParameterDeclarations() {
         if ($this->isVarArgs || !$this->hasParameters()) {
             return '';
         }
         $params = array();
-        foreach ($this->parameters as /** @var $parameter FactoryParameter */
-                 $parameter) {
+        foreach ($this->parameters as /** @var $parameter FactoryParameter */ $parameter) {
             $params[] = $parameter->getDeclaration();
         }
         return implode(', ', $params);
     }
 
-    public function getParameterInvocations()
-    {
+    public function getParameterInvocations() {
         if ($this->isVarArgs) {
             return '';
         }
@@ -168,59 +156,47 @@ class FactoryMethod
         return implode(', ', $params);
     }
 
-
-    public function getClass()
-    {
+    public function getClass() {
         return $this->class;
     }
 
-    public function getClassName()
-    {
+    public function getClassName() {
         return $this->class->getName();
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->reflector->name;
     }
 
-    public function isFactory()
-    {
+    public function isFactory() {
         return count($this->calls) > 0;
     }
 
-    public function getCalls()
-    {
+    public function getCalls() {
         return $this->calls;
     }
 
-    public function acceptsVariableArguments()
-    {
+    public function acceptsVariableArguments() {
         return $this->isVarArgs;
     }
 
-    public function hasParameters()
-    {
+    public function hasParameters() {
         return !empty($this->parameters);
     }
 
-    public function getParameters()
-    {
+    public function getParameters() {
         return $this->parameters;
     }
 
-    public function getFullName()
-    {
+    public function getFullName() {
         return $this->getClassName() . '::' . $this->getName();
     }
 
-    public function getCommentText()
-    {
+    public function getCommentText() {
         return implode(PHP_EOL, $this->comment);
     }
 
-    public function getComment($indent = '')
-    {
+    public function getComment($indent = '') {
         $comment = $indent . '/**';
         foreach ($this->comment as $line) {
             $comment .= PHP_EOL . rtrim($indent . ' * ' . $line);
@@ -228,4 +204,5 @@ class FactoryMethod
         $comment .= PHP_EOL . $indent . ' */';
         return $comment;
     }
+
 }

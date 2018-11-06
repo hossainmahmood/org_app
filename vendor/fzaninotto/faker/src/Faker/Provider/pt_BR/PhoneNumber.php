@@ -2,14 +2,14 @@
 
 namespace Faker\Provider\pt_BR;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $landlineFormats = array('2###-####', '3###-####', '4###-####');
 
     /**
-    * Since december 2016 all mobile phone numbers in brazil begin with 9 and landlines 2, 3 or 4.
-    * @link http://www.anatel.gov.br/Portal/exibirPortalPaginaEspecial.do?org.apache.struts.taglib.html.TOKEN=9594e1d11fbc996d52bda44e608bb744&codItemCanal=1794&pastaSelecionada=2984
-    */
+     * Since december 2016 all mobile phone numbers in brazil begin with 9 and landlines 2, 3 or 4.
+     * @link http://www.anatel.gov.br/Portal/exibirPortalPaginaEspecial.do?org.apache.struts.taglib.html.TOKEN=9594e1d11fbc996d52bda44e608bb744&codItemCanal=1794&pastaSelecionada=2984
+     */
     protected static $cellphoneFormats = array('9####-####');
 
     /**
@@ -17,8 +17,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @link http://www.anatel.gov.br/legislacao/resolucoes/16-2001/383-resolucao-263.
      * @return string
      */
-    public static function areaCode()
-    {
+    public static function areaCode() {
         $areaCodes = array(
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '21', '22', '24',
             '27', '28', '31', '32', '33', '34', '35', '37', '38', '41', '42', '43',
@@ -36,8 +35,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function cellphone($formatted = true)
-    {
+    public static function cellphone($formatted = true) {
         $number = static::numerify(static::randomElement(static::$cellphoneFormats));
 
         if (!$formatted) {
@@ -52,8 +50,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function landline($formatted = true)
-    {
+    public static function landline($formatted = true) {
         $number = static::numerify(static::randomElement(static::$landlineFormats));
 
         if (!$formatted) {
@@ -68,12 +65,11 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return mixed
      */
-    public static function phone($formatted = true)
-    {
+    public static function phone($formatted = true) {
         $options = static::randomElement(array(
-            array('cellphone', false),
-            array('cellphone', true),
-            array('landline', null),
+                    array('cellphone', false),
+                    array('cellphone', true),
+                    array('landline', null),
         ));
 
         return call_user_func("static::{$options[0]}", $formatted, $options[1]);
@@ -85,14 +81,13 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool   $formatted [def: true] If the number should be formatted or not.
      * @return string
      */
-    protected static function anyPhoneNumber($type, $formatted = true)
-    {
-        $area   = static::areaCode();
-        $number = ($type == 'cellphone')?
-            static::cellphone($formatted) :
-            static::landline($formatted);
+    protected static function anyPhoneNumber($type, $formatted = true) {
+        $area = static::areaCode();
+        $number = ($type == 'cellphone') ?
+                static::cellphone($formatted) :
+                static::landline($formatted);
 
-        return $formatted? "($area) $number" : $area.$number;
+        return $formatted ? "($area) $number" : $area . $number;
     }
 
     /**
@@ -100,8 +95,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function cellphoneNumber($formatted = true)
-    {
+    public static function cellphoneNumber($formatted = true) {
         return static::anyPhoneNumber('cellphone', $formatted);
     }
 
@@ -110,8 +104,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function landlineNumber($formatted = true)
-    {
+    public static function landlineNumber($formatted = true) {
         return static::anyPhoneNumber('landline', $formatted);
     }
 
@@ -119,8 +112,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Randomizes between complete cellphone and landline numbers.
      * @return mixed
      */
-    public function phoneNumber()
-    {
+    public function phoneNumber() {
         $method = static::randomElement(array('cellphoneNumber', 'landlineNumber'));
         return call_user_func("static::$method", true);
     }
@@ -129,9 +121,9 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      * Randomizes between complete cellphone and landline numbers, cleared from formatting symbols.
      * @return mixed
      */
-    public static function phoneNumberCleared()
-    {
+    public static function phoneNumberCleared() {
         $method = static::randomElement(array('cellphoneNumber', 'landlineNumber'));
         return call_user_func("static::$method", false);
     }
+
 }

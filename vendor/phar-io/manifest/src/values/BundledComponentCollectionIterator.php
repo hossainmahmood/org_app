@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class BundledComponentCollectionIterator implements \Iterator {
+
     /**
      * @var BundledComponent[]
      */
@@ -53,4 +55,5 @@ class BundledComponentCollectionIterator implements \Iterator {
     public function next() {
         $this->position++;
     }
+
 }

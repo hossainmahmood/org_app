@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/global-state.
  *
@@ -8,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\GlobalState;
 
@@ -17,13 +18,12 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class Restorer.
  */
-class RestorerTest extends TestCase
-{
-    public static function setUpBeforeClass()
-    {
+class RestorerTest extends TestCase {
+
+    public static function setUpBeforeClass() {
         $GLOBALS['varBool'] = false;
         $GLOBALS['varNull'] = null;
-        $_GET['varGet']     = 0;
+        $_GET['varGet'] = 0;
     }
 
     /**
@@ -43,8 +43,7 @@ class RestorerTest extends TestCase
      * @uses \SebastianBergmann\GlobalState\Snapshot::superGlobalArrays
      * @uses \SebastianBergmann\GlobalState\Snapshot::superGlobalVariables
      */
-    public function testRestorerGlobalVariable()
-    {
+    public function testRestorerGlobalVariable() {
         $snapshot = new Snapshot(null, true, false, false, false, false, false, false, false, false);
         $restorer = new Restorer;
         $restorer->restoreGlobalVariables($snapshot);
@@ -78,8 +77,7 @@ class RestorerTest extends TestCase
      * @uses \SebastianBergmann\GlobalState\Snapshot::superGlobalArrays
      * @uses \SebastianBergmann\GlobalState\Snapshot::superGlobalVariables
      */
-    public function testIntegrationRestorerGlobalVariables()
-    {
+    public function testIntegrationRestorerGlobalVariables() {
         $this->assertArrayHasKey('varBool', $GLOBALS);
         $this->assertEquals(false, $GLOBALS['varBool']);
         $this->assertArrayHasKey('varNull', $GLOBALS);
@@ -93,8 +91,7 @@ class RestorerTest extends TestCase
      *
      * @depends testIntegrationRestorerGlobalVariables
      */
-    public function testIntegrationRestorerGlobalVariables2()
-    {
+    public function testIntegrationRestorerGlobalVariables2() {
         $this->assertArrayHasKey('varBool', $GLOBALS);
         $this->assertEquals(false, $GLOBALS['varBool']);
         $this->assertArrayHasKey('varNull', $GLOBALS);
@@ -102,4 +99,5 @@ class RestorerTest extends TestCase
         $this->assertArrayHasKey('varGet', $_GET);
         $this->assertEquals(0, $_GET['varGet']);
     }
+
 }

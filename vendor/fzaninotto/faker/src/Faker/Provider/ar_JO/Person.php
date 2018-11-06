@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ar_JO;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -11,7 +11,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -81,7 +80,6 @@ class Person extends \Faker\Provider\Person
         'وئام', 'وجدان', 'وداد', 'ورود', 'وسام', 'وسن', 'وسيم', 'وعد', 'وفاء', 'ولاء',
         'ىمنة', 'يارا', 'ياسمين', 'يافا', 'يسرى', 'ينان', 'ﻟﻮﺗﺸﻴﺎ',
     );
-
     protected static $lastName = array(
         'آلهامي', 'أبو الرب', 'ابو رحمة', 'ابو سعده', 'ابو يوسف', 'ابوالحاج', 'الامام', 'البتراء', 'البلبيسي', 'الترابين', 'التلهوني', 'الجبارات', 'الجرَّاح', 'الجوابره', 'الجوالدة', 'الحجايا', 'الحوراني', 'الدعجة', 'الردايدة', 'الرشدان', 'الرفاعي', 'الروابدة', 'الروسان', 'الريماوي', 'الزعبية', 'الزوربا', 'السحاقات', 'السحيمات', 'السراج', 'السعد', 'السلطية', 'السيوف', 'الشامي', 'الشريدة', 'الشريف', 'الشطناوي', 'الشمالي', 'الصرايرة', 'الصمادي', 'الصنات', 'الضمور', 'الطباع', 'الطراونة', 'الطويسات', 'الطويل', 'العدوان', 'العضيبات', 'العلامي', 'العمري', 'العمرية', 'العناسوة', 'العنانبه', 'الغريب', 'الفاخوري', 'الفاعوري', 'الفناطسة', 'القطيشات', 'الكردي', 'الكركي', 'المبيضين', 'المجالي', 'المحاميد', 'المساعيد', 'المشاهره', 'المصري', 'المعشر', 'المواجدة', 'المومنى', 'المومنية', 'النسور', 'النشاشيبي', 'النعيمات', 'الهلسة', 'الوشاح',
         'بني حسن', 'بني صقر',
@@ -93,7 +91,6 @@ class Person extends \Faker\Provider\Person
         'مطير', 'معاني',
         'وادي',
     );
-
     protected static $titleMale = array('السيد', 'الأستاذ', 'الدكتور', 'المهندس');
     protected static $titleFemale = array('السيدة', 'الآنسة', 'الدكتورة', 'المهندسة');
     private static $prefix = array('أ.', 'د.', 'أ.د', 'م.');
@@ -101,8 +98,8 @@ class Person extends \Faker\Provider\Person
     /**
      * @example 'أ.'
      */
-    public static function prefix()
-    {
+    public static function prefix() {
         return static::randomElement(static::$prefix);
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -20,16 +21,15 @@ namespace Ramsey\Uuid\Generator;
  *
  * @link http://php.net/mt_rand
  */
-class MtRandGenerator implements RandomGeneratorInterface
-{
+class MtRandGenerator implements RandomGeneratorInterface {
+
     /**
      * Generates a string of random binary data of the specified length
      *
      * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
      */
-    public function generate($length)
-    {
+    public function generate($length) {
         $bytes = '';
 
         for ($i = 1; $i <= $length; $i++) {
@@ -38,4 +38,5 @@ class MtRandGenerator implements RandomGeneratorInterface
 
         return $bytes;
     }
+
 }

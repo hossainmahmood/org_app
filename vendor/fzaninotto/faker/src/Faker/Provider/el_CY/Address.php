@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\el_CY;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $citySuffix = array('Λευκωσία', 'Λεμεσός', 'Λάρνακα', 'Πάφος');
     protected static $streetSuffix = array();
     protected static $streetPrefix = array(
@@ -48,8 +48,8 @@ class Address extends \Faker\Provider\Address
     /**
      * @example 'Όδος'
      */
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
+
 }

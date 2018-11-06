@@ -5,8 +5,8 @@ namespace Faker\Provider\da_DK;
 /**
  * @author Antoine Corcy <contact@sbin.dk>
  */
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     /**
      * @var array Danish phonenumber formats.
      */
@@ -18,4 +18,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '#### ####',
         '########',
     );
+
 }

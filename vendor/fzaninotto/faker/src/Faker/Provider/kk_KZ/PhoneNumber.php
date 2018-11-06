@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\kk_KZ;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     protected static $formats = array(
         '+7 (701) #######',
         '+7 (702) #######',
@@ -13,4 +13,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+7 (747) #######',
         '+7 (7172) 745###',
     );
+
 }

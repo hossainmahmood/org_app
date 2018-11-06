@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,6 +12,6 @@
 
 namespace SebastianBergmann\Diff;
 
-interface Exception
-{
+interface Exception {
+    
 }

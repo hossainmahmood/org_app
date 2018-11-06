@@ -21,8 +21,8 @@ use Monolog\Handler\Slack\SlackRecord;
  * @author Haralan Dobrev <hkdobrev@gmail.com>
  * @see    https://api.slack.com/incoming-webhooks
  */
-class SlackWebhookHandler extends AbstractProcessingHandler
-{
+class SlackWebhookHandler extends AbstractProcessingHandler {
+
     /**
      * Slack Webhook token
      * @var string
@@ -47,26 +47,17 @@ class SlackWebhookHandler extends AbstractProcessingHandler
      * @param  bool        $bubble                 Whether the messages that are handled can bubble up the stack or not
      * @param  array       $excludeFields          Dot separated list of fields to exclude from slack message. E.g. ['context.field1', 'extra.field2']
      */
-    public function __construct($webhookUrl, $channel = null, $username = null, $useAttachment = true, $iconEmoji = null, $useShortAttachment = false, $includeContextAndExtra = false, $level = Logger::CRITICAL, $bubble = true, array $excludeFields = array())
-    {
+    public function __construct($webhookUrl, $channel = null, $username = null, $useAttachment = true, $iconEmoji = null, $useShortAttachment = false, $includeContextAndExtra = false, $level = Logger::CRITICAL, $bubble = true, array $excludeFields = array()) {
         parent::__construct($level, $bubble);
 
         $this->webhookUrl = $webhookUrl;
 
         $this->slackRecord = new SlackRecord(
-            $channel,
-            $username,
-            $useAttachment,
-            $iconEmoji,
-            $useShortAttachment,
-            $includeContextAndExtra,
-            $excludeFields,
-            $this->formatter
+                $channel, $username, $useAttachment, $iconEmoji, $useShortAttachment, $includeContextAndExtra, $excludeFields, $this->formatter
         );
     }
 
-    public function getSlackRecord()
-    {
+    public function getSlackRecord() {
         return $this->slackRecord;
     }
 
@@ -75,8 +66,7 @@ class SlackWebhookHandler extends AbstractProcessingHandler
      *
      * @param array $record
      */
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         $postData = $this->slackRecord->getSlackData($record);
         $postString = json_encode($postData);
 
@@ -97,19 +87,18 @@ class SlackWebhookHandler extends AbstractProcessingHandler
         Curl\Util::execute($ch);
     }
 
-    public function setFormatter(FormatterInterface $formatter)
-    {
+    public function setFormatter(FormatterInterface $formatter) {
         parent::setFormatter($formatter);
         $this->slackRecord->setFormatter($formatter);
 
         return $this;
     }
 
-    public function getFormatter()
-    {
+    public function getFormatter() {
         $formatter = parent::getFormatter();
         $this->slackRecord->setFormatter($formatter);
 
         return $formatter;
     }
+
 }

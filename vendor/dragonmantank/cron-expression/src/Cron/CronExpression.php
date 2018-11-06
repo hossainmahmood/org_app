@@ -21,8 +21,8 @@ use RuntimeException;
  *
  * @link http://en.wikipedia.org/wiki/Cron
  */
-class CronExpression
-{
+class CronExpression {
+
     const MINUTE = 0;
     const HOUR = 1;
     const DAY = 2;
@@ -66,8 +66,7 @@ class CronExpression
      *
      * @return CronExpression
      */
-    public static function factory($expression, FieldFactory $fieldFactory = null)
-    {
+    public static function factory($expression, FieldFactory $fieldFactory = null) {
         $mappings = array(
             '@yearly' => '0 0 1 1 *',
             '@annually' => '0 0 1 1 *',
@@ -92,8 +91,7 @@ class CronExpression
      * @return bool True if a valid CRON expression was passed. False if not.
      * @see \Cron\CronExpression::factory
      */
-    public static function isValidExpression($expression)
-    {
+    public static function isValidExpression($expression) {
         try {
             self::factory($expression);
         } catch (InvalidArgumentException $e) {
@@ -109,8 +107,7 @@ class CronExpression
      * @param string       $expression   CRON expression (e.g. '8 * * * *')
      * @param FieldFactory $fieldFactory Factory to create cron fields
      */
-    public function __construct($expression, FieldFactory $fieldFactory)
-    {
+    public function __construct($expression, FieldFactory $fieldFactory) {
         $this->fieldFactory = $fieldFactory;
         $this->setExpression($expression);
     }
@@ -123,12 +120,11 @@ class CronExpression
      * @return CronExpression
      * @throws \InvalidArgumentException if not a valid CRON expression
      */
-    public function setExpression($value)
-    {
+    public function setExpression($value) {
         $this->cronParts = preg_split('/\s/', $value, -1, PREG_SPLIT_NO_EMPTY);
         if (count($this->cronParts) < 5) {
             throw new InvalidArgumentException(
-                $value . ' is not a valid CRON expression'
+            $value . ' is not a valid CRON expression'
             );
         }
 
@@ -148,11 +144,10 @@ class CronExpression
      * @return CronExpression
      * @throws \InvalidArgumentException if the value is not valid for the part
      */
-    public function setPart($position, $value)
-    {
+    public function setPart($position, $value) {
         if (!$this->fieldFactory->getField($position)->validate($value)) {
             throw new InvalidArgumentException(
-                'Invalid CRON field value ' . $value . ' at position ' . $position
+            'Invalid CRON field value ' . $value . ' at position ' . $position
             );
         }
 
@@ -168,8 +163,7 @@ class CronExpression
      *
      * @return CronExpression
      */
-    public function setMaxIterationCount($maxIterationCount)
-    {
+    public function setMaxIterationCount($maxIterationCount) {
         $this->maxIterationCount = $maxIterationCount;
 
         return $this;
@@ -192,8 +186,7 @@ class CronExpression
      * @return \DateTime
      * @throws \RuntimeException on too many iterations
      */
-    public function getNextRunDate($currentTime = 'now', $nth = 0, $allowCurrentDate = false, $timeZone = null)
-    {
+    public function getNextRunDate($currentTime = 'now', $nth = 0, $allowCurrentDate = false, $timeZone = null) {
         return $this->getRunDate($currentTime, $nth, false, $allowCurrentDate, $timeZone);
     }
 
@@ -210,8 +203,7 @@ class CronExpression
      * @throws \RuntimeException on too many iterations
      * @see \Cron\CronExpression::getNextRunDate
      */
-    public function getPreviousRunDate($currentTime = 'now', $nth = 0, $allowCurrentDate = false, $timeZone = null)
-    {
+    public function getPreviousRunDate($currentTime = 'now', $nth = 0, $allowCurrentDate = false, $timeZone = null) {
         return $this->getRunDate($currentTime, $nth, true, $allowCurrentDate, $timeZone);
     }
 
@@ -227,8 +219,7 @@ class CronExpression
      *
      * @return array Returns an array of run dates
      */
-    public function getMultipleRunDates($total, $currentTime = 'now', $invert = false, $allowCurrentDate = false, $timeZone = null)
-    {
+    public function getMultipleRunDates($total, $currentTime = 'now', $invert = false, $allowCurrentDate = false, $timeZone = null) {
         $matches = array();
         for ($i = 0; $i < max(0, $total); $i++) {
             try {
@@ -250,8 +241,7 @@ class CronExpression
      * @return string|null Returns the CRON expression, a part of the
      *                     CRON expression, or NULL if the part was specified but not found
      */
-    public function getExpression($part = null)
-    {
+    public function getExpression($part = null) {
         if (null === $part) {
             return implode(' ', $this->cronParts);
         } elseif (array_key_exists($part, $this->cronParts)) {
@@ -266,8 +256,7 @@ class CronExpression
      *
      * @return string Full CRON expression
      */
-    public function __toString()
-    {
+    public function __toString() {
         return $this->getExpression();
     }
 
@@ -281,8 +270,7 @@ class CronExpression
      *
      * @return bool Returns TRUE if the cron is due to run or FALSE if not
      */
-    public function isDue($currentTime = 'now', $timeZone = null)
-    {
+    public function isDue($currentTime = 'now', $timeZone = null) {
         $timeZone = $this->determineTimeZone($currentTime, $timeZone);
 
         if ('now' === $currentTime) {
@@ -319,8 +307,7 @@ class CronExpression
      * @return \DateTime
      * @throws \RuntimeException on too many iterations
      */
-    protected function getRunDate($currentTime = null, $nth = 0, $invert = false, $allowCurrentDate = false, $timeZone = null)
-    {
+    protected function getRunDate($currentTime = null, $nth = 0, $invert = false, $allowCurrentDate = false, $timeZone = null) {
         $timeZone = $this->determineTimeZone($currentTime, $timeZone);
 
         if ($currentTime instanceof DateTime) {
@@ -396,9 +383,8 @@ class CronExpression
      *
      * @return string
      */
-    protected function determineTimeZone($currentTime, $timeZone)
-    {
-        if (! is_null($timeZone)) {
+    protected function determineTimeZone($currentTime, $timeZone) {
+        if (!is_null($timeZone)) {
             return $timeZone;
         }
 
@@ -408,4 +394,5 @@ class CronExpression
 
         return date_default_timezone_get();
     }
+
 }

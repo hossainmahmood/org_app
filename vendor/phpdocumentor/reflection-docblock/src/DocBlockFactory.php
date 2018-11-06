@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -18,8 +19,8 @@ use phpDocumentor\Reflection\DocBlock\Tag;
 use phpDocumentor\Reflection\DocBlock\TagFactory;
 use Webmozart\Assert\Assert;
 
-final class DocBlockFactory implements DocBlockFactoryInterface
-{
+final class DocBlockFactory implements DocBlockFactoryInterface {
+
     /** @var DocBlock\DescriptionFactory */
     private $descriptionFactory;
 
@@ -32,8 +33,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      * @param DescriptionFactory $descriptionFactory
      * @param TagFactory         $tagFactory
      */
-    public function __construct(DescriptionFactory $descriptionFactory, TagFactory $tagFactory)
-    {
+    public function __construct(DescriptionFactory $descriptionFactory, TagFactory $tagFactory) {
         $this->descriptionFactory = $descriptionFactory;
         $this->tagFactory = $tagFactory;
     }
@@ -45,8 +45,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return DocBlockFactory
      */
-    public static function createInstance(array $additionalTags = [])
-    {
+    public static function createInstance(array $additionalTags = []) {
         $fqsenResolver = new FqsenResolver();
         $tagFactory = new StandardTagFactory($fqsenResolver);
         $descriptionFactory = new DescriptionFactory($tagFactory);
@@ -70,8 +69,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return DocBlock
      */
-    public function create($docblock, Types\Context $context = null, Location $location = null)
-    {
+    public function create($docblock, Types\Context $context = null, Location $location = null) {
         if (is_object($docblock)) {
             if (!method_exists($docblock, 'getDocComment')) {
                 $exceptionMessage = 'Invalid object passed; the given object must support the getDocComment method';
@@ -91,20 +89,13 @@ final class DocBlockFactory implements DocBlockFactoryInterface
         list($templateMarker, $summary, $description, $tags) = $parts;
 
         return new DocBlock(
-            $summary,
-            $description ? $this->descriptionFactory->create($description, $context) : null,
-            array_filter($this->parseTagBlock($tags, $context), function ($tag) {
-                return $tag instanceof Tag;
-            }),
-            $context,
-            $location,
-            $templateMarker === '#@+',
-            $templateMarker === '#@-'
+                $summary, $description ? $this->descriptionFactory->create($description, $context) : null, array_filter($this->parseTagBlock($tags, $context), function ($tag) {
+                    return $tag instanceof Tag;
+                }), $context, $location, $templateMarker === '#@+', $templateMarker === '#@-'
         );
     }
 
-    public function registerTagHandler($tagName, $handler)
-    {
+    public function registerTagHandler($tagName, $handler) {
         $this->tagFactory->registerTagHandler($tagName, $handler);
     }
 
@@ -115,8 +106,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return string
      */
-    private function stripDocComment($comment)
-    {
+    private function stripDocComment($comment) {
         $comment = trim(preg_replace('#[ \t]*(?:\/\*\*|\*\/|\*)?[ \t]{0,1}(.*)?#u', '$1', $comment));
 
         // reg ex above is not able to remove */ from a single line docblock
@@ -137,8 +127,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return string[] containing the template marker (if any), summary, description and a string containing the tags.
      */
-    private function splitDocBlock($comment)
-    {
+    private function splitDocBlock($comment) {
         // Performance improvement cheat: if the first character is an @ then only tags are in this DocBlock. This
         // method does not split tags so we return this verbatim as the fourth result (tags). This saves us the
         // performance impact of running a regular expression
@@ -164,7 +153,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
          * Big thanks to RichardJ for contributing this Regular Expression
          */
         preg_match(
-            '/
+                '/
             \A
             # 1. Extract the template marker
             (?:(\#\@\+|\#\@\-)\n?)?
@@ -198,9 +187,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
 
             # 4. Extract the tags (anything that follows)
             (\s+ [\s\S]*)? # everything that follows
-            /ux',
-            $comment,
-            $matches
+            /ux', $comment, $matches
         );
         array_shift($matches);
 
@@ -219,8 +206,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return DocBlock\Tag[]
      */
-    private function parseTagBlock($tags, Types\Context $context)
-    {
+    private function parseTagBlock($tags, Types\Context $context) {
         $tags = $this->filterTagBlock($tags);
         if (!$tags) {
             return [];
@@ -239,8 +225,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      *
      * @return string[]
      */
-    private function splitTagBlockIntoTagLines($tags)
-    {
+    private function splitTagBlockIntoTagLines($tags) {
         $result = [];
         foreach (explode("\n", $tags) as $tag_line) {
             if (isset($tag_line[0]) && ($tag_line[0] === '@')) {
@@ -257,8 +242,7 @@ final class DocBlockFactory implements DocBlockFactoryInterface
      * @param $tags
      * @return string
      */
-    private function filterTagBlock($tags)
-    {
+    private function filterTagBlock($tags) {
         $tags = trim($tags);
         if (!$tags) {
             return null;
@@ -274,4 +258,5 @@ final class DocBlockFactory implements DocBlockFactoryInterface
 
         return $tags;
     }
+
 }

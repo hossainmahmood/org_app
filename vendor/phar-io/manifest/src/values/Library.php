@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,10 +12,12 @@
 namespace PharIo\Manifest;
 
 class Library extends Type {
+
     /**
      * @return bool
      */
     public function isLibrary() {
         return true;
     }
+
 }

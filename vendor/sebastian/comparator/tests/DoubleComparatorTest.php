@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -18,20 +20,18 @@ use PHPUnit\Framework\TestCase;
  * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-final class DoubleComparatorTest extends TestCase
-{
+final class DoubleComparatorTest extends TestCase {
+
     /**
      * @var DoubleComparator
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->comparator = new DoubleComparator;
     }
 
-    public function acceptsSucceedsProvider()
-    {
+    public function acceptsSucceedsProvider() {
         return [
             [0, 5.0],
             [5.0, 0],
@@ -43,8 +43,7 @@ final class DoubleComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
-    {
+    public function acceptsFailsProvider() {
         return [
             [5, 5],
             ['4.5', 5],
@@ -54,8 +53,7 @@ final class DoubleComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
-    {
+    public function assertEqualsSucceedsProvider() {
         return [
             [2.3, 2.3],
             ['2.3', 2.3],
@@ -71,8 +69,7 @@ final class DoubleComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
-    {
+    public function assertEqualsFailsProvider() {
         return [
             [2.3, 4.2],
             ['2.3', 4.2],
@@ -90,33 +87,31 @@ final class DoubleComparatorTest extends TestCase
     /**
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual): void
-    {
+    public function testAcceptsSucceeds($expected, $actual): void {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual): void
-    {
+    public function testAcceptsFails($expected, $actual): void {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
-    {
+    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void {
         $exception = null;
 
         try {
             $this->comparator->assertEquals($expected, $actual, $delta);
         } catch (ComparisonFailure $exception) {
+            
         }
 
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
@@ -125,11 +120,11 @@ final class DoubleComparatorTest extends TestCase
     /**
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $delta = 0.0): void
-    {
+    public function testAssertEqualsFails($expected, $actual, $delta = 0.0): void {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('matches expected');
 
         $this->comparator->assertEquals($expected, $actual, $delta);
     }
+
 }

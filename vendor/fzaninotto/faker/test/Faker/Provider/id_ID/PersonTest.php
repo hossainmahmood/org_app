@@ -6,36 +6,32 @@ use Faker\Generator;
 use Faker\Provider\id_ID\Person;
 use PHPUnit\Framework\TestCase;
 
-class PersonTest extends TestCase
-{
-    public function setUp()
-    {
+class PersonTest extends TestCase {
+
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $this->faker = $faker;
     }
 
-    public function testIfFirstNameMaleCanReturnData()
-    {
+    public function testIfFirstNameMaleCanReturnData() {
         $firstNameMale = $this->faker->firstNameMale();
         $this->assertNotEmpty($firstNameMale);
     }
 
-    public function testIfLastNameMaleCanReturnData()
-    {
+    public function testIfLastNameMaleCanReturnData() {
         $lastNameMale = $this->faker->lastNameMale();
         $this->assertNotEmpty($lastNameMale);
     }
 
-    public function testIfFirstNameFemaleCanReturnData()
-    {
+    public function testIfFirstNameFemaleCanReturnData() {
         $firstNameFemale = $this->faker->firstNameFemale();
         $this->assertNotEmpty($firstNameFemale);
     }
 
-    public function testIfLastNameFemaleCanReturnData()
-    {
+    public function testIfLastNameFemaleCanReturnData() {
         $lastNameFemale = $this->faker->lastNameFemale();
         $this->assertNotEmpty($lastNameFemale);
     }
+
 }

@@ -11,10 +11,9 @@
 
 namespace Monolog;
 
-class RegistryTest extends \PHPUnit_Framework_TestCase
-{
-    protected function setUp()
-    {
+class RegistryTest extends \PHPUnit_Framework_TestCase {
+
+    protected function setUp() {
         Registry::clear();
     }
 
@@ -22,8 +21,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @dataProvider hasLoggerProvider
      * @covers Monolog\Registry::hasLogger
      */
-    public function testHasLogger(array $loggersToAdd, array $loggersToCheck, array $expectedResult)
-    {
+    public function testHasLogger(array $loggersToAdd, array $loggersToCheck, array $expectedResult) {
         foreach ($loggersToAdd as $loggerToAdd) {
             Registry::addLogger($loggerToAdd);
         }
@@ -32,8 +30,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function hasLoggerProvider()
-    {
+    public function hasLoggerProvider() {
         $logger1 = new Logger('test1');
         $logger2 = new Logger('test2');
         $logger3 = new Logger('test3');
@@ -63,8 +60,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Registry::clear
      */
-    public function testClearClears()
-    {
+    public function testClearClears() {
         Registry::addLogger(new Logger('test1'), 'log');
         Registry::clear();
 
@@ -77,8 +73,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @covers Monolog\Registry::addLogger
      * @covers Monolog\Registry::removeLogger
      */
-    public function testRemovesLogger($loggerToAdd, $remove)
-    {
+    public function testRemovesLogger($loggerToAdd, $remove) {
         Registry::addLogger($loggerToAdd);
         Registry::removeLogger($remove);
 
@@ -86,8 +81,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
         Registry::getInstance($loggerToAdd->getName());
     }
 
-    public function removedLoggerProvider()
-    {
+    public function removedLoggerProvider() {
         $logger1 = new Logger('test1');
 
         return array(
@@ -101,8 +95,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @covers Monolog\Registry::getInstance
      * @covers Monolog\Registry::__callStatic
      */
-    public function testGetsSameLogger()
-    {
+    public function testGetsSameLogger() {
         $logger1 = new Logger('test1');
         $logger2 = new Logger('test2');
 
@@ -117,16 +110,14 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @covers Monolog\Registry::getInstance
      */
-    public function testFailsOnNonExistantLogger()
-    {
+    public function testFailsOnNonExistantLogger() {
         Registry::getInstance('test1');
     }
 
     /**
      * @covers Monolog\Registry::addLogger
      */
-    public function testReplacesLogger()
-    {
+    public function testReplacesLogger() {
         $log1 = new Logger('test1');
         $log2 = new Logger('test2');
 
@@ -141,8 +132,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @covers Monolog\Registry::addLogger
      */
-    public function testFailsOnUnspecifiedReplacement()
-    {
+    public function testFailsOnUnspecifiedReplacement() {
         $log1 = new Logger('test1');
         $log2 = new Logger('test2');
 
@@ -150,4 +140,5 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 
         Registry::addLogger($log2, 'log');
     }
+
 }

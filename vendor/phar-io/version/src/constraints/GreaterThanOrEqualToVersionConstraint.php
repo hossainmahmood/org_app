@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Version.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Version;
 
 class GreaterThanOrEqualToVersionConstraint extends AbstractVersionConstraint {
+
     /**
      * @var Version
      */
@@ -32,7 +34,7 @@ class GreaterThanOrEqualToVersionConstraint extends AbstractVersionConstraint {
      * @return bool
      */
     public function complies(Version $version) {
-        return $version->getVersionString() == $this->minimalVersion->getVersionString()
-            || $version->isGreaterThan($this->minimalVersion);
+        return $version->getVersionString() == $this->minimalVersion->getVersionString() || $version->isGreaterThan($this->minimalVersion);
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,8 +25,8 @@ namespace Doctrine\Instantiator;
  *
  * @author Marco Pivetta <ocramius@gmail.com>
  */
-interface InstantiatorInterface
-{
+interface InstantiatorInterface {
+
     /**
      * @param string $className
      *

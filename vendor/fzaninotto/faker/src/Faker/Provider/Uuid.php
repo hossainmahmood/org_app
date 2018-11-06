@@ -2,14 +2,13 @@
 
 namespace Faker\Provider;
 
-class Uuid extends Base
-{
+class Uuid extends Base {
+
     /**
      * Generate name based md5 UUID (version 3).
      * @example '7e57d004-2b97-0e7a-b45f-5387367791cd'
      */
-    public static function uuid()
-    {
+    public static function uuid() {
         // fix for compatibility with 32bit architecture; seed range restricted to 62bit
         $seed = mt_rand(0, 2147483647) . '#' . mt_rand(0, 2147483647);
 
@@ -26,8 +25,7 @@ class Uuid extends Base
 
         // correct byte order for big edian architecture
         if (pack('L', 0x6162797A) == pack('N', 0x6162797A)) {
-            $tLo = (($tLo & 0x000000ff) << 24) | (($tLo & 0x0000ff00) << 8)
-                | (($tLo & 0x00ff0000) >> 8) | (($tLo & 0xff000000) >> 24);
+            $tLo = (($tLo & 0x000000ff) << 24) | (($tLo & 0x0000ff00) << 8) | (($tLo & 0x00ff0000) >> 8) | (($tLo & 0xff000000) >> 24);
             $tMi = (($tMi & 0x00ff) << 8) | (($tMi & 0xff00) >> 8);
             $tHi = (($tHi & 0x00ff) << 8) | (($tHi & 0xff00) >> 8);
         }
@@ -38,20 +36,10 @@ class Uuid extends Base
 
         // cast to string
         $uuid = sprintf(
-            '%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x',
-            $tLo,
-            $tMi,
-            $tHi,
-            $csHi,
-            $csLo,
-            $byte[10],
-            $byte[11],
-            $byte[12],
-            $byte[13],
-            $byte[14],
-            $byte[15]
+                '%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x', $tLo, $tMi, $tHi, $csHi, $csLo, $byte[10], $byte[11], $byte[12], $byte[13], $byte[14], $byte[15]
         );
 
         return $uuid;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -22,8 +23,8 @@ use Ramsey\Uuid\Provider\TimeProviderInterface;
  * This provider allows the use of a previously-generated timestamp, such as one
  * stored in a database, when creating version 1 UUIDs.
  */
-class FixedTimeProvider implements TimeProviderInterface
-{
+class FixedTimeProvider implements TimeProviderInterface {
+
     /**
      * @var int[] Array containing `sec` and `usec` components of a timestamp
      */
@@ -35,8 +36,7 @@ class FixedTimeProvider implements TimeProviderInterface
      * @param int[] Array containing `sec` and `usec` components of a timestamp
      * @throws \InvalidArgumentException if the `$timestamp` does not contain `sec` or `usec` components
      */
-    public function __construct(array $timestamp)
-    {
+    public function __construct(array $timestamp) {
         if (!array_key_exists('sec', $timestamp) || !array_key_exists('usec', $timestamp)) {
             throw new \InvalidArgumentException('Array must contain sec and usec keys.');
         }
@@ -49,8 +49,7 @@ class FixedTimeProvider implements TimeProviderInterface
      *
      * @param int $value The `usec` value to set
      */
-    public function setUsec($value)
-    {
+    public function setUsec($value) {
         $this->fixedTime['usec'] = $value;
     }
 
@@ -59,8 +58,7 @@ class FixedTimeProvider implements TimeProviderInterface
      *
      * @param int $value The `sec` value to set
      */
-    public function setSec($value)
-    {
+    public function setSec($value) {
         $this->fixedTime['sec'] = $value;
     }
 
@@ -69,8 +67,8 @@ class FixedTimeProvider implements TimeProviderInterface
      *
      * @return int[] Array containing `sec` and `usec` components of a timestamp
      */
-    public function currentTime()
-    {
+    public function currentTime() {
         return $this->fixedTime;
     }
+
 }

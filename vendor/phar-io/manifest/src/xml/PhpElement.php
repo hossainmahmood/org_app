@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class PhpElement extends ManifestElement {
+
     public function getVersion() {
         return $this->getAttributeValue('version');
     }
@@ -21,7 +23,8 @@ class PhpElement extends ManifestElement {
 
     public function getExtElements() {
         return new ExtElementCollection(
-            $this->getChildrenByName('ext')
+                $this->getChildrenByName('ext')
         );
     }
+
 }

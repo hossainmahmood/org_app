@@ -28,11 +28,8 @@ return array(
     'from_now' => 'за :time',
     'after' => ':time након',
     'before' => ':time прије',
-
     'year_from_now' => '{1,21,31,41,51} :count годину|{2,3,4,22,23,24,32,33,34,42,43,44,52,53,54} :count године|[5,Inf[ :count година',
     'year_ago' => '{1,21,31,41,51} :count годину|{2,3,4,22,23,24,32,33,34,42,43,44,52,53,54} :count године|[5,Inf[ :count година',
-
     'week_from_now' => '{1} :count недјељу|{2,3,4} :count недјеље|[5,Inf[ :count недјеља',
     'week_ago' => '{1} :count недјељу|{2,3,4} :count недјеље|[5,Inf[ :count недјеља',
-
 );

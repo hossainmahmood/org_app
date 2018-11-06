@@ -8,16 +8,14 @@ use Faker\Provider\da_DK\Internet;
 use Faker\Provider\da_DK\Company;
 use PHPUnit\Framework\TestCase;
 
-class InternetTest extends TestCase
-{
+class InternetTest extends TestCase {
 
     /**
      * @var Generator
      */
     private $faker;
 
-    public function setUp()
-    {
+    public function setUp() {
         $faker = new Generator();
         $faker->addProvider(new Person($faker));
         $faker->addProvider(new Internet($faker));
@@ -25,9 +23,9 @@ class InternetTest extends TestCase
         $this->faker = $faker;
     }
 
-    public function testEmailIsValid()
-    {
+    public function testEmailIsValid() {
         $email = $this->faker->email();
         $this->assertNotFalse(filter_var($email, FILTER_VALIDATE_EMAIL));
     }
+
 }

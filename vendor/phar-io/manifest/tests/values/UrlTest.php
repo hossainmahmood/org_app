@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @covers PharIo\Manifest\Url
  */
 class UrlTest extends TestCase {
+
     public function testCanBeCreatedForValidUrl() {
         $this->assertInstanceOf(Url::class, new Url('https://phar.io/'));
     }
@@ -32,4 +34,5 @@ class UrlTest extends TestCase {
 
         new Url('invalid');
     }
+
 }

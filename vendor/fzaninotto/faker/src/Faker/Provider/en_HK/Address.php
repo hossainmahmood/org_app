@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\en_HK;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $country = array('Hong Kong');
+class Address extends \Faker\Provider\Address {
 
+    protected static $country = array('Hong Kong');
     protected static $syllables = array(
         'A', 'Ai', 'Ak', 'Am', 'An', 'Ang', 'Ap', 'At', 'Au',
         'Cha', 'Chai', 'Chak', 'Cham', 'Chan', 'Chang', 'Chap', 'Chat', 'Chau',
@@ -85,17 +84,14 @@ class Address extends \Faker\Provider\Address
         'Yo',
         'Yue', 'Yuen', 'Yuet', 'Yui', 'Yuk', 'Yun', 'Yung',
     );
-
     protected static $streetAddressFormats = array(
         '{{buildingNumber}} {{streetName}}',
         '{{buildingNumber}} {{village}}',
         'Block {{buildingNumber}}, {{estate}}',
     );
-
     protected static $addressFormats = array(
         "{{streetAddress}}\n{{town}}\n{{city}}",
     );
-
     protected static $villageNameFormats = array(
         '{{syllable}} {{syllable}} {{villageSuffix}}',
         '{{syllable}} {{syllable}} {{villageSuffix}}',
@@ -121,7 +117,6 @@ class Address extends \Faker\Provider\Address
         '{{town}}',
         '{{town}} {{villageSuffix}}',
     );
-
     protected static $estateNameFormats = array(
         '{{syllable}} {{syllable}} {{estateSuffix}}',
         '{{syllable}} {{syllable}} {{estateSuffix}}',
@@ -131,12 +126,8 @@ class Address extends \Faker\Provider\Address
         '{{syllable}} {{syllable}} {{syllable}} {{estateSuffix}}',
         '{{town}} {{estateSuffix}}',
     );
-
-
     protected static $villageSuffixes = array('Village', 'Tsuen', 'San Tsuen', 'New Village', 'Wai');
-
     protected static $estateSuffixes = array('Estate', 'Court');
-
     protected static $streetNameFormats = array(
         '{{syllable}} {{streetSuffix}}',
         '{{syllable}} {{syllable}} {{streetSuffix}}',
@@ -152,21 +143,16 @@ class Address extends \Faker\Provider\Address
         '{{englishStreetName}} {{streetSuffix}}',
         '{{englishStreetName}} {{streetSuffix}} {{direction}}',
     );
-
     protected static $englishStreetNames = array(
         "King's", "Queen's", "Nathan", "Robinson", "Kingston", "Irving", "Bonham", "Salisbury",
         "Tonkin", "Nanking", "Peking", "Canton", "Amoy", "Shanghai"
     );
-
     protected static $streetSuffix = array(
         'Road', 'Road', 'Road', 'Street', 'Street', 'Street', 'Lane',
         'Circuit', 'Avenue', 'Path', 'Square',
     );
-
     protected static $directions = array('North', 'East', 'South', 'West');
-
     protected static $cities = array('Hong Kong', 'Kowloon', 'New Territories');
-
     protected static $towns = array(
         '{{syllable}} {{syllable}}',
         '{{syllable}} {{syllable}}',
@@ -193,48 +179,40 @@ class Address extends \Faker\Provider\Address
         'Victoria',
     );
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$cities);
     }
 
-    public function town()
-    {
+    public function town() {
         return $this->generator->parse(static::randomElement(static::$towns));
     }
 
-    public function syllable()
-    {
+    public function syllable() {
         return static::randomElement(static::$syllables);
     }
 
-    public function direction()
-    {
+    public function direction() {
         return static::randomElement(static::$directions);
     }
 
-    public function englishStreetName()
-    {
+    public function englishStreetName() {
         return static::randomElement(static::$englishStreetNames);
     }
 
-    public function villageSuffix()
-    {
+    public function villageSuffix() {
         return static::randomElement(static::$villageSuffixes);
     }
 
-    public function estateSuffix()
-    {
+    public function estateSuffix() {
         return static::randomElement(static::$estateSuffixes);
     }
 
-    public function village()
-    {
+    public function village() {
         return $this->generator->parse(static::randomElement(static::$villageNameFormats));
     }
 
-    public function estate()
-    {
+    public function estate() {
         return $this->generator->parse(static::randomElement(static::$estateNameFormats));
     }
+
 }

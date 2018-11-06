@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -19,6 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @uses \PharIo\Version\Version
  */
 class BundledComponentTest extends TestCase {
+
     /**
      * @var BundledComponent
      */
@@ -39,4 +41,5 @@ class BundledComponentTest extends TestCase {
     public function testVersionCanBeRetrieved() {
         $this->assertEquals('4.0.2', $this->bundledComponent->getVersion()->getVersionString());
     }
+
 }

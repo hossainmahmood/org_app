@@ -1,11 +1,11 @@
 <?php
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
-class FactoryCall
-{
+class FactoryCall {
+
     /**
      * Hamcrest standard is two spaces for each level of indentation.
      *
@@ -23,19 +23,17 @@ class FactoryCall
      */
     private $name;
 
-    public function __construct(FactoryMethod $method, $name)
-    {
+    public function __construct(FactoryMethod $method, $name) {
         $this->method = $method;
         $this->name = $name;
     }
 
-    public function getMethod()
-    {
+    public function getMethod() {
         return $this->method;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
+
 }

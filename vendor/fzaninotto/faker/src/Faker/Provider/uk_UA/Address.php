@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\uk_UA;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $cityPrefix = array('місто');
     protected static $regionSuffix = array('область');
     protected static $streetPrefix = array(
@@ -203,7 +203,6 @@ class Address extends \Faker\Provider\Address
         'Замбія',
         'Зімбабве',
     );
-
     protected static $region = array(
         'Вінницька',
         'Волинська',
@@ -230,7 +229,6 @@ class Address extends \Faker\Provider\Address
         'Чернівецька',
         'Чернігівська'
     );
-
     protected static $city = array(
         'Вінниця',
         'Луцьк',
@@ -288,54 +286,44 @@ class Address extends \Faker\Provider\Address
         'М. Коцюбинського',
         'Володимирська'
     );
-
     protected static $addressFormats = array(
         "{{postcode}}, {{cityAndRegion}}, {{streetPrefix}} {{streetName}}, {{buildingNumber}}",
     );
-
     protected static $streetAddressFormats = array(
         "{{streetPrefix}} {{streetName}}, {{buildingNumber}}"
     );
 
-    public static function citySuffix()
-    {
+    public static function citySuffix() {
         // We don't use city suffix
         return '';
     }
 
-    public static function streetSuffix()
-    {
+    public static function streetSuffix() {
         // We don't use street suffix
         return '';
     }
 
-    public function streetName()
-    {
+    public function streetName() {
         return static::randomElement(static::$street);
     }
 
-    public static function postcode()
-    {
+    public static function postcode() {
         return static::toUpper(static::bothify(static::randomElement(static::$postcode)));
     }
 
-    public static function regionSuffix()
-    {
+    public static function regionSuffix() {
         return static::randomElement(static::$regionSuffix);
     }
 
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
 
-    public static function cityPrefix()
-    {
+    public static function cityPrefix() {
         return static::randomElement(static::$cityPrefix);
     }
 
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
@@ -345,8 +333,7 @@ class Address extends \Faker\Provider\Address
      * @example 'Закарпатська область, місто Ужгород'
      * @return string
      */
-    public function cityAndRegion()
-    {
+    public function cityAndRegion() {
         $regionAndCityNumber = rand(0, count(static::$region) - 1);
         $region = static::$region[$regionAndCityNumber];
         $city = static::$city[$regionAndCityNumber];
@@ -355,8 +342,8 @@ class Address extends \Faker\Provider\Address
         return $this->generator->parse($format);
     }
 
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
+
 }

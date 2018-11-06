@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -25,8 +26,8 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @link http://tools.ietf.org/html/rfc4122
  */
-class StringCodec implements CodecInterface
-{
+class StringCodec implements CodecInterface {
+
     /**
      * @var UuidBuilderInterface
      */
@@ -37,8 +38,7 @@ class StringCodec implements CodecInterface
      *
      * @param UuidBuilderInterface $builder The UUID builder to use when encoding UUIDs
      */
-    public function __construct(UuidBuilderInterface $builder)
-    {
+    public function __construct(UuidBuilderInterface $builder) {
         $this->builder = $builder;
     }
 
@@ -48,13 +48,11 @@ class StringCodec implements CodecInterface
      * @param UuidInterface $uuid
      * @return string Hexadecimal string representation of a UUID
      */
-    public function encode(UuidInterface $uuid)
-    {
+    public function encode(UuidInterface $uuid) {
         $fields = array_values($uuid->getFieldsHex());
 
         return vsprintf(
-            '%08s-%04s-%04s-%02s%02s-%012s',
-            $fields
+                '%08s-%04s-%04s-%02s%02s-%012s', $fields
         );
     }
 
@@ -64,8 +62,7 @@ class StringCodec implements CodecInterface
      * @param UuidInterface $uuid
      * @return string Binary string representation of a UUID
      */
-    public function encodeBinary(UuidInterface $uuid)
-    {
+    public function encodeBinary(UuidInterface $uuid) {
         return hex2bin($uuid->getHex());
     }
 
@@ -76,8 +73,7 @@ class StringCodec implements CodecInterface
      * @return UuidInterface
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
      */
-    public function decode($encodedUuid)
-    {
+    public function decode($encodedUuid) {
         $components = $this->extractComponents($encodedUuid);
         $fields = $this->getFields($components);
 
@@ -91,8 +87,7 @@ class StringCodec implements CodecInterface
      * @return UuidInterface
      * @throws \InvalidArgumentException if string has not 16 characters
      */
-    public function decodeBytes($bytes)
-    {
+    public function decodeBytes($bytes) {
         if (strlen($bytes) !== 16) {
             throw new InvalidArgumentException('$bytes string should contain 16 characters.');
         }
@@ -107,8 +102,7 @@ class StringCodec implements CodecInterface
      *
      * @return UuidBuilderInterface
      */
-    protected function getBuilder()
-    {
+    protected function getBuilder() {
         return $this->builder;
     }
 
@@ -119,15 +113,14 @@ class StringCodec implements CodecInterface
      * @return array
      * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
      */
-    protected function extractComponents($encodedUuid)
-    {
+    protected function extractComponents($encodedUuid) {
         $nameParsed = str_replace(array(
             'urn:',
             'uuid:',
             '{',
             '}',
             '-'
-        ), '', $encodedUuid);
+                ), '', $encodedUuid);
 
         // We have stripped out the dashes and are breaking up the string using
         // substr(). In this way, we can accept a full hex value that doesn't
@@ -156,8 +149,7 @@ class StringCodec implements CodecInterface
      * @param array $components
      * @return array
      */
-    protected function getFields(array $components)
-    {
+    protected function getFields(array $components) {
         return array(
             'time_low' => str_pad($components[0], 8, '0', STR_PAD_LEFT),
             'time_mid' => str_pad($components[1], 4, '0', STR_PAD_LEFT),
@@ -167,4 +159,5 @@ class StringCodec implements CodecInterface
             'node' => str_pad($components[4], 12, '0', STR_PAD_LEFT)
         );
     }
+
 }

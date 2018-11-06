@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types = 1);
+
 namespace TheSeer\Tokenizer;
 
 use PHPUnit\Framework\TestCase;
@@ -13,9 +16,9 @@ class TokenizerTest extends TestCase {
         $result = $tokenizer->parse(file_get_contents(__DIR__ . '/_files/test.php'));
 
         $expected = unserialize(
-            file_get_contents(__DIR__ . '/_files/test.php.tokens'),
-            [TokenCollection::class]
+                file_get_contents(__DIR__ . '/_files/test.php.tokens'), [TokenCollection::class]
         );
         $this->assertEquals($expected, $result);
     }
+
 }

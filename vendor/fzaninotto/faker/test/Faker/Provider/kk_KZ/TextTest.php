@@ -4,12 +4,11 @@ namespace Faker\Test\Provider\kk_KZ;
 
 use PHPUnit\Framework\TestCase;
 
-class TextTest extends TestCase
-{
+class TextTest extends TestCase {
+
     private $textClass;
 
-    public function setUp()
-    {
+    public function setUp() {
         $this->textClass = new \ReflectionClass('Faker\Provider\kk_KZ\Text');
     }
 
@@ -22,36 +21,30 @@ class TextTest extends TestCase
     }
 
     /** @test */
-    function testItShouldAppendEndPunctToTheEndOfString()
-    {
+    function testItShouldAppendEndPunctToTheEndOfString() {
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар '))
+                'Арыстан баб кесенесі - көне Отырар.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар '))
         );
 
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар— '))
+                'Арыстан баб кесенесі - көне Отырар.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар— '))
         );
 
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар,  '))
+                'Арыстан баб кесенесі - көне Отырар.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар,  '))
         );
 
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар!.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар! '))
+                'Арыстан баб кесенесі - көне Отырар!.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар! '))
         );
 
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар: '))
+                'Арыстан баб кесенесі - көне Отырар.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар: '))
         );
 
         $this->assertSame(
-            'Арыстан баб кесенесі - көне Отырар.',
-            $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар; '))
+                'Арыстан баб кесенесі - көне Отырар.', $this->getMethod('appendEnd')->invokeArgs(null, array('Арыстан баб кесенесі - көне Отырар; '))
         );
     }
+
 }

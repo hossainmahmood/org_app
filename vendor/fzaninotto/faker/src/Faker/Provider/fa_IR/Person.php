@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\fa_IR;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -11,7 +11,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -131,7 +130,7 @@ class Person extends \Faker\Provider\Person
         'واثقی', 'واعظ', 'واعظی', 'واعظ‌زاده', 'وکیلی',
         'یاحقی', 'یثربی', 'یلدا',
     );
-
     protected static $titleMale = array('آقای', 'استاد', 'دکتر', 'مهندس');
     protected static $titleFemale = array('خانم', 'استاد', 'دکتر', 'مهندس');
+
 }

@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\sv_SE;
 
-class PhoneNumber extends \Faker\Provider\PhoneNumber
-{
+class PhoneNumber extends \Faker\Provider\PhoneNumber {
+
     /**
      * @var array Swedish phone number formats
      */
@@ -15,7 +15,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+46(0)%########',
         '+46 %## ### ###',
         '+46%########',
-
         '08-### ## ##',
         '0%#-## ## ##',
         '0%##-### ##',
@@ -26,7 +25,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+46 (0)%#######',
         '+46(0)%#######',
         '+46%#######',
-
         '08-## ## ##',
         '0%#-### ###',
         '0%#######',
@@ -34,4 +32,5 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+46(0)%######',
         '+46%######',
     );
+
 }

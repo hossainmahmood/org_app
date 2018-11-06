@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -22,8 +23,8 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for the {@}param tag in a Docblock.
  */
-final class Param extends BaseTag implements Factory\StaticMethod
-{
+final class Param extends BaseTag implements Factory\StaticMethod {
+
     /** @var string */
     protected $name = 'param';
 
@@ -42,8 +43,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
      * @param bool $isVariadic
      * @param Description $description
      */
-    public function __construct($variableName, Type $type = null, $isVariadic = false, Description $description = null)
-    {
+    public function __construct($variableName, Type $type = null, $isVariadic = false, Description $description = null) {
         Assert::string($variableName);
         Assert::boolean($isVariadic);
 
@@ -57,10 +57,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
      * {@inheritdoc}
      */
     public static function create(
-        $body,
-        TypeResolver $typeResolver = null,
-        DescriptionFactory $descriptionFactory = null,
-        TypeContext $context = null
+    $body, TypeResolver $typeResolver = null, DescriptionFactory $descriptionFactory = null, TypeContext $context = null
     ) {
         Assert::stringNotEmpty($body);
         Assert::allNotNull([$typeResolver, $descriptionFactory]);
@@ -101,8 +98,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function getVariableName()
-    {
+    public function getVariableName() {
         return $this->variableName;
     }
 
@@ -111,8 +107,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
      *
      * @return Type|null
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -121,8 +116,7 @@ final class Param extends BaseTag implements Factory\StaticMethod
      *
      * @return boolean
      */
-    public function isVariadic()
-    {
+    public function isVariadic() {
         return $this->isVariadic;
     }
 
@@ -131,11 +125,11 @@ final class Param extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return ($this->type ? $this->type . ' ' : '')
-        . ($this->isVariadic() ? '...' : '')
-        . '$' . $this->variableName
-        . ($this->description ? ' ' . $this->description : '');
+                . ($this->isVariadic() ? '...' : '')
+                . '$' . $this->variableName
+                . ($this->description ? ' ' . $this->description : '');
     }
+
 }

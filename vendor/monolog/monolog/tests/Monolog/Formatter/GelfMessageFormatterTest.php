@@ -13,10 +13,9 @@ namespace Monolog\Formatter;
 
 use Monolog\Logger;
 
-class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
-{
-    public function setUp()
-    {
+class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase {
+
+    public function setUp() {
         if (!class_exists('\Gelf\Message')) {
             $this->markTestSkipped("graylog2/gelf-php or mlehner/gelf-php is not installed");
         }
@@ -25,8 +24,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      */
-    public function testDefaultFormatter()
-    {
+    public function testDefaultFormatter() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -60,8 +58,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      */
-    public function testFormatWithFileAndLine()
-    {
+    public function testFormatWithFileAndLine() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -84,8 +81,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      * @expectedException InvalidArgumentException
      */
-    public function testFormatInvalidFails()
-    {
+    public function testFormatInvalidFails() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -98,8 +94,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      */
-    public function testFormatWithContext()
-    {
+    public function testFormatWithContext() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -135,18 +130,17 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      */
-    public function testFormatWithContextContainingException()
-    {
+    public function testFormatWithContextContainingException() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
             'level_name' => 'ERROR',
             'channel' => 'meh',
             'context' => array('from' => 'logger', 'exception' => array(
-                'class' => '\Exception',
-                'file'  => '/some/file/in/dir.php:56',
-                'trace' => array('/some/file/1.php:23', '/some/file/2.php:3'),
-            )),
+                    'class' => '\Exception',
+                    'file' => '/some/file/in/dir.php:56',
+                    'trace' => array('/some/file/1.php:23', '/some/file/2.php:3'),
+                )),
             'datetime' => new \DateTime("@0"),
             'extra' => array(),
             'message' => 'log',
@@ -163,8 +157,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Monolog\Formatter\GelfMessageFormatter::format
      */
-    public function testFormatWithExtra()
-    {
+    public function testFormatWithExtra() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -197,8 +190,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('pair', $message_array['_EXTkey']);
     }
 
-    public function testFormatWithLargeData()
-    {
+    public function testFormatWithLargeData() {
         $formatter = new GelfMessageFormatter();
         $record = array(
             'level' => Logger::ERROR,
@@ -224,8 +216,7 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertLessThanOrEqual(65792, $length, 'The message length is no longer than the maximum allowed length');
     }
 
-    public function testFormatWithUnlimitedLength()
-    {
+    public function testFormatWithUnlimitedLength() {
         $formatter = new GelfMessageFormatter('LONG_SYSTEM_NAME', null, 'ctxt_', PHP_INT_MAX);
         $record = array(
             'level' => Logger::ERROR,
@@ -251,8 +242,8 @@ class GelfMessageFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThanOrEqual(131289, $length, 'The message should not be truncated');
     }
 
-    private function isLegacy()
-    {
+    private function isLegacy() {
         return interface_exists('\Gelf\IMessagePublisher');
     }
+
 }

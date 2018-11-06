@@ -1,4 +1,5 @@
 <?php
+
 /**
  * phpDocumentor
  *
@@ -20,8 +21,8 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for a @link tag in a Docblock.
  */
-final class Link extends BaseTag implements Factory\StaticMethod
-{
+final class Link extends BaseTag implements Factory\StaticMethod {
+
     protected $name = 'link';
 
     /** @var string */
@@ -33,8 +34,7 @@ final class Link extends BaseTag implements Factory\StaticMethod
      * @param string      $link
      * @param Description $description
      */
-    public function __construct($link, Description $description = null)
-    {
+    public function __construct($link, Description $description = null) {
         Assert::string($link);
 
         $this->link = $link;
@@ -44,8 +44,7 @@ final class Link extends BaseTag implements Factory\StaticMethod
     /**
      * {@inheritdoc}
      */
-    public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null)
-    {
+    public static function create($body, DescriptionFactory $descriptionFactory = null, TypeContext $context = null) {
         Assert::string($body);
         Assert::notNull($descriptionFactory);
 
@@ -56,12 +55,11 @@ final class Link extends BaseTag implements Factory\StaticMethod
     }
 
     /**
-    * Gets the link
-    *
-    * @return string
-    */
-    public function getLink()
-    {
+     * Gets the link
+     *
+     * @return string
+     */
+    public function getLink() {
         return $this->link;
     }
 
@@ -70,8 +68,8 @@ final class Link extends BaseTag implements Factory\StaticMethod
      *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return $this->link . ($this->description ? ' ' . $this->description->render() : '');
     }
+
 }

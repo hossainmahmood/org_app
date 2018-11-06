@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 /**
  * Compares \SplObjectStorage instances for equality.
  */
-class SplObjectStorageComparator extends Comparator
-{
+class SplObjectStorageComparator extends Comparator {
+
     /**
      * Returns whether the comparator can compare two values.
      *
@@ -22,8 +24,7 @@ class SplObjectStorageComparator extends Comparator
      *
      * @return bool
      */
-    public function accepts($expected, $actual)
-    {
+    public function accepts($expected, $actual) {
         return $expected instanceof \SplObjectStorage && $actual instanceof \SplObjectStorage;
     }
 
@@ -38,17 +39,11 @@ class SplObjectStorageComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
-    {
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false) {
         foreach ($actual as $object) {
             if (!$expected->contains($object)) {
                 throw new ComparisonFailure(
-                    $expected,
-                    $actual,
-                    $this->exporter->export($expected),
-                    $this->exporter->export($actual),
-                    false,
-                    'Failed asserting that two objects are equal.'
+                $expected, $actual, $this->exporter->export($expected), $this->exporter->export($actual), false, 'Failed asserting that two objects are equal.'
                 );
             }
         }
@@ -56,14 +51,10 @@ class SplObjectStorageComparator extends Comparator
         foreach ($expected as $object) {
             if (!$actual->contains($object)) {
                 throw new ComparisonFailure(
-                    $expected,
-                    $actual,
-                    $this->exporter->export($expected),
-                    $this->exporter->export($actual),
-                    false,
-                    'Failed asserting that two objects are equal.'
+                $expected, $actual, $this->exporter->export($expected), $this->exporter->export($actual), false, 'Failed asserting that two objects are equal.'
                 );
             }
         }
     }
+
 }

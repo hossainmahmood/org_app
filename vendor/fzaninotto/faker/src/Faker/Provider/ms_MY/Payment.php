@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ms_MY;
 
-class Payment extends \Faker\Provider\Payment
-{
+class Payment extends \Faker\Provider\Payment {
+
     protected static $bankFormats = array(
         '{{localBank}}',
         '{{foreignBank}}',
@@ -105,34 +105,34 @@ class Payment extends \Faker\Provider\Payment
      * @link http://www.bankswiftcode.org/malaysia/
      */
     protected static $swiftCodes = array(
-        'ABNAMY2AXXX','ABNAMYKLPNG','ABNAMYKLXXX','AFBQMYKLXXX','AIBBMYKLXXX',
-        'AISLMYKLXXX','AMMBMYKLXXX','ARBKMYKLXXX',
-        'BIMBMYKLXXX','BISLMYKAXXX','BKCHMYKLXXX','BKKBMYKLXXX','BMMBMYKLXXX',
-        'BNMAMYKLXXX','BNPAMYKAXXX','BOFAMY2XLBN','BOFAMY2XXXX','BOTKMYKAXXX',
+        'ABNAMY2AXXX', 'ABNAMYKLPNG', 'ABNAMYKLXXX', 'AFBQMYKLXXX', 'AIBBMYKLXXX',
+        'AISLMYKLXXX', 'AMMBMYKLXXX', 'ARBKMYKLXXX',
+        'BIMBMYKLXXX', 'BISLMYKAXXX', 'BKCHMYKLXXX', 'BKKBMYKLXXX', 'BMMBMYKLXXX',
+        'BNMAMYKLXXX', 'BNPAMYKAXXX', 'BOFAMY2XLBN', 'BOFAMY2XXXX', 'BOTKMYKAXXX',
         'BOTKMYKXXXX',
-        'CHASMYKXKEY','CHASMYKXXXX','CIBBMYKAXXX','CIBBMYKLXXX','CITIMYKLJOD',
-        'CITIMYKLLAB','CITIMYKLPEN','CITIMYKLXXX','COIMMYKLXXX','CTBBMYKLXXX',
-        'DABEMYKLXXX','DBSSMY2AXXX','DEUTMYKLBLB','DEUTMYKLGMO','DEUTMYKLISB',
+        'CHASMYKXKEY', 'CHASMYKXXXX', 'CIBBMYKAXXX', 'CIBBMYKLXXX', 'CITIMYKLJOD',
+        'CITIMYKLLAB', 'CITIMYKLPEN', 'CITIMYKLXXX', 'COIMMYKLXXX', 'CTBBMYKLXXX',
+        'DABEMYKLXXX', 'DBSSMY2AXXX', 'DEUTMYKLBLB', 'DEUTMYKLGMO', 'DEUTMYKLISB',
         'DEUTMYKLXXX',
-        'EIBBMYKLXXX','EOBBMYKLXXX','EXMBMYKLXXX',
+        'EIBBMYKLXXX', 'EOBBMYKLXXX', 'EXMBMYKLXXX',
         'FEEBMYKAXXX',
-        'HBMBMYKLXXX','HDSBMY2PSEL','HDSBMY2PXXX','HLBBMYKLIBU','HLBBMYKLJBU',
-        'HLBBMYKLKCH','HLBBMYKLPNG','HLBBMYKLXXX','HLIBMYKLXXX','HMABMYKLXXX',
-        'HSBCMYKAXXX','HSTMMYKLGWS','HSTMMYKLXXX',
-        'KAFBMYKLXXX','KFHOMYKLXXX',
-        'MBBEMYKAXXX','MBBEMYKLBAN','MBBEMYKLBBG','MBBEMYKLBWC','MBBEMYKLCSD',
-        'MBBEMYKLIPH','MBBEMYKLJOB','MBBEMYKLKEP','MBBEMYKLKIN','MBBEMYKLKLC',
-        'MBBEMYKLMAL','MBBEMYKLPEN','MBBEMYKLPGC','MBBEMYKLPJC','MBBEMYKLPJY',
-        'MBBEMYKLPKG','MBBEMYKLPSG','MBBEMYKLPUD','MBBEMYKLSAC','MBBEMYKLSBN',
-        'MBBEMYKLSHA','MBBEMYKLSUB','MBBEMYKLWSD','MBBEMYKLXXX','MBBEMYKLYSL',
-        'MFBBMYKLXXX','MHCBMYKAXXX',
-        'NOSCMY2LXXX','NOSCMYKLXXX',
-        'OABBMYKLXXX','OCBCMYKLXXX','OSKIMYKLXXX',
-        'PBBEMYKLXXX','PBLLMYKAXXX','PCGLMYKLXXX','PERMMYKLXXX','PHBMMYKLXXX',
-        'PTRDMYKLXXX','PTROMYKLFSD','PTROMYKLXXX',
-        'RHBAMYKLXXX','RHBBMYKAXXX','RHBBMYKLXXX','RJHIMYKLXXX',
-        'SCBLMYKXLAB','SCBLMYKXXXX','SMBCMYKAXXX',
-        'UIIBMYKLXXX','UOVBMYKLCND','UOVBMYKLXXX',
+        'HBMBMYKLXXX', 'HDSBMY2PSEL', 'HDSBMY2PXXX', 'HLBBMYKLIBU', 'HLBBMYKLJBU',
+        'HLBBMYKLKCH', 'HLBBMYKLPNG', 'HLBBMYKLXXX', 'HLIBMYKLXXX', 'HMABMYKLXXX',
+        'HSBCMYKAXXX', 'HSTMMYKLGWS', 'HSTMMYKLXXX',
+        'KAFBMYKLXXX', 'KFHOMYKLXXX',
+        'MBBEMYKAXXX', 'MBBEMYKLBAN', 'MBBEMYKLBBG', 'MBBEMYKLBWC', 'MBBEMYKLCSD',
+        'MBBEMYKLIPH', 'MBBEMYKLJOB', 'MBBEMYKLKEP', 'MBBEMYKLKIN', 'MBBEMYKLKLC',
+        'MBBEMYKLMAL', 'MBBEMYKLPEN', 'MBBEMYKLPGC', 'MBBEMYKLPJC', 'MBBEMYKLPJY',
+        'MBBEMYKLPKG', 'MBBEMYKLPSG', 'MBBEMYKLPUD', 'MBBEMYKLSAC', 'MBBEMYKLSBN',
+        'MBBEMYKLSHA', 'MBBEMYKLSUB', 'MBBEMYKLWSD', 'MBBEMYKLXXX', 'MBBEMYKLYSL',
+        'MFBBMYKLXXX', 'MHCBMYKAXXX',
+        'NOSCMY2LXXX', 'NOSCMYKLXXX',
+        'OABBMYKLXXX', 'OCBCMYKLXXX', 'OSKIMYKLXXX',
+        'PBBEMYKLXXX', 'PBLLMYKAXXX', 'PCGLMYKLXXX', 'PERMMYKLXXX', 'PHBMMYKLXXX',
+        'PTRDMYKLXXX', 'PTROMYKLFSD', 'PTROMYKLXXX',
+        'RHBAMYKLXXX', 'RHBBMYKAXXX', 'RHBBMYKLXXX', 'RJHIMYKLXXX',
+        'SCBLMYKXLAB', 'SCBLMYKXXXX', 'SMBCMYKAXXX',
+        'UIIBMYKLXXX', 'UOVBMYKLCND', 'UOVBMYKLXXX',
     );
 
     /**
@@ -149,8 +149,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public function bank()
-    {
+    public function bank() {
         $formats = static::randomElement(static::$bankFormats);
 
         return $this->generator->parse($formats);
@@ -163,8 +162,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public function bankAccountNumber()
-    {
+    public function bankAccountNumber() {
         $formats = static::randomElement(static::$bankAccountNumberFormats);
 
         return static::numerify($formats);
@@ -177,8 +175,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function localBank()
-    {
+    public static function localBank() {
         return static::randomElement(static::$localBanks);
     }
 
@@ -189,8 +186,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function foreignBank()
-    {
+    public static function foreignBank() {
         return static::randomElement(static::$foreignBanks);
     }
 
@@ -201,8 +197,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function governmentBank()
-    {
+    public static function governmentBank() {
         return static::randomElement(static::$governmentBanks);
     }
 
@@ -213,8 +208,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function insurance()
-    {
+    public static function insurance() {
         return static::randomElement(static::$insuranceCompanies);
     }
 
@@ -225,8 +219,7 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function swiftCode()
-    {
+    public static function swiftCode() {
         return static::toUpper(static::lexify(static::randomElement(static::$swiftCodes)));
     }
 
@@ -237,8 +230,8 @@ class Payment extends \Faker\Provider\Payment
      * 
      * @return @string
      */
-    public static function currencySymbol()
-    {
+    public static function currencySymbol() {
         return static::randomElement(static::$currencySymbol);
     }
+
 }

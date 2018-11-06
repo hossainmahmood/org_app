@@ -1,8 +1,9 @@
 <?php
+
 namespace Hamcrest;
 
 /*
- Copyright (c) 2009 hamcrest.org
+  Copyright (c) 2009 hamcrest.org
  */
 
 /**
@@ -11,8 +12,7 @@ namespace Hamcrest;
  *
  * @see Hamcrest\Matcher::describeTo()
  */
-interface Description
-{
+interface Description {
 
     /**
      * Appends some plain text to the description.

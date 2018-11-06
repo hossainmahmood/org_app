@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -18,6 +19,7 @@ use PHPUnit\Framework\TestCase;
  * @uses PharIo\Manifest\Email
  */
 class AuthorTest extends TestCase {
+
     /**
      * @var Author
      */
@@ -42,4 +44,5 @@ class AuthorTest extends TestCase {
     public function testCanBeUsedAsString() {
         $this->assertEquals('Joe Developer <user@example.com>', $this->author);
     }
+
 }

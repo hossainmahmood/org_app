@@ -1,57 +1,43 @@
 <?php
+
 namespace Hamcrest\Collection;
 
-class IsTraversableWithSizeTest extends \Hamcrest\AbstractMatcherTest
-{
+class IsTraversableWithSizeTest extends \Hamcrest\AbstractMatcherTest {
 
-    protected function createMatcher()
-    {
+    protected function createMatcher() {
         return \Hamcrest\Collection\IsTraversableWithSize::traversableWithSize(
-            equalTo(2)
+                        equalTo(2)
         );
     }
 
-    public function testMatchesWhenSizeIsCorrect()
-    {
+    public function testMatchesWhenSizeIsCorrect() {
         $this->assertMatches(
-            traversableWithSize(equalTo(3)),
-            new \ArrayObject(array(1, 2, 3)),
-            'correct size'
+                traversableWithSize(equalTo(3)), new \ArrayObject(array(1, 2, 3)), 'correct size'
         );
     }
 
-    public function testDoesNotMatchWhenSizeIsIncorrect()
-    {
+    public function testDoesNotMatchWhenSizeIsIncorrect() {
         $this->assertDoesNotMatch(
-            traversableWithSize(equalTo(2)),
-            new \ArrayObject(array(1, 2, 3)),
-            'incorrect size'
+                traversableWithSize(equalTo(2)), new \ArrayObject(array(1, 2, 3)), 'incorrect size'
         );
     }
 
-    public function testDoesNotMatchNull()
-    {
+    public function testDoesNotMatchNull() {
         $this->assertDoesNotMatch(
-            traversableWithSize(3),
-            null,
-            'should not match null'
+                traversableWithSize(3), null, 'should not match null'
         );
     }
 
-    public function testProvidesConvenientShortcutForTraversableWithSizeEqualTo()
-    {
+    public function testProvidesConvenientShortcutForTraversableWithSizeEqualTo() {
         $this->assertMatches(
-            traversableWithSize(3),
-            new \ArrayObject(array(1, 2, 3)),
-            'correct size'
+                traversableWithSize(3), new \ArrayObject(array(1, 2, 3)), 'correct size'
         );
     }
 
-    public function testHasAReadableDescription()
-    {
+    public function testHasAReadableDescription() {
         $this->assertDescription(
-            'a traversable with size <3>',
-            traversableWithSize(equalTo(3))
+                'a traversable with size <3>', traversableWithSize(equalTo(3))
         );
     }
+
 }

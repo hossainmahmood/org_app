@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of sebastian/comparator.
  *
@@ -7,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use DOMDocument;
@@ -20,22 +22,20 @@ use PHPUnit\Framework\TestCase;
  * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-final class DOMNodeComparatorTest extends TestCase
-{
+final class DOMNodeComparatorTest extends TestCase {
+
     /**
      * @var DOMNodeComparator
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
+    protected function setUp(): void {
         $this->comparator = new DOMNodeComparator;
     }
 
-    public function acceptsSucceedsProvider()
-    {
+    public function acceptsSucceedsProvider() {
         $document = new DOMDocument;
-        $node     = new DOMNode;
+        $node = new DOMNode;
 
         return [
             [$document, $document],
@@ -45,8 +45,7 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
-    {
+    public function acceptsFailsProvider() {
         $document = new DOMDocument;
 
         return [
@@ -56,8 +55,7 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
-    {
+    public function assertEqualsSucceedsProvider() {
         return [
             [
                 $this->createDOMDocument('<root></root>'),
@@ -87,8 +85,7 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
-    {
+    public function assertEqualsFailsProvider() {
         return [
             [
                 $this->createDOMDocument('<root></root>'),
@@ -124,35 +121,33 @@ final class DOMNodeComparatorTest extends TestCase
     /**
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual): void
-    {
+    public function testAcceptsSucceeds($expected, $actual): void {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual): void
-    {
+    public function testAcceptsFails($expected, $actual): void {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+                $this->comparator->accepts($expected, $actual)
         );
     }
 
     /**
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
-    {
+    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void {
         $exception = null;
 
         try {
-            $delta        = 0.0;
+            $delta = 0.0;
             $canonicalize = false;
             $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize, $ignoreCase);
         } catch (ComparisonFailure $exception) {
+            
         }
 
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
@@ -161,20 +156,19 @@ final class DOMNodeComparatorTest extends TestCase
     /**
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual): void
-    {
+    public function testAssertEqualsFails($expected, $actual): void {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two DOM');
 
         $this->comparator->assertEquals($expected, $actual);
     }
 
-    private function createDOMDocument($content)
-    {
-        $document                     = new DOMDocument;
+    private function createDOMDocument($content) {
+        $document = new DOMDocument;
         $document->preserveWhiteSpace = false;
         $document->loadXML($content);
 
         return $document;
     }
+
 }

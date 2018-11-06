@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\me_ME;
 
-class Company extends \Faker\Provider\Company
-{
+class Company extends \Faker\Provider\Company {
+
     protected static $formats = array(
         '{{companyName}} {{companyType}}'
     );
@@ -32,18 +32,16 @@ class Company extends \Faker\Provider\Company
         'Vatrostalna Podgorica', 'Velepromet Podgorica', 'Veletrgovina-Kolašin', 'Velimport Podgorica', 'Volumentrade Podgorica',
         'Željeznica Crne Gore', 'Zetatrans'
     );
-
     protected static $types = array(
         'A.D.', 'A.D PODGORICA'
     );
 
-    public static function companyType()
-    {
+    public static function companyType() {
         return static::randomElement(static::$types);
     }
 
-    public static function companyName()
-    {
+    public static function companyName() {
         return static::randomElement(static::$names);
     }
+
 }

@@ -7,8 +7,8 @@ namespace Faker\Provider\da_DK;
  *
  * @author Antoine Corcy <contact@sbin.dk>
  */
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     /**
      * @var array Danish person name formats.
      */
@@ -21,7 +21,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{middleName}}-{{middleName}} {{lastName}}',
         '{{firstNameMale}} {{middleName}} {{middleName}}-{{lastName}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -60,7 +59,6 @@ class Person extends \Faker\Provider\Person
         'Ingemann', 'Ingolf', 'Ingvard', 'Keld', 'Kresten', 'Laurids', 'Laurits', 'Lauritz', 'Ludvig', 'Lynge', 'Oluf', 'Osvald',
         'Povl', 'Richardt', 'Sigfred', 'Sofus', 'Thorkild', 'Viggo', 'Vilhelm', 'Villiam',
     );
-
     protected static $firstNameFemale = array(
         'Aase', 'Agathe', 'Agnes', 'Alberte', 'Alexandra', 'Alice', 'Alma', 'Amalie', 'Amanda', 'Andrea', 'Ane', 'Anette', 'Anita',
         'Anja', 'Ann', 'Anna', 'Annalise', 'Anne', 'Anne-Lise', 'Anne-Marie', 'Anne-Mette', 'Annelise', 'Annette', 'Anni', 'Annie',
@@ -173,8 +171,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public static function middleName()
-    {
+    public static function middleName() {
         return static::randomElement(static::$middleName);
     }
 
@@ -186,10 +183,10 @@ class Person extends \Faker\Provider\Person
      *
      * @return string
      */
-    public static function cpr()
-    {
+    public static function cpr() {
         $birthdate = new \DateTime('@' . mt_rand(0, time()));
 
         return sprintf('%s-%s', $birthdate->format('dmy'), static::numerify('%###'));
     }
+
 }

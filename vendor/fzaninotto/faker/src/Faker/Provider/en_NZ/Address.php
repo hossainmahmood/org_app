@@ -2,8 +2,7 @@
 
 namespace Faker\Provider\en_NZ;
 
-class Address extends \Faker\Provider\en_US\Address
-{
+class Address extends \Faker\Provider\en_US\Address {
 
     /**
      * An array of en_NZ (New Zealand) building number formats
@@ -62,8 +61,7 @@ class Address extends \Faker\Provider\en_US\Address
      * Return a en_NZ (New Zealand) postcode
      * @return string
      */
-    public static function postcode()
-    {
+    public static function postcode() {
         return static::numerify(static::randomElement(static::$postcode));
     }
 
@@ -71,8 +69,8 @@ class Address extends \Faker\Provider\en_US\Address
      * Return a en_NZ (New Zealand) region
      * @return string
      */
-    public static function region()
-    {
+    public static function region() {
         return static::randomElement(static::$region);
     }
+
 }

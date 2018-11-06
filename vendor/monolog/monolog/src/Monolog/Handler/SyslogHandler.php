@@ -26,8 +26,8 @@ use Monolog\Logger;
  *
  * @author Sven Paulus <sven@karlsruhe.org>
  */
-class SyslogHandler extends AbstractSyslogHandler
-{
+class SyslogHandler extends AbstractSyslogHandler {
+
     protected $ident;
     protected $logopts;
 
@@ -38,8 +38,7 @@ class SyslogHandler extends AbstractSyslogHandler
      * @param Boolean $bubble   Whether the messages that are handled can bubble up the stack or not
      * @param int     $logopts  Option flags for the openlog() call, defaults to LOG_PID
      */
-    public function __construct($ident, $facility = LOG_USER, $level = Logger::DEBUG, $bubble = true, $logopts = LOG_PID)
-    {
+    public function __construct($ident, $facility = LOG_USER, $level = Logger::DEBUG, $bubble = true, $logopts = LOG_PID) {
         parent::__construct($facility, $level, $bubble);
 
         $this->ident = $ident;
@@ -49,19 +48,18 @@ class SyslogHandler extends AbstractSyslogHandler
     /**
      * {@inheritdoc}
      */
-    public function close()
-    {
+    public function close() {
         closelog();
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
-    {
+    protected function write(array $record) {
         if (!openlog($this->ident, $this->logopts, $this->facility)) {
-            throw new \LogicException('Can\'t open syslog for ident "'.$this->ident.'" and facility "'.$this->facility.'"');
+            throw new \LogicException('Can\'t open syslog for ident "' . $this->ident . '" and facility "' . $this->facility . '"');
         }
         syslog($this->logLevels[$record['level']], (string) $record['formatted']);
     }
+
 }

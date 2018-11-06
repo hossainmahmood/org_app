@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of object-reflector.
  *
@@ -8,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SebastianBergmann\ObjectReflector\TestFixture;
 
-class ClassWithIntegerAttributeName
-{
-    public function __construct()
-    {
-        $i        = 1;
+class ClassWithIntegerAttributeName {
+
+    public function __construct() {
+        $i = 1;
         $this->$i = 2;
     }
+
 }

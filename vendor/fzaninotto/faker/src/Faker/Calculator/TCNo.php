@@ -4,8 +4,8 @@ namespace Faker\Calculator;
 
 use InvalidArgumentException;
 
-class TCNo
-{
+class TCNo {
+
     /**
      * Generates Turkish Identity Number Checksum
      * Gets first 9 digit as prefix and calcuates checksums
@@ -15,9 +15,8 @@ class TCNo
      * @param string $identityPrefix
      * @return string Checksum (two digit)
      */
-    public static function checksum($identityPrefix)
-    {
-        if (strlen((string)$identityPrefix) !== 9) {
+    public static function checksum($identityPrefix) {
+        if (strlen((string) $identityPrefix) !== 9) {
             throw new InvalidArgumentException('Argument should be an integer and should be 9 digits.');
         }
 
@@ -45,8 +44,8 @@ class TCNo
      * @param string $tcNo
      * @return boolean
      */
-    public static function isValid($tcNo)
-    {
+    public static function isValid($tcNo) {
         return self::checksum(substr($tcNo, 0, -2)) === substr($tcNo, -2, 2);
     }
+
 }

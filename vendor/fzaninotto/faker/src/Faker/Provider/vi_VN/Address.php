@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\vi_VN;
 
-class Address extends \Faker\Provider\Address
-{
+class Address extends \Faker\Provider\Address {
+
     protected static $buildingNumber = array('####', '###', '##', '#');
     protected static $postcode = array('#####', '######', '#####-####');
     protected static $province = array(
@@ -116,55 +116,48 @@ class Address extends \Faker\Provider\Address
         'Zambia', 'Zimbabwe'
     );
 
-    public function hamletName()
-    {
+    public function hamletName() {
         $format = static::randomElement(static::$hamletNameFormats);
 
         return static::bothify($this->generator->parse($format));
     }
 
-    public function hamletPrefix()
-    {
+    public function hamletPrefix() {
         return static::randomElement(static::$hamletPrefix);
     }
 
-    public function wardName()
-    {
+    public function wardName() {
         $format = static::randomElement(static::$wardNameFormats);
 
         return static::bothify($this->generator->parse($format));
     }
 
-    public function wardPrefix()
-    {
+    public function wardPrefix() {
         return static::randomElement(static::$wardPrefix);
     }
 
-    public function districtName()
-    {
+    public function districtName() {
         $format = static::randomElement(static::$districtNameFormats);
 
         return static::bothify($this->generator->parse($format));
     }
 
-    public function districtPrefix()
-    {
+    public function districtPrefix() {
         return static::randomElement(static::$districtPrefix);
     }
 
     /**
      * @example 'Hà Nội'
      */
-    public function city()
-    {
+    public function city() {
         return static::randomElement(static::$city);
     }
 
     /**
      * @example 'Bắc Giang'
      */
-    public static function province()
-    {
+    public static function province() {
         return static::randomElement(static::$province);
     }
+
 }

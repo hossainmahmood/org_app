@@ -4,49 +4,43 @@ namespace Faker\ORM\CakePHP;
 
 use Cake\ORM\TableRegistry;
 
-class EntityPopulator
-{
+class EntityPopulator {
+
     protected $class;
     protected $connectionName;
     protected $columnFormatters = [];
     protected $modifiers = [];
 
-    public function __construct($class)
-    {
+    public function __construct($class) {
         $this->class = $class;
     }
 
     /**
      * @param string $name
      */
-    public function __get($name)
-    {
+    public function __get($name) {
         return $this->{$name};
     }
 
     /**
      * @param string $name
      */
-    public function __set($name, $value)
-    {
+    public function __set($name, $value) {
         $this->{$name} = $value;
     }
 
-    public function mergeColumnFormattersWith($columnFormatters)
-    {
+    public function mergeColumnFormattersWith($columnFormatters) {
         $this->columnFormatters = array_merge($this->columnFormatters, $columnFormatters);
     }
 
-    public function mergeModifiersWith($modifiers)
-    {
+    public function mergeModifiersWith($modifiers) {
         $this->modifiers = array_merge($this->modifiers, $modifiers);
     }
 
     /**
      * @return array
      */
-    public function guessColumnFormatters($populator)
-    {
+    public function guessColumnFormatters($populator) {
         $formatters = [];
         $class = $this->class;
         $table = $this->getTable($class);
@@ -82,8 +76,7 @@ class EntityPopulator
     /**
      * @return array
      */
-    public function guessModifiers()
-    {
+    public function guessModifiers() {
         $modifiers = [];
         $table = $this->getTable($this->class);
 
@@ -98,11 +91,11 @@ class EntityPopulator
                     $foreignKeys = $insertedEntities[$foreignModel];
                 } else {
                     $foreignKeys = $table->find('all')
-                    ->select(['id'])
-                    ->map(function ($row) {
-                        return $row->id;
-                    })
-                    ->toArray();
+                            ->select(['id'])
+                            ->map(function ($row) {
+                                return $row->id;
+                            })
+                            ->toArray();
                 }
 
                 if (empty($foreignKeys)) {
@@ -123,8 +116,7 @@ class EntityPopulator
     /**
      * @param array $options
      */
-    public function execute($class, $insertedEntities, $options = [])
-    {
+    public function execute($class, $insertedEntities, $options = []) {
         $table = $this->getTable($class);
         $entity = $table->newEntity();
 
@@ -150,17 +142,16 @@ class EntityPopulator
         return $entity->{$pk[0]};
     }
 
-    public function setConnection($name)
-    {
+    public function setConnection($name) {
         $this->connectionName = $name;
     }
 
-    protected function getTable($class)
-    {
+    protected function getTable($class) {
         $options = [];
         if (!empty($this->connectionName)) {
             $options['connection'] = $this->connectionName;
         }
         return TableRegistry::get($class, $options);
     }
+
 }

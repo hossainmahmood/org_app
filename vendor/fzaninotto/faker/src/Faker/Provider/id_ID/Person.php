@@ -2,13 +2,12 @@
 
 namespace Faker\Provider\id_ID;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $lastNameFormat = array(
         '{{lastNameMale}}',
         '{{lastNameFemale}}',
     );
-
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastNameMale}}',
         '{{firstNameMale}} {{lastNameMale}}',
@@ -17,7 +16,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{firstNameMale}} {{lastNameMale}}',
         '{{firstNameMale}} {{firstNameMale}} {{lastNameMale}} {{suffix}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastNameFemale}}',
         '{{firstNameFemale}} {{lastNameFemale}}',
@@ -112,7 +110,7 @@ class Person extends \Faker\Provider\Person
         'Ami', 'Ani', 'Azalea', 'Aurora', 'Alika', 'Anastasia', 'Amelia',
         'Almira', 'Bella', 'Betania', 'Belinda', 'Citra', 'Cindy', 'Chelsea',
         'Clara', 'Cornelia', 'Cinta', 'Cinthia', 'Ciaobella', 'Cici', 'Carla',
-        'Calista', 'Devi', 'Dewi','Dian', 'Diah', 'Diana', 'Dina', 'Dinda',
+        'Calista', 'Devi', 'Dewi', 'Dian', 'Diah', 'Diana', 'Dina', 'Dinda',
         'Dalima', 'Eka', 'Eva', 'Endah', 'Elisa', 'Eli', 'Ella', 'Ellis',
         'Elma', 'Elvina', 'Fitria', 'Fitriani', 'Febi', 'Faizah', 'Farah',
         'Farhunnisa', 'Fathonah', 'Gabriella', 'Gasti', 'Gawati', 'Genta',
@@ -199,7 +197,7 @@ class Person extends \Faker\Provider\Person
      */
     private static $suffix = array('S.Ked', 'S.Gz', 'S.Pt', 'S.IP', 'S.E.I',
         'S.E.', 'S.Kom', 'S.H.', 'S.T.', 'S.Pd', 'S.Psi', 'S.I.Kom',
-        'S.Sos', 'S.Farm', 'M.M.', 'M.Kom.', 'M.TI.', 'M.Pd', 'M.Farm', 'M.Ak', );
+        'S.Sos', 'S.Farm', 'M.M.', 'M.Kom.', 'M.TI.', 'M.Pd', 'M.Farm', 'M.Ak',);
 
     /**
      * Return last name
@@ -208,8 +206,7 @@ class Person extends \Faker\Provider\Person
      *
      * @return string last name
      */
-    public function lastName($gender = null)
-    {
+    public function lastName($gender = null) {
         if ($gender === static::GENDER_MALE) {
             return static::lastNameMale();
         }
@@ -227,8 +224,7 @@ class Person extends \Faker\Provider\Person
      * @access public
      * @return string last name
      */
-    public static function lastNameMale()
-    {
+    public static function lastNameMale() {
         return static::randomElement(static::$lastNameMale);
     }
 
@@ -238,8 +234,7 @@ class Person extends \Faker\Provider\Person
      * @access public
      * @return string last name
      */
-    public static function lastNameFemale()
-    {
+    public static function lastNameFemale() {
         return static::randomElement(static::$lastNameFemale);
     }
 
@@ -249,8 +244,7 @@ class Person extends \Faker\Provider\Person
      * @access public
      * @return string suffix
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
 
@@ -263,8 +257,7 @@ class Person extends \Faker\Provider\Person
      * @param null|\DateTime $birthDate
      * @return string
      */
-    public function nik($gender = null, $birthDate = null)
-    {
+    public function nik($gender = null, $birthDate = null) {
         # generate first numbers (region data)
         $nik = $this->generator->numerify('######');
 
@@ -286,8 +279,9 @@ class Person extends \Faker\Provider\Person
         $nik .= $birthDate->format('my');
 
         # add last random digits
-        $nik.= $this->generator->numerify('####');
+        $nik .= $this->generator->numerify('####');
 
         return $nik;
     }
+
 }

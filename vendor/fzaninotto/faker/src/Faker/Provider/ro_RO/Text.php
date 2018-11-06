@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\ro_RO;
 
-class Text extends \Faker\Provider\Text
-{
+class Text extends \Faker\Provider\Text {
+
     /**
      * Title: Neghiniţă
      * Author: Barbu Ştefănescu Delavrancea
@@ -151,4 +151,5 @@ La toate vine rândul, după cum se întoarce roata, că de-aia e roată, să se
 
 Aşa sfârşi bietul Neghiniţă.
 EOT;
+
 }

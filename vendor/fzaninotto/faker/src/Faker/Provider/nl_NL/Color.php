@@ -2,14 +2,13 @@
 
 namespace Faker\Provider\nl_NL;
 
-class Color extends \Faker\Provider\Color
-{
+class Color extends \Faker\Provider\Color {
+
     protected static $safeColorNames = array(
         'zwart', 'kastanjebruin', 'donkergroen', 'marine', 'olijfgroen',
         'purper', 'groenblauw', 'limoen', 'blauw', 'zilver',
         'grijs', 'geel', 'fuchsia', 'cyaan', 'wit',
     );
-
     protected static $allColorNames = array(
         'Cyaan', 'Aquamarijn', 'Aquamarijn', 'Ultramarijn', 'Beige',
         'Zwart', 'Blauw', 'Blauwviolet', 'Bruin', 'Groen', 'Chocoladebruin',
@@ -33,4 +32,5 @@ class Color extends \Faker\Provider\Color
         'Donkerstaalblauw', 'Groenblauw', 'Distel', 'Tomaat', 'Transparant', 'Turkoois',
         'Violet', 'Wit', 'Rookwit', 'Geel', 'Groengeel',
     );
+
 }

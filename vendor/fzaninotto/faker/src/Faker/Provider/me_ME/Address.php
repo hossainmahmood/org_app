@@ -2,10 +2,9 @@
 
 namespace Faker\Provider\me_ME;
 
-class Address extends \Faker\Provider\Address
-{
-    protected static $postcode = array('#####');
+class Address extends \Faker\Provider\Address {
 
+    protected static $postcode = array('#####');
     protected static $streetPrefix = array(
         '',
     );
@@ -37,16 +36,13 @@ class Address extends \Faker\Provider\Address
         'Valtazara Bogišića', 'Vardarska', 'Vasa Raičkovića', 'Velimira Stojanovića', 'Velimira Terzića', 'Veljka Jankovića', 'Vezirov most', 'Vinogradska', 'Vitomira Vita Nikolića', 'Vlada Ćetkovića', 'Vlada Martinovića', 'Vladike Danila', 'Vladike Petra I', 'Vladike Vasilija Petrovića', 'Vojisavljevića', 'Vojislava Grujića', 'Vojvode Ilije Plamenca', 'Vojvode Mijajla Nišina', 'Vojvode Mirka Petrovića', 'Vojvode Raduna', 'Vojvode Vase Bracanova', 'Vojvođanska', 'Vrela 2.', 'Vrela 3.', 'Vrela 4.', 'Vrela 5.', 'Vrela 6.', 'Vučedolska', 'Vuka Đurovića', 'Vuka Karadžića', 'Vuka Mandušića', 'Vuka Mićunovića', 'Vukice Mitrović', 'Vukosava Božovića',
         'Zagrebačka', 'Zetskih vladara', 'Zetskog odreda', 'Zmaj Jovina', 'Žabljačka', 'Žarka Zrenjanina', 'Žikice Jovanovića Španca', 'Žrtava fašizma',
     );
-
     protected static $streetNameFormats = array(
         '{{street}}',
         '{{streetPrefix}} {{street}}',
     );
-
     protected static $streetAddressFormats = array(
         '{{streetName}} {{buildingNumber}}',
     );
-
     protected static $cityFormats = array(
         '{{cityName}}',
     );
@@ -55,12 +51,12 @@ class Address extends \Faker\Provider\Address
      * @link http://sh.wikipedia.org/wiki/Popis_gradova_u_Crnoj_Gori
      */
     protected static $cityNames = array(
-       'Bar', 'Budva', 'Herceg Novi',
-       'Kotor', 'Tivat', 'Ulcinj', 'Podgorica',
-       'Cetinje', 'Nikšić', 'Danilovgrad', 'Žabljak',
-       'Kolašin', 'Andrijevica', 'Berane', 'Bijelo Polje',
-       'Mojkovac', 'Plav', 'Plužine', 'Pljevlja', 'Rožaje',
-       'Šavnik', 'Petnjica', 'Gusinje', 'Petrovac','Sutomore',
+        'Bar', 'Budva', 'Herceg Novi',
+        'Kotor', 'Tivat', 'Ulcinj', 'Podgorica',
+        'Cetinje', 'Nikšić', 'Danilovgrad', 'Žabljak',
+        'Kolašin', 'Andrijevica', 'Berane', 'Bijelo Polje',
+        'Mojkovac', 'Plav', 'Plužine', 'Pljevlja', 'Rožaje',
+        'Šavnik', 'Petnjica', 'Gusinje', 'Petrovac', 'Sutomore',
     );
 
     /**
@@ -94,26 +90,23 @@ class Address extends \Faker\Provider\Address
         'Zambija', 'Zapadna Sahara', 'Zimbabve',
     );
 
-    public static function streetPrefix()
-    {
+    public static function streetPrefix() {
         return static::randomElement(static::$streetPrefix);
     }
 
-    public static function street()
-    {
+    public static function street() {
         return static::randomElement(static::$street);
     }
 
-    public function cityName()
-    {
+    public function cityName() {
         return static::randomElement(static::$cityNames);
     }
 
-    public static function localCoordinates()
-    {
+    public static function localCoordinates() {
         return array(
             'latitude' => static::latitude(42.43, 42.45),
             'longitude' => static::longitude(19.16, 19.27)
         );
     }
+
 }

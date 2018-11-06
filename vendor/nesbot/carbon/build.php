@@ -7,16 +7,14 @@ if (preg_match('/On branch ([^\n]+)\n/', shell_exec('git status'), $match)) {
 }
 shell_exec('git fetch --all --tags --prune');
 $remotes = explode("\n", trim(shell_exec('git remote')));
-$tagsCommand = count($remotes)
-    ? 'git ls-remote --tags '.(in_array('upstream', $remotes) ? 'upstream' : (in_array('origin', $remotes) ? 'origin' : $remotes[0]))
-    : 'git tag';
+$tagsCommand = count($remotes) ? 'git ls-remote --tags ' . (in_array('upstream', $remotes) ? 'upstream' : (in_array('origin', $remotes) ? 'origin' : $remotes[0])) : 'git tag';
 $tags = array_map(function ($ref) {
     $ref = explode('refs/tags/', $ref);
 
     return isset($ref[1]) ? $ref[1] : $ref[0];
 }, array_filter(explode("\n", trim(shell_exec($tagsCommand))), function ($ref) {
-    return substr($ref, -3) !== '^{}';
-}));
+            return substr($ref, -3) !== '^{}';
+        }));
 usort($tags, 'version_compare');
 
 $tag = isset($argv[1]) && !in_array($argv[1], array('last', 'latest')) ? $argv[1] : end($tags);
@@ -57,8 +55,7 @@ foreach ($tags as $tag) {
             $base = dirname($directory);
 
             $files = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($directory),
-                RecursiveIteratorIterator::LEAVES_ONLY
+                    new RecursiveDirectoryIterator($directory), RecursiveIteratorIterator::LEAVES_ONLY
             );
 
             foreach ($files as $name => $file) {

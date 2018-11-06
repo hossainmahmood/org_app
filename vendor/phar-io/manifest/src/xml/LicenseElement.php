@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of PharIo\Manifest.
  *
@@ -11,6 +12,7 @@
 namespace PharIo\Manifest;
 
 class LicenseElement extends ManifestElement {
+
     public function getType() {
         return $this->getAttributeValue('type');
     }
@@ -18,4 +20,5 @@ class LicenseElement extends ManifestElement {
     public function getUrl() {
         return $this->getAttributeValue('url');
     }
+
 }

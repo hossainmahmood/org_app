@@ -2,8 +2,8 @@
 
 namespace Faker\Provider\de_AT;
 
-class Person extends \Faker\Provider\Person
-{
+class Person extends \Faker\Provider\Person {
+
     protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
         '{{firstNameMale}} {{lastName}}',
@@ -13,7 +13,6 @@ class Person extends \Faker\Provider\Person
         '{{firstNameMale}} {{lastName}} {{suffix}}',
         '{{titleMale}} {{firstNameMale}} {{lastName}} {{suffix}}',
     );
-
     protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
         '{{firstNameFemale}} {{lastName}}',
@@ -25,9 +24,9 @@ class Person extends \Faker\Provider\Person
     );
 
     /**
-         * 60 most popular names in 1985, 1995, 2005 and 2015
-         * {@link} http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&RevisionSelectionMethod=LatestReleased&dDocName=021130
-         **/
+     * 60 most popular names in 1985, 1995, 2005 and 2015
+     * {@link} http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&RevisionSelectionMethod=LatestReleased&dDocName=021130
+     * */
     protected static $firstNameMale = array(
         'Adrian', 'Alexander', 'Andreas', 'Anton',
         'Ben', 'Benedikt', 'Benjamin', 'Bernd', 'Bernhard',
@@ -52,9 +51,9 @@ class Person extends \Faker\Provider\Person
     );
 
     /**
-         * 60 most popular names in 1985, 1995, 2005 and 2015
-         * {@link} http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&RevisionSelectionMethod=LatestReleased&dDocName=021130
-         **/
+     * 60 most popular names in 1985, 1995, 2005 and 2015
+     * {@link} http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&RevisionSelectionMethod=LatestReleased&dDocName=021130
+     * */
     protected static $firstNameFemale = array(
         'Alexandra', 'Alexandrea', 'Algelika', 'Alina', 'Amelie', 'Andrea', 'Angelina', 'Anita', 'Anja', 'Anna', 'Anna-Lena', 'Annika', 'Astrid',
         'Barbara', 'Bettina', 'Bianca', 'Birgit',
@@ -78,9 +77,9 @@ class Person extends \Faker\Provider\Person
     );
 
     /**
-         * Top 500 Names from a phone directory (February 2004)
-         * {@link} https://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_Nachnamen_Deutschlands
-         **/
+     * Top 500 Names from a phone directory (February 2004)
+     * {@link} https://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Liste_der_h%C3%A4ufigsten_Nachnamen_Deutschlands
+     * */
     protected static $lastName = array(
         'Abraham', 'Achleitner', 'Adam', 'Aichinger', 'Aigner', 'Albrecht', 'Altmann', 'Amann', 'Amon', 'Angerer', 'Arnold', 'Artner', 'Aschauer', 'Auer', 'Augustin', 'Auinger',
         'Bacher', 'Bachler', 'Bachmann', 'Bader', 'Baier', 'Barth', 'Bartl', 'Bauer', 'Baumann', 'Baumgartner', 'Bayer', 'Beck', 'Beer', 'Berger', 'Bergmann', 'Bernhard', 'Bichler', 'Binder', 'Bischof', 'Bock', 'Bogner', 'Brandl', 'Brandner', 'Brandstetter', 'Brandstätter', 'Braun', 'Brenner', 'Bruckner', 'Brugger', 'Brunner', 'Buchberger', 'Buchegger', 'Bucher', 'Buchinger', 'Buchner', 'Burger', 'Burgstaller', 'Burtscher', 'Böck', 'Böhm', 'Bösch',
@@ -104,17 +103,15 @@ class Person extends \Faker\Provider\Person
         'Wachter', 'Wagner', 'Walch', 'Walcher', 'Wallner', 'Walter', 'Weber', 'Wechselberger', 'Wegscheider', 'Weidinger', 'Weigl', 'Weinberger', 'Weiss', 'Weiß', 'Weninger', 'Werner', 'Wieland', 'Wieser', 'Wiesinger', 'Wild', 'Wilhelm', 'Wimmer', 'Windisch', 'Winkler', 'Winter', 'Wirth', 'Wittmann', 'Wolf', 'Wurm', 'Wurzer',
         'Zach', 'Zangerl', 'Zauner', 'Zechner', 'Zehetner', 'Zeilinger', 'Zeller', 'Zenz', 'Ziegler', 'Zimmermann', 'Zöhrer',
     );
-
     protected static $titleMale = array('Herr', 'Dr.', 'Mag.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
     protected static $titleFemale = array('Frau', 'Dr.', 'Maga.', 'Ing.', 'Dipl.-Ing.', 'Prof.', 'Univ.Prof.');
-
     protected static $suffix = array('B.Sc.', 'B.A.', 'B.Eng.', 'MBA.');
 
     /**
      * @example 'PhD'
      */
-    public static function suffix()
-    {
+    public static function suffix() {
         return static::randomElement(static::$suffix);
     }
+
 }

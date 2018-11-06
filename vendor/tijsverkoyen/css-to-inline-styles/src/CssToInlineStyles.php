@@ -10,12 +10,11 @@ use TijsVerkoyen\CssToInlineStyles\Css\Property\Processor as PropertyProcessor;
 use TijsVerkoyen\CssToInlineStyles\Css\Rule\Processor as RuleProcessor;
 use TijsVerkoyen\CssToInlineStyles\Css\Rule\Rule;
 
-class CssToInlineStyles
-{
+class CssToInlineStyles {
+
     private $cssConverter;
 
-    public function __construct()
-    {
+    public function __construct() {
         if (class_exists('Symfony\Component\CssSelector\CssSelectorConverter')) {
             $this->cssConverter = new CssSelectorConverter();
         }
@@ -31,14 +30,13 @@ class CssToInlineStyles
      * @param string $css
      * @return string
      */
-    public function convert($html, $css = null)
-    {
+    public function convert($html, $css = null) {
         $document = $this->createDomDocumentFromHtml($html);
         $processor = new Processor();
 
         // get all styles from the style-tags
         $rules = $processor->getRules(
-            $processor->getCssFromStyleTags($html)
+                $processor->getCssFromStyleTags($html)
         );
 
         if ($css !== null) {
@@ -57,8 +55,7 @@ class CssToInlineStyles
      * @param Css\Property\Property[] $properties
      * @return \DOMElement
      */
-    public function inlineCssOnElement(\DOMElement $element, array $properties)
-    {
+    public function inlineCssOnElement(\DOMElement $element, array $properties) {
         if (empty($properties)) {
             return $element;
         }
@@ -91,14 +88,13 @@ class CssToInlineStyles
      * @param \DOMElement $element
      * @return Css\Property\Property[]
      */
-    public function getInlineStyles(\DOMElement $element)
-    {
+    public function getInlineStyles(\DOMElement $element) {
         $processor = new PropertyProcessor();
 
         return $processor->convertArrayToObjects(
-            $processor->splitIntoSeparateProperties(
-                $element->getAttribute('style')
-            )
+                        $processor->splitIntoSeparateProperties(
+                                $element->getAttribute('style')
+                        )
         );
     }
 
@@ -106,8 +102,7 @@ class CssToInlineStyles
      * @param string $html
      * @return \DOMDocument
      */
-    protected function createDomDocumentFromHtml($html)
-    {
+    protected function createDomDocumentFromHtml($html) {
         $document = new \DOMDocument('1.0', 'UTF-8');
         $internalErrors = libxml_use_internal_errors(true);
         $document->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
@@ -121,8 +116,7 @@ class CssToInlineStyles
      * @param \DOMDocument $document
      * @return string
      */
-    protected function getHtmlFromDocument(\DOMDocument $document)
-    {
+    protected function getHtmlFromDocument(\DOMDocument $document) {
         // retrieve the document element
         // we do it this way to preserve the utf-8 encoding
         $htmlElement = $document->documentElement;
@@ -139,7 +133,7 @@ class CssToInlineStyles
             $doctype = strtolower($doctype);
         }
 
-        return $doctype."\n".$html;
+        return $doctype . "\n" . $html;
     }
 
     /**
@@ -147,8 +141,7 @@ class CssToInlineStyles
      * @param Css\Rule\Rule[] $rules
      * @return \DOMDocument
      */
-    protected function inline(\DOMDocument $document, array $rules)
-    {
+    protected function inline(\DOMDocument $document, array $rules) {
         if (empty($rules)) {
             return $document;
         }
@@ -179,8 +172,7 @@ class CssToInlineStyles
 
             foreach ($elements as $element) {
                 $propertyStorage[$element] = $this->calculatePropertiesToBeApplied(
-                    $rule->getProperties(),
-                    $propertyStorage->contains($element) ? $propertyStorage[$element] : array()
+                        $rule->getProperties(), $propertyStorage->contains($element) ? $propertyStorage[$element] : array()
                 );
             }
         }
@@ -200,8 +192,7 @@ class CssToInlineStyles
      *
      * @return Css\Property\Property[] updated properties, indexed by name
      */
-    private function calculatePropertiesToBeApplied(array $properties, array $cssProperties)
-    {
+    private function calculatePropertiesToBeApplied(array $properties, array $cssProperties) {
         if (empty($properties)) {
             return $cssProperties;
         }
@@ -232,4 +223,5 @@ class CssToInlineStyles
 
         return $cssProperties;
     }
+
 }
