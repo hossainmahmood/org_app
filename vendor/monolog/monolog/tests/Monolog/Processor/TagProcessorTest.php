@@ -13,12 +13,13 @@ namespace Monolog\Processor;
 
 use Monolog\TestCase;
 
-class TagProcessorTest extends TestCase {
-
+class TagProcessorTest extends TestCase
+{
     /**
      * @covers Monolog\Processor\TagProcessor::__invoke
      */
-    public function testProcessor() {
+    public function testProcessor()
+    {
         $tags = array(1, 2, 3);
         $processor = new TagProcessor($tags);
         $record = $processor($this->getRecord());
@@ -29,7 +30,8 @@ class TagProcessorTest extends TestCase {
     /**
      * @covers Monolog\Processor\TagProcessor::__invoke
      */
-    public function testProcessorTagModification() {
+    public function testProcessorTagModification()
+    {
         $tags = array(1, 2, 3);
         $processor = new TagProcessor($tags);
 
@@ -44,5 +46,4 @@ class TagProcessorTest extends TestCase {
         $record = $processor($this->getRecord());
         $this->assertEquals(array('a', 'b', 'a', 'c', 'foo' => 'bar'), $record['extra']['tags']);
     }
-
 }

@@ -12,21 +12,23 @@
 namespace Monolog\Handler;
 
 use Monolog\Formatter\FormatterInterface;
+use Monolog\ResettableInterface;
 
 /**
  * Forwards records to multiple handlers
  *
  * @author Lenar Lõhmus <lenar@city.ee>
  */
-class GroupHandler extends AbstractHandler {
-
+class GroupHandler extends AbstractHandler
+{
     protected $handlers;
 
     /**
-     * @param array   $handlers Array of Handlers.
-     * @param Boolean $bubble   Whether the messages that are handled can bubble up the stack or not
+     * @param array $handlers Array of Handlers.
+     * @param bool  $bubble   Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct(array $handlers, $bubble = true) {
+    public function __construct(array $handlers, $bubble = true)
+    {
         foreach ($handlers as $handler) {
             if (!$handler instanceof HandlerInterface) {
                 throw new \InvalidArgumentException('The first argument of the GroupHandler must be an array of HandlerInterface instances.');
@@ -40,7 +42,8 @@ class GroupHandler extends AbstractHandler {
     /**
      * {@inheritdoc}
      */
-    public function isHandling(array $record) {
+    public function isHandling(array $record)
+    {
         foreach ($this->handlers as $handler) {
             if ($handler->isHandling($record)) {
                 return true;
@@ -53,7 +56,8 @@ class GroupHandler extends AbstractHandler {
     /**
      * {@inheritdoc}
      */
-    public function handle(array $record) {
+    public function handle(array $record)
+    {
         if ($this->processors) {
             foreach ($this->processors as $processor) {
                 $record = call_user_func($processor, $record);
@@ -70,7 +74,8 @@ class GroupHandler extends AbstractHandler {
     /**
      * {@inheritdoc}
      */
-    public function handleBatch(array $records) {
+    public function handleBatch(array $records)
+    {
         if ($this->processors) {
             $processed = array();
             foreach ($records as $record) {
@@ -86,15 +91,26 @@ class GroupHandler extends AbstractHandler {
         }
     }
 
+    public function reset()
+    {
+        parent::reset();
+
+        foreach ($this->handlers as $handler) {
+            if ($handler instanceof ResettableInterface) {
+                $handler->reset();
+            }
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function setFormatter(FormatterInterface $formatter) {
+    public function setFormatter(FormatterInterface $formatter)
+    {
         foreach ($this->handlers as $handler) {
             $handler->setFormatter($formatter);
         }
 
         return $this;
     }
-
 }

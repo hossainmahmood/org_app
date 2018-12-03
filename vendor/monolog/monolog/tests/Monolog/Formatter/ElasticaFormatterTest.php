@@ -13,9 +13,10 @@ namespace Monolog\Formatter;
 
 use Monolog\Logger;
 
-class ElasticaFormatterTest extends \PHPUnit_Framework_TestCase {
-
-    public function setUp() {
+class ElasticaFormatterTest extends \PHPUnit_Framework_TestCase
+{
+    public function setUp()
+    {
         if (!class_exists("Elastica\Document")) {
             $this->markTestSkipped("ruflin/elastica not installed");
         }
@@ -26,7 +27,8 @@ class ElasticaFormatterTest extends \PHPUnit_Framework_TestCase {
      * @covers Monolog\Formatter\ElasticaFormatter::format
      * @covers Monolog\Formatter\ElasticaFormatter::getDocument
      */
-    public function testFormat() {
+    public function testFormat()
+    {
         // test log message
         $msg = array(
             'level' => Logger::ERROR,
@@ -68,10 +70,10 @@ class ElasticaFormatterTest extends \PHPUnit_Framework_TestCase {
      * @covers Monolog\Formatter\ElasticaFormatter::getIndex
      * @covers Monolog\Formatter\ElasticaFormatter::getType
      */
-    public function testGetters() {
+    public function testGetters()
+    {
         $formatter = new ElasticaFormatter('my_index', 'doc_type');
         $this->assertEquals('my_index', $formatter->getIndex());
         $this->assertEquals('doc_type', $formatter->getType());
     }
-
 }

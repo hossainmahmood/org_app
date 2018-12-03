@@ -14,12 +14,13 @@ namespace Monolog\Formatter;
 use Monolog\Logger;
 use Monolog\TestCase;
 
-class FlowdockFormatterTest extends TestCase {
-
+class FlowdockFormatterTest extends TestCase
+{
     /**
      * @covers Monolog\Formatter\FlowdockFormatter::format
      */
-    public function testFormat() {
+    public function testFormat()
+    {
         $formatter = new FlowdockFormatter('test_source', 'source@test.com');
         $record = $this->getRecord();
 
@@ -39,7 +40,8 @@ class FlowdockFormatterTest extends TestCase {
     /**
      * @ covers Monolog\Formatter\FlowdockFormatter::formatBatch
      */
-    public function testFormatBatch() {
+    public function testFormatBatch()
+    {
         $formatter = new FlowdockFormatter('test_source', 'source@test.com');
         $records = array(
             $this->getRecord(Logger::WARNING),
@@ -50,5 +52,4 @@ class FlowdockFormatterTest extends TestCase {
         $this->assertArrayHasKey('flowdock', $formatted[0]);
         $this->assertArrayHasKey('flowdock', $formatted[1]);
     }
-
 }

@@ -18,12 +18,13 @@ use Monolog\Logger;
  *
  * @author Jonathan A. Schweder <jonathanschweder@gmail.com>
  */
-class MercurialProcessor {
-
+class MercurialProcessor implements ProcessorInterface
+{
     private $level;
     private static $cache;
 
-    public function __construct($level = Logger::DEBUG) {
+    public function __construct($level = Logger::DEBUG)
+    {
         $this->level = Logger::toMonologLevel($level);
     }
 
@@ -31,7 +32,8 @@ class MercurialProcessor {
      * @param  array $record
      * @return array
      */
-    public function __invoke(array $record) {
+    public function __invoke(array $record)
+    {
         // return if the level is not high enough
         if ($record['level'] < $this->level) {
             return $record;
@@ -42,7 +44,8 @@ class MercurialProcessor {
         return $record;
     }
 
-    private static function getMercurialInfo() {
+    private static function getMercurialInfo()
+    {
         if (self::$cache) {
             return self::$cache;
         }
@@ -57,5 +60,4 @@ class MercurialProcessor {
 
         return self::$cache = array();
     }
-
 }

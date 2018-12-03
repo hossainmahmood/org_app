@@ -14,19 +14,21 @@ namespace Monolog\Handler;
 use Monolog\TestCase;
 use Monolog\Logger;
 
-class DoctrineCouchDBHandlerTest extends TestCase {
-
-    protected function setup() {
+class DoctrineCouchDBHandlerTest extends TestCase
+{
+    protected function setup()
+    {
         if (!class_exists('Doctrine\CouchDB\CouchDBClient')) {
             $this->markTestSkipped('The "doctrine/couchdb" package is not installed');
         }
     }
 
-    public function testHandle() {
+    public function testHandle()
+    {
         $client = $this->getMockBuilder('Doctrine\\CouchDB\\CouchDBClient')
-                ->setMethods(array('postDocument'))
-                ->disableOriginalConstructor()
-                ->getMock();
+            ->setMethods(array('postDocument'))
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $record = $this->getRecord(Logger::WARNING, 'test', array('data' => new \stdClass, 'foo' => 34));
 
@@ -41,11 +43,10 @@ class DoctrineCouchDBHandlerTest extends TestCase {
         );
 
         $client->expects($this->once())
-                ->method('postDocument')
-                ->with($expected);
+            ->method('postDocument')
+            ->with($expected);
 
         $handler = new DoctrineCouchDBHandler($client);
         $handler->handle($record);
     }
-
 }

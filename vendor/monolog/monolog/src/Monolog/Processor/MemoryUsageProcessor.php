@@ -17,13 +17,14 @@ namespace Monolog\Processor;
  * @see Monolog\Processor\MemoryProcessor::__construct() for options
  * @author Rob Jensen
  */
-class MemoryUsageProcessor extends MemoryProcessor {
-
+class MemoryUsageProcessor extends MemoryProcessor
+{
     /**
      * @param  array $record
      * @return array
      */
-    public function __invoke(array $record) {
+    public function __invoke(array $record)
+    {
         $bytes = memory_get_usage($this->realUsage);
         $formatted = $this->formatBytes($bytes);
 
@@ -31,5 +32,4 @@ class MemoryUsageProcessor extends MemoryProcessor {
 
         return $record;
     }
-
 }

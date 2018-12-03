@@ -20,8 +20,8 @@ use Monolog\Formatter\LineFormatter;
  * @author Christophe Coevoet <stof@notk.org>
  * @author Mark Garrett <mark@moderndeveloperllc.com>
  */
-class NativeMailerHandler extends MailHandler {
-
+class NativeMailerHandler extends MailHandler
+{
     /**
      * The email addresses to which the message will be sent
      * @var array
@@ -72,7 +72,8 @@ class NativeMailerHandler extends MailHandler {
      * @param bool         $bubble         Whether the messages that are handled can bubble up the stack or not
      * @param int          $maxColumnWidth The maximum column width that the message lines will have
      */
-    public function __construct($to, $subject, $from, $level = Logger::ERROR, $bubble = true, $maxColumnWidth = 70) {
+    public function __construct($to, $subject, $from, $level = Logger::ERROR, $bubble = true, $maxColumnWidth = 70)
+    {
         parent::__construct($level, $bubble);
         $this->to = is_array($to) ? $to : array($to);
         $this->subject = $subject;
@@ -86,7 +87,8 @@ class NativeMailerHandler extends MailHandler {
      * @param  string|array $headers Custom added headers
      * @return self
      */
-    public function addHeader($headers) {
+    public function addHeader($headers)
+    {
         foreach ((array) $headers as $header) {
             if (strpos($header, "\n") !== false || strpos($header, "\r") !== false) {
                 throw new \InvalidArgumentException('Headers can not contain newline characters for security reasons');
@@ -103,7 +105,8 @@ class NativeMailerHandler extends MailHandler {
      * @param  string|array $parameters Custom added parameters
      * @return self
      */
-    public function addParameter($parameters) {
+    public function addParameter($parameters)
+    {
         $this->parameters = array_merge($this->parameters, (array) $parameters);
 
         return $this;
@@ -112,7 +115,8 @@ class NativeMailerHandler extends MailHandler {
     /**
      * {@inheritdoc}
      */
-    protected function send($content, array $records) {
+    protected function send($content, array $records)
+    {
         $content = wordwrap($content, $this->maxColumnWidth);
         $headers = ltrim(implode("\r\n", $this->headers) . "\r\n", "\r\n");
         $headers .= 'Content-type: ' . $this->getContentType() . '; charset=' . $this->getEncoding() . "\r\n";
@@ -135,14 +139,16 @@ class NativeMailerHandler extends MailHandler {
     /**
      * @return string $contentType
      */
-    public function getContentType() {
+    public function getContentType()
+    {
         return $this->contentType;
     }
 
     /**
      * @return string $encoding
      */
-    public function getEncoding() {
+    public function getEncoding()
+    {
         return $this->encoding;
     }
 
@@ -151,7 +157,8 @@ class NativeMailerHandler extends MailHandler {
      *                             messages.
      * @return self
      */
-    public function setContentType($contentType) {
+    public function setContentType($contentType)
+    {
         if (strpos($contentType, "\n") !== false || strpos($contentType, "\r") !== false) {
             throw new \InvalidArgumentException('The content type can not contain newline characters to prevent email header injection');
         }
@@ -165,7 +172,8 @@ class NativeMailerHandler extends MailHandler {
      * @param  string $encoding
      * @return self
      */
-    public function setEncoding($encoding) {
+    public function setEncoding($encoding)
+    {
         if (strpos($encoding, "\n") !== false || strpos($encoding, "\r") !== false) {
             throw new \InvalidArgumentException('The encoding can not contain newline characters to prevent email header injection');
         }
@@ -174,5 +182,4 @@ class NativeMailerHandler extends MailHandler {
 
         return $this;
     }
-
 }

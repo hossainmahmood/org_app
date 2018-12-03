@@ -15,13 +15,15 @@ use Monolog\TestCase;
 use Monolog\Logger;
 use Monolog\Formatter\LineFormatter;
 
-function error_log() {
+function error_log()
+{
     $GLOBALS['error_log'][] = func_get_args();
 }
 
-class ErrorLogHandlerTest extends TestCase {
-
-    protected function setUp() {
+class ErrorLogHandlerTest extends TestCase
+{
+    protected function setUp()
+    {
         $GLOBALS['error_log'] = array();
     }
 
@@ -30,14 +32,16 @@ class ErrorLogHandlerTest extends TestCase {
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage The given message type "42" is not supported
      */
-    public function testShouldNotAcceptAnInvalidTypeOnContructor() {
+    public function testShouldNotAcceptAnInvalidTypeOnContructor()
+    {
         new ErrorLogHandler(42);
     }
 
     /**
      * @covers Monolog\Handler\ErrorLogHandler::write
      */
-    public function testShouldLogMessagesUsingErrorLogFuncion() {
+    public function testShouldLogMessagesUsingErrorLogFuncion()
+    {
         $type = ErrorLogHandler::OPERATING_SYSTEM;
         $handler = new ErrorLogHandler($type);
         $handler->setFormatter(new LineFormatter('%channel%.%level_name%: %message% %context% %extra%', null, true));
@@ -59,5 +63,4 @@ class ErrorLogHandlerTest extends TestCase {
         $this->assertStringMatchesFormat('Baz [] []', $GLOBALS['error_log'][3][0]);
         $this->assertSame($GLOBALS['error_log'][3][1], $type);
     }
-
 }

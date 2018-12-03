@@ -16,8 +16,8 @@ use Monolog\Logger;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\WebProcessor;
 
-class AbstractHandlerTest extends TestCase {
-
+class AbstractHandlerTest extends TestCase
+{
     /**
      * @covers Monolog\Handler\AbstractHandler::__construct
      * @covers Monolog\Handler\AbstractHandler::getLevel
@@ -27,7 +27,8 @@ class AbstractHandlerTest extends TestCase {
      * @covers Monolog\Handler\AbstractHandler::getFormatter
      * @covers Monolog\Handler\AbstractHandler::setFormatter
      */
-    public function testConstructAndGetSet() {
+    public function testConstructAndGetSet()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler', array(Logger::WARNING, false));
         $this->assertEquals(Logger::WARNING, $handler->getLevel());
         $this->assertEquals(false, $handler->getBubble());
@@ -43,17 +44,19 @@ class AbstractHandlerTest extends TestCase {
     /**
      * @covers Monolog\Handler\AbstractHandler::handleBatch
      */
-    public function testHandleBatch() {
+    public function testHandleBatch()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler');
         $handler->expects($this->exactly(2))
-                ->method('handle');
+            ->method('handle');
         $handler->handleBatch(array($this->getRecord(), $this->getRecord()));
     }
 
     /**
      * @covers Monolog\Handler\AbstractHandler::isHandling
      */
-    public function testIsHandling() {
+    public function testIsHandling()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler', array(Logger::WARNING, false));
         $this->assertTrue($handler->isHandling($this->getRecord()));
         $this->assertFalse($handler->isHandling($this->getRecord(Logger::DEBUG)));
@@ -62,7 +65,8 @@ class AbstractHandlerTest extends TestCase {
     /**
      * @covers Monolog\Handler\AbstractHandler::__construct
      */
-    public function testHandlesPsrStyleLevels() {
+    public function testHandlesPsrStyleLevels()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler', array('warning', false));
         $this->assertFalse($handler->isHandling($this->getRecord(Logger::DEBUG)));
         $handler->setLevel('debug');
@@ -73,7 +77,8 @@ class AbstractHandlerTest extends TestCase {
      * @covers Monolog\Handler\AbstractHandler::getFormatter
      * @covers Monolog\Handler\AbstractHandler::getDefaultFormatter
      */
-    public function testGetFormatterInitializesDefault() {
+    public function testGetFormatterInitializesDefault()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler');
         $this->assertInstanceOf('Monolog\Formatter\LineFormatter', $handler->getFormatter());
     }
@@ -83,7 +88,8 @@ class AbstractHandlerTest extends TestCase {
      * @covers Monolog\Handler\AbstractHandler::popProcessor
      * @expectedException LogicException
      */
-    public function testPushPopProcessor() {
+    public function testPushPopProcessor()
+    {
         $logger = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler');
         $processor1 = new WebProcessor;
         $processor2 = new WebProcessor;
@@ -100,10 +106,10 @@ class AbstractHandlerTest extends TestCase {
      * @covers Monolog\Handler\AbstractHandler::pushProcessor
      * @expectedException InvalidArgumentException
      */
-    public function testPushProcessorWithNonCallable() {
+    public function testPushProcessorWithNonCallable()
+    {
         $handler = $this->getMockForAbstractClass('Monolog\Handler\AbstractHandler');
 
         $handler->pushProcessor(new \stdClass());
     }
-
 }

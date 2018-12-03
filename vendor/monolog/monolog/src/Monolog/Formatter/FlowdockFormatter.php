@@ -16,8 +16,8 @@ namespace Monolog\Formatter;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  */
-class FlowdockFormatter implements FormatterInterface {
-
+class FlowdockFormatter implements FormatterInterface
+{
     /**
      * @var string
      */
@@ -32,7 +32,8 @@ class FlowdockFormatter implements FormatterInterface {
      * @param string $source
      * @param string $sourceEmail
      */
-    public function __construct($source, $sourceEmail) {
+    public function __construct($source, $sourceEmail)
+    {
         $this->source = $source;
         $this->sourceEmail = $sourceEmail;
     }
@@ -40,7 +41,8 @@ class FlowdockFormatter implements FormatterInterface {
     /**
      * {@inheritdoc}
      */
-    public function format(array $record) {
+    public function format(array $record)
+    {
         $tags = array(
             '#logs',
             '#' . strtolower($record['level_name']),
@@ -52,7 +54,10 @@ class FlowdockFormatter implements FormatterInterface {
         }
 
         $subject = sprintf(
-                'in %s: %s - %s', $this->source, $record['level_name'], $this->getShortMessage($record['message'])
+            'in %s: %s - %s',
+            $this->source,
+            $record['level_name'],
+            $this->getShortMessage($record['message'])
         );
 
         $record['flowdock'] = array(
@@ -70,7 +75,8 @@ class FlowdockFormatter implements FormatterInterface {
     /**
      * {@inheritdoc}
      */
-    public function formatBatch(array $records) {
+    public function formatBatch(array $records)
+    {
         $formatted = array();
 
         foreach ($records as $record) {
@@ -85,7 +91,8 @@ class FlowdockFormatter implements FormatterInterface {
      *
      * @return string
      */
-    public function getShortMessage($message) {
+    public function getShortMessage($message)
+    {
         static $hasMbString;
 
         if (null === $hasMbString) {
@@ -106,5 +113,4 @@ class FlowdockFormatter implements FormatterInterface {
 
         return $message;
     }
-
 }

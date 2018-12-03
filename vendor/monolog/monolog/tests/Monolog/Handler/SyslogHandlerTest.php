@@ -13,12 +13,13 @@ namespace Monolog\Handler;
 
 use Monolog\Logger;
 
-class SyslogHandlerTest extends \PHPUnit_Framework_TestCase {
-
+class SyslogHandlerTest extends \PHPUnit_Framework_TestCase
+{
     /**
      * @covers Monolog\Handler\SyslogHandler::__construct
      */
-    public function testConstruct() {
+    public function testConstruct()
+    {
         $handler = new SyslogHandler('test');
         $this->assertInstanceOf('Monolog\Handler\SyslogHandler', $handler);
 
@@ -35,9 +36,9 @@ class SyslogHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Monolog\Handler\SyslogHandler::__construct
      */
-    public function testConstructInvalidFacility() {
+    public function testConstructInvalidFacility()
+    {
         $this->setExpectedException('UnexpectedValueException');
         $handler = new SyslogHandler('test', 'unknown');
     }
-
 }

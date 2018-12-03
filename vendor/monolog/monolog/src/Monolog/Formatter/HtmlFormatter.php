@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Monolog package.
  *
@@ -20,26 +19,27 @@ use Monolog\Logger;
  *
  * @author Tiago Brito <tlfbrito@gmail.com>
  */
-class HtmlFormatter extends NormalizerFormatter {
-
+class HtmlFormatter extends NormalizerFormatter
+{
     /**
      * Translates Monolog log levels to html color priorities.
      */
     protected $logLevels = array(
-        Logger::DEBUG => '#cccccc',
-        Logger::INFO => '#468847',
-        Logger::NOTICE => '#3a87ad',
-        Logger::WARNING => '#c09853',
-        Logger::ERROR => '#f0ad4e',
-        Logger::CRITICAL => '#FF7708',
-        Logger::ALERT => '#C12A19',
+        Logger::DEBUG     => '#cccccc',
+        Logger::INFO      => '#468847',
+        Logger::NOTICE    => '#3a87ad',
+        Logger::WARNING   => '#c09853',
+        Logger::ERROR     => '#f0ad4e',
+        Logger::CRITICAL  => '#FF7708',
+        Logger::ALERT     => '#C12A19',
         Logger::EMERGENCY => '#000000',
     );
 
     /**
      * @param string $dateFormat The format of the timestamp: one supported by DateTime::format
      */
-    public function __construct($dateFormat = null) {
+    public function __construct($dateFormat = null)
+    {
         parent::__construct($dateFormat);
     }
 
@@ -51,13 +51,14 @@ class HtmlFormatter extends NormalizerFormatter {
      * @param  bool   $escapeTd false if td content must not be html escaped
      * @return string
      */
-    protected function addRow($th, $td = ' ', $escapeTd = true) {
+    protected function addRow($th, $td = ' ', $escapeTd = true)
+    {
         $th = htmlspecialchars($th, ENT_NOQUOTES, 'UTF-8');
         if ($escapeTd) {
-            $td = '<pre>' . htmlspecialchars($td, ENT_NOQUOTES, 'UTF-8') . '</pre>';
+            $td = '<pre>'.htmlspecialchars($td, ENT_NOQUOTES, 'UTF-8').'</pre>';
         }
 
-        return "<tr style=\"padding: 4px;spacing: 0;text-align: left;\">\n<th style=\"background: #cccccc\" width=\"100px\">$th:</th>\n<td style=\"padding: 4px;spacing: 0;text-align: left;background: #eeeeee\">" . $td . "</td>\n</tr>";
+        return "<tr style=\"padding: 4px;text-align: left;\">\n<th style=\"vertical-align: top;background: #ccc;color: #000\" width=\"100\">$th:</th>\n<td style=\"padding: 4px;text-align: left;vertical-align: top;background: #eee;color: #000\">".$td."</td>\n</tr>";
     }
 
     /**
@@ -67,10 +68,11 @@ class HtmlFormatter extends NormalizerFormatter {
      * @param  int    $level Error level
      * @return string
      */
-    protected function addTitle($title, $level) {
+    protected function addTitle($title, $level)
+    {
         $title = htmlspecialchars($title, ENT_NOQUOTES, 'UTF-8');
 
-        return '<h1 style="background: ' . $this->logLevels[$level] . ';color: #ffffff;padding: 5px;" class="monolog-output">' . $title . '</h1>';
+        return '<h1 style="background: '.$this->logLevels[$level].';color: #ffffff;padding: 5px;" class="monolog-output">'.$title.'</h1>';
     }
 
     /**
@@ -79,7 +81,8 @@ class HtmlFormatter extends NormalizerFormatter {
      * @param  array $record A record to format
      * @return mixed The formatted record
      */
-    public function format(array $record) {
+    public function format(array $record)
+    {
         $output = $this->addTitle($record['level_name'], $record['level']);
         $output .= '<table cellspacing="1" width="100%" class="monolog-output">';
 
@@ -103,7 +106,7 @@ class HtmlFormatter extends NormalizerFormatter {
             $output .= $this->addRow('Extra', $embeddedTable, false);
         }
 
-        return $output . '</table>';
+        return $output.'</table>';
     }
 
     /**
@@ -112,7 +115,8 @@ class HtmlFormatter extends NormalizerFormatter {
      * @param  array $records A set of records to format
      * @return mixed The formatted set of records
      */
-    public function formatBatch(array $records) {
+    public function formatBatch(array $records)
+    {
         $message = '';
         foreach ($records as $record) {
             $message .= $this->format($record);
@@ -121,7 +125,8 @@ class HtmlFormatter extends NormalizerFormatter {
         return $message;
     }
 
-    protected function convertToString($data) {
+    protected function convertToString($data)
+    {
         if (null === $data || is_scalar($data)) {
             return (string) $data;
         }
@@ -133,5 +138,4 @@ class HtmlFormatter extends NormalizerFormatter {
 
         return str_replace('\\/', '/', json_encode($data));
     }
-
 }

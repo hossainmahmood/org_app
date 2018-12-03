@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Monolog package.
  *
@@ -19,21 +18,21 @@ use Monolog\Logger;
  *
  * @author  Christian Bergau <cbergau86@gmail.com>
  */
-class ZendMonitorHandler extends AbstractProcessingHandler {
-
+class ZendMonitorHandler extends AbstractProcessingHandler
+{
     /**
      * Monolog level / ZendMonitor Custom Event priority map
      *
      * @var array
      */
     protected $levelMap = array(
-        Logger::DEBUG => 1,
-        Logger::INFO => 2,
-        Logger::NOTICE => 3,
-        Logger::WARNING => 4,
-        Logger::ERROR => 5,
-        Logger::CRITICAL => 6,
-        Logger::ALERT => 7,
+        Logger::DEBUG     => 1,
+        Logger::INFO      => 2,
+        Logger::NOTICE    => 3,
+        Logger::WARNING   => 4,
+        Logger::ERROR     => 5,
+        Logger::CRITICAL  => 6,
+        Logger::ALERT     => 7,
         Logger::EMERGENCY => 0,
     );
 
@@ -44,7 +43,8 @@ class ZendMonitorHandler extends AbstractProcessingHandler {
      * @param  bool                      $bubble
      * @throws MissingExtensionException
      */
-    public function __construct($level = Logger::DEBUG, $bubble = true) {
+    public function __construct($level = Logger::DEBUG, $bubble = true)
+    {
         if (!function_exists('zend_monitor_custom_event')) {
             throw new MissingExtensionException('You must have Zend Server installed in order to use this handler');
         }
@@ -54,9 +54,12 @@ class ZendMonitorHandler extends AbstractProcessingHandler {
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         $this->writeZendMonitorCustomEvent(
-                $this->levelMap[$record['level']], $record['message'], $record['formatted']
+            $this->levelMap[$record['level']],
+            $record['message'],
+            $record['formatted']
         );
     }
 
@@ -67,14 +70,16 @@ class ZendMonitorHandler extends AbstractProcessingHandler {
      * @param string $message
      * @param array  $formatted
      */
-    protected function writeZendMonitorCustomEvent($level, $message, $formatted) {
+    protected function writeZendMonitorCustomEvent($level, $message, $formatted)
+    {
         zend_monitor_custom_event($level, $message, $formatted);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDefaultFormatter() {
+    public function getDefaultFormatter()
+    {
         return new NormalizerFormatter();
     }
 
@@ -83,8 +88,8 @@ class ZendMonitorHandler extends AbstractProcessingHandler {
      *
      * @return array
      */
-    public function getLevelMap() {
+    public function getLevelMap()
+    {
         return $this->levelMap;
     }
-
 }

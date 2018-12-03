@@ -19,9 +19,10 @@ use PhpAmqpLib\Connection\AMQPConnection;
 /**
  * @covers Monolog\Handler\RotatingFileHandler
  */
-class AmqpHandlerTest extends TestCase {
-
-    public function testHandleAmqpExt() {
+class AmqpHandlerTest extends TestCase
+{
+    public function testHandleAmqpExt()
+    {
         if (!class_exists('AMQPConnection') || !class_exists('AMQPExchange')) {
             $this->markTestSkipped("amqp-php not installed");
         }
@@ -34,14 +35,14 @@ class AmqpHandlerTest extends TestCase {
 
         $exchange = $this->getMock('AMQPExchange', array('publish', 'setName'), array(), '', false);
         $exchange->expects($this->once())
-                ->method('setName')
-                ->with('log')
+            ->method('setName')
+            ->with('log')
         ;
         $exchange->expects($this->any())
-                ->method('publish')
-                ->will($this->returnCallback(function ($message, $routing_key, $flags = 0, $attributes = array()) use (&$messages) {
-                            $messages[] = array($message, $routing_key, $flags, $attributes);
-                        }))
+            ->method('publish')
+            ->will($this->returnCallback(function ($message, $routing_key, $flags = 0, $attributes = array()) use (&$messages) {
+                $messages[] = array($message, $routing_key, $flags, $attributes);
+            }))
         ;
 
         $handler = new AmqpHandler($exchange, 'log');
@@ -76,7 +77,8 @@ class AmqpHandlerTest extends TestCase {
         $this->assertEquals($expected, $messages[0]);
     }
 
-    public function testHandlePhpAmqpLib() {
+    public function testHandlePhpAmqpLib()
+    {
         if (!class_exists('PhpAmqpLib\Connection\AMQPConnection')) {
             $this->markTestSkipped("php-amqplib not installed");
         }
@@ -86,10 +88,10 @@ class AmqpHandlerTest extends TestCase {
         $exchange = $this->getMock('PhpAmqpLib\Channel\AMQPChannel', array('basic_publish', '__destruct'), array(), '', false);
 
         $exchange->expects($this->any())
-                ->method('basic_publish')
-                ->will($this->returnCallback(function (AMQPMessage $msg, $exchange = "", $routing_key = "", $mandatory = false, $immediate = false, $ticket = null) use (&$messages) {
-                            $messages[] = array($msg, $exchange, $routing_key, $mandatory, $immediate, $ticket);
-                        }))
+            ->method('basic_publish')
+            ->will($this->returnCallback(function (AMQPMessage $msg, $exchange = "", $routing_key = "", $mandatory = false, $immediate = false, $ticket = null) use (&$messages) {
+                $messages[] = array($msg, $exchange, $routing_key, $mandatory, $immediate, $ticket);
+            }))
         ;
 
         $handler = new AmqpHandler($exchange, 'log');
@@ -131,5 +133,4 @@ class AmqpHandlerTest extends TestCase {
 
         $this->assertEquals($expected, $messages[0]);
     }
-
 }

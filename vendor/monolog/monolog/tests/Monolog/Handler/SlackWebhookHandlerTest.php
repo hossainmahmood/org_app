@@ -21,15 +21,16 @@ use Monolog\Handler\Slack\SlackRecord;
  * @see    https://api.slack.com/incoming-webhooks
  * @coversDefaultClass Monolog\Handler\SlackWebhookHandler
  */
-class SlackWebhookHandlerTest extends TestCase {
-
+class SlackWebhookHandlerTest extends TestCase
+{
     const WEBHOOK_URL = 'https://hooks.slack.com/services/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E';
 
     /**
      * @covers ::__construct
      * @covers ::getSlackRecord
      */
-    public function testConstructorMinimal() {
+    public function testConstructorMinimal()
+    {
         $handler = new SlackWebhookHandler(self::WEBHOOK_URL);
         $record = $this->getRecord();
         $slackRecord = $handler->getSlackRecord();
@@ -52,16 +53,25 @@ class SlackWebhookHandlerTest extends TestCase {
                     'ts' => $record['datetime']->getTimestamp(),
                 ),
             ),
-                ), $slackRecord->getSlackData($record));
+        ), $slackRecord->getSlackData($record));
     }
 
     /**
      * @covers ::__construct
      * @covers ::getSlackRecord
      */
-    public function testConstructorFull() {
+    public function testConstructorFull()
+    {
         $handler = new SlackWebhookHandler(
-                self::WEBHOOK_URL, 'test-channel', 'test-username', false, ':ghost:', false, false, Logger::DEBUG, false
+            self::WEBHOOK_URL,
+            'test-channel',
+            'test-username',
+            false,
+            ':ghost:',
+            false,
+            false,
+            Logger::DEBUG,
+            false
         );
 
         $slackRecord = $handler->getSlackRecord();
@@ -71,13 +81,14 @@ class SlackWebhookHandlerTest extends TestCase {
             'text' => 'test',
             'channel' => 'test-channel',
             'icon_emoji' => ':ghost:',
-                ), $slackRecord->getSlackData($this->getRecord()));
+        ), $slackRecord->getSlackData($this->getRecord()));
     }
 
     /**
      * @covers ::getFormatter
      */
-    public function testGetFormatter() {
+    public function testGetFormatter()
+    {
         $handler = new SlackWebhookHandler(self::WEBHOOK_URL);
         $formatter = $handler->getFormatter();
         $this->assertInstanceOf('Monolog\Formatter\FormatterInterface', $formatter);
@@ -86,11 +97,11 @@ class SlackWebhookHandlerTest extends TestCase {
     /**
      * @covers ::setFormatter
      */
-    public function testSetFormatter() {
+    public function testSetFormatter()
+    {
         $handler = new SlackWebhookHandler(self::WEBHOOK_URL);
         $formatter = new LineFormatter();
         $handler->setFormatter($formatter);
         $this->assertSame($formatter, $handler->getFormatter());
     }
-
 }

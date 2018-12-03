@@ -19,8 +19,8 @@ namespace Monolog\Formatter;
  *
  * @author Tim Mower <timothy.mower@gmail.com>
  */
-class LogstashFormatter extends NormalizerFormatter {
-
+class LogstashFormatter extends NormalizerFormatter
+{
     const V0 = 0;
     const V1 = 1;
 
@@ -56,7 +56,8 @@ class LogstashFormatter extends NormalizerFormatter {
      * @param string $contextPrefix   prefix for context keys inside logstash "fields", defaults to ctxt_
      * @param int    $version         the logstash format version to use, defaults to 0
      */
-    public function __construct($applicationName, $systemName = null, $extraPrefix = null, $contextPrefix = 'ctxt_', $version = self::V0) {
+    public function __construct($applicationName, $systemName = null, $extraPrefix = null, $contextPrefix = 'ctxt_', $version = self::V0)
+    {
         // logstash requires a ISO 8601 format date with optional millisecond precision.
         parent::__construct('Y-m-d\TH:i:s.uP');
 
@@ -70,7 +71,8 @@ class LogstashFormatter extends NormalizerFormatter {
     /**
      * {@inheritdoc}
      */
-    public function format(array $record) {
+    public function format(array $record)
+    {
         $record = parent::format($record);
 
         if ($this->version === self::V1) {
@@ -82,7 +84,8 @@ class LogstashFormatter extends NormalizerFormatter {
         return $this->toJson($message) . "\n";
     }
 
-    protected function formatV0(array $record) {
+    protected function formatV0(array $record)
+    {
         if (empty($record['datetime'])) {
             $record['datetime'] = gmdate('c');
         }
@@ -124,7 +127,8 @@ class LogstashFormatter extends NormalizerFormatter {
         return $message;
     }
 
-    protected function formatV1(array $record) {
+    protected function formatV1(array $record)
+    {
         if (empty($record['datetime'])) {
             $record['datetime'] = gmdate('c');
         }
@@ -159,5 +163,4 @@ class LogstashFormatter extends NormalizerFormatter {
 
         return $message;
     }
-
 }

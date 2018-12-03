@@ -18,8 +18,8 @@ use Elastica\Document;
  *
  * @author Jelle Vink <jelle.vink@gmail.com>
  */
-class ElasticaFormatter extends NormalizerFormatter {
-
+class ElasticaFormatter extends NormalizerFormatter
+{
     /**
      * @var string Elastic search index name
      */
@@ -34,7 +34,8 @@ class ElasticaFormatter extends NormalizerFormatter {
      * @param string $index Elastic Search index name
      * @param string $type  Elastic Search document type
      */
-    public function __construct($index, $type) {
+    public function __construct($index, $type)
+    {
         // elasticsearch requires a ISO 8601 format date with optional millisecond precision.
         parent::__construct('Y-m-d\TH:i:s.uP');
 
@@ -45,7 +46,8 @@ class ElasticaFormatter extends NormalizerFormatter {
     /**
      * {@inheritdoc}
      */
-    public function format(array $record) {
+    public function format(array $record)
+    {
         $record = parent::format($record);
 
         return $this->getDocument($record);
@@ -55,7 +57,8 @@ class ElasticaFormatter extends NormalizerFormatter {
      * Getter index
      * @return string
      */
-    public function getIndex() {
+    public function getIndex()
+    {
         return $this->index;
     }
 
@@ -63,7 +66,8 @@ class ElasticaFormatter extends NormalizerFormatter {
      * Getter type
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -73,7 +77,8 @@ class ElasticaFormatter extends NormalizerFormatter {
      * @param  array    $record Log message
      * @return Document
      */
-    protected function getDocument($record) {
+    protected function getDocument($record)
+    {
         $document = new Document();
         $document->setData($record);
         $document->setType($this->type);
@@ -81,5 +86,4 @@ class ElasticaFormatter extends NormalizerFormatter {
 
         return $document;
     }
-
 }

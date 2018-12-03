@@ -31,22 +31,23 @@ use Monolog\Logger;
  *
  * @author Paul Statezny <paulstatezny@gmail.com>
  */
-class RollbarHandler extends AbstractProcessingHandler {
-
+class RollbarHandler extends AbstractProcessingHandler
+{
     /**
      * Rollbar notifier
      *
      * @var RollbarNotifier
      */
     protected $rollbarNotifier;
+
     protected $levelMap = array(
-        Logger::DEBUG => 'debug',
-        Logger::INFO => 'info',
-        Logger::NOTICE => 'info',
-        Logger::WARNING => 'warning',
-        Logger::ERROR => 'error',
-        Logger::CRITICAL => 'critical',
-        Logger::ALERT => 'critical',
+        Logger::DEBUG     => 'debug',
+        Logger::INFO      => 'info',
+        Logger::NOTICE    => 'info',
+        Logger::WARNING   => 'warning',
+        Logger::ERROR     => 'error',
+        Logger::CRITICAL  => 'critical',
+        Logger::ALERT     => 'critical',
         Logger::EMERGENCY => 'critical',
     );
 
@@ -56,6 +57,7 @@ class RollbarHandler extends AbstractProcessingHandler {
      * @var bool
      */
     private $hasRecords = false;
+
     protected $initialized = false;
 
     /**
@@ -63,7 +65,8 @@ class RollbarHandler extends AbstractProcessingHandler {
      * @param int             $level           The minimum logging level at which this handler will be triggered
      * @param bool            $bubble          Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct(RollbarNotifier $rollbarNotifier, $level = Logger::ERROR, $bubble = true) {
+    public function __construct(RollbarNotifier $rollbarNotifier, $level = Logger::ERROR, $bubble = true)
+    {
         $this->rollbarNotifier = $rollbarNotifier;
 
         parent::__construct($level, $bubble);
@@ -72,7 +75,8 @@ class RollbarHandler extends AbstractProcessingHandler {
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         if (!$this->initialized) {
             // __destructor() doesn't get called on Fatal errors
             register_shutdown_function(array($this, 'close'));
@@ -100,14 +104,18 @@ class RollbarHandler extends AbstractProcessingHandler {
             $this->rollbarNotifier->report_exception($exception, $context, $payload);
         } else {
             $this->rollbarNotifier->report_message(
-                    $record['message'], $context['level'], $context, $payload
+                $record['message'],
+                $context['level'],
+                $context,
+                $payload
             );
         }
 
         $this->hasRecords = true;
     }
 
-    public function flush() {
+    public function flush()
+    {
         if ($this->hasRecords) {
             $this->rollbarNotifier->flush();
             $this->hasRecords = false;
@@ -117,8 +125,20 @@ class RollbarHandler extends AbstractProcessingHandler {
     /**
      * {@inheritdoc}
      */
-    public function close() {
+    public function close()
+    {
         $this->flush();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function reset()
+    {
+        $this->flush();
+
+        parent::reset();
+    }
+
 
 }

@@ -17,16 +17,17 @@ use Monolog\Logger;
 /**
  * @covers Monolog\Handler\NullHandler::handle
  */
-class NullHandlerTest extends TestCase {
-
-    public function testHandle() {
+class NullHandlerTest extends TestCase
+{
+    public function testHandle()
+    {
         $handler = new NullHandler();
         $this->assertTrue($handler->handle($this->getRecord()));
     }
 
-    public function testHandleLowerLevelRecord() {
+    public function testHandleLowerLevelRecord()
+    {
         $handler = new NullHandler(Logger::WARNING);
         $this->assertFalse($handler->handle($this->getRecord(Logger::DEBUG)));
     }
-
 }

@@ -17,8 +17,8 @@ use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Channel\AMQPChannel;
 use AMQPExchange;
 
-class AmqpHandler extends AbstractProcessingHandler {
-
+class AmqpHandler extends AbstractProcessingHandler
+{
     /**
      * @var AMQPExchange|AMQPChannel $exchange
      */
@@ -35,7 +35,8 @@ class AmqpHandler extends AbstractProcessingHandler {
      * @param int                      $level
      * @param bool                     $bubble       Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct($exchange, $exchangeName = 'log', $level = Logger::DEBUG, $bubble = true) {
+    public function __construct($exchange, $exchangeName = 'log', $level = Logger::DEBUG, $bubble = true)
+    {
         if ($exchange instanceof AMQPExchange) {
             $exchange->setName($exchangeName);
         } elseif ($exchange instanceof AMQPChannel) {
@@ -51,20 +52,26 @@ class AmqpHandler extends AbstractProcessingHandler {
     /**
      * {@inheritDoc}
      */
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         $data = $record["formatted"];
         $routingKey = $this->getRoutingKey($record);
 
         if ($this->exchange instanceof AMQPExchange) {
             $this->exchange->publish(
-                    $data, $routingKey, 0, array(
-                'delivery_mode' => 2,
-                'content_type' => 'application/json',
-                    )
+                $data,
+                $routingKey,
+                0,
+                array(
+                    'delivery_mode' => 2,
+                    'content_type' => 'application/json',
+                )
             );
         } else {
             $this->exchange->basic_publish(
-                    $this->createAmqpMessage($data), $this->exchangeName, $routingKey
+                $this->createAmqpMessage($data),
+                $this->exchangeName,
+                $routingKey
             );
         }
     }
@@ -72,7 +79,8 @@ class AmqpHandler extends AbstractProcessingHandler {
     /**
      * {@inheritDoc}
      */
-    public function handleBatch(array $records) {
+    public function handleBatch(array $records)
+    {
         if ($this->exchange instanceof AMQPExchange) {
             parent::handleBatch($records);
 
@@ -88,7 +96,9 @@ class AmqpHandler extends AbstractProcessingHandler {
             $data = $this->getFormatter()->format($record);
 
             $this->exchange->batch_basic_publish(
-                    $this->createAmqpMessage($data), $this->exchangeName, $this->getRoutingKey($record)
+                $this->createAmqpMessage($data),
+                $this->exchangeName,
+                $this->getRoutingKey($record)
             );
         }
 
@@ -101,11 +111,13 @@ class AmqpHandler extends AbstractProcessingHandler {
      * @param  array  $record
      * @return string
      */
-    protected function getRoutingKey(array $record) {
+    protected function getRoutingKey(array $record)
+    {
         $routingKey = sprintf(
-                '%s.%s',
-                // TODO 2.0 remove substr call
-                substr($record['level_name'], 0, 4), $record['channel']
+            '%s.%s',
+            // TODO 2.0 remove substr call
+            substr($record['level_name'], 0, 4),
+            $record['channel']
         );
 
         return strtolower($routingKey);
@@ -115,20 +127,22 @@ class AmqpHandler extends AbstractProcessingHandler {
      * @param  string      $data
      * @return AMQPMessage
      */
-    private function createAmqpMessage($data) {
+    private function createAmqpMessage($data)
+    {
         return new AMQPMessage(
-                (string) $data, array(
-            'delivery_mode' => 2,
-            'content_type' => 'application/json',
-                )
+            (string) $data,
+            array(
+                'delivery_mode' => 2,
+                'content_type' => 'application/json',
+            )
         );
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter() {
+    protected function getDefaultFormatter()
+    {
         return new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
     }
-
 }

@@ -25,11 +25,12 @@ use Monolog\Formatter\NormalizerFormatter;
  *
  * @author Thomas Tourlourat <thomas@tourlourat.com>
  */
-class MongoDBHandler extends AbstractProcessingHandler {
-
+class MongoDBHandler extends AbstractProcessingHandler
+{
     protected $mongoCollection;
 
-    public function __construct($mongo, $database, $collection, $level = Logger::DEBUG, $bubble = true) {
+    public function __construct($mongo, $database, $collection, $level = Logger::DEBUG, $bubble = true)
+    {
         if (!($mongo instanceof \MongoClient || $mongo instanceof \Mongo || $mongo instanceof \MongoDB\Client)) {
             throw new \InvalidArgumentException('MongoClient, Mongo or MongoDB\Client instance required');
         }
@@ -39,7 +40,8 @@ class MongoDBHandler extends AbstractProcessingHandler {
         parent::__construct($level, $bubble);
     }
 
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         if ($this->mongoCollection instanceof \MongoDB\Collection) {
             $this->mongoCollection->insertOne($record["formatted"]);
         } else {
@@ -50,8 +52,8 @@ class MongoDBHandler extends AbstractProcessingHandler {
     /**
      * {@inheritDoc}
      */
-    protected function getDefaultFormatter() {
+    protected function getDefaultFormatter()
+    {
         return new NormalizerFormatter();
     }
-
 }

@@ -11,15 +11,16 @@
 
 namespace Acme;
 
-class Tester {
-
-    public function test($handler, $record) {
+class Tester
+{
+    public function test($handler, $record)
+    {
         $handler->handle($record);
     }
-
 }
 
-function tester($handler, $record) {
+function tester($handler, $record)
+{
     $handler->handle($record);
 }
 
@@ -29,9 +30,10 @@ use Monolog\Logger;
 use Monolog\TestCase;
 use Monolog\Handler\TestHandler;
 
-class IntrospectionProcessorTest extends TestCase {
-
-    public function getHandler() {
+class IntrospectionProcessorTest extends TestCase
+{
+    public function getHandler()
+    {
         $processor = new IntrospectionProcessor();
         $handler = new TestHandler();
         $handler->pushProcessor($processor);
@@ -39,7 +41,8 @@ class IntrospectionProcessorTest extends TestCase {
         return $handler;
     }
 
-    public function testProcessorFromClass() {
+    public function testProcessorFromClass()
+    {
         $handler = $this->getHandler();
         $tester = new \Acme\Tester;
         $tester->test($handler, $this->getRecord());
@@ -50,7 +53,8 @@ class IntrospectionProcessorTest extends TestCase {
         $this->assertEquals('test', $record['extra']['function']);
     }
 
-    public function testProcessorFromFunc() {
+    public function testProcessorFromFunc()
+    {
         $handler = $this->getHandler();
         \Acme\tester($handler, $this->getRecord());
         list($record) = $handler->getRecords();
@@ -60,7 +64,8 @@ class IntrospectionProcessorTest extends TestCase {
         $this->assertEquals('Acme\tester', $record['extra']['function']);
     }
 
-    public function testLevelTooLow() {
+    public function testLevelTooLow()
+    {
         $input = array(
             'level' => Logger::DEBUG,
             'extra' => array(),
@@ -74,7 +79,8 @@ class IntrospectionProcessorTest extends TestCase {
         $this->assertEquals($expected, $actual);
     }
 
-    public function testLevelEqual() {
+    public function testLevelEqual()
+    {
         $input = array(
             'level' => Logger::CRITICAL,
             'extra' => array(),
@@ -94,7 +100,8 @@ class IntrospectionProcessorTest extends TestCase {
         $this->assertEquals($expected, $actual);
     }
 
-    public function testLevelHigher() {
+    public function testLevelHigher()
+    {
         $input = array(
             'level' => Logger::EMERGENCY,
             'extra' => array(),
@@ -113,5 +120,4 @@ class IntrospectionProcessorTest extends TestCase {
 
         $this->assertEquals($expected, $actual);
     }
-
 }

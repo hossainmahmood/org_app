@@ -23,11 +23,14 @@ use Monolog\Formatter\FormatterInterface;
  * @see    https://api.slack.com/incoming-webhooks
  * @see    https://api.slack.com/docs/message-attachments
  */
-class SlackRecord {
-
+class SlackRecord
+{
     const COLOR_DANGER = 'danger';
+
     const COLOR_WARNING = 'warning';
+
     const COLOR_GOOD = 'good';
+
     const COLOR_DEFAULT = '#e3e4e6';
 
     /**
@@ -82,7 +85,8 @@ class SlackRecord {
      */
     private $normalizerFormatter;
 
-    public function __construct($channel = null, $username = null, $useAttachment = true, $userIcon = null, $useShortAttachment = false, $includeContextAndExtra = false, array $excludeFields = array(), FormatterInterface $formatter = null) {
+    public function __construct($channel = null, $username = null, $useAttachment = true, $userIcon = null, $useShortAttachment = false, $includeContextAndExtra = false, array $excludeFields = array(), FormatterInterface $formatter = null)
+    {
         $this->channel = $channel;
         $this->username = $username;
         $this->userIcon = trim($userIcon, ':');
@@ -97,7 +101,8 @@ class SlackRecord {
         }
     }
 
-    public function getSlackData(array $record) {
+    public function getSlackData(array $record)
+    {
         $dataArray = array();
         $record = $this->excludeFields($record);
 
@@ -117,12 +122,12 @@ class SlackRecord {
 
         if ($this->useAttachment) {
             $attachment = array(
-                'fallback' => $message,
-                'text' => $message,
-                'color' => $this->getAttachmentColor($record['level']),
-                'fields' => array(),
+                'fallback'  => $message,
+                'text'      => $message,
+                'color'     => $this->getAttachmentColor($record['level']),
+                'fields'    => array(),
                 'mrkdwn_in' => array('fields'),
-                'ts' => $record['datetime']->getTimestamp()
+                'ts'        => $record['datetime']->getTimestamp()
             );
 
             if ($this->useShortAttachment) {
@@ -141,12 +146,14 @@ class SlackRecord {
 
                     if ($this->useShortAttachment) {
                         $attachment['fields'][] = $this->generateAttachmentField(
-                                ucfirst($key), $record[$key]
+                            $key,
+                            $record[$key]
                         );
                     } else {
                         // Add all extra fields as individual fields in attachment
                         $attachment['fields'] = array_merge(
-                                $attachment['fields'], $this->generateAttachmentFields($record[$key])
+                            $attachment['fields'],
+                            $this->generateAttachmentFields($record[$key])
                         );
                     }
                 }
@@ -175,7 +182,8 @@ class SlackRecord {
      * @param  int    $level
      * @return string
      */
-    public function getAttachmentColor($level) {
+    public function getAttachmentColor($level)
+    {
         switch (true) {
             case $level >= Logger::ERROR:
                 return self::COLOR_DANGER;
@@ -195,14 +203,17 @@ class SlackRecord {
      *
      * @return string
      */
-    public function stringify($fields) {
+    public function stringify($fields)
+    {
         $normalized = $this->normalizerFormatter->format($fields);
         $prettyPrintFlag = defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 128;
 
         $hasSecondDimension = count(array_filter($normalized, 'is_array'));
         $hasNonNumericKeys = !count(array_filter(array_keys($normalized), 'is_numeric'));
 
-        return $hasSecondDimension || $hasNonNumericKeys ? json_encode($normalized, $prettyPrintFlag) : json_encode($normalized);
+        return $hasSecondDimension || $hasNonNumericKeys
+            ? json_encode($normalized, $prettyPrintFlag)
+            : json_encode($normalized);
     }
 
     /**
@@ -210,23 +221,27 @@ class SlackRecord {
      *
      * @param FormatterInterface $formatter
      */
-    public function setFormatter(FormatterInterface $formatter) {
+    public function setFormatter(FormatterInterface $formatter)
+    {
         $this->formatter = $formatter;
     }
 
     /**
      * Generates attachment field
      *
-     * @param string $title
-     * @param string|array $value\
+     * @param string       $title
+     * @param string|array $value
      *
      * @return array
      */
-    private function generateAttachmentField($title, $value) {
-        $value = is_array($value) ? sprintf('```%s```', $this->stringify($value)) : $value;
+    private function generateAttachmentField($title, $value)
+    {
+        $value = is_array($value)
+            ? sprintf('```%s```', $this->stringify($value))
+            : $value;
 
         return array(
-            'title' => $title,
+            'title' => ucfirst($title),
             'value' => $value,
             'short' => false
         );
@@ -239,9 +254,10 @@ class SlackRecord {
      *
      * @return array
      */
-    private function generateAttachmentFields(array $data) {
+    private function generateAttachmentFields(array $data)
+    {
         $fields = array();
-        foreach ($data as $key => $value) {
+        foreach ($this->normalizerFormatter->format($data) as $key => $value) {
             $fields[] = $this->generateAttachmentField($key, $value);
         }
 
@@ -255,7 +271,8 @@ class SlackRecord {
      *
      * @return array
      */
-    private function excludeFields(array $record) {
+    private function excludeFields(array $record)
+    {
         foreach ($this->excludeFields as $field) {
             $keys = explode('.', $field);
             $node = &$record;
@@ -274,5 +291,4 @@ class SlackRecord {
 
         return $record;
     }
-
 }

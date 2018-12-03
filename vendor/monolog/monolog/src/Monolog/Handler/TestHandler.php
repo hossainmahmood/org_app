@@ -63,47 +63,64 @@ namespace Monolog\Handler;
  * @method bool hasInfoThatPasses($message)
  * @method bool hasDebugThatPasses($message)
  */
-class TestHandler extends AbstractProcessingHandler {
-
+class TestHandler extends AbstractProcessingHandler
+{
     protected $records = array();
     protected $recordsByLevel = array();
 
-    public function getRecords() {
+    public function getRecords()
+    {
         return $this->records;
     }
 
-    public function clear() {
+    public function clear()
+    {
         $this->records = array();
         $this->recordsByLevel = array();
     }
 
-    public function hasRecords($level) {
+    public function hasRecords($level)
+    {
         return isset($this->recordsByLevel[$level]);
     }
 
-    public function hasRecord($record, $level) {
-        if (is_array($record)) {
-            $record = $record['message'];
+    /**
+     * @param string|array $record Either a message string or an array containing message and optionally context keys that will be checked against all records
+     * @param int          $level  Logger::LEVEL constant value
+     */
+    public function hasRecord($record, $level)
+    {
+        if (is_string($record)) {
+            $record = array('message' => $record);
         }
 
         return $this->hasRecordThatPasses(function ($rec) use ($record) {
-                    return $rec['message'] === $record;
-                }, $level);
+            if ($rec['message'] !== $record['message']) {
+                return false;
+            }
+            if (isset($record['context']) && $rec['context'] !== $record['context']) {
+                return false;
+            }
+            return true;
+        }, $level);
     }
 
-    public function hasRecordThatContains($message, $level) {
+    public function hasRecordThatContains($message, $level)
+    {
         return $this->hasRecordThatPasses(function ($rec) use ($message) {
-                    return strpos($rec['message'], $message) !== false;
-                }, $level);
+            return strpos($rec['message'], $message) !== false;
+        }, $level);
     }
 
-    public function hasRecordThatMatches($regex, $level) {
+    public function hasRecordThatMatches($regex, $level)
+    {
         return $this->hasRecordThatPasses(function ($rec) use ($regex) {
-                    return preg_match($regex, $rec['message']) > 0;
-                }, $level);
+            return preg_match($regex, $rec['message']) > 0;
+        }, $level);
     }
 
-    public function hasRecordThatPasses($predicate, $level) {
+    public function hasRecordThatPasses($predicate, $level)
+    {
         if (!is_callable($predicate)) {
             throw new \InvalidArgumentException("Expected a callable for hasRecordThatSucceeds");
         }
@@ -124,12 +141,14 @@ class TestHandler extends AbstractProcessingHandler {
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         $this->recordsByLevel[$record['level']][] = $record;
         $this->records[] = $record;
     }
 
-    public function __call($method, $args) {
+    public function __call($method, $args)
+    {
         if (preg_match('/(.*)(Debug|Info|Notice|Warning|Error|Critical|Alert|Emergency)(.*)/', $method, $matches) > 0) {
             $genericMethod = $matches[1] . ('Records' !== $matches[3] ? 'Record' : '') . $matches[3];
             $level = constant('Monolog\Logger::' . strtoupper($matches[2]));
@@ -142,5 +161,4 @@ class TestHandler extends AbstractProcessingHandler {
 
         throw new \BadMethodCallException('Call to undefined method ' . get_class($this) . '::' . $method . '()');
     }
-
 }

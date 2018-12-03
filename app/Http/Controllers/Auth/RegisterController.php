@@ -48,6 +48,7 @@ use RegistersUsers;
         return Validator::make($data, [
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users',
+                    'type' =>'required',
                     'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -62,6 +63,7 @@ use RegistersUsers;
         return User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
+                    'type' => $data['type'],
                     'password' => Hash::make($data['password']),
         ]);
     }

@@ -21,8 +21,8 @@ use Monolog\Handler\Slack\SlackRecord;
  * @author Greg Kedzierski <greg@gregkedzierski.com>
  * @see    https://api.slack.com/
  */
-class SlackHandler extends SocketHandler {
-
+class SlackHandler extends SocketHandler
+{
     /**
      * Slack API token
      * @var string
@@ -48,7 +48,8 @@ class SlackHandler extends SocketHandler {
      * @param  array                     $excludeFields          Dot separated list of fields to exclude from slack message. E.g. ['context.field1', 'extra.field2']
      * @throws MissingExtensionException If no OpenSSL PHP extension configured
      */
-    public function __construct($token, $channel, $username = null, $useAttachment = true, $iconEmoji = null, $level = Logger::CRITICAL, $bubble = true, $useShortAttachment = false, $includeContextAndExtra = false, array $excludeFields = array()) {
+    public function __construct($token, $channel, $username = null, $useAttachment = true, $iconEmoji = null, $level = Logger::CRITICAL, $bubble = true, $useShortAttachment = false, $includeContextAndExtra = false, array $excludeFields = array())
+    {
         if (!extension_loaded('openssl')) {
             throw new MissingExtensionException('The OpenSSL PHP extension is required to use the SlackHandler');
         }
@@ -56,14 +57,27 @@ class SlackHandler extends SocketHandler {
         parent::__construct('ssl://slack.com:443', $level, $bubble);
 
         $this->slackRecord = new SlackRecord(
-                $channel, $username, $useAttachment, $iconEmoji, $useShortAttachment, $includeContextAndExtra, $excludeFields, $this->formatter
+            $channel,
+            $username,
+            $useAttachment,
+            $iconEmoji,
+            $useShortAttachment,
+            $includeContextAndExtra,
+            $excludeFields,
+            $this->formatter
         );
 
         $this->token = $token;
     }
 
-    public function getSlackRecord() {
+    public function getSlackRecord()
+    {
         return $this->slackRecord;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**
@@ -72,7 +86,8 @@ class SlackHandler extends SocketHandler {
      * @param  array  $record
      * @return string
      */
-    protected function generateDataStream($record) {
+    protected function generateDataStream($record)
+    {
         $content = $this->buildContent($record);
 
         return $this->buildHeader($content) . $content;
@@ -84,7 +99,8 @@ class SlackHandler extends SocketHandler {
      * @param  array  $record
      * @return string
      */
-    private function buildContent($record) {
+    private function buildContent($record)
+    {
         $dataArray = $this->prepareContentData($record);
 
         return http_build_query($dataArray);
@@ -96,7 +112,8 @@ class SlackHandler extends SocketHandler {
      * @param  array $record
      * @return array
      */
-    protected function prepareContentData($record) {
+    protected function prepareContentData($record)
+    {
         $dataArray = $this->slackRecord->getSlackData($record);
         $dataArray['token'] = $this->token;
 
@@ -113,7 +130,8 @@ class SlackHandler extends SocketHandler {
      * @param  string $content
      * @return string
      */
-    private function buildHeader($content) {
+    private function buildHeader($content)
+    {
         $header = "POST /api/chat.postMessage HTTP/1.1\r\n";
         $header .= "Host: slack.com\r\n";
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
@@ -128,7 +146,8 @@ class SlackHandler extends SocketHandler {
      *
      * @param array $record
      */
-    protected function write(array $record) {
+    protected function write(array $record)
+    {
         parent::write($record);
         $this->finalizeWrite();
     }
@@ -139,7 +158,8 @@ class SlackHandler extends SocketHandler {
      * If we do not read some but close the socket too early, slack sometimes
      * drops the request entirely.
      */
-    protected function finalizeWrite() {
+    protected function finalizeWrite()
+    {
         $res = $this->getResource();
         if (is_resource($res)) {
             @fread($res, 2048);
@@ -155,9 +175,11 @@ class SlackHandler extends SocketHandler {
      * @return string
      * @deprecated Use underlying SlackRecord instead
      */
-    protected function getAttachmentColor($level) {
+    protected function getAttachmentColor($level)
+    {
         trigger_error(
-                'SlackHandler::getAttachmentColor() is deprecated. Use underlying SlackRecord instead.', E_USER_DEPRECATED
+            'SlackHandler::getAttachmentColor() is deprecated. Use underlying SlackRecord instead.',
+            E_USER_DEPRECATED
         );
 
         return $this->slackRecord->getAttachmentColor($level);
@@ -170,26 +192,29 @@ class SlackHandler extends SocketHandler {
      * @return string
      * @deprecated Use underlying SlackRecord instead
      */
-    protected function stringify($fields) {
+    protected function stringify($fields)
+    {
         trigger_error(
-                'SlackHandler::stringify() is deprecated. Use underlying SlackRecord instead.', E_USER_DEPRECATED
+            'SlackHandler::stringify() is deprecated. Use underlying SlackRecord instead.',
+            E_USER_DEPRECATED
         );
 
         return $this->slackRecord->stringify($fields);
     }
 
-    public function setFormatter(FormatterInterface $formatter) {
+    public function setFormatter(FormatterInterface $formatter)
+    {
         parent::setFormatter($formatter);
         $this->slackRecord->setFormatter($formatter);
 
         return $this;
     }
 
-    public function getFormatter() {
+    public function getFormatter()
+    {
         $formatter = parent::getFormatter();
         $this->slackRecord->setFormatter($formatter);
 
         return $formatter;
     }
-
 }

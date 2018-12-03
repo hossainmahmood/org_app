@@ -16,8 +16,8 @@ namespace Monolog\Formatter;
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-interface FormatterInterface {
-
+interface FormatterInterface
+{
     /**
      * Formats a log record.
      *

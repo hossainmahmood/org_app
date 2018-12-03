@@ -19,8 +19,8 @@ use Monolog\Logger;
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  * @see    https://www.hipchat.com/docs/api
  */
-class FlowdockHandlerTest extends TestCase {
-
+class FlowdockHandlerTest extends TestCase
+{
     /**
      * @var resource
      */
@@ -31,13 +31,15 @@ class FlowdockHandlerTest extends TestCase {
      */
     private $handler;
 
-    public function setUp() {
+    public function setUp()
+    {
         if (!extension_loaded('openssl')) {
             $this->markTestSkipped('This test requires openssl to run');
         }
     }
 
-    public function testWriteHeader() {
+    public function testWriteHeader()
+    {
         $this->createHandler();
         $this->handler->handle($this->getRecord(Logger::CRITICAL, 'test1'));
         fseek($this->res, 0);
@@ -51,16 +53,20 @@ class FlowdockHandlerTest extends TestCase {
     /**
      * @depends testWriteHeader
      */
-    public function testWriteContent($content) {
+    public function testWriteContent($content)
+    {
         $this->assertRegexp('/"source":"test_source"/', $content);
         $this->assertRegexp('/"from_address":"source@test\.com"/', $content);
     }
 
-    private function createHandler($token = 'myToken') {
+    private function createHandler($token = 'myToken')
+    {
         $constructorArgs = array($token, Logger::DEBUG);
         $this->res = fopen('php://memory', 'a');
         $this->handler = $this->getMock(
-                '\Monolog\Handler\FlowdockHandler', array('fsockopen', 'streamSetTimeout', 'closeSocket'), $constructorArgs
+            '\Monolog\Handler\FlowdockHandler',
+            array('fsockopen', 'streamSetTimeout', 'closeSocket'),
+            $constructorArgs
         );
 
         $reflectionProperty = new \ReflectionProperty('\Monolog\Handler\SocketHandler', 'connectionString');
@@ -68,16 +74,15 @@ class FlowdockHandlerTest extends TestCase {
         $reflectionProperty->setValue($this->handler, 'localhost:1234');
 
         $this->handler->expects($this->any())
-                ->method('fsockopen')
-                ->will($this->returnValue($this->res));
+            ->method('fsockopen')
+            ->will($this->returnValue($this->res));
         $this->handler->expects($this->any())
-                ->method('streamSetTimeout')
-                ->will($this->returnValue(true));
+            ->method('streamSetTimeout')
+            ->will($this->returnValue(true));
         $this->handler->expects($this->any())
-                ->method('closeSocket')
-                ->will($this->returnValue(true));
+            ->method('closeSocket')
+            ->will($this->returnValue(true));
 
         $this->handler->setFormatter(new FlowdockFormatter('test_source', 'source@test.com'));
     }
-
 }

@@ -17,8 +17,8 @@ use Monolog\Logger;
 /**
  * @author Robert Kaufmann III <rok3@rok3.me>
  */
-class LogEntriesHandlerTest extends TestCase {
-
+class LogEntriesHandlerTest extends TestCase
+{
     /**
      * @var resource
      */
@@ -29,7 +29,8 @@ class LogEntriesHandlerTest extends TestCase {
      */
     private $handler;
 
-    public function testWriteContent() {
+    public function testWriteContent()
+    {
         $this->createHandler();
         $this->handler->handle($this->getRecord(Logger::CRITICAL, 'Critical write test'));
 
@@ -39,7 +40,8 @@ class LogEntriesHandlerTest extends TestCase {
         $this->assertRegexp('/testToken \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] test.CRITICAL: Critical write test/', $content);
     }
 
-    public function testWriteBatchContent() {
+    public function testWriteBatchContent()
+    {
         $records = array(
             $this->getRecord(),
             $this->getRecord(),
@@ -54,12 +56,15 @@ class LogEntriesHandlerTest extends TestCase {
         $this->assertRegexp('/(testToken \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] .* \[\] \[\]\n){3}/', $content);
     }
 
-    private function createHandler() {
+    private function createHandler()
+    {
         $useSSL = extension_loaded('openssl');
         $args = array('testToken', $useSSL, Logger::DEBUG, true);
         $this->res = fopen('php://memory', 'a');
         $this->handler = $this->getMock(
-                '\Monolog\Handler\LogEntriesHandler', array('fsockopen', 'streamSetTimeout', 'closeSocket'), $args
+            '\Monolog\Handler\LogEntriesHandler',
+            array('fsockopen', 'streamSetTimeout', 'closeSocket'),
+            $args
         );
 
         $reflectionProperty = new \ReflectionProperty('\Monolog\Handler\SocketHandler', 'connectionString');
@@ -67,14 +72,13 @@ class LogEntriesHandlerTest extends TestCase {
         $reflectionProperty->setValue($this->handler, 'localhost:1234');
 
         $this->handler->expects($this->any())
-                ->method('fsockopen')
-                ->will($this->returnValue($this->res));
+            ->method('fsockopen')
+            ->will($this->returnValue($this->res));
         $this->handler->expects($this->any())
-                ->method('streamSetTimeout')
-                ->will($this->returnValue(true));
+            ->method('streamSetTimeout')
+            ->will($this->returnValue(true));
         $this->handler->expects($this->any())
-                ->method('closeSocket')
-                ->will($this->returnValue(true));
+            ->method('closeSocket')
+            ->will($this->returnValue(true));
     }
-
 }

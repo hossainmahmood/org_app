@@ -13,12 +13,13 @@ namespace Monolog\Processor;
 
 use Monolog\TestCase;
 
-class MercurialProcessorTest extends TestCase {
-
+class MercurialProcessorTest extends TestCase
+{
     /**
      * @covers Monolog\Processor\MercurialProcessor::__invoke
      */
-    public function testProcessor() {
+    public function testProcessor()
+    {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             exec("where hg 2>NUL", $output, $result);
         } else {
@@ -37,5 +38,4 @@ class MercurialProcessorTest extends TestCase {
         $this->assertTrue(!is_array($record['extra']['hg']['branch']));
         $this->assertTrue(!is_array($record['extra']['hg']['revision']));
     }
-
 }

@@ -12,6 +12,7 @@
 namespace Monolog\Handler;
 
 use Monolog\Logger;
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Swift;
 
@@ -20,8 +21,8 @@ use Swift;
  *
  * @author Gyula Sallai
  */
-class SwiftMailerHandler extends MailHandler {
-
+class SwiftMailerHandler extends MailHandler
+{
     protected $mailer;
     private $messageTemplate;
 
@@ -29,9 +30,10 @@ class SwiftMailerHandler extends MailHandler {
      * @param \Swift_Mailer           $mailer  The mailer to use
      * @param callable|\Swift_Message $message An example message for real messages, only the body will be replaced
      * @param int                     $level   The minimum logging level at which this handler will be triggered
-     * @param Boolean                 $bubble  Whether the messages that are handled can bubble up the stack or not
+     * @param bool                    $bubble  Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct(\Swift_Mailer $mailer, $message, $level = Logger::ERROR, $bubble = true) {
+    public function __construct(\Swift_Mailer $mailer, $message, $level = Logger::ERROR, $bubble = true)
+    {
         parent::__construct($level, $bubble);
 
         $this->mailer = $mailer;
@@ -41,8 +43,20 @@ class SwiftMailerHandler extends MailHandler {
     /**
      * {@inheritdoc}
      */
-    protected function send($content, array $records) {
+    protected function send($content, array $records)
+    {
         $this->mailer->send($this->buildMessage($content, $records));
+    }
+
+    /**
+     * Gets the formatter for the Swift_Message subject.
+     *
+     * @param  string             $format The format of the subject
+     * @return FormatterInterface
+     */
+    protected function getSubjectFormatter($format)
+    {
+        return new LineFormatter($format);
     }
 
     /**
@@ -52,7 +66,8 @@ class SwiftMailerHandler extends MailHandler {
      * @param  array          $records Log records that formed the content
      * @return \Swift_Message
      */
-    protected function buildMessage($content, array $records) {
+    protected function buildMessage($content, array $records)
+    {
         $message = null;
         if ($this->messageTemplate instanceof \Swift_Message) {
             $message = clone $this->messageTemplate;
@@ -66,7 +81,7 @@ class SwiftMailerHandler extends MailHandler {
         }
 
         if ($records) {
-            $subjectFormatter = new LineFormatter($message->getSubject());
+            $subjectFormatter = $this->getSubjectFormatter($message->getSubject());
             $message->setSubject($subjectFormatter->format($this->getHighestRecord($records)));
         }
 
@@ -83,14 +98,14 @@ class SwiftMailerHandler extends MailHandler {
     /**
      * BC getter, to be removed in 2.0
      */
-    public function __get($name) {
+    public function __get($name)
+    {
         if ($name === 'message') {
             trigger_error('SwiftMailerHandler->message is deprecated, use ->buildMessage() instead to retrieve the message', E_USER_DEPRECATED);
 
             return $this->buildMessage(null, array());
         }
 
-        throw new \InvalidArgumentException('Invalid property ' . $name);
+        throw new \InvalidArgumentException('Invalid property '.$name);
     }
-
 }

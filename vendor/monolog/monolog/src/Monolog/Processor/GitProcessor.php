@@ -19,12 +19,13 @@ use Monolog\Logger;
  * @author Nick Otter
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
-class GitProcessor {
-
+class GitProcessor implements ProcessorInterface
+{
     private $level;
     private static $cache;
 
-    public function __construct($level = Logger::DEBUG) {
+    public function __construct($level = Logger::DEBUG)
+    {
         $this->level = Logger::toMonologLevel($level);
     }
 
@@ -32,7 +33,8 @@ class GitProcessor {
      * @param  array $record
      * @return array
      */
-    public function __invoke(array $record) {
+    public function __invoke(array $record)
+    {
         // return if the level is not high enough
         if ($record['level'] < $this->level) {
             return $record;
@@ -43,7 +45,8 @@ class GitProcessor {
         return $record;
     }
 
-    private static function getGitInfo() {
+    private static function getGitInfo()
+    {
         if (self::$cache) {
             return self::$cache;
         }
@@ -58,5 +61,4 @@ class GitProcessor {
 
         return self::$cache = array();
     }
-
 }
