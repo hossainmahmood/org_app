@@ -2,27 +2,45 @@
 
 namespace Cron;
 
-use DateTime;
+use DateTimeInterface;
 
 /**
  * Minutes field.  Allows: * , / -
  */
-class MinutesField extends AbstractField {
-
+class MinutesField extends AbstractField
+{
+    /**
+     * @inheritDoc
+     */
     protected $rangeStart = 0;
+
+    /**
+     * @inheritDoc
+     */
     protected $rangeEnd = 59;
 
-    public function isSatisfiedBy(DateTime $date, $value) {
+    /**
+     * @inheritDoc
+     */
+    public function isSatisfiedBy(DateTimeInterface $date, $value)
+    {
+        if ($value == '?') {
+            return true;
+        }
+
         return $this->isSatisfied($date->format('i'), $value);
     }
 
-    public function increment(DateTime $date, $invert = false, $parts = null) {
+    /**
+     * {@inheritDoc}
+     *
+     * @param \DateTime|\DateTimeImmutable &$date
+     * @param string|null                  $parts
+     */
+    public function increment(DateTimeInterface &$date, $invert = false, $parts = null)
+    {
         if (is_null($parts)) {
-            if ($invert) {
-                $date->modify('-1 minute');
-            } else {
-                $date->modify('+1 minute');
-            }
+            $date = $date->modify(($invert ? '-' : '+') . '1 minute');
             return $this;
         }
 
@@ -37,7 +55,7 @@ class MinutesField extends AbstractField {
         if (count($minutes) > 1) {
             for ($i = 0; $i < count($minutes) - 1; $i++) {
                 if ((!$invert && $current_minute >= $minutes[$i] && $current_minute < $minutes[$i + 1]) ||
-                        ($invert && $current_minute > $minutes[$i] && $current_minute <= $minutes[$i + 1])) {
+                    ($invert && $current_minute > $minutes[$i] && $current_minute <= $minutes[$i + 1])) {
                     $position = $invert ? $i : $i + 1;
                     break;
                 }
@@ -45,13 +63,13 @@ class MinutesField extends AbstractField {
         }
 
         if ((!$invert && $current_minute >= $minutes[$position]) || ($invert && $current_minute <= $minutes[$position])) {
-            $date->modify(($invert ? '-' : '+') . '1 hour');
-            $date->setTime($date->format('H'), $invert ? 59 : 0);
-        } else {
-            $date->setTime($date->format('H'), $minutes[$position]);
+            $date = $date->modify(($invert ? '-' : '+') . '1 hour');
+            $date = $date->setTime($date->format('H'), $invert ? 59 : 0);
+        }
+        else {
+            $date = $date->setTime($date->format('H'), $minutes[$position]);
         }
 
         return $this;
     }
-
 }

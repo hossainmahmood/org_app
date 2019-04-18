@@ -1,10 +1,7 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
-use PHPUnit\Framework\TestCase;
+use  PHPUnit\Framework\TestCase;
 
 /**
  * @covers \TheSeer\Tokenizer\XMLSerializer
@@ -16,7 +13,8 @@ class XMLSerializerTest extends TestCase {
 
     protected function setUp() {
         $this->tokens = unserialize(
-                file_get_contents(__DIR__ . '/_files/test.php.tokens'), [TokenCollection::class]
+            file_get_contents(__DIR__ . '/_files/test.php.tokens'),
+            [TokenCollection::class]
         );
     }
 

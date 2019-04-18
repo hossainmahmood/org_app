@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -18,18 +16,20 @@ use SebastianBergmann\Diff\Differ;
  * Builds a diff string representation in a loose unified diff format
  * listing only changes lines. Does not include line numbers.
  */
-final class DiffOnlyOutputBuilder implements DiffOutputBuilderInterface {
-
+final class DiffOnlyOutputBuilder implements DiffOutputBuilderInterface
+{
     /**
      * @var string
      */
     private $header;
 
-    public function __construct(string $header = "--- Original\n+++ New\n") {
+    public function __construct(string $header = "--- Original\n+++ New\n")
+    {
         $this->header = $header;
     }
 
-    public function getDiff(array $diff): string {
+    public function getDiff(array $diff): string
+    {
         $buffer = \fopen('php://memory', 'r+b');
 
         if ('' !== $this->header) {
@@ -65,5 +65,4 @@ final class DiffOnlyOutputBuilder implements DiffOutputBuilderInterface {
 
         return $diff;
     }
-
 }

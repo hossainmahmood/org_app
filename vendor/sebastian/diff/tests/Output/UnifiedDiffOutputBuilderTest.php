@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -22,8 +20,8 @@ use SebastianBergmann\Diff\Differ;
  * @uses SebastianBergmann\Diff\Output\AbstractChunkOutputBuilder
  * @uses SebastianBergmann\Diff\TimeEfficientLongestCommonSubsequenceCalculator
  */
-final class UnifiedDiffOutputBuilderTest extends TestCase {
-
+final class UnifiedDiffOutputBuilderTest extends TestCase
+{
     /**
      * @param string $expected
      * @param string $from
@@ -32,15 +30,18 @@ final class UnifiedDiffOutputBuilderTest extends TestCase {
      *
      * @dataProvider headerProvider
      */
-    public function testCustomHeaderCanBeUsed(string $expected, string $from, string $to, string $header): void {
+    public function testCustomHeaderCanBeUsed(string $expected, string $from, string $to, string $header): void
+    {
         $differ = new Differ(new UnifiedDiffOutputBuilder($header));
 
         $this->assertSame(
-                $expected, $differ->diff($from, $to)
+            $expected,
+            $differ->diff($from, $to)
         );
     }
 
-    public function headerProvider(): array {
+    public function headerProvider(): array
+    {
         return [
             [
                 "CUSTOM HEADER\n@@ @@\n-a\n+b\n",
@@ -76,13 +77,14 @@ final class UnifiedDiffOutputBuilderTest extends TestCase {
      *
      * @dataProvider provideDiffWithLineNumbers
      */
-    public function testDiffWithLineNumbers($expected, $from, $to): void {
+    public function testDiffWithLineNumbers($expected, $from, $to): void
+    {
         $differ = new Differ(new UnifiedDiffOutputBuilder("--- Original\n+++ New\n", true));
         $this->assertSame($expected, $differ->diff($from, $to));
     }
 
-    public function provideDiffWithLineNumbers(): array {
+    public function provideDiffWithLineNumbers(): array
+    {
         return UnifiedDiffOutputBuilderDataProvider::provideDiffWithLineNumbers();
     }
-
 }

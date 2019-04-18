@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -24,23 +22,27 @@ use Symfony\Component\Process\Process;
  *
  * @requires OS Linux
  */
-final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
-
+final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase
+{
     use UnifiedDiffAssertTrait;
 
     private $dir;
+
     private $fileFrom;
+
     private $filePatch;
 
-    protected function setUp(): void {
-        $this->dir = \realpath(__DIR__ . '/../../fixtures/out/') . '/';
-        $this->fileFrom = $this->dir . 'from.txt';
+    protected function setUp(): void
+    {
+        $this->dir       = \realpath(__DIR__ . '/../../fixtures/out/') . '/';
+        $this->fileFrom  = $this->dir . 'from.txt';
         $this->filePatch = $this->dir . 'patch.txt';
 
         $this->cleanUpTempFiles();
     }
 
-    protected function tearDown(): void {
+    protected function tearDown(): void
+    {
         $this->cleanUpTempFiles();
     }
 
@@ -51,7 +53,8 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
      * @param mixed $from
      * @param mixed $to
      */
-    public function testDiffWithLineNumbersPath($expected, $from, $to): void {
+    public function testDiffWithLineNumbersPath($expected, $from, $to): void
+    {
         $this->doIntegrationTestPatch($expected, $from, $to);
     }
 
@@ -62,19 +65,24 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
      * @param mixed $from
      * @param mixed $to
      */
-    public function testDiffWithLineNumbersGitApply($expected, $from, $to): void {
+    public function testDiffWithLineNumbersGitApply($expected, $from, $to): void
+    {
         $this->doIntegrationTestGitApply($expected, $from, $to);
     }
 
-    public function provideDiffWithLineNumbers() {
+    public function provideDiffWithLineNumbers()
+    {
         return \array_filter(
-                UnifiedDiffOutputBuilderDataProvider::provideDiffWithLineNumbers(), static function ($key) {
-            return !\is_string($key) || false === \strpos($key, 'non_patch_compat');
-        }, ARRAY_FILTER_USE_KEY
+            UnifiedDiffOutputBuilderDataProvider::provideDiffWithLineNumbers(),
+            static function ($key) {
+                return !\is_string($key) || false === \strpos($key, 'non_patch_compat');
+            },
+            ARRAY_FILTER_USE_KEY
         );
     }
 
-    private function doIntegrationTestPatch(string $diff, string $from, string $to): void {
+    private function doIntegrationTestPatch(string $diff, string $from, string $to): void
+    {
         $this->assertNotSame('', $diff);
         $this->assertValidUnifiedDiffFormat($diff);
 
@@ -84,8 +92,9 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
         $this->assertNotFalse(\file_put_contents($this->filePatch, $diff));
 
         $command = \sprintf(
-                'patch -u --verbose --posix  %s < %s', // --posix
-                \escapeshellarg($this->fileFrom), \escapeshellarg($this->filePatch)
+            'patch -u --verbose --posix  %s < %s', // --posix
+            \escapeshellarg($this->fileFrom),
+            \escapeshellarg($this->filePatch)
         );
 
         $p = new Process($command);
@@ -94,11 +103,14 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
         $this->assertProcessSuccessful($p);
 
         $this->assertStringEqualsFile(
-                $this->fileFrom, $to, \sprintf('Patch command "%s".', $command)
+            $this->fileFrom,
+            $to,
+            \sprintf('Patch command "%s".', $command)
         );
     }
 
-    private function doIntegrationTestGitApply(string $diff, string $from, string $to): void {
+    private function doIntegrationTestGitApply(string $diff, string $from, string $to): void
+    {
         $this->assertNotSame('', $diff);
         $this->assertValidUnifiedDiffFormat($diff);
 
@@ -108,7 +120,9 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
         $this->assertNotFalse(\file_put_contents($this->filePatch, $diff));
 
         $command = \sprintf(
-                'git --git-dir %s apply --check -v --unsafe-paths --ignore-whitespace %s', \escapeshellarg($this->dir), \escapeshellarg($this->filePatch)
+            'git --git-dir %s apply --check -v --unsafe-paths --ignore-whitespace %s',
+            \escapeshellarg($this->dir),
+            \escapeshellarg($this->filePatch)
         );
 
         $p = new Process($command);
@@ -117,26 +131,33 @@ final class UnifiedDiffOutputBuilderIntegrationTest extends TestCase {
         $this->assertProcessSuccessful($p);
     }
 
-    private function assertProcessSuccessful(Process $p): void {
+    private function assertProcessSuccessful(Process $p): void
+    {
         $this->assertTrue(
-                $p->isSuccessful(), \sprintf(
-                        "Command exec. was not successful:\n\"%s\"\nOutput:\n\"%s\"\nStdErr:\n\"%s\"\nExit code %d.\n", $p->getCommandLine(), $p->getOutput(), $p->getErrorOutput(), $p->getExitCode()
-                )
+            $p->isSuccessful(),
+            \sprintf(
+                "Command exec. was not successful:\n\"%s\"\nOutput:\n\"%s\"\nStdErr:\n\"%s\"\nExit code %d.\n",
+                $p->getCommandLine(),
+                $p->getOutput(),
+                $p->getErrorOutput(),
+                $p->getExitCode()
+            )
         );
     }
 
-    private function cleanUpTempFiles(): void {
+    private function cleanUpTempFiles(): void
+    {
         @\unlink($this->fileFrom . '.orig');
         @\unlink($this->fileFrom);
         @\unlink($this->filePatch);
     }
 
-    private static function setDiffFileHeader(string $diff, string $file): string {
-        $diffLines = \preg_split('/(.*\R)/', $diff, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+    private static function setDiffFileHeader(string $diff, string $file): string
+    {
+        $diffLines    = \preg_split('/(.*\R)/', $diff, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         $diffLines[0] = \preg_replace('#^\-\-\- .*#', '--- /' . $file, $diffLines[0], 1);
         $diffLines[1] = \preg_replace('#^\+\+\+ .*#', '+++ /' . $file, $diffLines[1], 1);
 
         return \implode('', $diffLines);
     }
-
 }

@@ -2,23 +2,25 @@
 
 namespace DeepCopy\f003;
 
-class Foo {
-
+class Foo
+{
     private $name;
     private $prop;
 
-    public function __construct($name) {
+    public function __construct($name)
+    {
         $this->name = $name;
     }
 
-    public function getProp() {
+    public function getProp()
+    {
         return $this->prop;
     }
 
-    public function setProp($prop) {
+    public function setProp($prop)
+    {
         $this->prop = $prop;
 
         return $this;
     }
-
 }

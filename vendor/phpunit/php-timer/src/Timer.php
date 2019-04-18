@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 /*
  * This file is part of phpunit/php-timer.
  *
@@ -8,34 +7,58 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Timer;
 
-final class Timer {
-
+final class Timer
+{
     /**
-     * @var array
+     * @var int[]
      */
-    private static $times = [
-        'hour' => 3600000,
-        'minute' => 60000,
-        'second' => 1000
+    private static $sizes = [
+        'GB' => 1073741824,
+        'MB' => 1048576,
+        'KB' => 1024,
     ];
 
     /**
-     * @var array
+     * @var int[]
+     */
+    private static $times = [
+        'hour'   => 3600000,
+        'minute' => 60000,
+        'second' => 1000,
+    ];
+
+    /**
+     * @var float[]
      */
     private static $startTimes = [];
 
-    public static function start(): void {
+    public static function start(): void
+    {
         self::$startTimes[] = \microtime(true);
     }
 
-    public static function stop(): float {
+    public static function stop(): float
+    {
         return \microtime(true) - \array_pop(self::$startTimes);
     }
 
-    public static function secondsToTimeString(float $time): string {
+    public static function bytesToString(int $bytes): string
+    {
+        foreach (self::$sizes as $unit => $value) {
+            if ($bytes >= $value) {
+                $size = \sprintf('%.2f', $bytes >= 1024 ? $bytes / $value : $bytes);
+
+                return $size . ' ' . $unit;
+            }
+        }
+
+        return $bytes . ' byte' . ($bytes !== 1 ? 's' : '');
+    }
+
+    public static function secondsToTimeString(float $time): string
+    {
         $ms = \round($time * 1000);
 
         foreach (self::$times as $unit => $value) {
@@ -52,7 +75,8 @@ final class Timer {
     /**
      * @throws RuntimeException
      */
-    public static function timeSinceStartOfRequest(): string {
+    public static function timeSinceStartOfRequest(): string
+    {
         if (isset($_SERVER['REQUEST_TIME_FLOAT'])) {
             $startOfRequest = $_SERVER['REQUEST_TIME_FLOAT'];
         } elseif (isset($_SERVER['REQUEST_TIME'])) {
@@ -67,10 +91,12 @@ final class Timer {
     /**
      * @throws RuntimeException
      */
-    public static function resourceUsage(): string {
+    public static function resourceUsage(): string
+    {
         return \sprintf(
-                'Time: %s, Memory: %4.2fMB', self::timeSinceStartOfRequest(), \memory_get_peak_usage(true) / 1048576
+            'Time: %s, Memory: %s',
+            self::timeSinceStartOfRequest(),
+            self::bytesToString(\memory_get_peak_usage(true))
         );
     }
-
 }

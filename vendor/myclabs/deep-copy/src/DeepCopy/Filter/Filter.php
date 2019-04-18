@@ -5,8 +5,8 @@ namespace DeepCopy\Filter;
 /**
  * Filter to apply to a property while copying an object
  */
-interface Filter {
-
+interface Filter
+{
     /**
      * Applies the filter to the object.
      *

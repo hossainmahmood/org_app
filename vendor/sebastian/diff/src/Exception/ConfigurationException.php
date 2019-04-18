@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -12,8 +10,8 @@ declare(strict_types = 1);
 
 namespace SebastianBergmann\Diff;
 
-final class ConfigurationException extends InvalidArgumentException {
-
+final class ConfigurationException extends InvalidArgumentException
+{
     /**
      * @param string          $option
      * @param string          $expected
@@ -22,13 +20,21 @@ final class ConfigurationException extends InvalidArgumentException {
      * @param null|\Exception $previous
      */
     public function __construct(
-    string $option, string $expected, $value, int $code = 0, \Exception $previous = null
+        string $option,
+        string $expected,
+        $value,
+        int $code = 0,
+        \Exception $previous = null
     ) {
         parent::__construct(
-                \sprintf(
-                        'Option "%s" must be %s, got "%s".', $option, $expected, \is_object($value) ? \get_class($value) : (null === $value ? '<null>' : \gettype($value) . '#' . $value)
-                ), $code, $previous
+            \sprintf(
+                'Option "%s" must be %s, got "%s".',
+                $option,
+                $expected,
+                \is_object($value) ? \get_class($value) : (null === $value ? '<null>' : \gettype($value) . '#' . $value)
+            ),
+            $code,
+            $previous
         );
     }
-
 }

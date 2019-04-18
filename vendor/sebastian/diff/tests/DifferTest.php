@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -23,14 +21,15 @@ use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
  * @uses SebastianBergmann\Diff\TimeEfficientLongestCommonSubsequenceCalculator
  * @uses SebastianBergmann\Diff\Output\AbstractChunkOutputBuilder
  */
-final class DifferTest extends TestCase {
-
+final class DifferTest extends TestCase
+{
     /**
      * @var Differ
      */
     private $differ;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->differ = new Differ;
     }
 
@@ -41,7 +40,8 @@ final class DifferTest extends TestCase {
      *
      * @dataProvider arrayProvider
      */
-    public function testArrayRepresentationOfDiffCanBeRenderedUsingTimeEfficientLcsImplementation(array $expected, $from, $to): void {
+    public function testArrayRepresentationOfDiffCanBeRenderedUsingTimeEfficientLcsImplementation(array $expected, $from, $to): void
+    {
         $this->assertSame($expected, $this->differ->diffToArray($from, $to, new TimeEfficientLongestCommonSubsequenceCalculator));
     }
 
@@ -52,7 +52,8 @@ final class DifferTest extends TestCase {
      *
      * @dataProvider textProvider
      */
-    public function testTextRepresentationOfDiffCanBeRenderedUsingTimeEfficientLcsImplementation(string $expected, string $from, string $to): void {
+    public function testTextRepresentationOfDiffCanBeRenderedUsingTimeEfficientLcsImplementation(string $expected, string $from, string $to): void
+    {
         $this->assertSame($expected, $this->differ->diff($from, $to, new TimeEfficientLongestCommonSubsequenceCalculator));
     }
 
@@ -63,7 +64,8 @@ final class DifferTest extends TestCase {
      *
      * @dataProvider arrayProvider
      */
-    public function testArrayRepresentationOfDiffCanBeRenderedUsingMemoryEfficientLcsImplementation(array $expected, $from, $to): void {
+    public function testArrayRepresentationOfDiffCanBeRenderedUsingMemoryEfficientLcsImplementation(array $expected, $from, $to): void
+    {
         $this->assertSame($expected, $this->differ->diffToArray($from, $to, new MemoryEfficientLongestCommonSubsequenceCalculator));
     }
 
@@ -74,28 +76,34 @@ final class DifferTest extends TestCase {
      *
      * @dataProvider textProvider
      */
-    public function testTextRepresentationOfDiffCanBeRenderedUsingMemoryEfficientLcsImplementation(string $expected, string $from, string $to): void {
+    public function testTextRepresentationOfDiffCanBeRenderedUsingMemoryEfficientLcsImplementation(string $expected, string $from, string $to): void
+    {
         $this->assertSame($expected, $this->differ->diff($from, $to, new MemoryEfficientLongestCommonSubsequenceCalculator));
     }
 
-    public function testTypesOtherThanArrayAndStringCanBePassed(): void {
+    public function testTypesOtherThanArrayAndStringCanBePassed(): void
+    {
         $this->assertSame(
-                "--- Original\n+++ New\n@@ @@\n-1\n+2\n", $this->differ->diff(1, 2)
+            "--- Original\n+++ New\n@@ @@\n-1\n+2\n",
+            $this->differ->diff(1, 2)
         );
     }
 
-    public function testArrayDiffs(): void {
+    public function testArrayDiffs(): void
+    {
         $this->assertSame(
-                '--- Original
+            '--- Original
 +++ New
 @@ @@
 -one
 +two
-', $this->differ->diff(['one'], ['two'])
+',
+            $this->differ->diff(['one'], ['two'])
         );
     }
 
-    public function arrayProvider(): array {
+    public function arrayProvider(): array
+    {
         return [
             [
                 [
@@ -255,7 +263,8 @@ final class DifferTest extends TestCase {
         ];
     }
 
-    public function textProvider(): array {
+    public function textProvider(): array
+    {
         return [
             [
                 "--- Original\n+++ New\n@@ @@\n-a\n+b\n",
@@ -287,7 +296,7 @@ final class DifferTest extends TestCase {
  k
 
 EOF
-                ,
+            ,
                 "a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\n",
                 "a\np\nc\nd\ne\nf\ng\nh\ni\nw\nk\n",
             ],
@@ -303,7 +312,7 @@ EOF
  3
 
 EOF
-                ,
+            ,
                 "A\n1\n2\n3\n4\n5\n6\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
                 "B\n1\n2\n3\n4\n5\n6\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
             ],
@@ -320,14 +329,16 @@ EOF
         ];
     }
 
-    public function testDiffToArrayInvalidFromType(): void {
+    public function testDiffToArrayInvalidFromType(): void
+    {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('#^"from" must be an array or string\.$#');
 
         $this->differ->diffToArray(null, '');
     }
 
-    public function testDiffInvalidToType(): void {
+    public function testDiffInvalidToType(): void
+    {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('#^"to" must be an array or string\.$#');
 
@@ -340,15 +351,17 @@ EOF
      *
      * @dataProvider provideSplitStringByLinesCases
      */
-    public function testSplitStringByLines(array $expected, string $input): void {
+    public function testSplitStringByLines(array $expected, string $input): void
+    {
         $reflection = new \ReflectionObject($this->differ);
-        $method = $reflection->getMethod('splitStringByLines');
+        $method     = $reflection->getMethod('splitStringByLines');
         $method->setAccessible(true);
 
         $this->assertSame($expected, $method->invoke($this->differ, $input));
     }
 
-    public function provideSplitStringByLinesCases(): array {
+    public function provideSplitStringByLinesCases(): array
+    {
         return [
             [
                 [],
@@ -413,30 +426,19 @@ EOF
         ];
     }
 
-    public function testConstructorNull(): void {
-        $this->assertAttributeInstanceOf(
-                UnifiedDiffOutputBuilder::class, 'outputBuilder', new Differ(null)
-        );
-    }
-
-    public function testConstructorString(): void {
-        $this->assertAttributeInstanceOf(
-                UnifiedDiffOutputBuilder::class, 'outputBuilder', new Differ("--- Original\n+++ New\n")
-        );
-    }
-
-    public function testConstructorInvalidArgInt(): void {
+    public function testConstructorInvalidArgInt(): void
+    {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('/^Expected builder to be an instance of DiffOutputBuilderInterface, <null> or a string, got integer "1"\.$/');
 
         new Differ(1);
     }
 
-    public function testConstructorInvalidArgObject(): void {
+    public function testConstructorInvalidArgObject(): void
+    {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp('/^Expected builder to be an instance of DiffOutputBuilderInterface, <null> or a string, got instance of "SplFileInfo"\.$/');
 
         new Differ(new \SplFileInfo(__FILE__));
     }
-
 }

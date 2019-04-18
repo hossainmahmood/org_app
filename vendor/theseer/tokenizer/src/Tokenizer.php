@@ -1,7 +1,4 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
 class Tokenizer {
@@ -44,28 +41,39 @@ class Tokenizer {
 
     public function parse(string $source): TokenCollection {
         $result = new TokenCollection();
+
+        if ($source === '') {
+            return $result;
+        }
+
         $tokens = token_get_all($source);
 
         $lastToken = new Token(
-                $tokens[0][2], 'Placeholder', ''
+            $tokens[0][2],
+            'Placeholder',
+            ''
         );
 
         foreach ($tokens as $pos => $tok) {
             if (is_string($tok)) {
                 $token = new Token(
-                        $lastToken->getLine(), $this->map[$tok], $tok
+                    $lastToken->getLine(),
+                    $this->map[$tok],
+                    $tok
                 );
                 $result->addToken($token);
                 $lastToken = $token;
                 continue;
             }
 
-            $line = $tok[2];
+            $line   = $tok[2];
             $values = preg_split('/\R+/Uu', $tok[1]);
 
             foreach ($values as $v) {
                 $token = new Token(
-                        $line, token_name($tok[0]), $v
+                    $line,
+                    token_name($tok[0]),
+                    $v
                 );
                 $result->addToken($token);
                 $line++;

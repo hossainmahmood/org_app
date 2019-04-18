@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -12,14 +10,15 @@ declare(strict_types = 1);
 
 namespace SebastianBergmann\Diff\Utils;
 
-trait UnifiedDiffAssertTrait {
-
+trait UnifiedDiffAssertTrait
+{
     /**
      * @param string $diff
      *
      * @throws \UnexpectedValueException
      */
-    public function assertValidUnifiedDiffFormat(string $diff): void {
+    public function assertValidUnifiedDiffFormat(string $diff): void
+    {
         if ('' === $diff) {
             $this->addToAssertionCount(1);
 
@@ -33,10 +32,10 @@ trait UnifiedDiffAssertTrait {
             throw new \UnexpectedValueException(\sprintf('Expected diff to end with a line break, got "%s".', $last));
         }
 
-        $lines = \preg_split('/(.*\R)/', $diff, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        $lineCount = \count($lines);
-        $lineNumber = $diffLineFromNumber = $diffLineToNumber = 1;
-        $fromStart = $fromTillOffset = $toStart = $toTillOffset = -1;
+        $lines            = \preg_split('/(.*\R)/', $diff, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $lineCount        = \count($lines);
+        $lineNumber       = $diffLineFromNumber       = $diffLineToNumber       = 1;
+        $fromStart        = $fromTillOffset        = $toStart        = $toTillOffset        = -1;
         $expectHunkHeader = true;
 
         // check for header
@@ -57,7 +56,7 @@ trait UnifiedDiffAssertTrait {
         }
 
         $endOfLineTypes = [];
-        $diffClosed = false;
+        $diffClosed     = false;
 
         // assert format of lines, get all hunks, test the line numbers
         for (; $lineNumber <= $lineCount; ++$lineNumber) {
@@ -92,13 +91,13 @@ trait UnifiedDiffAssertTrait {
                 }
 
                 /* valid states; hunks touches against each other:
-                  $fromStart === $previousHunkFromEnd
-                  $toStart === $previousHunkTillEnd
-                 */
+                    $fromStart === $previousHunkFromEnd
+                    $toStart === $previousHunkTillEnd
+                */
 
                 $diffLineFromNumber = $fromStart;
-                $diffLineToNumber = $toStart;
-                $expectHunkHeader = false;
+                $diffLineToNumber   = $toStart;
+                $expectHunkHeader   = false;
 
                 continue;
             }
@@ -138,18 +137,21 @@ trait UnifiedDiffAssertTrait {
                 }
 
                 $endOfLineTypes[$previousType] = true;
-                $diffClosed = \count($endOfLineTypes) > 1;
+                $diffClosed                    = \count($endOfLineTypes) > 1;
             } else {
                 // internal state error
                 throw new \RuntimeException(\sprintf('Unexpected line type "%s" Line %d.', $type, $lineNumber));
             }
 
-            $expectHunkHeader = $diffLineFromNumber === ($fromStart + $fromTillOffset) && $diffLineToNumber === ($toStart + $toTillOffset)
+            $expectHunkHeader =
+                $diffLineFromNumber === ($fromStart + $fromTillOffset)
+                && $diffLineToNumber === ($toStart + $toTillOffset)
             ;
         }
 
         if (
-                $diffLineFromNumber !== ($fromStart + $fromTillOffset) && $diffLineToNumber !== ($toStart + $toTillOffset)
+            $diffLineFromNumber !== ($fromStart + $fromTillOffset)
+            && $diffLineToNumber !== ($toStart + $toTillOffset)
         ) {
             throw new \UnexpectedValueException(\sprintf('Unexpected EOF, number of lines in hunk "from" (\'-\')) and "to" (\'+\') mismatched. Line %d.', $lineNumber));
         }
@@ -171,7 +173,8 @@ trait UnifiedDiffAssertTrait {
      *
      * @return string '+', '-', '@', ' ' or '\'
      */
-    private function unifiedDiffAssertLinePrefix(string $line, string $message): string {
+    private function unifiedDiffAssertLinePrefix(string $line, string $message): string
+    {
         $this->unifiedDiffAssertStrLength($line, 2, $message); // 2: line type indicator ('+', '-', ' ' or '\') and a line break
         $firstChar = $line[0];
 
@@ -186,7 +189,8 @@ trait UnifiedDiffAssertTrait {
         throw new \UnexpectedValueException(\sprintf('Expected line to start with \'@\', \'-\' or \'+\', got "%s". %s', $line, $message));
     }
 
-    private function unifiedDiffAssertStrLength(string $line, int $min, string $message): void {
+    private function unifiedDiffAssertStrLength(string $line, int $min, string $message): void
+    {
         $length = \strlen($line);
 
         if ($length < $min) {
@@ -205,15 +209,17 @@ trait UnifiedDiffAssertTrait {
      * @param string $start
      * @param string $message
      */
-    private function unifiedDiffAssertHeaderLine(string $line, string $start, string $message): void {
+    private function unifiedDiffAssertHeaderLine(string $line, string $start, string $message): void
+    {
         if (0 !== \strpos($line, $start)) {
             throw new \UnexpectedValueException(\sprintf('Expected header line to start with "%s", got "%s". %s', $start . ' ', $line, $message));
         }
 
         // sample "+++ from1.txt\t2017-08-24 19:51:29.383985722 +0200\n"
         $match = \preg_match(
-                "/^([^\t]*)(?:[\t]([\\S].*[\\S]))?\n$/", \substr($line, 4), // 4 === string length of "+++ " / "--- "
-                $matches
+            "/^([^\t]*)(?:[\t]([\\S].*[\\S]))?\n$/",
+            \substr($line, 4), // 4 === string length of "+++ " / "--- "
+            $matches
         );
 
         if (1 !== $match) {
@@ -227,10 +233,13 @@ trait UnifiedDiffAssertTrait {
         }
     }
 
-    private function unifiedDiffAssertHeaderDate(string $date, string $message): void {
+    private function unifiedDiffAssertHeaderDate(string $date, string $message): void
+    {
         // sample "2017-08-24 19:51:29.383985722 +0200"
         $match = \preg_match(
-                '/^([\d]{4})-([01]?[\d])-([0123]?[\d])(:? [\d]{1,2}:[\d]{1,2}(?::[\d]{1,2}(:?\.[\d]+)?)?(?: ([\+\-][\d]{4}))?)?$/', $date, $matches
+            '/^([\d]{4})-([01]?[\d])-([0123]?[\d])(:? [\d]{1,2}:[\d]{1,2}(?::[\d]{1,2}(:?\.[\d]+)?)?(?: ([\+\-][\d]{4}))?)?$/',
+            $date,
+            $matches
         );
 
         if (1 !== $match || ($matchesCount = \count($matches)) < 4) {
@@ -246,12 +255,15 @@ trait UnifiedDiffAssertTrait {
      *
      * @return int[]
      */
-    private function unifiedDiffAssertHunkHeader(string $line, string $message): array {
+    private function unifiedDiffAssertHunkHeader(string $line, string $message): array
+    {
         if (1 !== \preg_match('#^@@ -([\d]+)((?:,[\d]+)?) \+([\d]+)((?:,[\d]+)?) @@\n$#', $line, $matches)) {
             throw new \UnexpectedValueException(
-            \sprintf(
-                    'Hunk header line does not match expected pattern, got "%s". %s', $line, $message
-            )
+                \sprintf(
+                    'Hunk header line does not match expected pattern, got "%s". %s',
+                    $line,
+                    $message
+                )
             );
         }
 
@@ -262,5 +274,4 @@ trait UnifiedDiffAssertTrait {
             empty($matches[4]) ? 1 : (int) \substr($matches[4], 1),
         ];
     }
-
 }

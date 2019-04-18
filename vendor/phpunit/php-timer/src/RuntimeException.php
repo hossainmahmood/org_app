@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of phpunit/php-timer.
  *
@@ -9,9 +7,8 @@ declare(strict_types = 1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Timer;
 
-final class RuntimeException extends \RuntimeException implements Exception {
-    
+final class RuntimeException extends \RuntimeException implements Exception
+{
 }

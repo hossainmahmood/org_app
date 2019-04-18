@@ -33,19 +33,11 @@ class InputOption
     private $description;
 
     /**
-<<<<<<< HEAD
      * @param string                        $name        The option name
-     * @param string|array                  $shortcut    The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
+     * @param string|array|null             $shortcut    The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
      * @param int|null                      $mode        The option mode: One of the VALUE_* constants
      * @param string                        $description A description text
      * @param string|string[]|int|bool|null $default     The default value (must be null for self::VALUE_NONE)
-=======
-     * @param string                    $name        The option name
-     * @param string|array              $shortcut    The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
-     * @param int|null                  $mode        The option mode: One of the VALUE_* constants
-     * @param string                    $description A description text
-     * @param string|string[]|bool|null $default     The default value (must be null for self::VALUE_NONE)
->>>>>>> origin/master
      *
      * @throws InvalidArgumentException If option mode is invalid or incompatible
      */
@@ -97,7 +89,7 @@ class InputOption
     /**
      * Returns the option shortcut.
      *
-     * @return string The shortcut
+     * @return string|null The shortcut
      */
     public function getShortcut()
     {
@@ -157,11 +149,7 @@ class InputOption
     /**
      * Sets the default value.
      *
-<<<<<<< HEAD
      * @param string|string[]|int|bool|null $default The default value
-=======
-     * @param string|string[]|bool|null $default The default value
->>>>>>> origin/master
      *
      * @throws LogicException When incorrect default value is given
      */
@@ -173,7 +161,7 @@ class InputOption
 
         if ($this->isArray()) {
             if (null === $default) {
-                $default = array();
+                $default = [];
             } elseif (!\is_array($default)) {
                 throw new LogicException('A default value for an array option must be an array.');
             }
@@ -185,11 +173,7 @@ class InputOption
     /**
      * Returns the default value.
      *
-<<<<<<< HEAD
      * @return string|string[]|int|bool|null The default value
-=======
-     * @return string|string[]|bool|null The default value
->>>>>>> origin/master
      */
     public function getDefault()
     {

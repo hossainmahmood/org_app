@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/environment.
  *
@@ -8,40 +7,45 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-declare(strict_types = 1);
-
 namespace SebastianBergmann\Environment;
 
 /**
  * Utility class for HHVM/PHP environment handling.
  */
-final class Runtime {
-
+final class Runtime
+{
     /**
      * @var string
      */
     private static $binary;
 
     /**
-     * Returns true when Xdebug is supported or
+     * Returns true when Xdebug or PCOV is available or
      * the runtime used is PHPDBG.
      */
-    public function canCollectCodeCoverage(): bool {
-        return $this->hasXdebug() || $this->hasPHPDBGCodeCoverage();
+    public function canCollectCodeCoverage(): bool
+    {
+        return $this->hasXdebug() || $this->hasPCOV() || $this->hasPHPDBGCodeCoverage();
     }
 
     /**
-     * Returns true when OPcache is loaded and opcache.save_comments=0 is set.
-     *
-     * Code taken from Doctrine\Common\Annotations\AnnotationReader::__construct().
+     * Returns true when Zend OPcache is loaded, enabled, and is configured to discard comments.
      */
-    public function discardsComments(): bool {
-        if (\extension_loaded('Zend Optimizer+') && (\ini_get('zend_optimizerplus.save_comments') === '0' || \ini_get('opcache.save_comments') === '0')) {
+    public function discardsComments(): bool
+    {
+        if (!\extension_loaded('Zend OPcache')) {
+            return false;
+        }
+
+        if (\ini_get('opcache.save_comments') !== '0') {
+            return false;
+        }
+
+        if (\PHP_SAPI === 'cli' && \ini_get('opcache.enable_cli') === '1') {
             return true;
         }
 
-        if (\extension_loaded('Zend OPcache') && \ini_get('opcache.save_comments') == 0) {
+        if (\PHP_SAPI !== 'cli' && \ini_get('opcache.enable') === '1') {
             return true;
         }
 
@@ -52,34 +56,36 @@ final class Runtime {
      * Returns the path to the binary of the current runtime.
      * Appends ' --php' to the path when the runtime is HHVM.
      */
-    public function getBinary(): string {
+    public function getBinary(): string
+    {
         // HHVM
         if (self::$binary === null && $this->isHHVM()) {
             // @codeCoverageIgnoreStart
             if ((self::$binary = \getenv('PHP_BINARY')) === false) {
-                self::$binary = PHP_BINARY;
+                self::$binary = \PHP_BINARY;
             }
 
             self::$binary = \escapeshellarg(self::$binary) . ' --php' .
-                    ' -d hhvm.php7.all=1';
+                ' -d hhvm.php7.all=1';
             // @codeCoverageIgnoreEnd
         }
 
-        if (self::$binary === null && PHP_BINARY !== '') {
-            self::$binary = \escapeshellarg(PHP_BINARY);
+        if (self::$binary === null && \PHP_BINARY !== '') {
+            self::$binary = \escapeshellarg(\PHP_BINARY);
         }
 
         if (self::$binary === null) {
             // @codeCoverageIgnoreStart
             $possibleBinaryLocations = [
-                PHP_BINDIR . '/php',
-                PHP_BINDIR . '/php-cli.exe',
-                PHP_BINDIR . '/php.exe'
+                \PHP_BINDIR . '/php',
+                \PHP_BINDIR . '/php-cli.exe',
+                \PHP_BINDIR . '/php.exe',
             ];
 
             foreach ($possibleBinaryLocations as $binary) {
                 if (\is_readable($binary)) {
                     self::$binary = \escapeshellarg($binary);
+
                     break;
                 }
             }
@@ -95,11 +101,36 @@ final class Runtime {
         return self::$binary;
     }
 
-    public function getNameWithVersion(): string {
+    public function getNameWithVersion(): string
+    {
         return $this->getName() . ' ' . $this->getVersion();
     }
 
-    public function getName(): string {
+    public function getNameWithVersionAndCodeCoverageDriver(): string
+    {
+        if (!$this->canCollectCodeCoverage() || $this->hasPHPDBGCodeCoverage()) {
+            return $this->getNameWithVersion();
+        }
+
+        if ($this->hasXdebug()) {
+            return \sprintf(
+                '%s with Xdebug %s',
+                $this->getNameWithVersion(),
+                \phpversion('xdebug')
+            );
+        }
+
+        if ($this->hasPCOV()) {
+            return \sprintf(
+                '%s with PCOV %s',
+                $this->getNameWithVersion(),
+                \phpversion('pcov')
+            );
+        }
+    }
+
+    public function getName(): string
+    {
         if ($this->isHHVM()) {
             // @codeCoverageIgnoreStart
             return 'HHVM';
@@ -115,7 +146,8 @@ final class Runtime {
         return 'PHP';
     }
 
-    public function getVendorUrl(): string {
+    public function getVendorUrl(): string
+    {
         if ($this->isHHVM()) {
             // @codeCoverageIgnoreStart
             return 'http://hhvm.com/';
@@ -125,42 +157,47 @@ final class Runtime {
         return 'https://secure.php.net/';
     }
 
-    public function getVersion(): string {
+    public function getVersion(): string
+    {
         if ($this->isHHVM()) {
             // @codeCoverageIgnoreStart
             return HHVM_VERSION;
             // @codeCoverageIgnoreEnd
         }
 
-        return PHP_VERSION;
+        return \PHP_VERSION;
     }
 
     /**
      * Returns true when the runtime used is PHP and Xdebug is loaded.
      */
-    public function hasXdebug(): bool {
+    public function hasXdebug(): bool
+    {
         return ($this->isPHP() || $this->isHHVM()) && \extension_loaded('xdebug');
     }
 
     /**
      * Returns true when the runtime used is HHVM.
      */
-    public function isHHVM(): bool {
+    public function isHHVM(): bool
+    {
         return \defined('HHVM_VERSION');
     }
 
     /**
      * Returns true when the runtime used is PHP without the PHPDBG SAPI.
      */
-    public function isPHP(): bool {
+    public function isPHP(): bool
+    {
         return !$this->isHHVM() && !$this->isPHPDBG();
     }
 
     /**
      * Returns true when the runtime used is PHP with the PHPDBG SAPI.
      */
-    public function isPHPDBG(): bool {
-        return PHP_SAPI === 'phpdbg' && !$this->isHHVM();
+    public function isPHPDBG(): bool
+    {
+        return \PHP_SAPI === 'phpdbg' && !$this->isHHVM();
     }
 
     /**
@@ -169,8 +206,16 @@ final class Runtime {
      *
      * @codeCoverageIgnore
      */
-    public function hasPHPDBGCodeCoverage(): bool {
+    public function hasPHPDBGCodeCoverage(): bool
+    {
         return $this->isPHPDBG();
     }
 
+    /**
+     * Returns true when the runtime used is PHP with PCOV loaded and enabled
+     */
+    public function hasPCOV(): bool
+    {
+        return $this->isPHP() && \extension_loaded('pcov') && \ini_get('pcov.enabled');
+    }
 }

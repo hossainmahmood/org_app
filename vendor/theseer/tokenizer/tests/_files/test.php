@@ -1,11 +1,7 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace foo;
 
 class bar {
-
     const x = 'abc';
 
     /** @var int */
@@ -26,5 +22,4 @@ class bar {
     public function some(bar $b): string {
         return $b->getSomeX() . '-def';
     }
-
 }

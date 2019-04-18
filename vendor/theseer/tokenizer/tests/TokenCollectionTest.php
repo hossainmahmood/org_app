@@ -1,7 +1,4 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
 use PHPUnit\Framework\TestCase;
@@ -35,7 +32,7 @@ class TokenCollectionTest extends TestCase {
         $this->collection->addToken($token);
         $this->collection->addToken($token);
 
-        foreach ($this->collection as $position => $current) {
+        foreach($this->collection as $position => $current) {
             $this->assertInternalType('integer', $position);
             $this->assertSame($token, $current);
         }

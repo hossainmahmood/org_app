@@ -1,7 +1,4 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +10,8 @@ class NamespaceUriTest extends TestCase {
 
     public function testCanBeConstructedWithValidNamespace() {
         $this->assertInstanceOf(
-                NamespaceUri::class, new NamespaceUri('a:b')
+            NamespaceUri::class,
+            new NamespaceUri('a:b')
         );
     }
 
@@ -24,8 +22,8 @@ class NamespaceUriTest extends TestCase {
 
     public function testStringRepresentationCanBeRetrieved() {
         $this->assertEquals(
-                'a:b', (new NamespaceUri('a:b'))->asString()
+            'a:b',
+            (new NamespaceUri('a:b'))->asString()
         );
     }
-
 }

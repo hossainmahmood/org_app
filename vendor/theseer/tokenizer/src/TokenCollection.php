@@ -1,7 +1,4 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
 class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
@@ -85,7 +82,7 @@ class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
     public function offsetGet($offset): Token {
         if (!$this->offsetExists($offset)) {
             throw new TokenCollectionException(
-            sprintf('No Token at offest %s', $offset)
+                sprintf('No Token at offest %s', $offset)
             );
         }
 
@@ -102,17 +99,20 @@ class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
         if (!is_int($offset)) {
             $type = gettype($offset);
             throw new TokenCollectionException(
-            sprintf(
-                    'Offset must be of type integer, %s given', $type === 'object' ? get_class($value) : $type
-            )
+                sprintf(
+                    'Offset must be of type integer, %s given',
+                    $type === 'object' ? get_class($value) : $type
+                )
             );
         }
         if (!$value instanceof Token) {
             $type = gettype($value);
             throw new TokenCollectionException(
-            sprintf(
-                    'Value must be of type %s, %s given', Token::class, $type === 'object' ? get_class($value) : $type
-            )
+                sprintf(
+                    'Value must be of type %s, %s given',
+                    Token::class,
+                    $type === 'object' ? get_class($value) : $type
+                )
             );
         }
         $this->tokens[$offset] = $value;

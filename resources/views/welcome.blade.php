@@ -1,98 +1,128 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <title>Laravrl_BootStrap_Theme</title>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <title>Org</title>
-   
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
         <style>
-            html, body {
-                background: url("../images/background.jpg");
-                background-color: #EDEFF2;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+            .container{
+                padding: 80px 120px;
             }
 
-            .full-height {
-                height: 100vh;
+            .person {
+                border: 10px solid transparent;
+                margin-bottom: 25px;
+                width: 80%;
+                height: 80%;
+                opacity: 0.7;
+            }
+            .person:hover {
+                border-color: #f1f1f1;
             }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
+            .carousel-inner img {
+                -webkit-filter: grayscale(90%);
+                filter: grayscale(90%); /* make all photos black and white */
+                width: 100%; /* Set width to 100% */
+                margin: auto;
             }
 
-            .position-ref {
-                position: relative;
+            .carousel-caption h3 {
+                color: #fff !important;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
+            @media (max-width: 600px) {
+                .carousel-caption {
+                    display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+                }
             }
         </style>
     </head>
     <body>
-         
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-            <div class="top-right links">
-                @auth
-                <a href="{{ url('/home') }}">Home</a>
-                @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
-                @endauth
-            </div>
-            @endif
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    <h3> United We Fly</h3>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="../images/ny.jpg" alt="New York" width="1368" height="700">
+
+                    <div class="carousel-caption">
+                        <h3>New York</h3>
+                        <p>The atmosphere in New York is lorem ipsum.</p>
+                    </div>      
                 </div>
-<!--
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>-->
-            </div
+
+                <div class="item">
+                    <img src="../images/chicago.jpg" alt="Chicago" width="1368" height="700">
+                    <div class="carousel-caption">
+                        <h3>Chicago</h3>
+                        <p>Thank you, Chicago - A night we won't forget.</p>
+                    </div>      
+                </div>
+
+                <div class="item">
+                    <img src="../images/la.jpg" alt="Los Angeles" width="1368" height="700">
+                    <div class="carousel-caption">
+                        <h3>LA</h3>
+                        <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
+                    </div>      
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-      
+
+        <div class="container text-center">
+            <h3>THE BAND</h3>
+            <p>We love music!</p>
+            <p>We have created a fictional band website. Lorem ipsum..</p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><strong>Name</strong></p><br>
+                    <a href="#demo" data-toggle="collapse">
+                        <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
+                    </a>
+                    <div id="demo" class="collapse">
+                        <p>Guitarist and Lead Vocalist</p>
+                        <p>Loves long walks on the beach</p>
+                        <p>Member since 1988</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p><strong>Name</strong></p><br>
+                    <a href="#demo2" data-toggle="collapse">
+                        <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
+                    </a>
+                    <div id="demo2" class="collapse">
+                        <p>Drummer</p>
+                        <p>Loves drummin'</p>
+                        <p>Member since 1988</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p><strong>Name</strong></p><br>
+                    <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
+                </div>      
+            </div>
+        </div>
+
     </body>
 </html>

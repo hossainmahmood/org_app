@@ -5,8 +5,8 @@ namespace Cron;
 /**
  * Abstract CRON expression field
  */
-abstract class AbstractField implements FieldInterface {
-
+abstract class AbstractField implements FieldInterface
+{
     /**
      * Full range of values that are allowed for this field type
      * @var array
@@ -31,7 +31,11 @@ abstract class AbstractField implements FieldInterface {
      */
     protected $rangeEnd;
 
-    public function __construct() {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
         $this->fullRange = range($this->rangeStart, $this->rangeEnd);
     }
 
@@ -43,7 +47,8 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return bool
      */
-    public function isSatisfied($dateValue, $value) {
+    public function isSatisfied($dateValue, $value)
+    {
         if ($this->isIncrementsOfRanges($value)) {
             return $this->isInIncrementsOfRanges($dateValue, $value);
         } elseif ($this->isRange($value)) {
@@ -60,7 +65,8 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return bool
      */
-    public function isRange($value) {
+    public function isRange($value)
+    {
         return strpos($value, '-') !== false;
     }
 
@@ -71,7 +77,8 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return bool
      */
-    public function isIncrementsOfRanges($value) {
+    public function isIncrementsOfRanges($value)
+    {
         return strpos($value, '/') !== false;
     }
 
@@ -83,12 +90,14 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return bool
      */
-    public function isInRange($dateValue, $value) {
+    public function isInRange($dateValue, $value)
+    {
         $parts = array_map(function($value) {
-            $value = trim($value);
-            $value = $this->convertLiterals($value);
-            return $value;
-        }, explode('-', $value, 2)
+                $value = trim($value);
+                $value = $this->convertLiterals($value);
+                return $value;
+            },
+            explode('-', $value, 2)
         );
 
 
@@ -103,7 +112,8 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return bool
      */
-    public function isInIncrementsOfRanges($dateValue, $value) {
+    public function isInIncrementsOfRanges($dateValue, $value)
+    {
         $chunks = array_map('trim', explode('/', $value, 2));
         $range = $chunks[0];
         $step = isset($chunks[1]) ? $chunks[1] : 0;
@@ -149,7 +159,8 @@ abstract class AbstractField implements FieldInterface {
      *
      * @return array
      */
-    public function getRangeForExpression($expression, $max) {
+    public function getRangeForExpression($expression, $max)
+    {
         $values = array();
         $expression = $this->convertLiterals($expression);
 
@@ -169,7 +180,8 @@ abstract class AbstractField implements FieldInterface {
                 $offset = $this->convertLiterals($offset);
                 $to = $this->convertLiterals($to);
                 $stepSize = 1;
-            } else {
+            }
+            else {
                 $range = array_map('trim', explode('/', $expression, 2));
                 $stepSize = isset($range[1]) ? $range[1] : 0;
                 $range = $range[0];
@@ -182,22 +194,30 @@ abstract class AbstractField implements FieldInterface {
                 $values = [$this->fullRange[$stepSize % count($this->fullRange)]];
             } else {
                 for ($i = $offset; $i <= $to; $i += $stepSize) {
-                    $values[] = (int) $i;
+                    $values[] = (int)$i;
                 }
             }
             sort($values);
-        } else {
+        }
+        else {
             $values = array($expression);
         }
 
         return $values;
     }
 
-    protected function convertLiterals($value) {
+    /**
+     * Convert literal
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function convertLiterals($value)
+    {
         if (count($this->literals)) {
             $key = array_search($value, $this->literals);
             if ($key !== false) {
-                return $key;
+                return (string) $key;
             }
         }
 
@@ -210,7 +230,8 @@ abstract class AbstractField implements FieldInterface {
      * @param string $value
      * @return bool
      */
-    public function validate($value) {
+    public function validate($value)
+    {
         $value = $this->convertLiterals($value);
 
         // All fields allow * as a valid value
@@ -262,5 +283,4 @@ abstract class AbstractField implements FieldInterface {
 
         return in_array($value, $this->fullRange, true);
     }
-
 }

@@ -4,17 +4,19 @@ namespace Cron\Tests;
 
 use Cron\MonthField;
 use DateTime;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
-class MonthFieldTest extends TestCase {
-
+class MonthFieldTest extends TestCase
+{
     /**
      * @covers \Cron\MonthField::validate
      */
-    public function testValidatesField() {
+    public function testValidatesField()
+    {
         $f = new MonthField();
         $this->assertTrue($f->validate('12'));
         $this->assertTrue($f->validate('*'));
@@ -23,9 +25,20 @@ class MonthFieldTest extends TestCase {
     }
 
     /**
+     * @covers \Cron\MonthField::isSatisfiedBy
+     */
+    public function testChecksIfSatisfied()
+    {
+        $f = new MonthField();
+        $this->assertTrue($f->isSatisfiedBy(new DateTime(), '?'));
+        $this->assertTrue($f->isSatisfiedBy(new DateTimeImmutable(), '?'));
+    }
+
+    /**
      * @covers \Cron\MonthField::increment
      */
-    public function testIncrementsDate() {
+    public function testIncrementsDate()
+    {
         $d = new DateTime('2011-03-15 11:15:00');
         $f = new MonthField();
         $f->increment($d);
@@ -39,7 +52,19 @@ class MonthFieldTest extends TestCase {
     /**
      * @covers \Cron\MonthField::increment
      */
-    public function testIncrementsDateWithThirtyMinuteTimezone() {
+    public function testIncrementsDateTimeImmutable()
+    {
+        $d = new DateTimeImmutable('2011-03-15 11:15:00');
+        $f = new MonthField();
+        $f->increment($d);
+        $this->assertSame('2011-04-01 00:00:00', $d->format('Y-m-d H:i:s'));
+    }
+
+    /**
+     * @covers \Cron\MonthField::increment
+     */
+    public function testIncrementsDateWithThirtyMinuteTimezone()
+    {
         $tz = date_default_timezone_get();
         date_default_timezone_set('America/St_Johns');
         $d = new DateTime('2011-03-31 11:59:59');
@@ -53,10 +78,12 @@ class MonthFieldTest extends TestCase {
         date_default_timezone_set($tz);
     }
 
+
     /**
      * @covers \Cron\MonthField::increment
      */
-    public function testIncrementsYearAsNeeded() {
+    public function testIncrementsYearAsNeeded()
+    {
         $f = new MonthField();
         $d = new DateTime('2011-12-15 00:00:00');
         $f->increment($d);
@@ -66,11 +93,11 @@ class MonthFieldTest extends TestCase {
     /**
      * @covers \Cron\MonthField::increment
      */
-    public function testDecrementsYearAsNeeded() {
+    public function testDecrementsYearAsNeeded()
+    {
         $f = new MonthField();
         $d = new DateTime('2011-01-15 00:00:00');
         $f->increment($d, true);
         $this->assertSame('2010-12-31 23:59:00', $d->format('Y-m-d H:i:s'));
     }
-
 }

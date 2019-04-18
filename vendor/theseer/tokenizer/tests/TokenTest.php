@@ -1,7 +1,4 @@
-<?php
-
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
 use PHPUnit\Framework\TestCase;
@@ -12,7 +9,7 @@ class TokenTest extends TestCase {
     private $token;
 
     protected function setUp() {
-        $this->token = new Token(1, 'test-dummy', 'blank');
+        $this->token = new Token(1,'test-dummy', 'blank');
     }
 
     public function testTokenCanBeCreated() {

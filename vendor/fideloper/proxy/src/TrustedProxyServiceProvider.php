@@ -6,15 +6,16 @@ use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 
-class TrustedProxyServiceProvider extends ServiceProvider {
-
+class TrustedProxyServiceProvider extends ServiceProvider
+{
     /**
      * Boot the service provider.
      *
      * @return void
      */
-    public function boot() {
-        $source = realpath($raw = __DIR__ . '/../config/trustedproxy.php') ?: $raw;
+    public function boot()
+    {
+        $source = realpath($raw = __DIR__.'/../config/trustedproxy.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('trustedproxy.php')]);
@@ -23,7 +24,7 @@ class TrustedProxyServiceProvider extends ServiceProvider {
         }
 
 
-        if ($this->app instanceof LaravelApplication && !$this->app->configurationIsCached()) {
+        if ($this->app instanceof LaravelApplication && ! $this->app->configurationIsCached()) {
             $this->mergeConfigFrom($source, 'trustedproxy');
         }
     }
@@ -33,8 +34,8 @@ class TrustedProxyServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         //
     }
-
 }

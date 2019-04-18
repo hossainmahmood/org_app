@@ -4,6 +4,6 @@ namespace DeepCopy\Exception;
 
 use UnexpectedValueException;
 
-class CloneException extends UnexpectedValueException {
-    
-}
+class CloneException extends UnexpectedValueException
+{
+} 

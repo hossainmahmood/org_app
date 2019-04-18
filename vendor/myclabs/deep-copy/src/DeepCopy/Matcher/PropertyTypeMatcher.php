@@ -13,8 +13,8 @@ use ReflectionException;
  *
  * @final
  */
-class PropertyTypeMatcher implements Matcher {
-
+class PropertyTypeMatcher implements Matcher
+{
     /**
      * @var string
      */
@@ -23,14 +23,16 @@ class PropertyTypeMatcher implements Matcher {
     /**
      * @param string $propertyType Property type
      */
-    public function __construct($propertyType) {
+    public function __construct($propertyType)
+    {
         $this->propertyType = $propertyType;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function matches($object, $property) {
+    public function matches($object, $property)
+    {
         try {
             $reflectionProperty = ReflectionHelper::getProperty($object, $property);
         } catch (ReflectionException $exception) {
@@ -41,5 +43,4 @@ class PropertyTypeMatcher implements Matcher {
 
         return $reflectionProperty->getValue($object) instanceof $this->propertyType;
     }
-
 }

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/diff.
  *
@@ -12,14 +10,15 @@ declare(strict_types = 1);
 
 namespace SebastianBergmann\Diff;
 
-final class MemoryEfficientLongestCommonSubsequenceCalculator implements LongestCommonSubsequenceCalculator {
-
+final class MemoryEfficientLongestCommonSubsequenceCalculator implements LongestCommonSubsequenceCalculator
+{
     /**
      * {@inheritdoc}
      */
-    public function calculate(array $from, array $to): array {
+    public function calculate(array $from, array $to): array
+    {
         $cFrom = \count($from);
-        $cTo = \count($to);
+        $cTo   = \count($to);
 
         if ($cFrom === 0) {
             return [];
@@ -33,35 +32,37 @@ final class MemoryEfficientLongestCommonSubsequenceCalculator implements Longest
             return [];
         }
 
-        $i = (int) ($cFrom / 2);
+        $i         = (int) ($cFrom / 2);
         $fromStart = \array_slice($from, 0, $i);
-        $fromEnd = \array_slice($from, $i);
-        $llB = $this->length($fromStart, $to);
-        $llE = $this->length(\array_reverse($fromEnd), \array_reverse($to));
-        $jMax = 0;
-        $max = 0;
+        $fromEnd   = \array_slice($from, $i);
+        $llB       = $this->length($fromStart, $to);
+        $llE       = $this->length(\array_reverse($fromEnd), \array_reverse($to));
+        $jMax      = 0;
+        $max       = 0;
 
         for ($j = 0; $j <= $cTo; $j++) {
             $m = $llB[$j] + $llE[$cTo - $j];
 
             if ($m >= $max) {
-                $max = $m;
+                $max  = $m;
                 $jMax = $j;
             }
         }
 
         $toStart = \array_slice($to, 0, $jMax);
-        $toEnd = \array_slice($to, $jMax);
+        $toEnd   = \array_slice($to, $jMax);
 
         return \array_merge(
-                $this->calculate($fromStart, $toStart), $this->calculate($fromEnd, $toEnd)
+            $this->calculate($fromStart, $toStart),
+            $this->calculate($fromEnd, $toEnd)
         );
     }
 
-    private function length(array $from, array $to): array {
+    private function length(array $from, array $to): array
+    {
         $current = \array_fill(0, \count($to) + 1, 0);
-        $cFrom = \count($from);
-        $cTo = \count($to);
+        $cFrom   = \count($from);
+        $cTo     = \count($to);
 
         for ($i = 0; $i < $cFrom; $i++) {
             $prev = $current;
@@ -77,5 +78,4 @@ final class MemoryEfficientLongestCommonSubsequenceCalculator implements Longest
 
         return $current;
     }
-
 }

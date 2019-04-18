@@ -4,17 +4,19 @@ namespace Cron\Tests;
 
 use Cron\DayOfMonthField;
 use DateTime;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
-class DayOfMonthFieldTest extends TestCase {
-
+class DayOfMonthFieldTest extends TestCase
+{
     /**
      * @covers \Cron\DayOfMonthField::validate
      */
-    public function testValidatesField() {
+    public function testValidatesField()
+    {
         $f = new DayOfMonthField();
         $this->assertTrue($f->validate('1'));
         $this->assertTrue($f->validate('*'));
@@ -28,15 +30,18 @@ class DayOfMonthFieldTest extends TestCase {
     /**
      * @covers \Cron\DayOfMonthField::isSatisfiedBy
      */
-    public function testChecksIfSatisfied() {
+    public function testChecksIfSatisfied()
+    {
         $f = new DayOfMonthField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '?'));
+        $this->assertTrue($f->isSatisfiedBy(new DateTimeImmutable(), '?'));
     }
 
     /**
      * @covers \Cron\DayOfMonthField::increment
      */
-    public function testIncrementsDate() {
+    public function testIncrementsDate()
+    {
         $d = new DateTime('2011-03-15 11:15:00');
         $f = new DayOfMonthField();
         $f->increment($d);
@@ -48,14 +53,25 @@ class DayOfMonthFieldTest extends TestCase {
     }
 
     /**
+     * @covers \Cron\DayOfMonthField::increment
+     */
+    public function testIncrementsDateTimeImmutable()
+    {
+        $d = new DateTimeImmutable('2011-03-15 11:15:00');
+        $f = new DayOfMonthField();
+        $f->increment($d);
+        $this->assertSame('2011-03-16 00:00:00', $d->format('Y-m-d H:i:s'));
+    }
+
+    /**
      * Day of the month cannot accept a 0 value, it must be between 1 and 31
      * See Github issue #120
      *
      * @since 2017-01-22
      */
-    public function testDoesNotAccept0Date() {
+    public function testDoesNotAccept0Date()
+    {
         $f = new DayOfMonthField();
         $this->assertFalse($f->validate(0));
     }
-
 }
