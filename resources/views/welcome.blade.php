@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Laravrl_BootStrap_Theme</title>
+        <title>IT Home</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="{{ asset('css/footercss.css') }}" rel="stylesheet" />
 
         <style>
-            .container{
-                padding: 80px 120px;
+            body {
+                position: relative; 
+            }
+            .navbar {
+                margin-bottom: 0px;
             }
 
             .person {
@@ -40,9 +44,53 @@
                     display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
                 }
             }
+
+            #section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
+            #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
+            #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+            #section41 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
+            #section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+
         </style>
     </head>
     <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">IT Home</a>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="myNavbar" >
+                        <ul class="nav navbar-nav">
+                            <li><a href="#section1">Home</a></li>
+                            <li><a href="#section2">Tutors</a></li>
+                            <li><a href="#section3">Sections</a></li>
+                            <li><a href="#section4">Tutorials</a></li>
+                            <li><a href="#section5">Tests</a></li>
+                            <li><a href="#section6">Exercise</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#section41">Section 4-1</a></li>
+                                    <li><a href="#section42">Section 4-2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>       
+
+
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -124,5 +172,45 @@
             </div>
         </div>
 
+        <footer>
+            <div class="footer" id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                            <h3> About </h3>
+                            <ul>
+                                <li> <a href="#"> Our Company </a> </li>
+                                <li> <a href="#"> About Us </a> </li>
+                                <li> <a href="#"> Terms of Services </a> </li>
+                                <li> <a href="#"> Our Team </a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                            <h3> Contact </h3>
+                            <ul>
+                                <li> <a href="#"> Contact Marketing </a> </li>
+                                <li> <a href="#"> Contact Sales </a> </li>
+                                <li> <a href="#"> Contact HR </a> </li>
+                                <li> <a href="#"> Contact Admin </a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                            <h3> Subscribe </h3>
+                            <ul>
+                                <li>
+                                    <div class="input-append subscribe-btn text-center">
+                                        <input type="text" class="full text-center" placeholder="Email ">
+                                        <button class="btn  btn-success" type="button"> Subscribe <i class="fa fa-save"> </i> </button>
+                                    </div>
+                                </li>
+                            </ul>                         
+
+                        </div>
+                    </div>
+                    <!--/.row--> 
+                </div>
+                <!--/.container--> 
+            </div>
+        </footer>
     </body>
 </html>

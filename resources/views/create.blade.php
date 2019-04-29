@@ -1,9 +1,9 @@
 @extends('layouts.app')
+@section('title', 'Create Passport')
 
 @section('content')
 
-        <div class="container">
-            <h2>Passport Appointment System</h2><br/>
+<h3> Create Passport</h3>
             <form method="post" action="{{url('passports')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
@@ -59,10 +59,13 @@
                     </div>
                 </div>
             </form>
-        </div>
+        
 @endsection
 
 <script type="text/javascript">
+    
+   
+    
 $('#datepicker').datepicker({
     autoclose: true,
     format: 'dd-mm-yyyy'
