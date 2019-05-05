@@ -9,7 +9,8 @@
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />  
         <link href="{{ asset('css/footercss.css') }}" rel="stylesheet" />
-        <link href="{{ asset('css/navigationcustom.css') }}" rel="stylesheet" />        
+        <link href="{{ asset('css/navigationcustom.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"  >        
         <title>@yield('title')</title>
     </head>
 
@@ -45,8 +46,8 @@
                         <ul class="nav navbar-nav navbar-right">
 
                             @guest
-                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="{{ route('register') }}"><span class="fa fa-user"></span> Sign Up</a></li>
+                            <li><a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span> Login</a></li>
                             @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
