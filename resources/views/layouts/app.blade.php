@@ -4,34 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width ini, initial-scale=1">        
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>     
+        <script src="{{ asset('js/app.js') }}" ></script>  
+        <script src="{{ asset('js/jquery.min.js') }}" ></script> 
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />  
         <link href="{{ asset('css/footercss.css') }}" rel="stylesheet" />
-        <link href="{{ asset('css/navigationcustom.css') }}" rel="stylesheet" /> 
-        
+        <link href="{{ asset('css/navigationcustom.css') }}" rel="stylesheet" />        
         <title>@yield('title')</title>
-
-        <style> 
-
-            .footer {
-/*                bottom: -100px;*/
-                width: 100%;
-                /*background: navbar-inverse;*/
-                background: #222;
-                border-color: #080808;
-
-            }
-
-        </style>
-
-
     </head>
 
     <body>
    
-        <nav class="navbar navbar-inverse" >
+        <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -39,16 +23,16 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>                        
                         </button>
-                        <a class="navbar-brand" href="#">IT Home</a>
+                        <a class="navbar-brand" href="{{ route('home') }}">IT Home</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="myNavbar" >
                         <ul class="nav navbar-nav">
-                            <li><a href="#section1">Home</a></li>
-                            <li><a href="#section2">Tutors</a></li>
-                            <li><a href="#section3">Sections</a></li>
-                            <li><a href="#section4">Tutorials</a></li>
-                            <li><a href="#section5">Tests</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="#section2">Instructors</a></li>
+                            <li><a href="#section3">Subjects</a></li>
+                            <li><a href="#section4">Exams</a></li>
+                            <li><a href="#section5">Batches</a></li>
                             <li><a href="#section6">Exercise</a></li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -59,8 +43,29 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
+
+                            @guest
                             <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest                            
                         </ul>
                     </div>                
                 </div>
@@ -68,6 +73,7 @@
  
 
         <div style="margin-top:0px; min-height: 90vh">
+          
             @yield('content')
         </div>
 

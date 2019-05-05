@@ -1,6 +1,8 @@
+
 .full {
     width: 100%;	
 }
+
 
 .footer {
 	height: auto;
@@ -10,7 +12,8 @@
     color:#fff;
 	border-bottom: 1px solid #CCCCCC;
 	border-top: 1px solid #DDDDDD;
-    background: #00003E; 
+    background: #222;
+    border-color: #080808;
     background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
     background: linear-gradient(to right, #31BDE6, #00003E);     
 }
