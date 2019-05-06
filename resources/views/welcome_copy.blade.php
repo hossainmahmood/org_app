@@ -83,7 +83,7 @@
                 <div class="title m-b-md">
                     <h3></h3>
                 </div>             
-            </div
+            </div>
         </div>
       
     </body>
