@@ -9,19 +9,19 @@
 	padding-bottom: 10px;
 	position: relative;
 	width: 100%;
-    color:#fff;
+        color:#fff;
 	border-bottom: 1px solid #CCCCCC;
-	border-top: 1px solid #DDDDDD;
-    background: #222;
-    border-color: #080808;
-    background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
-    background: linear-gradient(to right, #31BDE6, #00003E);     
+	border-top: 1px solid #2c3e50;
+        background: #222;
+        border-color: #2c3e50;
+        background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
+        background: linear-gradient(to right, #31BDE6, #00003E);     
 }
 
 
 .footer h3 {
 	border-bottom: 1px solid #BAC1C8;
-    color:#fff;
+        color:#fff;
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 27px;

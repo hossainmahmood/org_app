@@ -8,21 +8,26 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'IT Home') }}</title>
+        <!-- <title>{{ config('app.name', 'IT Home') }}</title>-->
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
         <!-- Styles -->
+        <link href="{{ asset('css/navigationcustom.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>@yield('title')</title>
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <nav class="navbar  navbar-inverse navbar-laravel">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'IT Home') }}

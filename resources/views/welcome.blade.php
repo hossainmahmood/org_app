@@ -34,85 +34,129 @@
 
 @section('content')
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+<div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="../images/ny.jpg" alt="New York" width="1200" height="700">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">                                
+                                <img src="../images/chicago.jpg" alt=""/>
+                                <div class="carousel-caption">
+                                    <h3>Sell $</h3>
+                                    <p>Money Money.</p>
+                                </div>      
+                            </div>
 
-            <div class="carousel-caption">
-                <h3>New York</h3>
-                <p>The atmosphere in New York is lorem ipsum.</p>
-            </div>      
-        </div>
+                            <div class="item">
+                                <img src="../images/la.jpg" alt=""/>
+                                <div class="carousel-caption">
+                                    <h3>More Sell $</h3>
+                                    <p>Lorem ipsum...</p>
+                                </div>      
+                            </div>
+                            <div class="item">
+                                <img src="../images/background.jpg" alt=""/>
+                                <div class="carousel-caption">
+                                    <h3>More Sell $</h3>
+                                    <p>Lorem ipsum...</p>
+                                </div>      
+                            </div>
+                        </div>
 
-        <div class="item">
-            <img src="../images/chicago.jpg" alt="Chicago" width="1200" height="700">
-            <div class="carousel-caption">
-                <h3>Chicago</h3>
-                <p>Thank you, Chicago - A night we won't forget.</p>
-            </div>      
-        </div>
-
-        <div class="item">
-            <img src="../images/la.jpg" alt="Los Angeles" width="1200" height="700">
-            <div class="carousel-caption">
-                <h3>LA</h3>
-                <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
-            </div>      
-        </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    </div>
-
-<div class="text-center">
-    <h3>THE BAND</h3>
-    <p>We love music!</p>
-    <p>We have created a fictional band website. Lorem ipsum..</p>
-    <div class="row">
-        <div class="col-sm-4">
-            <p><strong>Name</strong></p><br>
-            <a href="#demo" data-toggle="collapse">
-                <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
-            </a>
-            <div id="demo" class="collapse">
-                <p>Guitarist and Lead Vocalist</p>
-                <p>Loves long walks on the beach</p>
-                <p>Member since 1988</p>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="well">
+                        <p>Empirical IT School</p>
+                    </div>
+                    <div class="well">
+                        <p>Next Batch Starting Soon</p>
+                    </div>
+                    <div class="well">
+                        <p>You are invited to visit our Empirical IT School</p>
+                    </div>
+                </div>
             </div>
+            <hr>
         </div>
-        <div class="col-sm-4">
-            <p><strong>Name</strong></p><br>
-            <a href="#demo2" data-toggle="collapse">
-                <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
-            </a>
-            <div id="demo2" class="collapse">
-                <p>Drummer</p>
-                <p>Loves drummin'</p>
-                <p>Member since 1988</p>
+
+        <div class="container text-center">    
+            <h3>What We Do</h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Current Project</p>
+                </div>
+                <div class="col-sm-3"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Project 2</p>    
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <p>Some text..</p>
+                    </div>
+                    <div class="well">
+                        <p>Some text..</p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <p>Some text..</p>
+                    </div>
+                    <div class="well">
+                        <p>Some text..</p>
+                    </div>
+                </div>  
             </div>
+            <hr>
         </div>
-        <div class="col-sm-4">
-            <p><strong>Name</strong></p><br>
-            <img class="img-circle person" src="../images/bandmember.jpg" alt="Random Name" width="255" height="255"/>
-        </div>      
-    </div>
-</div>
+
+        <div class="container text-center">    
+            <h3>Our Partners</h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 1</p>
+                </div>
+                <div class="col-sm-2"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 2</p>    
+                </div>
+                <div class="col-sm-2"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 3</p>
+                </div>
+                <div class="col-sm-2"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 4</p>
+                </div> 
+                <div class="col-sm-2"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 5</p>
+                </div>     
+                <div class="col-sm-2"> 
+                    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                    <p>Partner 6</p>
+                </div> 
+            </div>
+        </div><br>
 @endsection

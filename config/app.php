@@ -12,7 +12,7 @@ return [
       |
      */
 
-    'name' => env('APP_NAME', 'JBL IT Forum'),
+    'name' => env('APP_NAME', 'IT School'),
     /*
       |--------------------------------------------------------------------------
       | Application Environment
