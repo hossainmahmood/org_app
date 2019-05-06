@@ -32,11 +32,17 @@
     </head>
     <body>
 
-        <div class="container-fluid">
-            <br>
-            <h3>Sticky Navbar</h3>
-            <p>A sticky navigation bar stays fixed at the top of the page when you scroll past it.</p>
-            <p>Scroll this page to see the effect. <strong>Note:</strong> sticky-top does not work in IE11 and earlier.</p>
+        <div class="container-fluid" style="position: relative;">            
+            <h3>Empirical IT School.</h3>  
+            <div class="list-group list-group-horizontal" style="position: absolute; top: 5px; right: 7px;">
+
+
+                @guest
+                <a href="{{ route('register') }}"><span class="fa fa-user"></span> Sign Up</a>
+                <a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span>&nbsp;&nbsp;Login</a>
+                @endguest 
+
+            </div>
         </div>
 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
@@ -48,16 +54,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav justify-content-end">
-                @guest
-                <li class="nav-item"><a href="{{ route('register') }}"><span class="fa fa-user"></span> Sign Up</a></li>
-                <li class="nav-item"><a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span> Login</a></li>
-                @endguest  
-            </ul>
+            </ul>            
         </nav>
 
-        <div class="container">@yield('content')</div>
+        <div class="container" style="margin-top:0px; min-height: 90vh">
+            @yield('content')
+        </div>
 
 
 
