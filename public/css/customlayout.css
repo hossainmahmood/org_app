@@ -1,0 +1,44 @@
+/*CSS for navigation*/
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 0;
+    border-bottom-color: red;        
+}
+
+/* Add a gray background color and some padding to the footer */
+.footer {
+    background-color: #303030;
+    padding: 25px;
+    color: #CCCCCC;
+
+}
+nav{
+     font-family: "Times New Roman", Times, serif;
+     font-size: 16px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none; 
+    }
+}
+
+
+/*Sticky top CSS*/
+.w3-tangerine {
+    font-family: "Tangerine", serif; 
+}
+/*            .w3-xxlarge{  
+                font-weight: lighter; 
+                
+            }*/
+
+.name{
+    margin-bottom: 0px;
+    font-size:2.5vw;
+}
+.loginlogout{
+    font-family: "Times New Roman", Times, serif;
+}
+/*Sticky top CSS END*/

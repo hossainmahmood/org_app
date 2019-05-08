@@ -9,31 +9,20 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/> 
-
-        <style>
-            /* Add a gray background color and some padding to the footer */
-            footer {
-                background-color: #f2f2f2;
-                padding: 25px;
-            }
-
-            /* Hide the carousel text when the screen is less than 600 pixels wide */
-            @media (max-width: 600px) {
-                .carousel-caption {
-                    display: none; 
-                }
-            }
-        </style>
+        <link href="../css/customlayout.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     </head>
     <body>
 
         <div class="container-fluid" style="position: relative;">            
-            <h2>Empirical IT School.</h2>  
+            <p class="w3-tangerine name">Empirical IT Academy</p>  
 
-            <div class="list-group list-group-horizontal" style="position: absolute; top: 5px; right: 7px;">
+            <div class="list-group list-group-horizontal loginlogout" style="position: absolute; top: 5px; right: 7px;">
                 @guest
-                <a href="{{ route('register') }}"><span class="fa fa-user"></span> Sign Up&nbsp;&nbsp;</a>
-                <a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span>Login</a>
+                <p class="loginlogout"> Existing User? </p>&nbsp;&nbsp;
+                <a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span>Login&nbsp;&nbsp;</a>
+                <a href="{{ route('register') }}" ><span class="fa fa-user"></span> Sign Up</a>             
 
                 @else
                 <ul class="list-group list-group-flush" >
@@ -60,26 +49,35 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top" style="border-bottom: 2px solid background;">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top" style="border-bottom: 2px solid background;">
             <a class="navbar-brand" href="{{ url('/') }}">Logo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section2">Instructors</a></li>
+                <li class="nav-item"><a class="nav-link"href="#section3">Subjects</a></li>
+                <li class="nav-item"><a class="nav-link"href="#section4">Exams</a></li>
+                <li class="nav-item"><a class="nav-link"href="#section5">Batches</a></li>
+                <li class="nav-item"><a class="nav-link"href="#section6">Exercise</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#section41">Section 4-1</a></li>
+                        <li><a href="#section42">Section 4-2</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>            
+            </ul>  
+               </div>
         </nav>
         <hr style="margin-top: 0px;">
-       
+
         <div class="container-fluid" style="min-height: 90vh">
             @yield('content')
         </div>
-
-
-
-        <footer class="container-fluid text-center">
+        
+        <footer class="container-fluid text-center footer">
             <p>Footer Text</p>
         </footer>
 
