@@ -1,4 +1,4 @@
-@section(footer)
+@section('footer')
 <footer>
     <div class="footer" id="footer">
         <div class="container">

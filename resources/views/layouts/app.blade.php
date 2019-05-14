@@ -13,60 +13,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/> 
         <link href="{{ asset('css/customlayout.css') }}" rel="stylesheet">
 
-        <!--<link href="../css/customlayout.css" rel="stylesheet" type="text/css"/>-->
-
-
     </head>
-    <body>        
-        <!--        <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <p class="w3-tangerine w3-xxlarge">Empirical IT Academy</p>
-                        </div>                
-                    </div>
-                </div>-->
-
-
-        <!--            <div class="row my-2">
-                        <div class="col-lg-4 col-12">
-                             <p class="w3-xxlarge">Empirical IT Academy</p> 
-                        </div>
-                        
-                        <div class="col-lg-4 col-12"></div>
-                        
-                        <div class="col-lg-4 col-12">
-                                <div class="list-group list-group-horizontal loginlogout" style="position: absolute; top: 5px; right: 7px;">
-                                @guest
-                                <p class="loginlogout"> Existing User? </p> &nbsp;&nbsp;
-                                <a href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span>Login&nbsp;&nbsp;</a>
-                                <a href="{{ route('register') }}" ><span class="fa fa-user"></span> Sign Up</a>             
-        
-                                @else
-                                <ul class="list-group list-group-flush" >
-                                     Small modal 
-                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">{{ Auth::user()->name }}</button>
-        
-                                    <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-content">
-                                                <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
-                                                <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
-                                                <div class="modal-footer"><a href="{{ route('logout') }}" class="btn btn-primary btn-block" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
-                                                    </a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                    
-                                </ul>
-                                @endguest 
-                            </div>
-                        </div>
-                    </div>-->
-
+    <body> 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-4" >
@@ -117,17 +65,28 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#section2">Instructors</a></li>
-                    <li class="nav-item"><a class="nav-link"href="#section3">Subjects</a></li>
-                    <li class="nav-item"><a class="nav-link"href="#section4">Exams</a></li>
-                    <li class="nav-item"><a class="nav-link"href="#section5">Batches</a></li>
-                    <li class="nav-item"><a class="nav-link"href="#section6">Exercise</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+                    <li class="nav-item"><a class="nav-link" href="#">Instructors</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Courses<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#section41">Section 4-1</a></li>
-                            <li><a href="#section42">Section 4-2</a></li>
+                            <li><a href="#">SSC ICT</a></li>
+                            <li><a href="#">HSC ICT</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link"href="#">Exams</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Batches<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">SSC</a></li>
+                            <li><a href="#">HSC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"href="#">Exercise</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Lecture Note</a></li>
+                            <li><a href="#">Glossary of Class</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"href="#">Student Corner</a></li>
                 </ul>  
             </div>
         </nav>
@@ -138,9 +97,26 @@
         <div class="container-fluid clearfix" style="min-height: 90vh">
             @yield('content')
         </div>
+        
+        @extends('layouts.footer')
+        
 
-        <footer class="container-fluid text-center footer">
-            <p>Footer Text</p>
-        </footer>
+<!--        <footer class="container-fluid text-center footer">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <p>Contact</p> <br>
+                    <p>Email:</p><br>
+                    <p>Cell:</p>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <p>Important Links</p><br>
+                    <p>Location</p>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <p>Subscribe</p>
+                </div>
+            </div>
+
+        </footer>-->
     </body>
 </html>
