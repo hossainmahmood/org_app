@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title','welcome')
+
 <style>   
     /* Make the image fully responsive */
     .carousel-inner img {
@@ -12,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <div id="demo" class="carousel slide" data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -21,24 +22,27 @@
                 </ul>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../images/la.jpg" alt="Los Angeles" width="1100" height="500">
+                        <!--<img src="../images/la.jpg" alt="Los Angeles" width="600" height="500">-->
+                        <img src="../images/1.jpg" alt="Teacher" width="400" height="300"/>
                         <div class="carousel-caption">
-                            <h3>Los Angeles</h3>
-                            <p>We had such a great time in LA!</p>
+                            <h3>Teaching in Class</h3>
+                            <p>Use of IT in Learning</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
-                        <img src="../images/chicago.jpg" alt="Chicago" width="1100" height="500">
+                        <!--<img src="../images/chicago.jpg" alt="Chicago" width="600" height="500">-->
+                        <img src="../images/2.jpg" alt="" width="400" height="300"/>
                         <div class="carousel-caption">
-                            <h3>Chicago</h3>
-                            <p>Thank you, Chicago!</p>
+                            <h3>Students Taking Note</h3>
+                            <p>A great learning procedure</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
-                        <img src="../images/ny.jpg" alt="New York" width="1100" height="500">
+                        <!--<img src="../images/ny.jpg" alt="New York" width="600" height="500">-->
+                        <img src="../images/3.jpg" alt="" width="400" height="300"/>
                         <div class="carousel-caption">
-                            <h3>New York</h3>
-                            <p>We love the Big Apple!</p>
+                            <h3>Sharing Knowledge</h3>
+                            <p>Students share ideas </p>
                         </div>   
                     </div>
                 </div>
@@ -49,6 +53,9 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
+        </div>
+        <div class="col-sm-4">
+            Empirical IT School
         </div>
         <div class="col-sm-4">
             Empirical IT School

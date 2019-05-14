@@ -5,6 +5,15 @@
     border-bottom-color: red;        
 }
 
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
 /* Add a gray background color and some padding to the footer */
 .footer {
     background-color: #303030;
@@ -17,28 +26,34 @@ nav{
      font-size: 16px;
 }
 
+/*Sticky top CSS*/
+
+.w3-xxlarge{  
+                 margin-bottom: 0px;
+                 font-family: "Tangerine", serif; 
+                
+            }            
+            
+.name{
+    margin-bottom: 0px;
+    font-size:2.5vw;
+}
+
+.loginlogout{
+    font-family: "Times New Roman", Times, serif;
+}
+/*Sticky top CSS END*/
+
 /* Hide the carousel text when the screen is less than 600 pixels wide */
 @media (max-width: 600px) {
     .carousel-caption {
         display: none; 
     }
+
+.w3-xxlarge{  
+                 margin-bottom: 10px;
+                font-size: 20px !important;
+            } 
 }
 
 
-/*Sticky top CSS*/
-.w3-tangerine {
-    font-family: "Tangerine", serif; 
-}
-/*            .w3-xxlarge{  
-                font-weight: lighter; 
-                
-            }*/
-
-.name{
-    margin-bottom: 0px;
-    font-size:2.5vw;
-}
-.loginlogout{
-    font-family: "Times New Roman", Times, serif;
-}
-/*Sticky top CSS END*/
