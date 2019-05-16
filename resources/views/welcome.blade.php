@@ -65,7 +65,7 @@
     <hr>
 </div>
 <div class="container-fluid text-center">    
-    <h3>What We Do</h3>
+    <h3>Tutors Profile</h3>
     <br>
     <div class="row">
         <div class="col-sm-3">
