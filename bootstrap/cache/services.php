@@ -30,6 +30,7 @@
     26 => 'App\\Providers\\AuthServiceProvider',
     27 => 'App\\Providers\\EventServiceProvider',
     28 => 'App\\Providers\\RouteServiceProvider',
+    29 => 'App\\Providers\\ComposerServiceProvider',
   ),
   'eager' => 
   array (
@@ -48,6 +49,7 @@
     12 => 'App\\Providers\\AuthServiceProvider',
     13 => 'App\\Providers\\EventServiceProvider',
     14 => 'App\\Providers\\RouteServiceProvider',
+    15 => 'App\\Providers\\ComposerServiceProvider',
   ),
   'deferred' => 
   array (
