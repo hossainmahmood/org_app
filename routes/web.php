@@ -21,6 +21,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('passports', 'PassportController');
+Route::resource('teachers', 'TeacherController');
+Route::resource('students', 'StudentController');
+Route::resource('courses', 'CourseController');
+Route::resource('contacts', 'ContactsController');
 
 
 /**
@@ -45,4 +49,6 @@ Route::resource('passports', 'PassportController');
 //        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 //    }
+ * 
+ */
 
