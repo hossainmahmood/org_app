@@ -55,8 +55,6 @@
             </div>
         </div>
 
-
-
         <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top" style="border-bottom: 2px solid background;">
             <a class="navbar-brand" href="{{ url('/') }}">Logo</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -90,33 +88,13 @@
                 </ul>  
             </div>
         </nav>
-
-
+        
         <hr >
 
         <div class="container-fluid clearfix" style="min-height: 90vh">
             @yield('content')
         </div>
         
-        @extends('layouts.footer')
-        
-
-<!--        <footer class="container-fluid text-center footer">
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <p>Contact</p> <br>
-                    <p>Email:</p><br>
-                    <p>Cell:</p>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <p>Important Links</p><br>
-                    <p>Location</p>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <p>Subscribe</p>
-                </div>
-            </div>
-
-        </footer>-->
+        @extends('layouts.footer')        
     </body>
 </html>
