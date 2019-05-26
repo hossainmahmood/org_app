@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\teacher;
 
 class TeacherController extends Controller
 {
@@ -13,6 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
+//        $teacherList=DB::
         return view('teachers.index');
     }
 
@@ -24,7 +26,7 @@ class TeacherController extends Controller
     
     public function create()
     {
-        return view('teachers.create');
+        return view('teachers.teacherCreate');
     }
 
     /**
