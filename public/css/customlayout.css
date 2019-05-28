@@ -2,9 +2,7 @@
 .navbar{
     margin-bottom: 0px;
     border-radius: 0;
-    border-bottom-color: red;        
 }
-
 
 .dropdown:hover > .dropdown-menu {
     display: block;
@@ -22,18 +20,19 @@
 
 }
 nav{
-     font-family: "Times New Roman", Times, serif;
-     font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    border-bottom: 2px solid coral; 
 }
 
 /*Sticky top CSS*/
 
 .w3-xxlarge{  
-                 margin-bottom: 0px;
-                 font-family: "Tangerine", serif; 
-                
-            }            
-            
+    margin-bottom: 0px;
+    font-family: "Tangerine", serif; 
+
+}            
+
 .name{
     margin-bottom: 0px;
     font-size:2.5vw;
@@ -50,10 +49,10 @@ nav{
         display: none; 
     }
 
-.w3-xxlarge{  
-                 margin-bottom: 10px;
-                font-size: 20px !important;
-            } 
+    .w3-xxlarge{  
+        margin-bottom: 10px;
+        font-size: 20px !important;
+    } 
 }
 
 
