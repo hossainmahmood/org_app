@@ -6,11 +6,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item dropdown-menu"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{route('teachers')}}">Instructors</a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('teachers') }}">Instructors</a>
                     <ul class="dropdown-menu">
-                            <li><a href="#">Add Instructor</a></li>
-                            <li><a href="#">Edit Instructor</a></li>
-                            <li><a href="#">HSC ICT</a></li>
+                            <li><a href="{{ url('teachers/create') }}">Add Instructor</a></li>
+                            <li><a href="#">Edit Instructor</a></li>                            
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Courses<span class="caret"></span></a>

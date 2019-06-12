@@ -58,7 +58,7 @@
         @if ($userMenu)
         @include($userMenu) 
         @endif
-
+        <hr/>
         <div class="container-fluid clearfix" style="min-height: 90vh">
             @yield('content')
         </div>
