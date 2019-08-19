@@ -5,6 +5,9 @@
 
 <form  method="POST" action="{{url('teachers')}}">
     @csrf
+        <div class="row">
+            <h3> Add New Teacher </h3>
+    </div>
     <div class="row">
         <div class="col-md-4 text-right"><label for="Name">Name:</label></div>
         <div class="form-group col-md-4">            
@@ -14,7 +17,7 @@
     <div class="row">
         <div class="col-md-4 text-right"><label for="Name">Birth Date:</label></div>
         <div class="form-group col-md-4">            
-             <input class="date form-control"  type="text" id="datepicker" name="birthDate">
+             <input type="date" clsss="form-control" name="birthDate">
         </div>
     </div>
     <div class="row">
@@ -36,12 +39,12 @@
         </div>       
     </div>
 
-    <div class="row">
-        <div class="col-md-4 text-right"><strong>Hire Date : </strong> </div>
+<!--    <div class="row">
+        <div class="col-md-4 text-right">Hire Date :</div>
         <div class="form-group col-md-4">             
-            <input class="date form-control"  type="text" id="datepicker" name="hireDate">   
+            <input class="date"  type="text" id="datepicker" name="hireDate">   
         </div>
-    </div>
+    </div>-->
     
     <div class="row">
         <div class="col-md-4 text-right"><lable>Department :</lable></div>
@@ -70,5 +73,26 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </div>
+    
+   
+    
 </form>
+
+
+<form action="/action_page.php">
+  Birthday:
+  <input type="date" name="bday">
+  <input type="submit">
+</form>
+
+<input type="submit" value="" />
+ <script>  
+$('.datepicker').pickadate({
+weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+showMonthsShort: true
+});
+
+</script>
 @endsection
+
+
