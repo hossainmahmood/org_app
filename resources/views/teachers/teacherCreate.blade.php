@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-4 text-right"><label for="Name">Birth Date:</label></div>
                             <div class="form-group col-md-4">            
-                                <input class="date form-control"  type="text" id="datepicker" name="birthDate">
+                                <input class="date form-control datepicker"  type="text" id="datepicker" name="birthDate">
                             </div>
                         </div>
                         <div class="row">
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-md-4 text-right">Hire Date : </div>
                             <div class="form-group col-md-4">             
-                                <input class="date form-control"  type="text" id="datepicker" name="hireDate">   
+                                <input class="date form-control datepicker"  type="text" id="datepicker" name="hireDate">   
                             </div>
                         </div>
 
@@ -85,6 +85,12 @@
         </div>
 
 </div>
+    
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
 
 @endsection
 
