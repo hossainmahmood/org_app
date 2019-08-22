@@ -84,8 +84,8 @@
 
         </div>
 
-    </div>
-
 </div>
 
 @endsection
+
+
