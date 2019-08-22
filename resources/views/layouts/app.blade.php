@@ -62,7 +62,10 @@
         <div class="container-fluid clearfix" style="min-height: 90vh">
             @yield('content')
         </div>
-
-        @extends('layouts.footer')        
+              
     </body>
+    <br>
+    <footer>
+         @extends('layouts.footer') 
+    </footer>
 </html>

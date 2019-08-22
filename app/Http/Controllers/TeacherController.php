@@ -37,7 +37,9 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name=$request->name;
+        $birthDate=$request->birthDate;
+        exit($name);
     }
 
     /**
