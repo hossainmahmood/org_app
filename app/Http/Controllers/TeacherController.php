@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\teacher;
+use App\Teacher;
 
 class TeacherController extends Controller
 {
+        /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +43,23 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $name=$request->name;
-        $birthDate=$request->birthDate;
-        exit($name);
+        $teacher=new Teacher();
+        $teacher->name=$request->name;  
+        $teacher->birth_date= $request->birthDate;
+//        $teacher->birth_date= date_format($request->birthDate,'YYYY-MM-DD');
+        $teacher->email=$request->email;
+        $teacher->phone_number=$request->phoneNumber;
+        $teacher->address=$request->address;
+        $teacher->hire_date= $request->hireDate;
+//        $teacher->hire_date= date_format($request->hireDate,'Y-m-d');
+        $teacher->department=$request->department;
+        
+        $teacher->save();
+        
+        return redirect()->route('home');
+        
+//        var_dump($request->birthDate);        
+//        exit($department);
     }
 
     /**

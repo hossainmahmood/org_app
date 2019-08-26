@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-4 text-right"><label for="Name">Birth Date:</label></div>
                             <div class="form-group col-md-4">            
-                                <input class="date form-control datepicker"  type="text" id="datepicker" name="birthDate">
+                                <input class="date form-control datepicker"  type="date" id="birthDate" name="birthDate">
                             </div>
                         </div>
                         <div class="row">
@@ -45,18 +45,18 @@
                         <div class="row">
                             <div class="col-md-4 text-right">Hire Date : </div>
                             <div class="form-group col-md-4">             
-                                <input class="date form-control datepicker"  type="text" id="datepicker" name="hireDate">   
+                                <input class="date form-control datepicker"  type="date" id="hireDate" name="hireDate">   
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 text-right"><lable>Department :</lable></div>
                             <div class="form-group col-md-4">            
-                                <select name="office">
-                                    <option value="Mumbai">Math</option>
-                                    <option value="Chennai">ICT</option>
-                                    <option value="Delhi">Physics</option>  
-                                    <option value="Bangalore">Chemistry</option>  
+                                <select name="department">
+                                    <option value="MAT">Math</option>
+                                    <option value="ICT">ICT</option>
+                                    <option value="PHY">Physics</option>  
+                                    <option value="CHE">Chemistry</option>  
                                 </select>
                             </div>
                         </div>
@@ -84,14 +84,22 @@
 
         </div>
 
-</div>
-    
-  <script>
-  $( function() {
-    $( ".datepicker" ).datepicker();
-  } );
-  </script>
+    </div>
 
-@endsection
+<!--    <script>
+        $(function() {
+        $("#birthDate").datepicker({
+        changeMonth : true,
+        changeYear : true
+        });
+        
+         $("#hireDate").datepicker({
+        changeMonth : true,
+        changeYear : true
+        });
+        });
+    </script>-->
+
+    @endsection
 
 
