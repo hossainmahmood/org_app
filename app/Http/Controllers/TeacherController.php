@@ -7,12 +7,6 @@ use App\Teacher;
 
 class TeacherController extends Controller
 {
-        /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +50,7 @@ class TeacherController extends Controller
         
         $teacher->save();
         
-        return redirect()->route('home');
+        return redirect()->back()->with('status','Data Inserted successfully');
         
 //        var_dump($request->birthDate);        
 //        exit($department);
