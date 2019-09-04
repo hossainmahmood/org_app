@@ -66,13 +66,13 @@
                             </div>
                         </div>
 
-<!--
+
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="form-group col-md-4">
-                                <input type="file" name="filename">    
+                                <input type="file" id="picture" name="picture">    
                             </div>
-                        </div>-->
+                        </div>
 
 
                         <div class="row">

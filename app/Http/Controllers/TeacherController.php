@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Teacher;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
 {
@@ -44,9 +45,12 @@ class TeacherController extends Controller
         $teacher->email=$request->email;
         $teacher->phone_number=$request->phoneNumber;
         $teacher->address=$request->address;
-        $teacher->hire_date= $request->hireDate;
-//        $teacher->hire_date= date_format($request->hireDate,'Y-m-d');
+        $teacher->hire_date= $request->hireDate;        
         $teacher->department=$request->department;
+        
+        
+        $teacher->picture= Storage::putFile(storage_path('app/public'), $request->file('picture'));
+        
         
         $teacher->save();
         
