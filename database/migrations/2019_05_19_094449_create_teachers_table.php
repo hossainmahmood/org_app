@@ -26,7 +26,7 @@ class CreateTeachersTable extends Migration
             $table->string('job_id');
             $table->string('salary');
             $table->string('department');
-            $table->string('picture'); 
+            $table->string('picture')->nullable(); 
             $table->timestamps();
         });
     }

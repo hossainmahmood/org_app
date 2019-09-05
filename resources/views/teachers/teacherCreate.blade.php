@@ -14,7 +14,7 @@
                 @endif
                 <div class="card-header">Add New Teacher </div>
                 <div class="card-body">
-                    <form  method="POST" action="{{url('teachers')}}">
+                    <form  method="POST" action="{{url('teachers')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-4 text-right"><label for="Name">Name:</label></div>
@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="form-group col-md-4">
-                                <input type="file" id="picture" name="picture">    
+                                <input type="file" name="picture">    
                             </div>
                         </div>
 
