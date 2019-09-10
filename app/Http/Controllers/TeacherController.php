@@ -49,8 +49,7 @@ class TeacherController extends Controller {
         } else {
             $teacher->picture = $request->file('picture')->store('public');
         }
-
-//        Storage::putFileAs('public', $request->file('picture'),"picture");
+        
         $teacher->save();
 
         return redirect()->back()->with('status', 'Data Inserted successfully');
