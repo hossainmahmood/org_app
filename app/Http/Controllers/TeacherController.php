@@ -15,8 +15,9 @@ class TeacherController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-//        $teacherList=DB::
-        return view('teachers.index');
+        $teachers=Teacher::all();
+
+        return view('teachers.index',compact('teachers'));
     }
 
     /**
